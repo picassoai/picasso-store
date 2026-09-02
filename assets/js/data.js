@@ -58,18 +58,22 @@ window.APPLICATIONS = [
     /* Joints are views over this set, not a partition — the same actuator can
        serve a shoulder on one machine and a hip on another, so these lists
        overlap by design. Every note states considerations, not endorsements. */
+    /* Joint name alone does not set torque — robot mass and limb length do.
+       CubeMars' own material recommends peaks from 22 to 222 N.m for the same
+       joint across two documents, because neither states a machine scale. */
+    jointScale: "Figures below assume a humanoid in roughly the 30–40 kg, 1.3 m class. Torque scales with robot mass and limb length, so treat these as a starting point and re-run the numbers for your machine.",
     joints: [
       {
         id: "shoulder", name: "Shoulder", group: "Upper limb",
         note: "Three degrees of freedom carrying the whole arm at the longest lever arm on the upper body. Torque demand is usually dominated by the arm's own mass at full extension rather than by the payload, so size on the extended-arm case. The pitch axis normally needs the most; roll and yaw can be smaller. Keeping reduction low enough to stay backdrivable means a collision pushes the arm instead of the structure.",
         products: [
-          "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100", "ak10-9-v3-0-kv60",
-          "ak10-9-v2-0-kv60", "akh70-16-v1-0-kv41"
+          "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100", "ak60-39-v3-0",
+          "ak10-9-v3-0-kv60", "ak10-9-v2-0-kv60", "akh70-16-v1-0-kv41"
         ]
       },
       {
         id: "elbow", name: "Elbow", group: "Upper limb",
-        note: "One degree of freedom carrying forearm mass plus payload — less torque than the shoulder, with the same backdrivability requirement. Weight matters more here than the number suggests: the elbow actuator's own mass becomes a load the shoulder has to hold at full extension, so every 100 g spent here is paid for again upstream.",
+        note: "One degree of freedom carrying forearm mass plus payload. Do not assume it can be a size down from the shoulder: on Unitree's H1-2 and G1 the elbow and shoulder are specified at the same torque as each other. Weight matters more here than the torque figure suggests, because the elbow actuator's own mass becomes a load the shoulder has to hold at full extension — every 100 g spent here is paid for again upstream.",
         products: [
           "ak45-36-kv80", "ak45-36-v3-0-kv80", "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100"
         ]
@@ -90,7 +94,7 @@ window.APPLICATIONS = [
       },
       {
         id: "hip", name: "Hip", group: "Lower limb",
-        note: "Three degrees of freedom and the highest sustained torque in the machine. It carries the entire upper body, and in single-support stance one hip holds the whole mass on its own. Rated and peak torque are different questions here and both bind: rated covers standing and walking, peak covers stepping and recovery.",
+        note: "Three degrees of freedom and the highest sustained torque in the machine, though not the highest peak — the knee normally exceeds it there. It carries the entire upper body, and in single-support stance one hip holds the whole mass on its own. Rated and peak are different questions here and both bind: rated covers standing and walking, peak covers stepping and recovery, and the multi-axis layout means the strongest axis sets the package size.",
         products: [
           "ak10-9-v3-0-kv60", "ak10-9-v2-0-kv60", "ak60-39-v3-0",
           "akh70-16-v1-0-kv41", "ak80-64-kv80", "akh70-48-v1-0-kv41"
@@ -98,7 +102,7 @@ window.APPLICATIONS = [
       },
       {
         id: "knee", name: "Knee", group: "Lower limb",
-        note: "The highest peak torque and the highest impact loading in the machine. Landing puts on the order of two to three times body weight through this joint within a few milliseconds, so size on peak torque and shock tolerance rather than on the rated figure. Reduction has to stay low enough to remain backdrivable — a knee that cannot be driven backwards cannot absorb a landing or run a fall-protection routine.",
+        note: "Usually the strongest single axis in the machine — on both Unitree's H1-2 and G1 the knee peak exceeds the hip. Size it on peak rather than rated, because squatting, jumping and landing set the number, not steady walking; a common starting rule is a peak of two to four times the rated figure. Reduction has to stay low enough to remain backdrivable — a knee that cannot be driven backwards cannot absorb a landing or run a fall-protection routine.",
         products: [
           "ak10-9-v3-0-kv60", "ak10-9-v2-0-kv60", "ak60-39-v3-0",
           "akh70-16-v1-0-kv41", "ak80-64-kv80", "akh70-48-v1-0-kv41"
@@ -108,7 +112,8 @@ window.APPLICATIONS = [
         id: "ankle", name: "Ankle", group: "Lower limb",
         note: "Two degrees of freedom and the hardest packaging problem in the leg. It needs real torque for push-off, but its own mass sits at the far end of the limb where it costs the knee and hip the most. This is why many designs move the actuators up the shank and drive the ankle through linkages or belts instead of mounting them at the joint.",
         products: [
-          "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100", "ak10-9-v3-0-kv60", "ak60-39-v3-0"
+          "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100", "akh70-16-v1-0-kv41",
+          "ak10-9-v3-0-kv60", "ak60-39-v3-0"
         ]
       }
     ],

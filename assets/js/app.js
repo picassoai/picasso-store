@@ -703,6 +703,14 @@
     }
     renderJointNav(app, joint);
 
+    /* Every joint note is scale-dependent, so state the assumed machine size
+       once rather than repeating the caveat in all seven. */
+    var scale = $("[data-joint-scale]");
+    if (scale) {
+      scale.textContent = joint && app.jointScale ? app.jointScale : "";
+      scale.hidden = !(joint && app.jointScale);
+    }
+
     var torques = items.map(function (p) { return coreNum(p, "torque"); })
                        .filter(function (v) { return v != null; });
     var built = filterMarkup(items);
