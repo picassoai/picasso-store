@@ -9,6 +9,10 @@ window.SITE = {
   /* No phone number on the site by choice — enquiries come in by email so
      they arrive with the model and quantity written down. */
   email: "info@picassointelligence.com",
+  /* Formspree relays the contact form. The endpoint is public by design — it
+     ships in the page source — and the destination inbox is set in Formspree,
+     never here. Free tier is 50 submissions a month. */
+  formEndpoint: "https://formspree.io/f/xoeqdwez",
   address: "215 W 125th St, New York, NY 10027",
   location: "New York",
   linkedin: "#",

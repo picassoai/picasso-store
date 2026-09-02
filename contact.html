@@ -24,6 +24,10 @@
   <div class="cart-layout">
     <div>
       <form data-contact novalidate style="padding-top:40px">
+        <input type="hidden" name="_subject" value="Website enquiry">
+        <!-- Bots fill hidden fields; Formspree discards anything with _gotcha set. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+               aria-hidden="true" style="position:absolute;left:-9999px">
         <div class="form-grid">
           <div><label class="lbl" for="c-name">Name</label>
             <input class="field" id="c-name" name="name" required autocomplete="name"></div>

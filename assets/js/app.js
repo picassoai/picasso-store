@@ -1403,12 +1403,60 @@
       var head = $("[data-contact-head]");
       if (head) head.textContent = "Quote request — " + model;
     }
+    /* Posted with fetch rather than a plain form action so the customer stays
+       on the site, and without Formspree's SDK so the page keeps its no-build,
+       no-dependency footing. */
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var missing = $$("[required]", form).filter(function (i) { return !i.value.trim(); });
       if (missing.length) { missing[0].focus(); toast("Fill in the highlighted fields."); return; }
-      form.innerHTML = '<div class="notice"><strong>Message captured locally.</strong> No mail backend is ' +
-        "connected in this build, so nothing was sent. README.md shows where to point the form.</div>";
+
+      var mailto = '<a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a>";
+      if (!S.formEndpoint) {
+        form.innerHTML = '<div class="notice"><strong>The form is not connected yet.</strong> ' +
+          "Please email " + mailto + " and we will come straight back to you.</div>";
+        return;
+      }
+
+      var subject = $("#c-subject-holder") || $('[name="_subject"]', form);
+      if (subject) {
+        var topic = $("#c-topic");
+        subject.value = (topic && topic.value ? topic.value : "Enquiry") +
+          (model ? " — " + model : "") + " — picassointelligence.com";
+      }
+
+      var btn = $('button[type="submit"]', form);
+      var label = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+      var old = $("[data-form-error]", form);
+      if (old) old.remove();
+
+      fetch(S.formEndpoint, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      }).then(function (r) {
+        if (r.ok) {
+          form.innerHTML = '<div class="notice"><strong>Thank you — your message has been sent.</strong> ' +
+            "An engineer will reply to the address you gave. If it is urgent you can also reach us at " +
+            mailto + ".</div>";
+          return null;
+        }
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          throw new Error((d.errors || []).map(function (x) { return x.message; }).join(", ") ||
+            "The form service returned " + r.status + ".");
+        });
+      }).catch(function (err) {
+        /* Never claim a send that did not happen — say so and give the address. */
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+        var box = document.createElement("div");
+        box.className = "notice";
+        box.setAttribute("data-form-error", "");
+        box.style.marginTop = "16px";
+        box.innerHTML = "<strong>That did not send.</strong> " + esc(err.message) +
+          " Please email " + mailto + " instead — your text is still in the form above.";
+        form.appendChild(box);
+      });
     });
   }
 
