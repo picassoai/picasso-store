@@ -776,7 +776,7 @@ select.field { appearance: none; background-image: none; }
 
 @media print {
   .site-header, .site-footer, .announce, .rail-btn, .drawer-scrim,
-  .doc-actions, .compare-bar, .toast { display: none !important; }
+  .doc-actions, .compare-bar, .toast, [data-send-status] { display: none !important; }
   body { font-size: 12pt; color: #000; }
   .summary-doc { max-width: none; padding: 0; }
   .doc-table th, .doc-table td { border-color: #999; }

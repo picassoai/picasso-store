@@ -30,6 +30,23 @@
     if (q) return q;
     return (window.ROUTE && window.ROUTE[name]) || "";
   }
+  /* Two pages send through Formspree now, so the POST lives in one place.
+     Takes a FormData so callers can pass a real form or build one by hand. */
+  function postForm(body) {
+    if (!S.formEndpoint) {
+      return Promise.reject(new Error("The form is not connected yet."));
+    }
+    return fetch(S.formEndpoint, {
+      method: "POST", body: body, headers: { Accept: "application/json" }
+    }).then(function (r) {
+      if (r.ok) return true;
+      return r.json().catch(function () { return {}; }).then(function (d) {
+        throw new Error((d.errors || []).map(function (x) { return x.message; }).join(", ") ||
+          "The form service returned " + r.status + ".");
+      });
+    });
+  }
+
   /* The query-string URL and its generated twin serve the same page, so point
      the query-string one at the twin and let the duplicate collapse into it. */
   function canonical(path) {
@@ -1197,11 +1214,75 @@
       "</tbody></table>" +
       '<p class="note">Payment method selected: ' + esc(d.method) + ".</p>" +
       '<div class="doc-actions">' +
-        '<button class="btn btn-accent" type="button" data-print>Print</button>' +
+        '<button class="btn btn-accent" type="button" data-send-order>Send this to ' +
+          esc(S.brand) + "</button>" +
+        '<button class="btn" type="button" data-print>Print</button>' +
         '<a class="btn" href="checkout.html">Back to checkout</a>' +
-      "</div>";
+      "</div>" +
+      '<div data-send-status></div>';
 
     $("[data-print]").addEventListener("click", function () { window.print(); });
+
+    /* Nothing is charged here, so this button is how an order actually reaches
+       us. Say "request" rather than "order placed" — the customer has not paid
+       and we have not confirmed anything yet. */
+    var sendBtn = $("[data-send-order]");
+    var status = $("[data-send-status]");
+    var sent = false;
+    sendBtn.addEventListener("click", function () {
+      if (sent) return;
+      var mailto = '<a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a>";
+
+      var lines = d.lines.map(function (l) {
+        return "  " + l.qty + " x " + l.name + (l.series ? " (" + l.series + ")" : "") +
+          " @ " + money(l.price) + " = " + money((l.price || 0) * l.qty);
+      }).join("\n");
+
+      var body = [
+        "ORDER REQUEST from picassointelligence.com",
+        "",
+        "Contact",
+        "  " + [d.contact.name, d.contact.email, d.contact.phone].filter(Boolean).join(" | "),
+        "",
+        "Ship to",
+        "  " + [d.ship.company, d.ship.address, cityLine].filter(Boolean).join(" | "),
+        "",
+        "Items",
+        lines,
+        "",
+        "Total: " + money(total),
+        "Payment method selected: " + d.method
+      ].join("\n");
+
+      var fd = new FormData();
+      fd.append("_subject", "Order request — " + (d.contact.name || "no name") + " — " +
+        d.lines.length + (d.lines.length === 1 ? " line — " : " lines — ") + money(total));
+      /* Named "email" so Formspree sets Reply-To and you can answer directly. */
+      fd.append("email", d.contact.email || "");
+      fd.append("name", d.contact.name || "");
+      fd.append("message", body);
+
+      sendBtn.disabled = true;
+      sendBtn.textContent = "Sending…";
+      status.innerHTML = "";
+
+      postForm(fd).then(function () {
+        sent = true;
+        sendBtn.remove();
+        status.innerHTML = '<div class="notice" style="margin-top:20px">' +
+          "<strong>Sent. We have your request.</strong> An engineer will reply to " +
+          esc(d.contact.email || "the address you gave") +
+          " to confirm pricing and availability before anything is charged. " +
+          "Print this page if you want a copy for your records.</div>";
+      }).catch(function (err) {
+        sendBtn.disabled = false;
+        sendBtn.textContent = "Send this to " + S.brand;
+        status.innerHTML = '<div class="notice" style="margin-top:20px">' +
+          "<strong>That did not send.</strong> " + esc(err.message) +
+          " Please email " + mailto + " instead — this page is still here, " +
+          "and Print will give you something to attach.</div>";
+      });
+    });
   }
 
   /* ---------- page: find by spec --------------------------------------- */
@@ -1431,21 +1512,10 @@
       var old = $("[data-form-error]", form);
       if (old) old.remove();
 
-      fetch(S.formEndpoint, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      }).then(function (r) {
-        if (r.ok) {
-          form.innerHTML = '<div class="notice"><strong>Thank you — your message has been sent.</strong> ' +
-            "An engineer will reply to the address you gave. If it is urgent you can also reach us at " +
-            mailto + ".</div>";
-          return null;
-        }
-        return r.json().catch(function () { return {}; }).then(function (d) {
-          throw new Error((d.errors || []).map(function (x) { return x.message; }).join(", ") ||
-            "The form service returned " + r.status + ".");
-        });
+      postForm(new FormData(form)).then(function () {
+        form.innerHTML = '<div class="notice"><strong>Thank you — your message has been sent.</strong> ' +
+          "An engineer will reply to the address you gave. If it is urgent you can also reach us at " +
+          mailto + ".</div>";
       }).catch(function (err) {
         /* Never claim a send that did not happen — say so and give the address. */
         if (btn) { btn.disabled = false; btn.textContent = label; }
