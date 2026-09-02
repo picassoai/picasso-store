@@ -40,6 +40,15 @@
     ratio:  "Reduction Ratio"
   };
   function spec(p, key) { return (p.specs && p.specs[key]) || ""; }
+  /* Gimbal motors sit around 0.08 N·m, which reads as noise next to an
+     actuator's 74. Below 1 N·m, switch to mN·m. */
+  function torqueText(v) {
+    var n = num(v);
+    if (n == null) return { value: "", unit: "" };
+    return n < 1
+      ? { value: String(Math.round(n * 1000)), unit: "mN·m" }
+      : { value: String(n), unit: "N·m" };
+  }
   /* "9:1" and "1.3" both start with the number we want to sort on. */
   function num(v) { var m = String(v).match(/-?\d+(\.\d+)?/); return m ? parseFloat(m[0]) : null; }
   function coreNum(p, which) { return num(spec(p, CORE[which])); }
@@ -77,7 +86,28 @@
     truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4l3 3v4h-7"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>',
     shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>',
     tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3H21v8.5L11 21.5 2.5 13z"/><circle cx="17" cy="7" r="1.4"/></svg>',
-    mark: '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#14181d"/><circle cx="16" cy="16" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="16" r="3" fill="#1d64d8"/><path d="M16 1.4v5.2M16 25.4v5.2M1.4 16h5.2M25.4 16h5.2" stroke="#fff" stroke-width="2"/></svg>'
+    mark: '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#14181d"/><circle cx="16" cy="16" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="16" r="3" fill="#1d64d8"/><path d="M16 1.4v5.2M16 25.4v5.2M1.4 16h5.2M25.4 16h5.2" stroke="#fff" stroke-width="2"/></svg>',
+    /* Drawn rather than the 🇺🇸 emoji: Windows renders regional-indicator
+       flags as the plain letters "US", so the emoji shows no flag at all. */
+    flag: '<svg class="flag-svg" viewBox="0 0 38 20" aria-hidden="true">' +
+      '<rect width="38" height="20" fill="#fff"/><g fill="#b22234">' +
+      '<rect width="38" height="1.54"/><rect y="3.08" width="38" height="1.54"/>' +
+      '<rect y="6.15" width="38" height="1.54"/><rect y="9.23" width="38" height="1.54"/>' +
+      '<rect y="12.31" width="38" height="1.54"/><rect y="15.38" width="38" height="1.54"/>' +
+      '<rect y="18.46" width="38" height="1.54"/></g>' +
+      '<rect width="15.2" height="10.77" fill="#3c3b6e"/><g fill="#fff">' +
+      '<circle cx="2.2" cy="1.7" r=".62"/><circle cx="5.2" cy="1.7" r=".62"/>' +
+      '<circle cx="8.2" cy="1.7" r=".62"/><circle cx="11.2" cy="1.7" r=".62"/>' +
+      '<circle cx="13.8" cy="1.7" r=".62"/><circle cx="3.7" cy="3.6" r=".62"/>' +
+      '<circle cx="6.7" cy="3.6" r=".62"/><circle cx="9.7" cy="3.6" r=".62"/>' +
+      '<circle cx="12.5" cy="3.6" r=".62"/><circle cx="2.2" cy="5.4" r=".62"/>' +
+      '<circle cx="5.2" cy="5.4" r=".62"/><circle cx="8.2" cy="5.4" r=".62"/>' +
+      '<circle cx="11.2" cy="5.4" r=".62"/><circle cx="13.8" cy="5.4" r=".62"/>' +
+      '<circle cx="3.7" cy="7.2" r=".62"/><circle cx="6.7" cy="7.2" r=".62"/>' +
+      '<circle cx="9.7" cy="7.2" r=".62"/><circle cx="12.5" cy="7.2" r=".62"/>' +
+      '<circle cx="2.2" cy="9.1" r=".62"/><circle cx="5.2" cy="9.1" r=".62"/>' +
+      '<circle cx="8.2" cy="9.1" r=".62"/><circle cx="11.2" cy="9.1" r=".62"/>' +
+      '<circle cx="13.8" cy="9.1" r=".62"/></g></svg>'
   };
 
   /* ---------- cart ---------------------------------------------------- */
@@ -160,15 +190,17 @@
       '<header class="site-header">' +
         '<div class="header-bar">' +
           '<button class="icon-btn burger" type="button" data-open-drawer aria-label="Open menu">' + ICON.burger + '</button>' +
-          '<a class="brand" href="index.html">' + ICON.mark +
-            '<span>' + esc(S.brand) + (S.tagline ? '<small>' + esc(S.tagline) + '</small>' : "") + '</span></a>' +
+          '<a class="brand" href="index.html" aria-label="' + esc(S.brand) + '">' +
+            '<img class="brand-logo" src="assets/img/logo.svg" width="436" height="100" alt="' +
+              esc(S.brand) + '">' +
+            "</a>" +
           '<ul class="nav">' +
             '<li><a class="nav-link" href="collection.html?c=integrated"' + (seriesActive ? ' aria-current="page"' : "") +
               '>Product series' + ICON.chev + '</a><ul class="submenu">' + seriesMenu + '</ul></li>' +
             '<li><a class="nav-link" href="' + (apps[0] ? applicationHref(apps[0]) : "#") + '"' +
               (appActive ? ' aria-current="page"' : "") +
               '>Applications' + ICON.chev + '</a><ul class="submenu">' + appMenu + '</ul></li>' +
-            '<li><a class="nav-link" href="select.html"' +
+            '<li><a class="nav-link nav-tool" href="select.html"' +
               (document.body.getAttribute("data-page") === "select" ? ' aria-current="page"' : "") +
               ">Find by spec</a></li>" +
           '</ul>' +
@@ -243,8 +275,10 @@
       '<footer class="site-footer">' +
         '<div class="wrap footer-grid">' +
           '<div class="footer-about">' +
-            '<a class="brand" href="index.html">' + ICON.mark +
-              '<span>' + esc(S.brand) + (S.tagline ? '<small>' + esc(S.tagline) + '</small>' : "") + '</span></a>' +
+            '<a class="brand" href="index.html" aria-label="' + esc(S.brand) + '">' +
+              '<img class="brand-logo" src="assets/img/logo.svg" width="436" height="100" alt="' +
+                esc(S.brand) + '">' +
+              "</a>" +
             '<p>Robotic actuation and propulsion components for the machines you build.</p>' +
           '</div>' +
           '<div><h4>Shop</h4><ul>' + shopLinks + '</ul></div>' +
@@ -253,7 +287,7 @@
             '<li><a href="shipping-policy.html">Shipping policy</a></li>' +
             '<li><a href="refund-policy.html">Refund policy</a></li>' +
             '<li><a href="index.html#faq">FAQ</a></li>' +
-            '<li><a href="' + esc(S.phoneHref) + '">' + esc(S.phone) + '</a></li>' +
+            '<li><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a></li>' +
           '</ul></div>' +
           '<div class="news"><h4>Get updates</h4>' +
             '<p>New models, price breaks, and catalogue updates. Roughly monthly.</p>' +
@@ -301,18 +335,52 @@
 
   function productHref(p) { return "product.html?id=" + encodeURIComponent(p.id); }
 
+  /* Real product photography from the manufacturer, at most three per model,
+     in two cuts of the same shots:
+       products/          CubeMars overlay logo painted out — used in listings,
+                          where a wall of repeated manufacturer logos is noise
+       products-branded/  untouched — used on the product page, where showing
+                          it is a genuine CubeMars part is the point
+     ART.render stays as the fallback for anything with no photo. */
+  var IMG_DIR = "assets/img/products/";
+  var IMG_DIR_BRANDED = "assets/img/products-branded/";
+  function photos(p) { return (p && p.images) || []; }
+  function photo(p, i, alt, lazy, branded) {
+    var src = photos(p)[i || 0];
+    if (!src) return window.ART.render(p.art, p.size, { alt: alt || p.name });
+    return '<img src="' + (branded ? IMG_DIR_BRANDED : IMG_DIR) + esc(src) +
+      '" alt="' + esc(alt || p.name) + '"' +
+      (lazy === false ? "" : ' loading="lazy" decoding="async"') + ">";
+  }
+  /* One representative photo per group. Applications overlap heavily — the
+     exoskeleton and quadruped lists start with the same actuator — so prefer a
+     member no earlier group has already shown. */
+  function groupPhotoPicker() {
+    var used = {};
+    return function (items, alt) {
+      var withPhoto = items.filter(function (x) { return photos(x).length; });
+      var p = withPhoto.filter(function (x) { return !used[x.id]; })[0] || withPhoto[0];
+      if (!p) return "";
+      used[p.id] = true;
+      return photo(p, 0, alt);
+    };
+  }
+
   /* Rated torque leads, then the other three on one line. A buyer comparing
      twenty models should never have to open twenty pages to see these. */
   function cardSpecs(p) {
-    var t = spec(p, CORE.torque);
+    var t = torqueText(spec(p, CORE.torque));
     var rest = [
       spec(p, CORE.od) && "Ф" + spec(p, CORE.od) + " mm",
       spec(p, CORE.weight) && spec(p, CORE.weight) + " g",
       spec(p, CORE.ratio)
     ].filter(Boolean);
-    if (!t && !rest.length) return '<p class="spec-pending">Specifications on request</p>';
+    if (!t.value && !rest.length) return '<p class="spec-pending">Specifications on request</p>';
     return '<div class="card-specs">' +
-      (t ? '<div class="card-torque">' + esc(t) + "<span>N&middot;m rated</span></div>" : "") +
+      (t.value
+        ? '<div class="card-torque">' + esc(t.value) +
+          "<span>" + esc(t.unit) + " rated</span></div>"
+        : "") +
       (rest.length ? '<div class="card-dims">' + esc(rest.join(" · ")) + "</div>" : "") +
       "</div>";
   }
@@ -323,9 +391,15 @@
     var checked = comparable && Compare.read().indexOf(p.id) >= 0;
     return '<article class="card">' +
       '<div class="card-media">' +
-        '<span class="badge ' + (q ? "quote" : "stock") + '">' + (q ? "Quote" : "Available") + "</span>" +
+        /* The flag belongs to the support, not to the goods — the motors are
+           made in China, so anything implying US origin or US stock is off. */
+        '<span class="badge-us">' + ICON.flag + "<span>US-based<br>support</span></span>" +
+        /* No "Available" label — stock is not guaranteed, so claiming it on
+           every card would be a promise we cannot keep. The quote-only badge
+           stays, because that is about pricing, not availability. */
+        (q ? '<span class="badge quote">Quote</span>' : "") +
         '<a href="' + productHref(p) + '" tabindex="-1" aria-hidden="true">' +
-          window.ART.render(p.art, p.size, { alt: p.name }) + '</a></div>' +
+          photo(p, 0) + '</a></div>' +
       '<div class="card-body">' +
         '<div class="card-series">' + esc(p.series) + "</div>" +
         '<h3 class="card-title"><a href="' + productHref(p) + '">' + esc(p.name) + '</a></h3>' +
@@ -381,19 +455,24 @@
     /* Two ways in, stacked rather than side by side, and given different card
        shapes so the axes never read as one list shown twice: series cards carry
        a description and a model count, application cards are picture-led. */
+    var pickCat = groupPhotoPicker();
     var cg = $("[data-cat-grid]");
     if (cg) cg.innerHTML = COLS.map(function (c) {
-      var n = inCollection(c.id).length;
+      var items = inCollection(c.id);
+      var n = items.length;
       return '<a class="cat-card" href="' + collectionHref(c) + '">' +
-        '<div class="thumb">' + window.ART.render(c.art, 0.8, { alt: c.name }) + "</div>" +
+        '<span class="badge-us compact">' + ICON.flag + "<span>US-based support</span></span>" +
+        '<div class="thumb">' + pickCat(items, c.name) + "</div>" +
         "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
         '<span class="more">' + n + " model" + (n === 1 ? "" : "s") + " &rarr;</span></a>";
     }).join("");
 
+    var pickApp = groupPhotoPicker();
     var ag = $("[data-app-grid]");
     if (ag) ag.innerHTML = (window.APPLICATIONS || []).map(function (a) {
       return '<a class="app-card" href="' + applicationHref(a) + '">' +
-        '<span class="thumb">' + window.ART.render(a.art, 0.7, { alt: "" }) + "</span>" +
+        '<span class="badge-us compact">' + ICON.flag + "<span>US-based support</span></span>" +
+        '<span class="thumb">' + pickApp(inApplication(a), a.name) + "</span>" +
         "<h4>" + esc(a.name) + "</h4>" +
         "<p>" + esc(a.blurb) + "</p></a>";
     }).join("");
@@ -413,7 +492,10 @@
         '<div class="answer">' + esc(f.a) + "</div></details>";
     }).join("");
 
-    $("[data-hero-art]").innerHTML = window.ART.render("actuator", 1.15, { alt: "Integrated robotic actuator" });
+    /* Lead with the flagship rather than a drawing. Not lazy — it is the
+       first thing on the page. */
+    var star = product("ak80-9-v3-0-kv100") || PRODUCTS[0];
+    $("[data-hero-art]").innerHTML = photo(star, 0, star.name, false);
     $$("[data-sku-count]").forEach(function (n) { n.textContent = PRODUCTS.length; });
 
     wireAddButtons(document);
@@ -422,17 +504,44 @@
   /* ---------- page: collection ---------------------------------------- */
 
   /* Price bands were the wrong axis: nobody picks an actuator by price bracket.
-     These are the four numbers people actually filter on. */
-  var TORQUE_BANDS = [
-    { key: "t1", label: "Under 5", lo: 0,  hi: 5 },
-    { key: "t2", label: "5 – 20",  lo: 5,  hi: 20 },
-    { key: "t3", label: "20 – 50", lo: 20, hi: 50 },
-    { key: "t4", label: "Over 50", lo: 50, hi: Infinity }
-  ];
+     These are the four numbers people actually filter on.
+
+     Torque needs two scales. Gimbal motors run 0.08–3 N·m and integrated
+     actuators 1.3–74, so one fixed set of bands would drop every gimbal into
+     "Under 5" and filter nothing. Thresholds stay in N·m; only the labels
+     change. */
+  var TORQUE_SCALES = {
+    nm: { unit: "N·m", bands: [
+      { key: "t1", label: "Under 5", lo: 0,  hi: 5 },
+      { key: "t2", label: "5 – 20",  lo: 5,  hi: 20 },
+      { key: "t3", label: "20 – 50", lo: 20, hi: 50 },
+      { key: "t4", label: "Over 50", lo: 50, hi: Infinity }
+    ] },
+    mnm: { unit: "mN·m", bands: [
+      { key: "t1", label: "Under 100",   lo: 0,   hi: 0.1 },
+      { key: "t2", label: "100 – 300",   lo: 0.1, hi: 0.3 },
+      { key: "t3", label: "300 – 1000",  lo: 0.3, hi: 1 },
+      { key: "t4", label: "Over 1000",   lo: 1,   hi: Infinity }
+    ] }
+  };
+  function torqueScale(values) {
+    var max = values.length ? Math.max.apply(null, values) : 0;
+    return max > 0 && max <= 5 ? TORQUE_SCALES.mnm : TORQUE_SCALES.nm;
+  }
+
   var WEIGHT_BANDS = [
     { key: "w1", label: "Under 300 g", lo: 0,   hi: 300 },
     { key: "w2", label: "300 – 800 g", lo: 300, hi: 800 },
     { key: "w3", label: "Over 800 g",  lo: 800, hi: Infinity }
+  ];
+
+  /* Ratios span 6:1 to 64:1. Nine individual chips is a wall of numbers, and
+     the choice people actually make is "backdrivable or not", so band them. */
+  var RATIO_BANDS = [
+    { key: "g1", label: "Under 10:1",  lo: 0,  hi: 10 },
+    { key: "g2", label: "10:1 – 20:1", lo: 10, hi: 20 },
+    { key: "g3", label: "20:1 – 50:1", lo: 20, hi: 50 },
+    { key: "g4", label: "Over 50:1",   lo: 50, hi: Infinity }
   ];
 
   /* A row whose only option is "All" filters nothing — don't render it. */
@@ -452,24 +561,28 @@
     items.forEach(function (p) {
       var t = coreNum(p, "torque"); if (t != null) torques.push(t);
       var o = coreNum(p, "od");     if (o != null && ods.indexOf(o) < 0) ods.push(o);
-      var r = spec(p, CORE.ratio);  if (r && ratios.indexOf(r) < 0) ratios.push(r);
+      var r = num(spec(p, CORE.ratio)); if (r != null) ratios.push(r);
     });
     ods.sort(function (a, b) { return a - b; });
-    ratios.sort(function (a, b) { return num(a) - num(b); });
+    var scale = torqueScale(torques);
 
     var html = "";
     if (torques.length) {
-      html += chipRow("Rated torque", "torque", TORQUE_BANDS.filter(function (b) {
-        return torques.some(function (t) { return t >= b.lo && t < b.hi; });
-      }).map(function (b) { return { k: b.key, l: b.label }; }));
+      html += chipRow("Rated torque (" + scale.unit + ")", "torque",
+        scale.bands.filter(function (b) {
+          return torques.some(function (t) { return t >= b.lo && t < b.hi; });
+        }).map(function (b) { return { k: b.key, l: b.label }; }));
     }
     if (ods.length) {
-      html += chipRow("Outer dia.", "od", ods.map(function (o) { return { k: String(o), l: "Ф" + o }; }));
+      html += chipRow("Outer dia. (mm)", "od",
+        ods.map(function (o) { return { k: String(o), l: "Ф" + o }; }));
     }
     /* Gear ratio only exists on geared families — an empty filter on the
        direct-drive sets would just be noise. */
     if (ratios.length) {
-      html += chipRow("Gear ratio", "ratio", ratios.map(function (r) { return { k: r, l: r }; }));
+      html += chipRow("Gear ratio", "ratio", RATIO_BANDS.filter(function (b) {
+        return ratios.some(function (r) { return r >= b.lo && r < b.hi; });
+      }).map(function (b) { return { k: b.key, l: b.label }; }));
     }
     html += chipRow("Weight", "weight", WEIGHT_BANDS.filter(function (b) {
       return items.some(function (p) {
@@ -477,7 +590,7 @@
         return w != null && w >= b.lo && w < b.hi;
       });
     }).map(function (b) { return { k: b.key, l: b.label }; }));
-    return { html: html, ods: ods };
+    return { html: html, ods: ods, scale: scale };
   }
 
   function inBand(bands, key, v) {
@@ -487,11 +600,12 @@
     return b && v >= b.lo && v < b.hi;
   }
 
-  function matchesFilters(p, picked) {
-    return inBand(TORQUE_BANDS, picked.torque, coreNum(p, "torque")) &&
+  function matchesFilters(p, picked, scale) {
+    var bands = (scale || TORQUE_SCALES.nm).bands;
+    return inBand(bands, picked.torque, coreNum(p, "torque")) &&
            inBand(WEIGHT_BANDS, picked.weight, coreNum(p, "weight")) &&
-           (picked.od === "all" || String(coreNum(p, "od")) === picked.od) &&
-           (picked.ratio === "all" || spec(p, CORE.ratio) === picked.ratio);
+           inBand(RATIO_BANDS, picked.ratio, num(spec(p, CORE.ratio))) &&
+           (picked.od === "all" || String(coreNum(p, "od")) === picked.od);
   }
 
   function wireFilters(mount, picked, redraw) {
@@ -541,7 +655,7 @@
 
     if (mount) mount.innerHTML = built.html;
 
-    function keep(p) { return matchesFilters(p, picked); }
+    function keep(p) { return matchesFilters(p, picked, built.scale); }
 
     /* Products with no value for the sort key go last rather than sorting as 0. */
     function byNum(get, dir) {
@@ -645,12 +759,13 @@
   /* The four selection parameters, given the weight they deserve. Anything
      with no value at all is dropped rather than rendered as an em dash. */
   function specTiles(p) {
+    var t = torqueText(spec(p, CORE.torque));
     var tiles = [
-      { v: spec(p, CORE.torque), u: "N·m", l: "Rated torque" },
-      { v: spec(p, CORE.od),     u: "mm",  l: "Outer diameter" },
-      { v: spec(p, CORE.weight), u: "g",   l: "Weight" },
-      { v: spec(p, CORE.ratio),  u: "",    l: "Gear ratio" }
-    ].filter(function (t) { return t.v; });
+      { v: t.value,              u: t.unit, l: "Rated torque" },
+      { v: spec(p, CORE.od),     u: "mm",   l: "Outer diameter" },
+      { v: spec(p, CORE.weight), u: "g",    l: "Weight" },
+      { v: spec(p, CORE.ratio),  u: "",     l: "Gear ratio" }
+    ].filter(function (x) { return x.v; });
     if (!tiles.length) return "";
     return '<div class="spec-tiles">' + tiles.map(function (t) {
       return '<div class="spec-tile"><b>' + esc(t.v) +
@@ -669,18 +784,24 @@
     var c = collection(p.collection);
     document.title = p.name + " — " + S.brand;
 
-    var views = [p.art, p.art, "accessory", "stator"];
-    var sizes = [p.size, p.size * 0.78, 0.72, p.size * 0.86];
+    /* At most three photos per model, so the thumb strip only appears when
+       there is actually more than one view to switch between. */
+    var views = photos(p);
 
     $("[data-pdp]").innerHTML =
       '<div class="pdp-media">' +
-        '<div class="pdp-main" data-main>' + window.ART.render(views[0], sizes[0], { alt: p.name }) + "</div>" +
-        '<div class="pdp-thumbs" data-thumbs>' +
-          views.map(function (v, i) {
-            return '<button type="button" data-view="' + i + '" aria-pressed="' + (i === 0) +
-              '" aria-label="View ' + (i + 1) + '">' + window.ART.render(v, 0.62, { alt: "" }) + "</button>";
-          }).join("") +
-        "</div>" +
+        /* Outside [data-main] on purpose — switching thumbnails replaces that
+           element's contents, which would take the badge with it. */
+        '<span class="badge-us">' + ICON.flag + "<span>US-based<br>support</span></span>" +
+        '<div class="pdp-main" data-main>' + photo(p, 0, p.name, false, true) + "</div>" +
+        (views.length > 1
+          ? '<div class="pdp-thumbs" data-thumbs>' +
+            views.map(function (_v, i) {
+              return '<button type="button" data-view="' + i + '" aria-pressed="' + (i === 0) +
+                '" aria-label="View ' + (i + 1) + '">' + photo(p, i, "", true, true) + "</button>";
+            }).join("") +
+            "</div>"
+          : "") +
       "</div>" +
       "<div>" +
         '<div class="crumbs"><a href="index.html">Store</a><span>/</span>' +
@@ -695,7 +816,6 @@
             '<p class="muted" style="font-size:13px">' + esc(p.brand) +
               ' prices this line per order rather than publishing a list price. Send the model and quantity and we will come back with a firm number.</p>'
           : '<div class="price">' + money(p.price) + "</div>" +
-            '<div class="stock"><i></i>Available to order</div>' +
             '<div class="buy">' +
               '<div class="qty">' +
                 '<button type="button" data-step="-1" aria-label="Decrease quantity">&minus;</button>' +
@@ -723,7 +843,7 @@
     $$("[data-view]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var i = Number(btn.getAttribute("data-view"));
-        main.innerHTML = window.ART.render(views[i], sizes[i], { alt: p.name });
+        main.innerHTML = photo(p, i, p.name, false, true);
         $$("[data-view]").forEach(function (b2) { b2.setAttribute("aria-pressed", b2 === btn); });
       });
     });
@@ -773,7 +893,7 @@
           lines.map(function (l) {
             var p = product(l.id);
             return '<div class="line-item">' +
-              '<div class="li-media">' + window.ART.render(p.art, 0.6, { alt: p.name }) + "</div>" +
+              '<div class="li-media">' + photo(p, 0) + "</div>" +
               "<div><div class=\"li-title\"><a href=\"" + productHref(p) + "\">" + esc(p.name) + "</a></div>" +
                 '<div class="li-meta">' + esc(collection(p.collection).name) + " &middot; " + money(p.price) + " each</div></div>" +
               '<div class="li-right">' +
@@ -1020,7 +1140,7 @@
     if (mount) mount.innerHTML = built.html;
 
     function draw() {
-      var view = items.filter(function (p) { return matchesFilters(p, picked); });
+      var view = items.filter(function (p) { return matchesFilters(p, picked, built.scale); });
       var col = FINDER_COLS.filter(function (c) { return c.key === sortKey; })[0];
       view.sort(function (a, b) {
         var x = col.get(a), y = col.get(b);
@@ -1096,7 +1216,7 @@
       "<thead><tr><th></th>" + items.map(function (p) {
         return '<th class="compare-head">' +
           '<a href="' + productHref(p) + '"><span class="thumb">' +
-            window.ART.render(p.art, 0.5, { alt: p.name }) + "</span></a>" +
+            photo(p, 0) + "</span></a>" +
           "<b>" + esc(p.name) + "</b><span>" +
           (quoteOnly(p) ? "Request a quote" : money(p.price)) + "</span></th>";
       }).join("") + "</tr></thead><tbody>" +
@@ -1205,8 +1325,9 @@
     // fill in brand-dependent text placeholders on static pages
     $$("[data-fill]").forEach(function (node) {
       var key = node.getAttribute("data-fill");
-      if (key === "phone") { node.textContent = S.phone; node.setAttribute("href", S.phoneHref); }
-      else if (S[key] != null) node.textContent = S[key];
+      if (S[key] == null) return;
+      node.textContent = S[key];
+      if (key === "email" && node.tagName === "A") node.setAttribute("href", "mailto:" + S.email);
     });
   });
 })();
