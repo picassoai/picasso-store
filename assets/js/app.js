@@ -1214,8 +1214,7 @@
       "</tbody></table>" +
       '<p class="note">Payment method selected: ' + esc(d.method) + ".</p>" +
       '<div class="doc-actions">' +
-        '<button class="btn btn-accent" type="button" data-send-order>Send this to ' +
-          esc(S.brand) + "</button>" +
+        '<button class="btn btn-accent" type="button" data-send-order>Send this to Picasso</button>' +
         '<button class="btn" type="button" data-print>Print</button>' +
         '<a class="btn" href="checkout.html">Back to checkout</a>' +
       "</div>" +
@@ -1276,7 +1275,7 @@
           "Print this page if you want a copy for your records.</div>";
       }).catch(function (err) {
         sendBtn.disabled = false;
-        sendBtn.textContent = "Send this to " + S.brand;
+        sendBtn.textContent = "Send this to Picasso";
         status.innerHTML = '<div class="notice" style="margin-top:20px">' +
           "<strong>That did not send.</strong> " + esc(err.message) +
           " Please email " + mailto + " instead — this page is still here, " +
