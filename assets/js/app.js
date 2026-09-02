@@ -22,7 +22,23 @@
   function money(cents) {
     return "$" + Number(cents).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
-  function param(name) { return new URLSearchParams(location.search).get(name) || ""; }
+  /* Generated static pages (tools/build-static.py) carry their route in
+     window.ROUTE instead of a query string, so a crawler gets a real title and
+     body in the source. A query string still wins when one is present. */
+  function param(name) {
+    var q = new URLSearchParams(location.search).get(name);
+    if (q) return q;
+    return (window.ROUTE && window.ROUTE[name]) || "";
+  }
+  /* The query-string URL and its generated twin serve the same page, so point
+     the query-string one at the twin and let the duplicate collapse into it. */
+  function canonical(path) {
+    if (window.ROUTE) return;
+    var l = document.querySelector('link[rel="canonical"]');
+    if (!l) { l = document.createElement("link"); l.rel = "canonical"; document.head.appendChild(l); }
+    l.href = location.origin + "/" + path;
+  }
+
   function collection(id) { return COLS.filter(function (c) { return c.id === id; })[0]; }
   function product(id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; }
   function inCollection(id) { return PRODUCTS.filter(function (p) { return p.collection === id; }); }
@@ -692,7 +708,8 @@
     var title = joint ? joint.name + " joint actuators" : (app ? app.name : c.name);
     var blurb = joint ? joint.note : (app ? app.blurb : c.long);
 
-    document.title = title + " — " + S.brand;
+    if (!window.ROUTE) document.title = title + " — " + S.brand;
+    if (joint) canonical(app.id + "-" + joint.id + "-joint-actuators.html");
     $("[data-col-name]").textContent = title;
     $("[data-col-blurb]").textContent = blurb;
     if (joint) {
@@ -860,7 +877,8 @@
       return;
     }
     var c = collection(p.collection);
-    document.title = p.name + " — " + S.brand;
+    if (!window.ROUTE) document.title = p.name + " — " + S.brand;
+    canonical(p.id + ".html");
 
     /* At most three photos per model, so the thumb strip only appears when
        there is actually more than one view to switch between. */
