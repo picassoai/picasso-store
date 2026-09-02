@@ -1,0 +1,15 @@
+# Local tooling, not part of the site
+.claude/
+
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+~$*
+
+# Never commit customer material — quotes, POs, and correspondence live
+# outside this folder and must stay out of a public repository.
+*.pdf
+*.eml
+*.msg

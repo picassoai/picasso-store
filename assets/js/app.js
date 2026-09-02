@@ -1,0 +1,1212 @@
+/* Picasso Intelligence — storefront behaviour.
+   Header/footer are injected from here so there is one copy of each.
+   Each page declares its role with <body data-page="..."> and the
+   matching initialiser runs on load. */
+
+(function () {
+  "use strict";
+
+  var S = window.SITE, COLS = window.COLLECTIONS, PRODUCTS = window.PRODUCTS;
+  var CART_KEY = "picassoai.cart.v1";
+
+  /* ---------- small helpers ------------------------------------------ */
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function el(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstElementChild; }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function money(cents) {
+    return "$" + Number(cents).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function param(name) { return new URLSearchParams(location.search).get(name) || ""; }
+  function collection(id) { return COLS.filter(function (c) { return c.id === id; })[0]; }
+  function product(id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; }
+  function inCollection(id) { return PRODUCTS.filter(function (p) { return p.collection === id; }); }
+  function application(id) { return (window.APPLICATIONS || []).filter(function (a) { return a.id === id; })[0]; }
+  function inApplication(a) {
+    return a.products.map(product).filter(Boolean);
+  }
+
+  /* The four numbers people actually choose a motor on. Everything else is
+     detail; these drive the cards, the filters, the sort, and the compare. */
+  var CORE = {
+    torque: "Rated Torque (N·m)",
+    od:     "OD (mm)",
+    weight: "Weight (g)",
+    ratio:  "Reduction Ratio"
+  };
+  function spec(p, key) { return (p.specs && p.specs[key]) || ""; }
+  /* "9:1" and "1.3" both start with the number we want to sort on. */
+  function num(v) { var m = String(v).match(/-?\d+(\.\d+)?/); return m ? parseFloat(m[0]) : null; }
+  function coreNum(p, which) { return num(spec(p, CORE[which])); }
+
+  /* Compare selection survives the jump to compare.html but not the tab. */
+  var COMPARE_KEY = "picassoai.compare.v1";
+  var Compare = {
+    read: function () {
+      try { return JSON.parse(sessionStorage.getItem(COMPARE_KEY) || "[]"); }
+      catch (e) { return []; }
+    },
+    write: function (ids) {
+      try { sessionStorage.setItem(COMPARE_KEY, JSON.stringify(ids.slice(0, 4))); }
+      catch (e) {}
+    },
+    toggle: function (id, on) {
+      var ids = Compare.read().filter(function (x) { return x !== id; });
+      if (on) ids.push(id);
+      Compare.write(ids);
+      return Compare.read();
+    }
+  };
+  /* A product with no published price is quote-only: it never enters the cart. */
+  function quoteOnly(p) { return p.price == null; }
+  function quoteHref(p) { return "contact.html?model=" + encodeURIComponent(p.name); }
+
+  var ICON = {
+    cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h2l2.2 10.2a2 2 0 0 0 2 1.6h7.5a2 2 0 0 0 2-1.6L21 8H7"/><circle cx="10.5" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg>',
+    search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>',
+    burger: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    chev: '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 9l7 7 7-7"/></svg>',
+    left: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>',
+    right: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg>',
+    truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4l3 3v4h-7"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>',
+    tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3H21v8.5L11 21.5 2.5 13z"/><circle cx="17" cy="7" r="1.4"/></svg>',
+    mark: '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#14181d"/><circle cx="16" cy="16" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="16" r="3" fill="#1d64d8"/><path d="M16 1.4v5.2M16 25.4v5.2M1.4 16h5.2M25.4 16h5.2" stroke="#fff" stroke-width="2"/></svg>'
+  };
+
+  /* ---------- cart ---------------------------------------------------- */
+
+  var Cart = {
+    read: function () {
+      try {
+        var raw = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+        if (!Array.isArray(raw)) return [];
+        // drop anything no longer in the catalogue, and anything quote-only
+        // (no price) that should never have reached the cart
+        return raw.filter(function (l) {
+            return l && product(l.id) && product(l.id).price != null && l.qty > 0;
+          })
+          .map(function (l) { return { id: l.id, qty: Math.min(999, Math.max(1, Math.floor(l.qty))) }; });
+      } catch (e) { return []; }
+    },
+    write: function (lines) {
+      try { localStorage.setItem(CART_KEY, JSON.stringify(lines)); } catch (e) {}
+      document.dispatchEvent(new CustomEvent("cart:change"));
+    },
+    add: function (id, qty) {
+      var lines = Cart.read(), hit = lines.filter(function (l) { return l.id === id; })[0];
+      if (hit) hit.qty = Math.min(999, hit.qty + (qty || 1));
+      else lines.push({ id: id, qty: qty || 1 });
+      Cart.write(lines);
+    },
+    setQty: function (id, qty) {
+      var lines = Cart.read();
+      if (qty <= 0) lines = lines.filter(function (l) { return l.id !== id; });
+      else lines.forEach(function (l) { if (l.id === id) l.qty = Math.min(999, qty); });
+      Cart.write(lines);
+    },
+    remove: function (id) { Cart.setQty(id, 0); },
+    clear: function () { Cart.write([]); },
+    count: function () { return Cart.read().reduce(function (n, l) { return n + l.qty; }, 0); },
+    subtotal: function () {
+      return Cart.read().reduce(function (n, l) { return n + product(l.id).price * l.qty; }, 0);
+    }
+  };
+
+  /* ---------- toast ---------------------------------------------------- */
+
+  var toastTimer;
+  function toast(msg, link) {
+    var node = $(".toast") || document.body.appendChild(el('<div class="toast" role="status" aria-live="polite"></div>'));
+    node.innerHTML = esc(msg) + (link ? ' <a href="' + esc(link.href) + '">' + esc(link.label) + "</a>" : "");
+    node.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { node.classList.remove("show"); }, 3400);
+  }
+
+  /* ---------- header / footer ------------------------------------------ */
+
+  function collectionHref(c) { return "collection.html?c=" + encodeURIComponent(c.id); }
+  function applicationHref(a) { return "collection.html?a=" + encodeURIComponent(a.id); }
+
+  function renderHeader() {
+    var mount = $("#site-header");
+    if (!mount) return;
+    var here = param("c"), hereApp = param("a");
+    var apps = window.APPLICATIONS || [];
+
+    /* Two dropdowns, one per axis: the series you already know, or the machine
+       you are building. Both land on the same catalogue page. */
+    var seriesMenu = COLS.map(function (c) {
+      return '<li><a href="' + collectionHref(c) + '">' + esc(c.name) +
+        '<span class="sub-note">' + esc(c.tease) + "</span></a></li>";
+    }).join("");
+
+    var appMenu = apps.map(function (a) {
+      return '<li><a href="' + applicationHref(a) + '">' + esc(a.name) + "</a></li>";
+    }).join("");
+
+    var seriesActive = COLS.some(function (c) { return c.id === here; });
+    var appActive = apps.some(function (a) { return a.id === hereApp; });
+
+    mount.outerHTML =
+      '<div class="announce">' + S.announce.map(esc).join('<span>|</span>') + '</div>' +
+      '<header class="site-header">' +
+        '<div class="header-bar">' +
+          '<button class="icon-btn burger" type="button" data-open-drawer aria-label="Open menu">' + ICON.burger + '</button>' +
+          '<a class="brand" href="index.html">' + ICON.mark +
+            '<span>' + esc(S.brand) + (S.tagline ? '<small>' + esc(S.tagline) + '</small>' : "") + '</span></a>' +
+          '<ul class="nav">' +
+            '<li><a class="nav-link" href="collection.html?c=integrated"' + (seriesActive ? ' aria-current="page"' : "") +
+              '>Product series' + ICON.chev + '</a><ul class="submenu">' + seriesMenu + '</ul></li>' +
+            '<li><a class="nav-link" href="' + (apps[0] ? applicationHref(apps[0]) : "#") + '"' +
+              (appActive ? ' aria-current="page"' : "") +
+              '>Applications' + ICON.chev + '</a><ul class="submenu">' + appMenu + '</ul></li>' +
+            '<li><a class="nav-link" href="select.html"' +
+              (document.body.getAttribute("data-page") === "select" ? ' aria-current="page"' : "") +
+              ">Find by spec</a></li>" +
+          '</ul>' +
+          '<div class="header-tools">' +
+            '<button class="icon-btn" type="button" data-toggle-search aria-label="Search products">' + ICON.search + '</button>' +
+            '<a class="icon-btn" href="cart.html" aria-label="Cart">' + ICON.cart +
+              '<span class="cart-count" data-cart-count data-empty="true">0</span></a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="header-search" id="header-search">' +
+          '<form action="search.html" method="get" role="search">' +
+            '<label class="sr" for="q-head">Search products</label>' +
+            '<input class="field" id="q-head" name="q" type="search" placeholder="Search by model, torque, or category…" autocomplete="off">' +
+            '<button class="btn" type="submit">Search</button>' +
+          '</form>' +
+        '</div>' +
+      '</header>' +
+      drawerMarkup();
+
+    wireHeader();
+    paintCartCount();
+  }
+
+  function drawerMarkup() {
+    return '<div class="drawer" id="drawer">' +
+      '<div class="drawer-scrim" data-close-drawer></div>' +
+      '<nav class="drawer-panel" aria-label="Menu">' +
+        '<button class="icon-btn close" type="button" data-close-drawer aria-label="Close menu">' + ICON.close + '</button>' +
+        '<div class="drawer-group">Product series</div>' +
+        COLS.map(function (c) { return '<a class="sub" href="' + collectionHref(c) + '">' + esc(c.name) + '</a>'; }).join("") +
+        '<div class="drawer-group">Applications</div>' +
+        (window.APPLICATIONS || []).map(function (a) {
+          return '<a class="sub" href="' + applicationHref(a) + '">' + esc(a.name) + '</a>';
+        }).join("") +
+        '<div class="drawer-group">Store</div>' +
+        '<a href="select.html">Find by spec</a>' +
+        '<a href="search.html">Search</a><a href="cart.html">Cart</a>' +
+        '<a href="contact.html">Contact us</a><a href="shipping-policy.html">Shipping policy</a>' +
+      '</nav></div>';
+  }
+
+  function wireHeader() {
+    $$("[data-open-drawer]").forEach(function (b) {
+      b.addEventListener("click", function () { $("#drawer").classList.add("open"); document.body.style.overflow = "hidden"; });
+    });
+    $$("[data-close-drawer]").forEach(function (b) {
+      b.addEventListener("click", function () { $("#drawer").classList.remove("open"); document.body.style.overflow = ""; });
+    });
+    var sb = $("[data-toggle-search]");
+    if (sb) sb.addEventListener("click", function () {
+      var box = $("#header-search");
+      box.classList.toggle("open");
+      if (box.classList.contains("open")) $("#q-head").focus();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      var d = $("#drawer");
+      if (d && d.classList.contains("open")) { d.classList.remove("open"); document.body.style.overflow = ""; }
+      var box = $("#header-search");
+      if (box) box.classList.remove("open");
+    });
+  }
+
+  function renderFooter() {
+    var mount = $("#site-footer");
+    if (!mount) return;
+    var shopLinks = COLS.map(function (c) {
+      return '<li><a href="' + collectionHref(c) + '">' + esc(c.name) + '</a></li>';
+    }).join("");
+
+    mount.outerHTML =
+      '<footer class="site-footer">' +
+        '<div class="wrap footer-grid">' +
+          '<div class="footer-about">' +
+            '<a class="brand" href="index.html">' + ICON.mark +
+              '<span>' + esc(S.brand) + (S.tagline ? '<small>' + esc(S.tagline) + '</small>' : "") + '</span></a>' +
+            '<p>Robotic actuation and propulsion components for the machines you build.</p>' +
+          '</div>' +
+          '<div><h4>Shop</h4><ul>' + shopLinks + '</ul></div>' +
+          '<div><h4>Help</h4><ul>' +
+            '<li><a href="contact.html">Contact us</a></li>' +
+            '<li><a href="shipping-policy.html">Shipping policy</a></li>' +
+            '<li><a href="refund-policy.html">Refund policy</a></li>' +
+            '<li><a href="index.html#faq">FAQ</a></li>' +
+            '<li><a href="' + esc(S.phoneHref) + '">' + esc(S.phone) + '</a></li>' +
+          '</ul></div>' +
+          '<div class="news"><h4>Get updates</h4>' +
+            '<p>New models, price breaks, and catalogue updates. Roughly monthly.</p>' +
+            '<form data-newsletter novalidate>' +
+              '<label class="sr" for="news-email">Email</label>' +
+              '<input class="field" id="news-email" name="email" type="email" placeholder="you@company.com" required>' +
+              '<button class="btn" type="submit">Subscribe</button>' +
+            '</form>' +
+            '<p class="note" data-newsletter-note>No list is connected in this build — see README.</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="wrap footer-legal">' +
+          '<span>&copy; ' + S.year + " " + esc(S.brand) + '</span>' +
+          '<nav>' +
+            '<a href="privacy-policy.html">Privacy policy</a>' +
+            '<a href="refund-policy.html">Refund policy</a>' +
+            '<a href="terms-of-service.html">Terms of service</a>' +
+            '<a href="shipping-policy.html">Shipping policy</a>' +
+            '<a href="contact.html">Contact information</a>' +
+            '<a href="' + esc(S.linkedin) + '">LinkedIn</a>' +
+          '</nav>' +
+        '</div>' +
+      '</footer>';
+
+    var form = $("[data-newsletter]");
+    if (form) form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = $("#news-email");
+      if (!input.value || input.value.indexOf("@") < 0) { toast("Enter a valid email address."); return; }
+      $("[data-newsletter-note]").textContent = "Demo only — " + input.value + " was not sent anywhere.";
+      input.value = "";
+      toast("Signup captured locally (demo).");
+    });
+  }
+
+  function paintCartCount() {
+    var n = Cart.count();
+    $$("[data-cart-count]").forEach(function (node) {
+      node.textContent = n;
+      node.setAttribute("data-empty", n === 0 ? "true" : "false");
+    });
+  }
+
+  /* ---------- product card ------------------------------------------- */
+
+  function productHref(p) { return "product.html?id=" + encodeURIComponent(p.id); }
+
+  /* Rated torque leads, then the other three on one line. A buyer comparing
+     twenty models should never have to open twenty pages to see these. */
+  function cardSpecs(p) {
+    var t = spec(p, CORE.torque);
+    var rest = [
+      spec(p, CORE.od) && "Ф" + spec(p, CORE.od) + " mm",
+      spec(p, CORE.weight) && spec(p, CORE.weight) + " g",
+      spec(p, CORE.ratio)
+    ].filter(Boolean);
+    if (!t && !rest.length) return '<p class="spec-pending">Specifications on request</p>';
+    return '<div class="card-specs">' +
+      (t ? '<div class="card-torque">' + esc(t) + "<span>N&middot;m rated</span></div>" : "") +
+      (rest.length ? '<div class="card-dims">' + esc(rest.join(" · ")) + "</div>" : "") +
+      "</div>";
+  }
+
+  function card(p, opts) {
+    var q = quoteOnly(p);
+    var comparable = opts && opts.compare && !!p.specs && Object.keys(p.specs).length > 0;
+    var checked = comparable && Compare.read().indexOf(p.id) >= 0;
+    return '<article class="card">' +
+      '<div class="card-media">' +
+        '<span class="badge ' + (q ? "quote" : "stock") + '">' + (q ? "Quote" : "Available") + "</span>" +
+        '<a href="' + productHref(p) + '" tabindex="-1" aria-hidden="true">' +
+          window.ART.render(p.art, p.size, { alt: p.name }) + '</a></div>' +
+      '<div class="card-body">' +
+        '<div class="card-series">' + esc(p.series) + "</div>" +
+        '<h3 class="card-title"><a href="' + productHref(p) + '">' + esc(p.name) + '</a></h3>' +
+        cardSpecs(p) +
+        '<div class="card-price' + (q ? " is-quote" : "") + '">' +
+          (q ? "Request a quote" : money(p.price)) + "</div>" +
+        (q
+          ? '<a class="btn btn-ghost" href="' + quoteHref(p) + '">Request a quote</a>'
+          : '<button class="btn btn-ghost" type="button" data-add="' + esc(p.id) + '">Add to cart</button>') +
+        (comparable
+          ? '<label class="compare-check"><input type="checkbox" data-cmp="' + esc(p.id) + '"' +
+            (checked ? " checked" : "") + ">Compare</label>"
+          : "") +
+      '</div></article>';
+  }
+
+  function wireAddButtons(root) {
+    $$("[data-add]", root).forEach(function (b) {
+      b.addEventListener("click", function () {
+        var p = product(b.getAttribute("data-add"));
+        if (!p) return;
+        Cart.add(p.id, 1);
+        toast(p.name + " added.", { href: "cart.html", label: "View cart" });
+      });
+    });
+  }
+
+  /* ---------- carousel rail ------------------------------------------- */
+
+  function rail(items) {
+    var wrap = el('<div class="rail-wrap">' +
+      '<button class="rail-btn prev" type="button" aria-label="Scroll left">' + ICON.left + '</button>' +
+      '<div class="rail">' + items.map(card).join("") + '</div>' +
+      '<button class="rail-btn next" type="button" aria-label="Scroll right">' + ICON.right + '</button>' +
+      '</div>');
+    var track = $(".rail", wrap), prev = $(".prev", wrap), next = $(".next", wrap);
+    function step() { return Math.max(240, track.clientWidth * 0.8); }
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+    function sync() {
+      prev.hidden = track.scrollLeft < 8;
+      next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+    }
+    track.addEventListener("scroll", sync);
+    window.addEventListener("resize", sync);
+    setTimeout(sync, 0);
+    return wrap;
+  }
+
+  /* ---------- page: home --------------------------------------------- */
+
+  function pageHome() {
+    /* Two ways in, stacked rather than side by side, and given different card
+       shapes so the axes never read as one list shown twice: series cards carry
+       a description and a model count, application cards are picture-led. */
+    var cg = $("[data-cat-grid]");
+    if (cg) cg.innerHTML = COLS.map(function (c) {
+      var n = inCollection(c.id).length;
+      return '<a class="cat-card" href="' + collectionHref(c) + '">' +
+        '<div class="thumb">' + window.ART.render(c.art, 0.8, { alt: c.name }) + "</div>" +
+        "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
+        '<span class="more">' + n + " model" + (n === 1 ? "" : "s") + " &rarr;</span></a>";
+    }).join("");
+
+    var ag = $("[data-app-grid]");
+    if (ag) ag.innerHTML = (window.APPLICATIONS || []).map(function (a) {
+      return '<a class="app-card" href="' + applicationHref(a) + '">' +
+        '<span class="thumb">' + window.ART.render(a.art, 0.7, { alt: "" }) + "</span>" +
+        "<h4>" + esc(a.name) + "</h4>" +
+        "<p>" + esc(a.blurb) + "</p></a>";
+    }).join("");
+
+    $$("[data-rail]").forEach(function (mount) {
+      var id = mount.getAttribute("data-rail");
+      var c = collection(id);
+      var head = el('<div class="section-head"><div><div class="eyebrow">' + esc(c.tease) + '</div>' +
+        "<h2>" + esc(c.name) + '</h2><p>' + esc(c.blurb) + '</p></div>' +
+        '<a href="' + collectionHref(c) + '">All ' + inCollection(id).length + " models &rarr;</a></div>");
+      mount.appendChild(head);
+      mount.appendChild(rail(inCollection(id)));
+    });
+
+    $("[data-faq]").innerHTML = window.FAQ.map(function (f, i) {
+      return "<details" + (i === 0 ? " open" : "") + "><summary>" + esc(f.q) + "</summary>" +
+        '<div class="answer">' + esc(f.a) + "</div></details>";
+    }).join("");
+
+    $("[data-hero-art]").innerHTML = window.ART.render("actuator", 1.15, { alt: "Integrated robotic actuator" });
+    $$("[data-sku-count]").forEach(function (n) { n.textContent = PRODUCTS.length; });
+
+    wireAddButtons(document);
+  }
+
+  /* ---------- page: collection ---------------------------------------- */
+
+  /* Price bands were the wrong axis: nobody picks an actuator by price bracket.
+     These are the four numbers people actually filter on. */
+  var TORQUE_BANDS = [
+    { key: "t1", label: "Under 5", lo: 0,  hi: 5 },
+    { key: "t2", label: "5 – 20",  lo: 5,  hi: 20 },
+    { key: "t3", label: "20 – 50", lo: 20, hi: 50 },
+    { key: "t4", label: "Over 50", lo: 50, hi: Infinity }
+  ];
+  var WEIGHT_BANDS = [
+    { key: "w1", label: "Under 300 g", lo: 0,   hi: 300 },
+    { key: "w2", label: "300 – 800 g", lo: 300, hi: 800 },
+    { key: "w3", label: "Over 800 g",  lo: 800, hi: Infinity }
+  ];
+
+  /* A row whose only option is "All" filters nothing — don't render it. */
+  function chipRow(label, name, opts) {
+    if (opts.length < 2) return "";
+    return '<div class="filter-row"><span class="filter-label">' + esc(label) + "</span>" +
+      '<div class="chips">' +
+      [{ k: "all", l: "All" }].concat(opts).map(function (o) {
+        return '<button class="chip" type="button" data-f="' + name + '" data-v="' + esc(o.k) +
+          '" aria-pressed="' + (o.k === "all") + '">' + esc(o.l) + "</button>";
+      }).join("") + "</div></div>";
+  }
+
+  /* Only offer the bands and values that actually occur in this set. */
+  function filterMarkup(items) {
+    var torques = [], ods = [], ratios = [];
+    items.forEach(function (p) {
+      var t = coreNum(p, "torque"); if (t != null) torques.push(t);
+      var o = coreNum(p, "od");     if (o != null && ods.indexOf(o) < 0) ods.push(o);
+      var r = spec(p, CORE.ratio);  if (r && ratios.indexOf(r) < 0) ratios.push(r);
+    });
+    ods.sort(function (a, b) { return a - b; });
+    ratios.sort(function (a, b) { return num(a) - num(b); });
+
+    var html = "";
+    if (torques.length) {
+      html += chipRow("Rated torque", "torque", TORQUE_BANDS.filter(function (b) {
+        return torques.some(function (t) { return t >= b.lo && t < b.hi; });
+      }).map(function (b) { return { k: b.key, l: b.label }; }));
+    }
+    if (ods.length) {
+      html += chipRow("Outer dia.", "od", ods.map(function (o) { return { k: String(o), l: "Ф" + o }; }));
+    }
+    /* Gear ratio only exists on geared families — an empty filter on the
+       direct-drive sets would just be noise. */
+    if (ratios.length) {
+      html += chipRow("Gear ratio", "ratio", ratios.map(function (r) { return { k: r, l: r }; }));
+    }
+    html += chipRow("Weight", "weight", WEIGHT_BANDS.filter(function (b) {
+      return items.some(function (p) {
+        var w = coreNum(p, "weight");
+        return w != null && w >= b.lo && w < b.hi;
+      });
+    }).map(function (b) { return { k: b.key, l: b.label }; }));
+    return { html: html, ods: ods };
+  }
+
+  function inBand(bands, key, v) {
+    if (key === "all") return true;
+    if (v == null) return false;
+    var b = bands.filter(function (x) { return x.key === key; })[0];
+    return b && v >= b.lo && v < b.hi;
+  }
+
+  function matchesFilters(p, picked) {
+    return inBand(TORQUE_BANDS, picked.torque, coreNum(p, "torque")) &&
+           inBand(WEIGHT_BANDS, picked.weight, coreNum(p, "weight")) &&
+           (picked.od === "all" || String(coreNum(p, "od")) === picked.od) &&
+           (picked.ratio === "all" || spec(p, CORE.ratio) === picked.ratio);
+  }
+
+  function wireFilters(mount, picked, redraw) {
+    if (!mount) return;
+    $$("[data-f]", mount).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var name = btn.getAttribute("data-f");
+        picked[name] = btn.getAttribute("data-v");
+        $$('[data-f="' + name + '"]', mount).forEach(function (o) {
+          o.setAttribute("aria-pressed", o.getAttribute("data-v") === picked[name]);
+        });
+        redraw();
+      });
+    });
+  }
+
+  function pageCollection() {
+    var app = application(param("a"));
+    var c = app ? null : (collection(param("c")) || COLS[0]);
+    var items = app ? inApplication(app) : inCollection(c.id);
+    var title = app ? app.name : c.name;
+    var blurb = app ? app.blurb : c.long;
+
+    document.title = title + " — " + S.brand;
+    $("[data-col-name]").textContent = title;
+    $("[data-col-blurb]").textContent = blurb;
+    $("[data-crumb]").textContent = title;
+
+    var torques = items.map(function (p) { return coreNum(p, "torque"); })
+                       .filter(function (v) { return v != null; });
+    var built = filterMarkup(items);
+    var ods = built.ods;
+
+    /* The live count already sits beside this, so give only the span it does
+       not cover — repeating "N models" in both was pure duplication. */
+    var range = $("[data-col-range]");
+    if (range) {
+      range.textContent = torques.length
+        ? Math.min.apply(null, torques) + " to " + Math.max.apply(null, torques) + " N·m rated torque"
+        : "";
+    }
+
+    var grid = $("[data-grid]");
+    var mount = $("[data-filters]");
+    var sort = $("[data-sort]");
+    var picked = { torque: "all", od: "all", weight: "all", ratio: "all" };
+
+    if (mount) mount.innerHTML = built.html;
+
+    function keep(p) { return matchesFilters(p, picked); }
+
+    /* Products with no value for the sort key go last rather than sorting as 0. */
+    function byNum(get, dir) {
+      return function (a, b) {
+        var x = get(a), y = get(b);
+        if (x == null && y == null) return a.name.localeCompare(b.name);
+        if (x == null) return 1;
+        if (y == null) return -1;
+        return dir * (x - y);
+      };
+    }
+    var SORTS = {
+      "od-asc":      byNum(function (p) { return coreNum(p, "od"); }, 1),
+      "torque-asc":  byNum(function (p) { return coreNum(p, "torque"); }, 1),
+      "torque-desc": byNum(function (p) { return coreNum(p, "torque"); }, -1),
+      "weight-asc":  byNum(function (p) { return coreNum(p, "weight"); }, 1),
+      "price-asc":   byNum(function (p) { return p.price; }, 1),
+      "price-desc":  byNum(function (p) { return p.price; }, -1)
+    };
+
+    function draw() {
+      var view = items.filter(keep);
+      var mode = sort ? sort.value : "od-asc";
+      if (SORTS[mode]) view = view.slice().sort(SORTS[mode]);
+
+      if (!view.length) {
+        grid.innerHTML = '<p class="muted">Nothing matches those filters. ' +
+          '<button class="link-btn" type="button" data-reset>Clear filters</button></p>';
+      } else if (mode === "od-asc" && ods.length) {
+        /* Grouping only makes sense while the list is ordered by diameter;
+           any other sort would have the rules cutting across the order. */
+        var html = "", last = null;
+        view.forEach(function (p) {
+          var o = coreNum(p, "od");
+          var head = o == null ? "Other" : "Ф" + o + " mm";
+          if (head !== last) {
+            if (last !== null) html += "</div>";
+            html += '<div class="od-group"><b>' + esc(head) + "</b></div><div class=\"product-grid\">";
+            last = head;
+          }
+          html += card(p, { compare: true });
+        });
+        grid.innerHTML = html + (last !== null ? "</div>" : "");
+      } else {
+        grid.innerHTML = '<div class="product-grid">' +
+          view.map(function (p) { return card(p, { compare: true }); }).join("") + "</div>";
+      }
+
+      $("[data-col-count]").textContent = view.length + (view.length === 1 ? " model" : " models");
+      wireAddButtons(grid);
+      wireCompare(grid);
+      var reset = $("[data-reset]", grid);
+      if (reset) reset.addEventListener("click", function () {
+        picked = { torque: "all", od: "all", weight: "all", ratio: "all" };
+        if (mount) $$("[data-f]", mount).forEach(function (b) {
+          b.setAttribute("aria-pressed", b.getAttribute("data-v") === "all");
+        });
+        draw();
+      });
+    }
+
+    wireFilters(mount, picked, draw);
+    if (sort) sort.addEventListener("change", draw);
+    draw();
+    paintCompareBar();
+
+    var sib = $("[data-siblings]");
+    if (sib) sib.innerHTML = COLS.filter(function (x) { return !c || x.id !== c.id; }).map(function (x) {
+      return '<a class="chip" href="' + collectionHref(x) + '">' + esc(x.name) + "</a>";
+    }).join("");
+  }
+
+  /* ---------- compare selection --------------------------------------- */
+
+  function wireCompare(root) {
+    $$("[data-cmp]", root).forEach(function (box) {
+      box.addEventListener("change", function () {
+        var ids = Compare.toggle(box.getAttribute("data-cmp"), box.checked);
+        if (box.checked && ids.indexOf(box.getAttribute("data-cmp")) < 0) {
+          box.checked = false;
+          toast("Compare up to four models at a time.");
+        }
+        paintCompareBar();
+      });
+    });
+  }
+
+  function paintCompareBar() {
+    var bar = $("[data-compare-bar]");
+    if (!bar) return;
+    var ids = Compare.read();
+    bar.hidden = ids.length < 1;
+    var count = $(".count", bar);
+    if (count) count.textContent = ids.length + " selected";
+    var go = $("[data-compare-go]", bar);
+    if (go) go.disabled = ids.length < 2;
+  }
+
+  /* ---------- page: product ------------------------------------------- */
+
+  /* The four selection parameters, given the weight they deserve. Anything
+     with no value at all is dropped rather than rendered as an em dash. */
+  function specTiles(p) {
+    var tiles = [
+      { v: spec(p, CORE.torque), u: "N·m", l: "Rated torque" },
+      { v: spec(p, CORE.od),     u: "mm",  l: "Outer diameter" },
+      { v: spec(p, CORE.weight), u: "g",   l: "Weight" },
+      { v: spec(p, CORE.ratio),  u: "",    l: "Gear ratio" }
+    ].filter(function (t) { return t.v; });
+    if (!tiles.length) return "";
+    return '<div class="spec-tiles">' + tiles.map(function (t) {
+      return '<div class="spec-tile"><b>' + esc(t.v) +
+        (t.u ? " <em>" + esc(t.u) + "</em>" : "") + "</b>" +
+        "<span>" + esc(t.l) + "</span></div>";
+    }).join("") + "</div>";
+  }
+
+  function pageProduct() {
+    var p = product(param("id"));
+    if (!p) {
+      $("[data-pdp]").innerHTML = '<div class="empty-state"><h2>Product not found</h2>' +
+        '<p>That model is not in the catalogue.</p><a class="btn" href="index.html">Back to store</a></div>';
+      return;
+    }
+    var c = collection(p.collection);
+    document.title = p.name + " — " + S.brand;
+
+    var views = [p.art, p.art, "accessory", "stator"];
+    var sizes = [p.size, p.size * 0.78, 0.72, p.size * 0.86];
+
+    $("[data-pdp]").innerHTML =
+      '<div class="pdp-media">' +
+        '<div class="pdp-main" data-main>' + window.ART.render(views[0], sizes[0], { alt: p.name }) + "</div>" +
+        '<div class="pdp-thumbs" data-thumbs>' +
+          views.map(function (v, i) {
+            return '<button type="button" data-view="' + i + '" aria-pressed="' + (i === 0) +
+              '" aria-label="View ' + (i + 1) + '">' + window.ART.render(v, 0.62, { alt: "" }) + "</button>";
+          }).join("") +
+        "</div>" +
+      "</div>" +
+      "<div>" +
+        '<div class="crumbs"><a href="index.html">Store</a><span>/</span>' +
+          '<a href="' + collectionHref(c) + '">' + esc(c.name) + "</a><span>/</span>" + esc(p.name) + "</div>" +
+        '<div class="pdp-brand"><span>' + esc(p.series) + "</span></div>" +
+        "<h1>" + esc(p.name) + "</h1>" +
+        '<p class="muted">' + esc(p.blurb) + "</p>" +
+        (quoteOnly(p)
+          ? '<div class="price is-quote">Price on request</div>' +
+            '<div class="stock quote"><i></i>Quoted per order — reply within 2 business days</div>' +
+            '<div class="buy"><a class="btn btn-accent" href="' + quoteHref(p) + '">Request a quote</a></div>' +
+            '<p class="muted" style="font-size:13px">' + esc(p.brand) +
+              ' prices this line per order rather than publishing a list price. Send the model and quantity and we will come back with a firm number.</p>'
+          : '<div class="price">' + money(p.price) + "</div>" +
+            '<div class="stock"><i></i>Available to order</div>' +
+            '<div class="buy">' +
+              '<div class="qty">' +
+                '<button type="button" data-step="-1" aria-label="Decrease quantity">&minus;</button>' +
+                '<input type="number" value="1" min="1" max="999" data-qty aria-label="Quantity">' +
+                '<button type="button" data-step="1" aria-label="Increase quantity">+</button>' +
+              "</div>" +
+              '<button class="btn btn-accent" type="button" data-add-pdp>Add to cart</button>' +
+            "</div>" +
+            '<p class="muted" style="font-size:13px">Card or ACH at checkout. ' +
+              'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>') +
+        specTiles(p) +
+        (Object.keys(p.specs).length
+          ? '<details class="spec-all"><summary>Full technical specifications</summary>' +
+              '<table class="spec-table"><caption class="sr">Specifications</caption><tbody>' +
+              Object.keys(p.specs).map(function (k) {
+                return "<tr><th scope=\"row\">" + esc(k) + "</th><td>" + esc(p.specs[k]) + "</td></tr>";
+              }).join("") +
+              "</tbody></table></details>"
+          : '<div class="notice" style="margin-top:22px">Full specifications for this model are supplied ' +
+            'with the quote, or on request — we have not published them here rather than reproduce numbers we ' +
+            'have not verified against the current datasheet.</div>') +
+      "</div>";
+
+    var main = $("[data-main]");
+    $$("[data-view]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var i = Number(btn.getAttribute("data-view"));
+        main.innerHTML = window.ART.render(views[i], sizes[i], { alt: p.name });
+        $$("[data-view]").forEach(function (b2) { b2.setAttribute("aria-pressed", b2 === btn); });
+      });
+    });
+
+    var qty = $("[data-qty]");
+    if (qty) {
+      $$("[data-step]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var next = (Number(qty.value) || 1) + Number(btn.getAttribute("data-step"));
+          qty.value = Math.min(999, Math.max(1, next));
+        });
+      });
+      $("[data-add-pdp]").addEventListener("click", function () {
+        var n = Math.min(999, Math.max(1, Math.floor(Number(qty.value) || 1)));
+        Cart.add(p.id, n);
+        toast(n + " × " + p.name + " added.", { href: "cart.html", label: "View cart" });
+      });
+    }
+
+    var related = inCollection(p.collection).filter(function (x) { return x.id !== p.id; });
+    if (related.length < 4) {
+      related = related.concat(PRODUCTS.filter(function (x) {
+        return x.collection !== p.collection && related.indexOf(x) < 0;
+      }).slice(0, 8));
+    }
+    var mount = $("[data-related]");
+    mount.appendChild(el('<div class="section-head"><div><h2>Others reach for these</h2>' +
+      '<p>Parts commonly ordered alongside the ' + esc(p.name) + ".</p></div></div>"));
+    mount.appendChild(rail(related.slice(0, 10)));
+    wireAddButtons(mount);
+  }
+
+  /* ---------- page: cart ---------------------------------------------- */
+
+  function pageCart() {
+    function draw() {
+      var lines = Cart.read();
+      var host = $("[data-cart]");
+      if (!lines.length) {
+        host.innerHTML = '<div class="empty-state"><h2>Your cart is empty</h2>' +
+          "<p>Nothing here yet. Everything in the catalogue is on the shelf and ships free.</p>" +
+          '<a class="btn" href="index.html">Browse components</a></div>';
+        return;
+      }
+      host.innerHTML =
+        '<div class="cart-layout"><div>' +
+          lines.map(function (l) {
+            var p = product(l.id);
+            return '<div class="line-item">' +
+              '<div class="li-media">' + window.ART.render(p.art, 0.6, { alt: p.name }) + "</div>" +
+              "<div><div class=\"li-title\"><a href=\"" + productHref(p) + "\">" + esc(p.name) + "</a></div>" +
+                '<div class="li-meta">' + esc(collection(p.collection).name) + " &middot; " + money(p.price) + " each</div></div>" +
+              '<div class="li-right">' +
+                '<div class="qty"><button type="button" data-dec="' + esc(p.id) + '" aria-label="Decrease">&minus;</button>' +
+                  '<input type="number" value="' + l.qty + '" min="1" max="999" data-line="' + esc(p.id) + '" aria-label="Quantity for ' + esc(p.name) + '">' +
+                  '<button type="button" data-inc="' + esc(p.id) + '" aria-label="Increase">+</button></div>' +
+                '<div class="li-price">' + money(p.price * l.qty) + "</div>" +
+                '<button class="link-btn" type="button" data-rm="' + esc(p.id) + '">Remove</button>' +
+              "</div></div>";
+          }).join("") +
+          '<p style="padding-top:18px"><button class="link-btn" type="button" data-clear>Empty cart</button></p>' +
+        "</div>" + summaryMarkup(true) + "</div>";
+
+      $$("[data-inc]").forEach(function (b) { b.addEventListener("click", function () { bump(b.getAttribute("data-inc"), 1); }); });
+      $$("[data-dec]").forEach(function (b) { b.addEventListener("click", function () { bump(b.getAttribute("data-dec"), -1); }); });
+      $$("[data-rm]").forEach(function (b) { b.addEventListener("click", function () { Cart.remove(b.getAttribute("data-rm")); draw(); }); });
+      $$("[data-line]").forEach(function (input) {
+        input.addEventListener("change", function () {
+          Cart.setQty(input.getAttribute("data-line"), Math.floor(Number(input.value) || 0));
+          draw();
+        });
+      });
+      $("[data-clear]").addEventListener("click", function () { Cart.clear(); draw(); });
+    }
+
+    function bump(id, d) {
+      var line = Cart.read().filter(function (l) { return l.id === id; })[0];
+      if (line) Cart.setQty(id, line.qty + d);
+      draw();
+    }
+
+    draw();
+  }
+
+  function summaryMarkup(withCheckout) {
+    var sub = Cart.subtotal();
+    return '<aside class="summary"><h3>Order summary</h3>' +
+      '<div class="row"><span>Subtotal</span><span>' + money(sub) + "</span></div>" +
+      '<div class="row"><span>Shipping</span><span class="muted">Quoted per order</span></div>' +
+      '<div class="row"><span>Sales tax</span><span class="muted">At checkout</span></div>' +
+      '<div class="row total"><span>Total</span><span>' + money(sub) + "</span></div>" +
+      (withCheckout
+        ? '<a class="btn btn-accent btn-block" href="checkout.html">Continue to checkout</a>' +
+          '<p class="note muted" style="font-size:12.5px;margin-top:12px">Need a volume quote? ' +
+          '<a href="contact.html">Contact us</a>.</p>'
+        : "") +
+      "</aside>";
+  }
+
+  /* ---------- page: checkout ------------------------------------------ */
+
+  /* The three ways to pay. ACH is marked "recommended" only once the order is
+     large enough for the saving to be real — below that the label is noise. */
+  function payOptionsMarkup(subtotal) {
+    var methods = window.PAYMENT_METHODS || [];
+    return methods.map(function (m, i) {
+      var push = m.recommended && subtotal >= (S.achThreshold || 1000);
+      return '<label class="pay-option' + (push ? " push" : "") + '">' +
+        '<input type="radio" name="paymethod" value="' + esc(m.id) + '"' + (i === 0 ? " checked" : "") + ">" +
+        '<span class="pay-body">' +
+          '<span class="pay-head"><b>' + esc(m.label) + "</b>" +
+            '<span class="pay-eyebrow">' + esc(push ? "Recommended for this order" : m.eyebrow) + "</span></span>" +
+          '<span class="pay-blurb">' + esc(m.blurb) + "</span>" +
+          '<span class="pay-detail">' + esc(m.detail) + "</span>" +
+        "</span></label>";
+    }).join("");
+  }
+
+  function pageCheckout() {
+    var lines = Cart.read();
+    var host = $("[data-checkout]");
+    if (!lines.length) {
+      host.innerHTML = '<div class="empty-state"><h2>Nothing to check out</h2>' +
+        "<p>Your cart is empty.</p><a class=\"btn\" href=\"index.html\">Browse components</a></div>";
+      return;
+    }
+
+    host.innerHTML =
+      '<div class="cart-layout"><div>' +
+        '<form data-order novalidate>' +
+          "<h2>Contact</h2>" +
+          '<div class="form-grid" style="margin:16px 0 30px">' +
+            '<div class="full"><label class="lbl" for="f-email">Work email</label>' +
+              '<input class="field" id="f-email" name="email" type="email" required autocomplete="email"></div>' +
+            '<div><label class="lbl" for="f-first">First name</label>' +
+              '<input class="field" id="f-first" name="first" required autocomplete="given-name"></div>' +
+            '<div><label class="lbl" for="f-last">Last name</label>' +
+              '<input class="field" id="f-last" name="last" required autocomplete="family-name"></div>' +
+          "</div>" +
+          "<h2>Shipping address</h2>" +
+          '<div class="form-grid" style="margin:16px 0 30px">' +
+            '<div class="full"><label class="lbl" for="f-co">Company (optional)</label>' +
+              '<input class="field" id="f-co" name="company" autocomplete="organization"></div>' +
+            '<div class="full"><label class="lbl" for="f-addr">Street address</label>' +
+              '<input class="field" id="f-addr" name="address" required autocomplete="street-address"></div>' +
+            '<div><label class="lbl" for="f-city">City</label>' +
+              '<input class="field" id="f-city" name="city" required autocomplete="address-level2"></div>' +
+            '<div><label class="lbl" for="f-state">State</label>' +
+              '<input class="field" id="f-state" name="state" required autocomplete="address-level1"></div>' +
+            '<div><label class="lbl" for="f-zip">ZIP</label>' +
+              '<input class="field" id="f-zip" name="zip" required autocomplete="postal-code" inputmode="numeric"></div>' +
+            '<div><label class="lbl" for="f-phone">Phone</label>' +
+              '<input class="field" id="f-phone" name="phone" type="tel" autocomplete="tel"></div>' +
+          "</div>" +
+          "<h2>Payment method</h2>" +
+          '<p class="muted" style="margin:6px 0 16px">Pick whichever suits how you buy. ' +
+            'Nothing about the order changes — only how it gets paid for.</p>' +
+          '<div class="pay-options">' + payOptionsMarkup(Cart.subtotal()) + "</div>" +
+          '<div class="notice" style="margin:20px 0 22px">' +
+            "<strong>No payment processor is connected yet.</strong> Card details are deliberately not " +
+            "collected on this page — they must go straight to Stripe's hosted checkout, never through " +
+            "your own site. Each option above is wired to the point where the Stripe call belongs; " +
+            "see README.md." +
+          "</div>" +
+          '<button class="btn btn-accent" type="submit">Continue</button>' +
+          '<p class="muted" style="font-size:13px;margin-top:12px">Records the order locally and empties your cart. No money moves, nothing is transmitted.</p>' +
+        "</form>" +
+      "</div>" + summaryMarkup(false) + "</div>";
+
+    $("[data-order]").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var form = e.target;
+      var missing = $$("[required]", form).filter(function (i) { return !i.value.trim(); });
+      if (missing.length) { missing[0].focus(); toast("Fill in the highlighted fields."); return; }
+
+      var picked = $("[name=paymethod]:checked");
+      var method = (window.PAYMENT_METHODS || []).filter(function (m) {
+        return m.id === (picked && picked.value);
+      })[0] || { label: "Card", id: "card" };
+
+      /* sessionStorage, not query parameters: a name and a street address have
+         no business sitting in the URL bar, the history, or a referer header.
+         The cart is left alone — this is a summary, not a placed order. */
+      var data = {
+        contact: {
+          name: [$("#f-first").value, $("#f-last").value].join(" ").trim(),
+          email: $("#f-email").value.trim(),
+          phone: $("#f-phone").value.trim()
+        },
+        ship: {
+          company: $("#f-co").value.trim(),
+          address: $("#f-addr").value.trim(),
+          city: $("#f-city").value.trim(),
+          state: $("#f-state").value.trim(),
+          zip: $("#f-zip").value.trim()
+        },
+        method: method.label,
+        lines: lines.map(function (l) {
+          var p = product(l.id);
+          return { name: p.name, series: p.series, qty: l.qty, price: p.price };
+        })
+      };
+      try { sessionStorage.setItem(SUMMARY_KEY, JSON.stringify(data)); }
+      catch (err) { toast("Your browser blocked local storage, so the summary cannot be shown."); return; }
+      location.href = "summary.html";
+    });
+  }
+
+  /* ---------- page: order summary ------------------------------------- */
+
+  var SUMMARY_KEY = "picassoai.summary.v1";
+
+  function pageSummary() {
+    var host = $("[data-summary]");
+    var raw;
+    try { raw = sessionStorage.getItem(SUMMARY_KEY); } catch (e) { raw = null; }
+    var d = raw && JSON.parse(raw);
+    if (!d || !d.lines || !d.lines.length) {
+      host.innerHTML = '<div class="empty-state"><h2>Nothing to summarise</h2>' +
+        "<p>Start from the cart and fill in your details.</p>" +
+        '<a class="btn" href="cart.html">Go to cart</a></div>';
+      return;
+    }
+
+    var total = d.lines.reduce(function (t, l) { return t + (l.price || 0) * l.qty; }, 0);
+    /* "Los Altos, CA 94022" — the ZIP follows the state on a space, not a comma. */
+    var cityLine = [[d.ship.city, d.ship.state].filter(Boolean).join(", "), d.ship.zip]
+                     .filter(Boolean).join(" ");
+    var ship = [d.ship.company, d.ship.address, cityLine]
+                 .filter(Boolean).map(esc).join("<br>");
+
+    host.innerHTML =
+      '<div class="doc-head">' +
+        "<div><h1>" + esc(S.brand) + "</h1>" +
+          (S.tagline ? '<p class="muted">' + esc(S.tagline) + "</p>" : "") + "</div>" +
+        '<div class="doc-title">Order summary</div>' +
+      "</div>" +
+      '<div class="doc-parties">' +
+        "<div><h4>Contact</h4><p>" +
+          [d.contact.name, d.contact.email, d.contact.phone].filter(Boolean).map(esc).join("<br>") +
+        "</p></div>" +
+        "<div><h4>Ship to</h4><p>" + (ship || "&mdash;") + "</p></div>" +
+      "</div>" +
+      '<table class="doc-table"><thead><tr>' +
+        "<th>Description</th><th class=\"num\">Qty</th>" +
+        "<th class=\"num\">Unit price</th><th class=\"num\">Subtotal</th>" +
+      "</tr></thead><tbody>" +
+      d.lines.map(function (l) {
+        return "<tr><td>" + esc(l.name) + '<br><span class="muted">' + esc(l.series) + "</span></td>" +
+          '<td class="num">' + l.qty + "</td>" +
+          '<td class="num">' + money(l.price) + "</td>" +
+          '<td class="num">' + money((l.price || 0) * l.qty) + "</td></tr>";
+      }).join("") +
+      '<tr class="total"><td colspan="3">Total</td><td class="num">' + money(total) + "</td></tr>" +
+      "</tbody></table>" +
+      '<p class="note">Payment method selected: ' + esc(d.method) + ".</p>" +
+      '<div class="doc-actions">' +
+        '<button class="btn btn-accent" type="button" data-print>Print</button>' +
+        '<a class="btn" href="checkout.html">Back to checkout</a>' +
+      "</div>";
+
+    $("[data-print]").addEventListener("click", function () { window.print(); });
+  }
+
+  /* ---------- page: find by spec --------------------------------------- */
+
+  /* The third way in, for people who have a requirement rather than a part
+     number or an application: every motor in one sortable table. Columns are
+     the numbers people choose on, in that order. */
+  var FINDER_COLS = [
+    { key: "name",   label: "Model",        get: function (p) { return p.name; } },
+    { key: "series", label: "Series",       get: function (p) { return p.series; } },
+    { key: "torque", label: "Rated N·m",    num: true, get: function (p) { return coreNum(p, "torque"); } },
+    { key: "peak",   label: "Peak N·m",     num: true, get: function (p) { return num(spec(p, "Peak Torque (N·m)")); } },
+    { key: "od",     label: "OD mm",        num: true, get: function (p) { return coreNum(p, "od"); } },
+    { key: "height", label: "Height mm",    num: true, get: function (p) { return num(spec(p, "Height (mm)")); } },
+    { key: "weight", label: "Weight g",     num: true, get: function (p) { return coreNum(p, "weight"); } },
+    { key: "ratio",  label: "Ratio",        get: function (p) { return spec(p, CORE.ratio); } },
+    { key: "volts",  label: "V",            num: true, get: function (p) { return num(spec(p, "Rated Voltage (V)")); } },
+    { key: "price",  label: "Price",        num: true, get: function (p) { return p.price; } }
+  ];
+
+  function pageSelect() {
+    /* Accessories carry no specs, so they would be an all-dashes row. */
+    var items = PRODUCTS.filter(function (p) {
+      return p.specs && Object.keys(p.specs).length > 0;
+    });
+    var mount = $("[data-filters]");
+    var host = $("[data-finder]");
+    var picked = { torque: "all", od: "all", weight: "all", ratio: "all" };
+    var sortKey = "torque", sortDir = 1;
+
+    var built = filterMarkup(items);
+    if (mount) mount.innerHTML = built.html;
+
+    function draw() {
+      var view = items.filter(function (p) { return matchesFilters(p, picked); });
+      var col = FINDER_COLS.filter(function (c) { return c.key === sortKey; })[0];
+      view.sort(function (a, b) {
+        var x = col.get(a), y = col.get(b);
+        if (x == null || x === "") return 1;
+        if (y == null || y === "") return -1;
+        if (col.num) return sortDir * (x - y);
+        return sortDir * String(x).localeCompare(String(y));
+      });
+
+      $("[data-finder-count]").textContent =
+        view.length + (view.length === 1 ? " model" : " models");
+
+      host.innerHTML = '<div class="compare-scroll"><table class="finder-table">' +
+        "<thead><tr><th></th>" + FINDER_COLS.map(function (c) {
+          var on = c.key === sortKey;
+          return '<th' + (c.num ? ' class="num"' : "") + '>' +
+            '<button type="button" data-sortkey="' + c.key + '" aria-pressed="' + on + '">' +
+            esc(c.label) + (on ? (sortDir > 0 ? " ↑" : " ↓") : "") + "</button></th>";
+        }).join("") + "</tr></thead><tbody>" +
+        view.map(function (p) {
+          var checked = Compare.read().indexOf(p.id) >= 0;
+          return "<tr>" +
+            '<td><input type="checkbox" data-cmp="' + esc(p.id) + '"' + (checked ? " checked" : "") +
+              ' aria-label="Compare ' + esc(p.name) + '"></td>' +
+            FINDER_COLS.map(function (c) {
+              var v = c.get(p);
+              if (c.key === "name") {
+                return '<td><a href="' + productHref(p) + '">' + esc(p.name) + "</a></td>";
+              }
+              if (c.key === "price") {
+                return '<td class="num">' + (p.price == null ? "Quote" : money(p.price)) + "</td>";
+              }
+              return "<td" + (c.num ? ' class="num"' : "") + ">" +
+                esc(v == null || v === "" ? "—" : v) + "</td>";
+            }).join("") + "</tr>";
+        }).join("") + "</tbody></table></div>";
+
+      $$("[data-sortkey]", host).forEach(function (b) {
+        b.addEventListener("click", function () {
+          var k = b.getAttribute("data-sortkey");
+          if (k === sortKey) sortDir = -sortDir; else { sortKey = k; sortDir = 1; }
+          draw();
+        });
+      });
+      wireCompare(host);
+    }
+
+    wireFilters(mount, picked, draw);
+    draw();
+    paintCompareBar();
+  }
+
+  /* ---------- page: compare -------------------------------------------- */
+
+  function pageCompare() {
+    var host = $("[data-compare]");
+    var items = Compare.read().map(product).filter(Boolean);
+    if (items.length < 2) {
+      host.innerHTML = '<div class="empty-state"><h2>Pick two or more models</h2>' +
+        "<p>Tick <em>Compare</em> on any model in the catalogue, then come back.</p>" +
+        '<a class="btn" href="collection.html?c=integrated">Browse actuators</a></div>';
+      return;
+    }
+
+    /* Union of every key any selected model has, kept in the first model's
+       order so the four selection parameters stay at the top. */
+    var keys = [];
+    items.forEach(function (p) {
+      Object.keys(p.specs).forEach(function (k) { if (keys.indexOf(k) < 0) keys.push(k); });
+    });
+
+    host.innerHTML = '<div class="compare-scroll"><table class="compare-table">' +
+      "<thead><tr><th></th>" + items.map(function (p) {
+        return '<th class="compare-head">' +
+          '<a href="' + productHref(p) + '"><span class="thumb">' +
+            window.ART.render(p.art, 0.5, { alt: p.name }) + "</span></a>" +
+          "<b>" + esc(p.name) + "</b><span>" +
+          (quoteOnly(p) ? "Request a quote" : money(p.price)) + "</span></th>";
+      }).join("") + "</tr></thead><tbody>" +
+      keys.map(function (k) {
+        var vals = items.map(function (p) { return spec(p, k); });
+        var differs = vals.some(function (v) { return v !== vals[0]; });
+        return '<tr class="' + (differs ? "differs" : "") + '"><th scope="row">' + esc(k) + "</th>" +
+          vals.map(function (v) { return "<td>" + esc(v || "—") + "</td>"; }).join("") + "</tr>";
+      }).join("") +
+      "</tbody></table></div>" +
+      '<div class="doc-actions"><button class="btn" type="button" data-clear>Clear selection</button></div>';
+
+    $("[data-clear]").addEventListener("click", function () {
+      Compare.write([]);
+      location.reload();
+    });
+  }
+
+  /* ---------- page: search -------------------------------------------- */
+
+  function pageSearch() {
+    var q = param("q");
+    var input = $("#q-page");
+    input.value = q;
+
+    function draw(term) {
+      term = term.trim().toLowerCase();
+      var hits = !term ? [] : PRODUCTS.filter(function (p) {
+        var c = collection(p.collection);
+        var hay = [p.name, p.blurb, c.name, c.tease, c.blurb,
+          Object.keys(p.specs).map(function (k) { return k + " " + p.specs[k]; }).join(" ")].join(" ").toLowerCase();
+        return term.split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; });
+      });
+
+      $("[data-search-summary]").textContent = !term
+        ? "Type a model number, a torque figure, or a category."
+        : hits.length + (hits.length === 1 ? " result for “" : " results for “") + term + "”";
+
+      $("[data-search-grid]").innerHTML = hits.map(card).join("") ||
+        (term ? '<p class="muted">Nothing matched. We can usually source parts we do not stock — <a href="contact.html">tell us what you need</a>.</p>' : "");
+      wireAddButtons($("[data-search-grid]"));
+    }
+
+    $("[data-search-form]").addEventListener("submit", function (e) {
+      e.preventDefault();
+      history.replaceState(null, "", "search.html?q=" + encodeURIComponent(input.value));
+      draw(input.value);
+    });
+    input.addEventListener("input", function () { draw(input.value); });
+    draw(q);
+  }
+
+  /* ---------- page: contact ------------------------------------------- */
+
+  function pageContact() {
+    var form = $("[data-contact]");
+    if (!form) return;
+
+    /* Arrived from a "Request a quote" button — prefill so the customer does
+       not have to retype the model they just clicked. */
+    var model = param("model");
+    if (model) {
+      var topic = $("#c-topic"), msg = $("#c-msg");
+      if (topic) {
+        var quoteOpt = $$("option", topic).filter(function (o) {
+          return /quote|pricing/i.test(o.textContent);
+        })[0];
+        if (quoteOpt) topic.value = quoteOpt.value;
+      }
+      if (msg) msg.value = "Model: " + model + "\nQuantity: \nNeeded by: \n\n";
+      var head = $("[data-contact-head]");
+      if (head) head.textContent = "Quote request — " + model;
+    }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var missing = $$("[required]", form).filter(function (i) { return !i.value.trim(); });
+      if (missing.length) { missing[0].focus(); toast("Fill in the highlighted fields."); return; }
+      form.innerHTML = '<div class="notice"><strong>Message captured locally.</strong> No mail backend is ' +
+        "connected in this build, so nothing was sent. README.md shows where to point the form.</div>";
+    });
+  }
+
+  /* ---------- boot ----------------------------------------------------- */
+
+  var PAGES = {
+    home: pageHome,
+    collection: pageCollection,
+    product: pageProduct,
+    cart: pageCart,
+    checkout: pageCheckout,
+    summary: pageSummary,
+    select: pageSelect,
+    compare: pageCompare,
+    search: pageSearch,
+    contact: pageContact
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    renderHeader();
+    renderFooter();
+    document.addEventListener("cart:change", paintCartCount);
+
+    var page = document.body.getAttribute("data-page");
+    if (PAGES[page]) PAGES[page]();
+
+    // fill in brand-dependent text placeholders on static pages
+    $$("[data-fill]").forEach(function (node) {
+      var key = node.getAttribute("data-fill");
+      if (key === "phone") { node.textContent = S.phone; node.setAttribute("href", S.phoneHref); }
+      else if (S[key] != null) node.textContent = S[key];
+    });
+  });
+})();

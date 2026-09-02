@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search — Picasso Intelligence</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="search">
+
+<div id="site-header"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Store</a><span>/</span>Search</div>
+    <h1>Search the catalogue</h1>
+    <form data-search-form role="search" style="display:flex;gap:8px;max-width:620px;margin-top:18px">
+      <label class="sr" for="q-page">Search products</label>
+      <input class="field" id="q-page" name="q" type="search" placeholder="VX80, 32 Nm, gimbal, hollow bore…" autocomplete="off">
+      <button class="btn" type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="muted" data-search-summary style="margin-bottom:24px"></p>
+    <div class="product-grid" data-search-grid></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

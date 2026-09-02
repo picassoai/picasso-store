@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find by spec — Picasso Intelligence</title>
+<meta name="description" content="Every CubeMars motor in one sortable table. Filter by rated torque, outer diameter, weight, and gear ratio, then compare models side by side.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="select">
+
+<div id="site-header"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Store</a><span>/</span>Find by spec</div>
+    <h1>Find by spec</h1>
+    <p>Every model in one table. Filter on what your joint needs, sort on any column,
+      then tick two or more to compare them in full.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div data-filters></div>
+  <div class="collection-bar">
+    <span class="count" data-finder-count></span>
+  </div>
+</div>
+
+<section class="section tight">
+  <div class="wrap" data-finder></div>
+</section>
+
+<div class="wrap">
+  <div class="compare-bar" data-compare-bar hidden>
+    <span class="count"></span>
+    <a class="btn btn-accent" href="compare.html" data-compare-go>Compare side by side</a>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

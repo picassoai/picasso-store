@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact us — Picasso Intelligence</title>
+<meta name="description" content="Talk to a person about custom windings, gear ratios, volume pricing, lead times, or a part you cannot find.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="contact">
+
+<div id="site-header"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Store</a><span>/</span>Contact us</div>
+    <h1 data-contact-head>Contact us</h1>
+    <p>Custom windings, gear ratios, connector pinouts, volume pricing, or a part you can't find —
+      send the specification and we come back within two business days.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cart-layout">
+    <div>
+      <form data-contact novalidate style="padding-top:40px">
+        <div class="form-grid">
+          <div><label class="lbl" for="c-name">Name</label>
+            <input class="field" id="c-name" name="name" required autocomplete="name"></div>
+          <div><label class="lbl" for="c-org">Company or lab</label>
+            <input class="field" id="c-org" name="org" autocomplete="organization"></div>
+          <div><label class="lbl" for="c-email">Work email</label>
+            <input class="field" id="c-email" name="email" type="email" required autocomplete="email"></div>
+          <div><label class="lbl" for="c-phone">Phone (optional)</label>
+            <input class="field" id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="full"><label class="lbl" for="c-topic">What do you need?</label>
+            <select class="field" id="c-topic" name="topic">
+              <option>Request a quote / pricing</option>
+              <option>Availability or lead time</option>
+              <option>Volume pricing</option>
+              <option>Custom winding or gear ratio</option>
+              <option>Part not listed on the site</option>
+              <option>Warranty or return</option>
+            </select></div>
+          <div class="full"><label class="lbl" for="c-msg">Specification</label>
+            <textarea class="field" id="c-msg" name="message" rows="7" required
+              placeholder="Torque, speed, bus voltage, envelope, quantity, and when you need it."></textarea></div>
+        </div>
+        <button class="btn btn-accent" type="submit" style="margin-top:20px">Send message</button>
+      </form>
+    </div>
+
+    <aside class="summary" style="margin-top:40px">
+      <h3>Faster routes</h3>
+      <div class="row"><span>Phone</span><span><a data-fill="phone" href="#">(555) 018-4420</a></span></div>
+      <div class="row"><span>Email</span><span data-fill="email">sales@vectrarobotics.example</span></div>
+      <div class="row"><span>Hours</span><span>8 am – 6 pm CT, Mon–Fri</span></div>
+      <div class="row"><span>Location</span><span data-fill="location">Austin, Texas</span></div>
+      <p class="note muted" style="font-size:13px;margin-top:16px">On a deadline? Call and we will
+        confirm the fastest option for your address on the phone.</p>
+    </aside>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogue — Picasso Intelligence</title>
+<meta name="description" content="Browse CubeMars actuators and motors. Filter by rated torque, outer diameter, weight, and gear ratio, and compare models side by side.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="collection">
+
+<div id="site-header"></div>
+
+<section class="page-head compact">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Store</a><span>/</span><span data-crumb>Catalogue</span></div>
+    <h1 data-col-name>Catalogue</h1>
+    <p data-col-blurb></p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="filters" data-filters></div>
+  <div class="collection-bar">
+    <span class="count" data-col-count></span>
+    <span class="count range" data-col-range></span>
+    <label class="sr" for="sort">Sort by</label>
+    <select class="field" id="sort" data-sort style="width:auto">
+      <option value="od-asc">Outer diameter</option>
+      <option value="torque-asc">Rated torque: low to high</option>
+      <option value="torque-desc">Rated torque: high to low</option>
+      <option value="weight-asc">Weight: light to heavy</option>
+      <option value="price-asc">Price: low to high</option>
+      <option value="price-desc">Price: high to low</option>
+    </select>
+  </div>
+</div>
+
+<section class="section grid-section">
+  <div class="wrap">
+    <div data-grid></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="compare-bar" data-compare-bar hidden>
+    <span class="count"></span>
+    <a class="btn btn-accent" href="compare.html" data-compare-go>Compare side by side</a>
+  </div>
+</div>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head"><h2>Other categories</h2></div>
+    <div class="chips" data-siblings></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
