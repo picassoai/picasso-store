@@ -55,6 +55,63 @@ window.APPLICATIONS = [
   {
     id: "humanoid", name: "Humanoid Robots", art: "actuator",
     blurb: "Joint modules from wrist to hip. Distal joints are chosen on weight, proximal joints on torque.",
+    /* Joints are views over this set, not a partition — the same actuator can
+       serve a shoulder on one machine and a hip on another, so these lists
+       overlap by design. Every note states considerations, not endorsements. */
+    joints: [
+      {
+        id: "shoulder", name: "Shoulder", group: "Upper limb",
+        note: "Three degrees of freedom carrying the whole arm at the longest lever arm on the upper body. Torque demand is usually dominated by the arm's own mass at full extension rather than by the payload, so size on the extended-arm case. The pitch axis normally needs the most; roll and yaw can be smaller. Keeping reduction low enough to stay backdrivable means a collision pushes the arm instead of the structure.",
+        products: [
+          "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100", "ak10-9-v3-0-kv60",
+          "ak10-9-v2-0-kv60", "akh70-16-v1-0-kv41"
+        ]
+      },
+      {
+        id: "elbow", name: "Elbow", group: "Upper limb",
+        note: "One degree of freedom carrying forearm mass plus payload — less torque than the shoulder, with the same backdrivability requirement. Weight matters more here than the number suggests: the elbow actuator's own mass becomes a load the shoulder has to hold at full extension, so every 100 g spent here is paid for again upstream.",
+        products: [
+          "ak45-36-kv80", "ak45-36-v3-0-kv80", "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100"
+        ]
+      },
+      {
+        id: "wrist", name: "Wrist", group: "Upper limb",
+        note: "Two or three degrees of freedom at the very end of the chain, where weight is the binding constraint rather than torque — mass here is multiplied by the entire arm's lever arm. Outer diameter matters as much as torque, because the roll axis usually has to package inside the forearm.",
+        products: [
+          "ak40-10-kv170", "ak40-10-v3-0-kv170", "ak45-10-kv75", "ak45-10-v3-0-kv75"
+        ]
+      },
+      {
+        id: "neck", name: "Neck", group: "Upper limb",
+        note: "Two or three degrees of freedom carrying only the head and its sensors — the lightest joint in the machine. Torque is rarely the deciding factor; smooth low-speed motion is. Head motion is what people read as lifelike, and any cogging or velocity ripple also shows up directly in whatever the head-mounted cameras are recording.",
+        products: [
+          "ak40-10-kv170", "ak40-10-v3-0-kv170", "ak45-10-kv75", "ak45-10-v3-0-kv75"
+        ]
+      },
+      {
+        id: "hip", name: "Hip", group: "Lower limb",
+        note: "Three degrees of freedom and the highest sustained torque in the machine. It carries the entire upper body, and in single-support stance one hip holds the whole mass on its own. Rated and peak torque are different questions here and both bind: rated covers standing and walking, peak covers stepping and recovery.",
+        products: [
+          "ak10-9-v3-0-kv60", "ak10-9-v2-0-kv60", "ak60-39-v3-0",
+          "akh70-16-v1-0-kv41", "ak80-64-kv80", "akh70-48-v1-0-kv41"
+        ]
+      },
+      {
+        id: "knee", name: "Knee", group: "Lower limb",
+        note: "The highest peak torque and the highest impact loading in the machine. Landing puts on the order of two to three times body weight through this joint within a few milliseconds, so size on peak torque and shock tolerance rather than on the rated figure. Reduction has to stay low enough to remain backdrivable — a knee that cannot be driven backwards cannot absorb a landing or run a fall-protection routine.",
+        products: [
+          "ak10-9-v3-0-kv60", "ak10-9-v2-0-kv60", "ak60-39-v3-0",
+          "akh70-16-v1-0-kv41", "ak80-64-kv80", "akh70-48-v1-0-kv41"
+        ]
+      },
+      {
+        id: "ankle", name: "Ankle", group: "Lower limb",
+        note: "Two degrees of freedom and the hardest packaging problem in the leg. It needs real torque for push-off, but its own mass sits at the far end of the limb where it costs the knee and hip the most. This is why many designs move the actuators up the shank and drive the ankle through linkages or belts instead of mounting them at the joint.",
+        products: [
+          "ak70-9-v3-0-kv60", "ak80-9-v3-0-kv100", "ak10-9-v3-0-kv60", "ak60-39-v3-0"
+        ]
+      }
+    ],
     products: [
       "ak40-10-kv170", "ak40-10-v3-0-kv170", "ak45-10-kv75",
       "ak45-10-v3-0-kv75", "ak45-36-kv80", "ak45-36-v3-0-kv80",

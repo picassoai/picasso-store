@@ -544,12 +544,24 @@
     { key: "g4", label: "Over 50:1",   lo: 50, hi: Infinity }
   ];
 
+  /* Diameters run 25 to 115 across 31 distinct values. The exact chips stay —
+     people do shop for a specific Ф — but most of the time the question is
+     "will it fit this bore", so offer coarse ranges alongside them. */
+  var OD_BANDS = [
+    { key: "d1", label: "Under 40",  lo: 0,   hi: 40 },
+    { key: "d2", label: "40 – 60",   lo: 40,  hi: 60 },
+    { key: "d3", label: "60 – 80",   lo: 60,  hi: 80 },
+    { key: "d4", label: "80 – 100",  lo: 80,  hi: 100 },
+    { key: "d5", label: "Over 100",  lo: 100, hi: Infinity }
+  ];
+
   /* A row whose only option is "All" filters nothing — don't render it. */
   function chipRow(label, name, opts) {
     if (opts.length < 2) return "";
     return '<div class="filter-row"><span class="filter-label">' + esc(label) + "</span>" +
       '<div class="chips">' +
       [{ k: "all", l: "All" }].concat(opts).map(function (o) {
+        if (o.sep) return '<span class="chip-sep" aria-hidden="true"></span>';
         return '<button class="chip" type="button" data-f="' + name + '" data-v="' + esc(o.k) +
           '" aria-pressed="' + (o.k === "all") + '">' + esc(o.l) + "</button>";
       }).join("") + "</div></div>";
@@ -574,8 +586,15 @@
         }).map(function (b) { return { k: b.key, l: b.label }; }));
     }
     if (ods.length) {
-      html += chipRow("Outer dia. (mm)", "od",
-        ods.map(function (o) { return { k: String(o), l: "Ф" + o }; }));
+      var odRanges = OD_BANDS.filter(function (b) {
+        return ods.some(function (o) { return o >= b.lo && o < b.hi; });
+      }).map(function (b) { return { k: b.key, l: b.label }; });
+      /* One range covering everything is the same as "All" — skip the row. */
+      var odOpts = odRanges.length > 1
+        ? odRanges.concat([{ sep: true }]).concat(
+            ods.map(function (o) { return { k: String(o), l: "Ф" + o }; }))
+        : ods.map(function (o) { return { k: String(o), l: "Ф" + o }; });
+      html += chipRow("Outer dia. (mm)", "od", odOpts);
     }
     /* Gear ratio only exists on geared families — an empty filter on the
        direct-drive sets would just be noise. */
@@ -600,12 +619,20 @@
     return b && v >= b.lo && v < b.hi;
   }
 
+  /* picked.od is either "all", a band key ("d3"), or an exact value ("46.1"). */
+  function odMatches(picked, v) {
+    if (picked === "all") return true;
+    if (v == null) return false;
+    if (/^d[0-9]+$/.test(picked)) return inBand(OD_BANDS, picked, v);
+    return String(v) === picked;
+  }
+
   function matchesFilters(p, picked, scale) {
     var bands = (scale || TORQUE_SCALES.nm).bands;
     return inBand(bands, picked.torque, coreNum(p, "torque")) &&
            inBand(WEIGHT_BANDS, picked.weight, coreNum(p, "weight")) &&
            inBand(RATIO_BANDS, picked.ratio, num(spec(p, CORE.ratio))) &&
-           (picked.od === "all" || String(coreNum(p, "od")) === picked.od);
+           odMatches(picked.od, coreNum(p, "od"));
   }
 
   function wireFilters(mount, picked, redraw) {
@@ -622,17 +649,59 @@
     });
   }
 
+  /* Real links, not buttons: the whole point of splitting humanoid work by
+     joint is that "knee joint actuator" is something people search for, and a
+     JS-only control is not a destination a crawler can reach. */
+  function renderJointNav(app, active) {
+    var mount = $("[data-joints]");
+    if (!mount) return;
+    if (!app || !app.joints || !app.joints.length) { mount.innerHTML = ""; return; }
+
+    var base = applicationHref(app);
+    var groups = [];
+    app.joints.forEach(function (j) {
+      var g = groups.filter(function (x) { return x.name === j.group; })[0];
+      if (!g) { g = { name: j.group, joints: [] }; groups.push(g); }
+      g.joints.push(j);
+    });
+
+    mount.innerHTML = '<nav class="joint-nav" aria-label="Joint">' +
+      '<a class="chip" href="' + base + '"' + (active ? "" : ' aria-current="page"') +
+        ">All joints</a>" +
+      groups.map(function (g) {
+        return '<span class="joint-group">' + esc(g.name) + "</span>" +
+          g.joints.map(function (j) {
+            var on = active && active.id === j.id;
+            return '<a class="chip" href="' + base + "&j=" + encodeURIComponent(j.id) + '"' +
+              (on ? ' aria-current="page"' : "") + ">" + esc(j.name) + "</a>";
+          }).join("");
+      }).join("") + "</nav>";
+  }
+
   function pageCollection() {
     var app = application(param("a"));
     var c = app ? null : (collection(param("c")) || COLS[0]);
-    var items = app ? inApplication(app) : inCollection(c.id);
-    var title = app ? app.name : c.name;
-    var blurb = app ? app.blurb : c.long;
+    /* A joint narrows the application set. It is a view, not a sub-collection:
+       the same actuator legitimately appears under several joints. */
+    var joint = app && app.joints
+      ? app.joints.filter(function (j) { return j.id === param("j"); })[0]
+      : null;
+    var items = app
+      ? (joint ? joint.products.map(product).filter(Boolean) : inApplication(app))
+      : inCollection(c.id);
+    var title = joint ? joint.name + " joint actuators" : (app ? app.name : c.name);
+    var blurb = joint ? joint.note : (app ? app.blurb : c.long);
 
     document.title = title + " — " + S.brand;
     $("[data-col-name]").textContent = title;
     $("[data-col-blurb]").textContent = blurb;
-    $("[data-crumb]").textContent = title;
+    if (joint) {
+      $("[data-crumb]").innerHTML = '<a href="' + applicationHref(app) + '">' + esc(app.name) +
+        "</a><span>/</span>" + esc(joint.name);
+    } else {
+      $("[data-crumb]").textContent = title;
+    }
+    renderJointNav(app, joint);
 
     var torques = items.map(function (p) { return coreNum(p, "torque"); })
                        .filter(function (v) { return v != null; });
@@ -709,7 +778,8 @@
       wireCompare(grid);
       var reset = $("[data-reset]", grid);
       if (reset) reset.addEventListener("click", function () {
-        picked = { torque: "all", od: "all", weight: "all", ratio: "all" };
+        /* Mutate in place: wireFilters closed over this exact object. */
+        Object.keys(picked).forEach(function (k) { picked[k] = "all"; });
         if (mount) $$("[data-f]", mount).forEach(function (b) {
           b.setAttribute("aria-pressed", b.getAttribute("data-v") === "all");
         });
@@ -1152,6 +1222,23 @@
 
       $("[data-finder-count]").textContent =
         view.length + (view.length === 1 ? " model" : " models");
+
+      /* Without this the page rendered bare column headers over an empty
+         table — no explanation, and no way back to a full list. */
+      if (!view.length) {
+        host.innerHTML = '<div class="empty-state"><h2>Nothing matches those filters</h2>' +
+          "<p>No model meets every condition at once. Try widening one of them.</p>" +
+          '<button class="btn btn-accent" type="button" data-reset>Clear filters</button></div>';
+        $("[data-reset]", host).addEventListener("click", function () {
+          /* Mutate in place: wireFilters closed over this exact object. */
+          Object.keys(picked).forEach(function (k) { picked[k] = "all"; });
+          if (mount) $$("[data-f]", mount).forEach(function (b) {
+            b.setAttribute("aria-pressed", b.getAttribute("data-v") === "all");
+          });
+          draw();
+        });
+        return;
+      }
 
       host.innerHTML = '<div class="compare-scroll"><table class="finder-table">' +
         "<thead><tr><th></th>" + FINDER_COLS.map(function (c) {

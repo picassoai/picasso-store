@@ -71,6 +71,10 @@ img, svg { max-width: 100%; }
 .hero + .section .section-head { margin-bottom: 20px; }
 .section.alt { background: var(--bg-2); }
 .section.tight { padding: 64px 0; }
+
+/* Find by spec: the filter block runs ~230px tall, so a 64px gap here pushed a
+   one-row result below the fold — you filtered, saw the count, and saw nothing. */
+[data-page="select"] .section.tight { padding: 8px 0 56px; }
 .section.dark { background: var(--ink-dark); color: #f5f5f7; }
 .section.dark h2 { color: #f5f5f7; }
 .section.dark p { color: #a1a1a6; }
@@ -405,6 +409,8 @@ img, svg { max-width: 100%; }
   color: var(--ink-4); width: 92px; flex: none;
 }
 .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+/* Divides the coarse ranges from the exact diameters in the same chip row. */
+.chip-sep { width: 1px; align-self: stretch; min-height: 22px; margin: 0 5px; background: var(--line); }
 .chip {
   font: inherit; font-size: 12.5px; padding: 4px 11px; border-radius: var(--pill);
   border: 1px solid var(--line); background: #fff; color: var(--ink-2); cursor: pointer;
@@ -416,6 +422,17 @@ img, svg { max-width: 100%; }
 /* The sort control is chrome, not a form field — keep it the height of a chip. */
 .collection-bar select.field { font-size: 13px; padding: 5px 10px; }
 
+/* Joint selector: chips are anchors here, so they need the link reset that the
+   button version gets for free. aria-current marks the active joint. */
+.joint-nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 4px 0 12px; }
+.joint-nav .chip { text-decoration: none; display: inline-block; line-height: 1.45; }
+.joint-nav .chip[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.joint-group {
+  font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink-4); margin-left: 12px; padding-right: 2px;
+}
+.joint-group:first-of-type { margin-left: 8px; }
+
 .grid-section { padding: 6px 0 80px; }
 .od-group { margin: 26px 0 14px; display: flex; align-items: center; gap: 14px; }
 .od-group:first-child { margin-top: 6px; }
@@ -424,13 +441,20 @@ img, svg { max-width: 100%; }
 .od-group span { font-size: 13px; color: var(--ink-4); }
 
 .compare-bar {
-  position: sticky; bottom: 0; z-index: 30; margin-top: 40px;
+  /* Fixed to the viewport, not the document: as a sticky child of a wrap that
+     holds nothing else it had no room to slide and never floated. Your eyes are
+     in the table, so the bar has to follow the screen, not the page bottom. */
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  padding: 14px max(22px, calc((100vw - var(--wrap-wide)) / 2 + 22px));
   background: rgba(255, 255, 255, .92);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-top: 1px solid var(--line); padding: 14px 0;
+  border-top: 1px solid var(--line);
   display: flex; align-items: center; gap: 16px;
 }
+/* An author `display` beats the UA rule for [hidden], so the bar stayed on
+   screen reading "0 selected" even after paintCompareBar hid it. */
+.compare-bar[hidden] { display: none; }
 .compare-bar .count { flex: 1; }
 
 /* ---------- product page ---------- */
@@ -525,7 +549,10 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
   text-align: left; white-space: nowrap;
 }
 .finder-table thead th {
-  position: sticky; top: 62px; background: #fff; z-index: 2;
+  /* Sticky is resolved against .compare-scroll (it has overflow:auto), not the
+     page, so a 62px offset slid the header down onto the first data row and
+     painted it white. Any single-result filter then looked empty. */
+  position: sticky; top: 0; background: #fff; z-index: 2;
   border-bottom: 1px solid var(--line); padding: 0;
 }
 .finder-table thead th button {
@@ -548,7 +575,7 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
   padding: 13px 16px; border-bottom: 1px solid var(--line-soft); text-align: left;
   vertical-align: top; white-space: nowrap;
 }
-.compare-table thead th { position: sticky; top: 62px; background: #fff; z-index: 2; }
+.compare-table thead th { position: sticky; top: 0; background: #fff; z-index: 2; }
 .compare-table tbody th { font-weight: 400; color: var(--ink-3); white-space: normal; }
 .compare-table td { font-variant-numeric: tabular-nums; }
 .compare-table tr.differs td { background: #fffbf2; }
