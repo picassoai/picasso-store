@@ -23,13 +23,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Pages that depend on cart or session state have nothing to index and would
 # only burn crawl budget.
-NOINDEX = ["cart.html", "checkout.html", "summary.html", "compare.html", "search.html"]
-
-STATIC_PAGES = [
-    "index.html", "select.html", "contact.html",
+# The policy pages still ship placeholder copy, so they are unlinked and kept
+# out of the index until real terms replace them.
+NOINDEX = [
+    "cart.html", "checkout.html", "summary.html", "compare.html", "search.html",
     "privacy-policy.html", "refund-policy.html",
     "shipping-policy.html", "terms-of-service.html",
 ]
+
+STATIC_PAGES = ["index.html", "select.html", "contact.html"]
 
 
 def read(path):

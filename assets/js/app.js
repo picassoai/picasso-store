@@ -271,7 +271,7 @@
         '<div class="drawer-group">Store</div>' +
         '<a href="select.html">Find by spec</a>' +
         '<a href="search.html">Search</a><a href="cart.html">Cart</a>' +
-        '<a href="contact.html">Contact us</a><a href="shipping-policy.html">Shipping policy</a>' +
+        '<a href="contact.html">Contact us</a>' +
       '</nav></div>';
   }
 
@@ -312,13 +312,11 @@
               '<img class="brand-logo" src="assets/img/logo.svg" width="436" height="100" alt="' +
                 esc(S.brand) + '">' +
               "</a>" +
-            '<p>Robotic actuation and propulsion components for the machines you build.</p>' +
+            '<p>Robotic actuators, sized and supported in the US.</p>' +
           '</div>' +
           '<div><h4>Shop</h4><ul>' + shopLinks + '</ul></div>' +
           '<div><h4>Help</h4><ul>' +
             '<li><a href="contact.html">Contact us</a></li>' +
-            '<li><a href="shipping-policy.html">Shipping policy</a></li>' +
-            '<li><a href="refund-policy.html">Refund policy</a></li>' +
             '<li><a href="index.html#faq">FAQ</a></li>' +
             '<li><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a></li>' +
           '</ul></div>' +
@@ -329,30 +327,47 @@
               '<input class="field" id="news-email" name="email" type="email" placeholder="you@company.com" required>' +
               '<button class="btn" type="submit">Subscribe</button>' +
             '</form>' +
-            '<p class="note" data-newsletter-note>No list is connected in this build — see README.</p>' +
+            '<p class="note" data-newsletter-note>No spam, and we do not share your address.</p>' +
           '</div>' +
         '</div>' +
         '<div class="wrap footer-legal">' +
           '<span>&copy; ' + S.year + " " + esc(S.brand) + '</span>' +
           '<nav>' +
-            '<a href="privacy-policy.html">Privacy policy</a>' +
-            '<a href="refund-policy.html">Refund policy</a>' +
-            '<a href="terms-of-service.html">Terms of service</a>' +
-            '<a href="shipping-policy.html">Shipping policy</a>' +
             '<a href="contact.html">Contact information</a>' +
             '<a href="' + esc(S.linkedin) + '">LinkedIn</a>' +
           '</nav>' +
         '</div>' +
       '</footer>';
 
+    /* Signups go through the same Formspree endpoint as everything else, tagged
+       so they are filterable in the inbox rather than mixed in with enquiries. */
     var form = $("[data-newsletter]");
     if (form) form.addEventListener("submit", function (e) {
       e.preventDefault();
       var input = $("#news-email");
+      var note = $("[data-newsletter-note]");
       if (!input.value || input.value.indexOf("@") < 0) { toast("Enter a valid email address."); return; }
-      $("[data-newsletter-note]").textContent = "Demo only — " + input.value + " was not sent anywhere.";
-      input.value = "";
-      toast("Signup captured locally (demo).");
+
+      var btn = $('button[type="submit"]', form);
+      var label = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "…"; }
+
+      var fd = new FormData();
+      fd.append("_subject", "Newsletter signup — " + input.value);
+      fd.append("email", input.value);
+      fd.append("form", "newsletter");
+
+      postForm(fd).then(function () {
+        note.textContent = "Thanks — you are on the list.";
+        input.value = "";
+        toast("You are subscribed.");
+      }).catch(function (err) {
+        /* Say it failed rather than let them think they subscribed. */
+        note.textContent = "That did not go through. Email " + S.email + " and we will add you.";
+        toast("Signup failed.");
+      }).then(function () {
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+      });
     });
   }
 
@@ -1046,7 +1061,7 @@
     return '<aside class="summary"><h3>Order summary</h3>' +
       '<div class="row"><span>Subtotal</span><span>' + money(sub) + "</span></div>" +
       '<div class="row"><span>Shipping</span><span class="muted">Quoted per order</span></div>' +
-      '<div class="row"><span>Sales tax</span><span class="muted">At checkout</span></div>' +
+      '<div class="row"><span>Sales tax</span><span class="muted">Where applicable</span></div>' +
       '<div class="row total"><span>Total</span><span>' + money(sub) + "</span></div>" +
       (withCheckout
         ? '<a class="btn btn-accent btn-block" href="checkout.html">Continue to checkout</a>' +

@@ -227,6 +227,8 @@ img, svg { max-width: 100%; }
   display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center;
 }
 .hero h1 { margin-bottom: 14px; }
+/* The trust marker, not the pitch — small and quiet under the headline. */
+.hero-note { font-size: 14px; color: var(--ink-3); margin: 0; }
 .hero-art {
   background: #fff; border-radius: 28px; padding: 30px; margin: 0;
   display: grid; place-items: center;
@@ -258,7 +260,7 @@ img, svg { max-width: 100%; }
 }
 .app-card:hover { border-color: var(--line); text-decoration: none; }
 .app-card:hover h4 { color: var(--accent); }
-.app-card .thumb { height: 240px; margin-bottom: 16px; }
+.app-card .thumb { aspect-ratio: 1; margin-bottom: 16px; }
 .app-card h4 { font-size: 19px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
 .app-card p { font-size: 14px; color: var(--ink-3); margin: 8px 0 0; }
 
@@ -273,7 +275,7 @@ img, svg { max-width: 100%; }
   color: var(--ink); text-decoration: none; transition: border-color .15s;
 }
 .cat-card:hover { border-color: var(--line); text-decoration: none; }
-.cat-card .thumb { height: 200px; margin-bottom: 16px; }
+.cat-card .thumb { aspect-ratio: 1; margin-bottom: 16px; }
 
 /* Thumbnails have a fixed height. Photos are contained inside it; the fallback
    SVG needs !important because ART.render writes width/height inline, and an
@@ -287,8 +289,8 @@ img, svg { max-width: 100%; }
 /* Pixel heights, not percentages: inside a centred grid area a percentage
    height has nothing definite to resolve against, so the image kept its
    natural size and was cropped by the overflow rule instead of scaling. */
-.cat-card .thumb img { width: 100%; height: 200px; object-fit: contain; display: block; }
-.app-card .thumb img { width: 100%; height: 240px; object-fit: contain; display: block; }
+.cat-card .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.app-card .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .compare-head .thumb img { width: 100%; height: 96px; object-fit: contain; display: block; }
 .cat-card h3 { font-size: 19px; margin-bottom: 6px; }
 .cat-card p { font-size: 14px; color: var(--ink-3); margin: 0 0 12px; }

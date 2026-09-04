@@ -5,7 +5,7 @@
 window.SITE = {
   brand: "Picasso Intelligence",
   tagline: "",
-  announce: ["US-based team", "Engineering support before and after you buy", "Turnkey solution"],
+  announce: ["US-based team", "Engineering support before and after you buy", "Most orders arrive in about a week"],
   /* No phone number on the site by choice — enquiries come in by email so
      they arrive with the model and quantity written down. */
   email: "info@picassointelligence.com",

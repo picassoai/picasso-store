@@ -4,5 +4,9 @@ Disallow: /checkout.html
 Disallow: /summary.html
 Disallow: /compare.html
 Disallow: /search.html
+Disallow: /privacy-policy.html
+Disallow: /refund-policy.html
+Disallow: /shipping-policy.html
+Disallow: /terms-of-service.html
 
 Sitemap: https://picassointelligence.com/sitemap.xml
