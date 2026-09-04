@@ -440,6 +440,15 @@ img, svg { max-width: 100%; }
 }
 .joint-group:first-of-type { margin-left: 8px; }
 
+.model-filter { padding-top: 10px; }
+.model-filter .field { max-width: 260px; font-size: 13px; padding: 5px 10px; }
+
+.next-steps { padding-left: 20px; margin: 0; }
+.next-steps li { margin-bottom: 14px; color: var(--ink-2); }
+
+.btn-buy { background: var(--ink); color: #fff; border-color: var(--ink); text-decoration: none; }
+.btn-buy:hover { opacity: .88; text-decoration: none; }
+
 .grid-section { padding: 6px 0 80px; }
 .od-group { margin: 26px 0 14px; display: flex; align-items: center; gap: 14px; }
 .od-group:first-child { margin-top: 6px; }

@@ -371,6 +371,49 @@
     });
   }
 
+  /* Freight is a flat fee per order, waived above a threshold — the same rule
+     the worker applies, stated here so the total is not a surprise at Stripe. */
+  function shippingLabel(subtotalDollars) {
+    var sh = S.shipping;
+    if (!sh) return "Quoted per order";
+    if (subtotalDollars >= sh.freeOver) return "Included";
+    return money(sh.flat) + " — free over " + money(sh.freeOver);
+  }
+
+  /* Sends ids and quantities only. The worker prices them and hands back a
+     Stripe URL; nothing here can influence what is charged. */
+  function wirePayNow(root) {
+    var btn = $("[data-pay-now]", root || document);
+    if (!btn) return;
+    var note = $("[data-pay-note]", root || document);
+    btn.addEventListener("click", function () {
+      var lines = Cart.read();
+      if (!lines.length) return;
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "Opening checkout…";
+
+      fetch(S.checkoutEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lines: lines })
+      }).then(function (r) {
+        return r.json().then(function (d) {
+          if (!r.ok || !d.url) throw new Error(d.error || "Checkout could not be started.");
+          window.location.href = d.url;
+        });
+      }).catch(function (err) {
+        btn.disabled = false;
+        btn.textContent = label;
+        if (note) {
+          note.innerHTML = "<strong>" + esc(err.message) + "</strong> " +
+            'You can still <a href="checkout.html">send us the order</a> and we will ' +
+            "reply with an invoice.";
+        }
+      });
+    });
+  }
+
   function paintCartCount() {
     var n = Cart.count();
     $$("[data-cart-count]").forEach(function (node) {
@@ -951,9 +994,21 @@
                 '<button type="button" data-step="1" aria-label="Increase quantity">+</button>' +
               "</div>" +
               '<button class="btn btn-accent" type="button" data-add-pdp>Add to cart</button>' +
+              /* Only models with a Stripe Payment Link can be bought outright.
+                 Quantity is chosen on Stripe's page, not by the stepper above,
+                 so the note says so rather than letting the two disagree. */
+              (p.buyLink
+                ? '<a class="btn btn-buy" href="' + esc(p.buyLink) + '">Buy now</a>'
+                : "") +
             "</div>" +
-            '<p class="muted" style="font-size:13px">Card or ACH at checkout. ' +
-              'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>') +
+            (p.buyLink
+              ? '<p class="muted" style="font-size:13px">Buy now opens our secure Stripe checkout, ' +
+                  'where you can pay by card or US bank transfer and choose the quantity. ' +
+                  'Price includes shipping within the United States. ' +
+                  'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>'
+              : '<p class="muted" style="font-size:13px">Add to cart to send us the order and we will ' +
+                  'reply with an invoice you can pay by card or bank transfer. ' +
+                  'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>')) +
         specTiles(p) +
         (Object.keys(p.specs).length
           ? '<details class="spec-all"><summary>Full technical specifications</summary>' +
@@ -1012,7 +1067,7 @@
       var host = $("[data-cart]");
       if (!lines.length) {
         host.innerHTML = '<div class="empty-state"><h2>Your cart is empty</h2>' +
-          "<p>Nothing here yet. Everything in the catalogue is on the shelf and ships free.</p>" +
+          "<p>Nothing here yet. Browse the catalogue and add what your build needs.</p>" +
           '<a class="btn" href="index.html">Browse components</a></div>';
         return;
       }
@@ -1045,6 +1100,7 @@
         });
       });
       $("[data-clear]").addEventListener("click", function () { Cart.clear(); draw(); });
+      wirePayNow();
     }
 
     function bump(id, d) {
@@ -1060,11 +1116,15 @@
     var sub = Cart.subtotal();
     return '<aside class="summary"><h3>Order summary</h3>' +
       '<div class="row"><span>Subtotal</span><span>' + money(sub) + "</span></div>" +
-      '<div class="row"><span>Shipping</span><span class="muted">Quoted per order</span></div>' +
+      '<div class="row"><span>Shipping</span><span class="muted">' + shippingLabel(sub) + "</span></div>" +
       '<div class="row"><span>Sales tax</span><span class="muted">Where applicable</span></div>' +
       '<div class="row total"><span>Total</span><span>' + money(sub) + "</span></div>" +
       (withCheckout
-        ? '<a class="btn btn-accent btn-block" href="checkout.html">Continue to checkout</a>' +
+        ? (S.checkoutEndpoint
+            ? '<button class="btn btn-accent btn-block" type="button" data-pay-now>Checkout</button>' +
+              '<p class="note muted" style="font-size:12.5px;margin-top:10px" data-pay-note>' +
+                'Pay by card or US bank transfer on our secure Stripe checkout.</p>'
+            : '<a class="btn btn-accent btn-block" href="checkout.html">Send us this order</a>') +
           '<p class="note muted" style="font-size:12.5px;margin-top:12px">Need a volume quote? ' +
           '<a href="contact.html">Contact us</a>.</p>'
         : "") +
@@ -1330,8 +1390,23 @@
     var built = filterMarkup(items);
     if (mount) mount.innerHTML = built.html;
 
+    /* A filter, not a search: it narrows the table so families like AK80 can be
+       compared side by side. The header search takes you off to one product. */
+    var modelBox = $("[data-model-filter]");
+    var modelClear = $("[data-model-clear]");
+    function modelMatch(p) {
+      var term = (modelBox && modelBox.value || "").trim().toLowerCase();
+      if (!term) return true;
+      /* Every series is named "XX Series", and "series" contains "ri" — leaving
+         it in made a search for the RI family return the whole catalogue. */
+      var hay = (p.name + " " + (p.series || "")).toLowerCase().replace(/series/g, "");
+      return term.split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; });
+    }
+
     function draw() {
-      var view = items.filter(function (p) { return matchesFilters(p, picked, built.scale); });
+      var view = items.filter(function (p) {
+        return matchesFilters(p, picked, built.scale) && modelMatch(p);
+      });
       var col = FINDER_COLS.filter(function (c) { return c.key === sortKey; })[0];
       view.sort(function (a, b) {
         var x = col.get(a), y = col.get(b);
@@ -1353,6 +1428,8 @@
         $("[data-reset]", host).addEventListener("click", function () {
           /* Mutate in place: wireFilters closed over this exact object. */
           Object.keys(picked).forEach(function (k) { picked[k] = "all"; });
+          if (modelBox) { modelBox.value = ""; }
+          if (modelClear) modelClear.hidden = true;
           if (mount) $$("[data-f]", mount).forEach(function (b) {
             b.setAttribute("aria-pressed", b.getAttribute("data-v") === "all");
           });
@@ -1397,6 +1474,18 @@
     }
 
     wireFilters(mount, picked, draw);
+    if (modelBox) {
+      modelBox.addEventListener("input", function () {
+        if (modelClear) modelClear.hidden = !modelBox.value;
+        draw();
+      });
+    }
+    if (modelClear) modelClear.addEventListener("click", function () {
+      modelBox.value = "";
+      modelClear.hidden = true;
+      modelBox.focus();
+      draw();
+    });
     draw();
     paintCompareBar();
   }

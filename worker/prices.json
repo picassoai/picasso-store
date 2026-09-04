@@ -1,0 +1,292 @@
+{
+  "ak10-9-v2-0-kv60": {
+    "cents": 79890,
+    "name": "AK10-9 V2.0 KV60",
+    "series": "AK Series"
+  },
+  "ak10-9-v3-0-kv60": {
+    "cents": 79890,
+    "name": "AK10-9 V3.0 KV60",
+    "series": "AK Series"
+  },
+  "ak40-10-kv170": {
+    "cents": 9990,
+    "name": "AK40-10 KV170",
+    "series": "AK Series"
+  },
+  "ak40-10-v3-0-kv170": {
+    "cents": 13590,
+    "name": "AK40-10 V3.0 KV170",
+    "series": "AK Series"
+  },
+  "ak45-10-kv75": {
+    "cents": 11990,
+    "name": "AK45-10 KV75",
+    "series": "AK Series"
+  },
+  "ak45-10-v3-0-kv75": {
+    "cents": 15590,
+    "name": "AK45-10 V3.0 KV75",
+    "series": "AK Series"
+  },
+  "ak45-36-kv80": {
+    "cents": 18590,
+    "name": "AK45-36 KV80",
+    "series": "AK Series"
+  },
+  "ak45-36-v3-0-kv80": {
+    "cents": 18590,
+    "name": "AK45-36 V3.0 KV80",
+    "series": "AK Series"
+  },
+  "ak60-39-v3-0": {
+    "cents": 44890,
+    "name": "AK60-39 V3.0",
+    "series": "AK Series"
+  },
+  "ak60-6-v1-1-kv140": {
+    "cents": 29890,
+    "name": "AK60-6 V1.1 KV140",
+    "series": "AK Series"
+  },
+  "ak60-6-v3-0-kv80": {
+    "cents": 29890,
+    "name": "AK60-6 V3.0 KV80",
+    "series": "AK Series"
+  },
+  "ak70-10-kv100": {
+    "cents": 39890,
+    "name": "AK70-10 KV100",
+    "series": "AK Series"
+  },
+  "ak70-9-kv60": {
+    "cents": 49890,
+    "name": "AK70-9 KV60",
+    "series": "AK Series"
+  },
+  "ak70-9-v3-0-kv60": {
+    "cents": 39890,
+    "name": "AK70-9 V3.0 KV60",
+    "series": "AK Series"
+  },
+  "ak80-64-kv80": {
+    "cents": 98990,
+    "name": "AK80-64 KV80",
+    "series": "AK Series"
+  },
+  "ak80-8-kv60": {
+    "cents": 46990,
+    "name": "AK80-8 KV60",
+    "series": "AK Series"
+  },
+  "ak80-9-kv100": {
+    "cents": 47990,
+    "name": "AK80-9 KV100",
+    "series": "AK Series"
+  },
+  "ak80-9-v3-0-kv100": {
+    "cents": 57990,
+    "name": "AK80-9 V3.0 KV100",
+    "series": "AK Series"
+  },
+  "aka10-9-kv60": {
+    "cents": 79890,
+    "name": "AKA10-9 KV60",
+    "series": "AKA Series"
+  },
+  "aka60-6-kv80": {
+    "cents": 29890,
+    "name": "AKA60-6 KV80",
+    "series": "AKA Series"
+  },
+  "ake60-8-kv80": {
+    "cents": 21890,
+    "name": "AKE60-8 KV80",
+    "series": "AKE Series"
+  },
+  "ake80-8-kv30": {
+    "cents": 33990,
+    "name": "AKE80-8 KV30",
+    "series": "AKE Series"
+  },
+  "ake90-8-kv35": {
+    "cents": 48390,
+    "name": "AKE90-8 KV35",
+    "series": "AKE Series"
+  },
+  "akh70-16-v1-0-kv41": {
+    "cents": 59800,
+    "name": "AKH70-16 V1.0 KV41",
+    "series": "AKH Series"
+  },
+  "akh70-48-v1-0-kv41": {
+    "cents": 69800,
+    "name": "AKH70-48 V1.0 KV41",
+    "series": "AKH Series"
+  },
+  "driver-board-for-ak-series": {
+    "cents": 5999,
+    "name": "Driver Board for AK Series",
+    "series": "Accessories"
+  },
+  "driver-board-for-aka-series": {
+    "cents": 7990,
+    "name": "Driver Board for AKA Series",
+    "series": "Accessories"
+  },
+  "driver-board-for-ake-series": {
+    "cents": 7990,
+    "name": "Driver Board for AKE Series",
+    "series": "Accessories"
+  },
+  "driver-board-for-akh-series": {
+    "cents": 10300,
+    "name": "Driver Board for AKH Series",
+    "series": "Accessories"
+  },
+  "driver-board-v2-1": {
+    "cents": 12990,
+    "name": "Driver-board-V2.1",
+    "series": "Accessories"
+  },
+  "driver-board-v2-2": {
+    "cents": 7990,
+    "name": "Driver-board-V2.2",
+    "series": "Accessories"
+  },
+  "gl100-kv10": {
+    "cents": 27299,
+    "name": "GL100 KV10",
+    "series": "GL Series"
+  },
+  "gl30-kv290": {
+    "cents": 5099,
+    "name": "GL30 KV290",
+    "series": "GL Series"
+  },
+  "gl35-kv100": {
+    "cents": 5499,
+    "name": "GL35 KV100",
+    "series": "GL Series"
+  },
+  "gl40-kv70": {
+    "cents": 7299,
+    "name": "GL40 KV70",
+    "series": "GL Series"
+  },
+  "gl40-kv82-5": {
+    "cents": 13399,
+    "name": "GL40Ⅱ KV82.5",
+    "series": "GL Series"
+  },
+  "gl60-kv25": {
+    "cents": 10899,
+    "name": "GL60 KV25",
+    "series": "GL Series"
+  },
+  "gl60-kv28": {
+    "cents": 16699,
+    "name": "GL60 Ⅱ KV28",
+    "series": "GL Series"
+  },
+  "gl80-kv30": {
+    "cents": 18199,
+    "name": "GL80 KV30",
+    "series": "GL Series"
+  },
+  "gl80-kv60": {
+    "cents": 18199,
+    "name": "GL80 KV60",
+    "series": "GL Series"
+  },
+  "ri100-kv105": {
+    "cents": 14890,
+    "name": "RI100 KV105",
+    "series": "RI Series"
+  },
+  "ri115-ph-kv40": {
+    "cents": 19990,
+    "name": "RI115-PH KV40",
+    "series": "RI Series"
+  },
+  "ri20-kv600": {
+    "cents": 4290,
+    "name": "RI20 KV600",
+    "series": "RI Series"
+  },
+  "ri30-kv260": {
+    "cents": 5190,
+    "name": "RI30 KV260",
+    "series": "RI Series"
+  },
+  "ri50-kv100": {
+    "cents": 6190,
+    "name": "RI50 KV100",
+    "series": "RI Series"
+  },
+  "ri60-kv120": {
+    "cents": 9890,
+    "name": "RI60 KV120",
+    "series": "RI Series"
+  },
+  "ri70-kv95": {
+    "cents": 12390,
+    "name": "RI70 KV95",
+    "series": "RI Series"
+  },
+  "ri75-ph-kv70": {
+    "cents": 13890,
+    "name": "RI75-PH KV70",
+    "series": "RI Series"
+  },
+  "ri80-v2-0-kv75": {
+    "cents": 13290,
+    "name": "RI80 V2.0 KV75",
+    "series": "RI Series"
+  },
+  "ri85-ph-kv85": {
+    "cents": 14790,
+    "name": "RI85-PH KV85",
+    "series": "RI Series"
+  },
+  "ro100-kv55": {
+    "cents": 15690,
+    "name": "RO100 KV55",
+    "series": "RO Series"
+  },
+  "ro40-kv140-lite": {
+    "cents": 5190,
+    "name": "RO40 KV140 Lite",
+    "series": "RO Series"
+  },
+  "ro50-kv108-lite": {
+    "cents": 6590,
+    "name": "RO50 KV108 Lite",
+    "series": "RO Series"
+  },
+  "ro60-kv115": {
+    "cents": 7790,
+    "name": "RO60 KV115",
+    "series": "RO Series"
+  },
+  "ro80-kv105": {
+    "cents": 10490,
+    "name": "RO80 KV105",
+    "series": "RO Series"
+  },
+  "rubik-link-v2-0": {
+    "cents": 3990,
+    "name": "RUBIK LINK V2.0",
+    "series": "Accessories"
+  },
+  "rubik-link-v3-0": {
+    "cents": 2190,
+    "name": "RUBIK LINK V3.0",
+    "series": "Accessories"
+  },
+  "s-link-v1-0": {
+    "cents": 3990,
+    "name": "S-LINK V1.0",
+    "series": "Accessories"
+  }
+}

@@ -13,6 +13,12 @@ window.SITE = {
      ships in the page source — and the destination inbox is set in Formspree,
      never here. Free tier is 50 submissions a month. */
   formEndpoint: "https://formspree.io/f/xoeqdwez",
+  /* Cloudflare Worker that creates the Stripe Checkout Session. Prices are
+     resolved there, never here, so a tampered cart cannot set its own total.
+     Empty until the worker is deployed — the cart falls back to the email flow. */
+  checkoutEndpoint: "https://checkout.picasso-intelligence.workers.dev/",
+  /* Freight, charged once per order. Must match worker/checkout.js. */
+  shipping: { flat: 50, freeOver: 1000 },
   address: "215 W 125th St, New York, NY 10027",
   location: "New York",
   linkedin: "#",

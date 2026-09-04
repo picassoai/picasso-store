@@ -21,6 +21,12 @@
 </section>
 
 <div class="wrap">
+  <div class="filter-row model-filter">
+    <label class="filter-label" for="model-q">Model</label>
+    <input class="field" id="model-q" type="search" data-model-filter autocomplete="off"
+           placeholder="AK80, RI, gimbal…">
+    <button class="chip" type="button" data-model-clear hidden>Clear</button>
+  </div>
   <div data-filters></div>
   <div class="collection-bar">
     <span class="count" data-finder-count></span>
