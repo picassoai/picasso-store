@@ -121,19 +121,14 @@ const PRICES = {
     "name": "AK80-8 KV60 with driver",
     "series": "AK Series"
   },
-  "ak80-9-kv100": {
-    "cents": 47990,
-    "name": "AK80-9 KV100",
-    "series": "AK Series"
-  },
-  "ak80-9-kv100-with-driver": {
-    "cents": 57990,
-    "name": "AK80-9 KV100 with driver",
-    "series": "AK Series"
-  },
   "ak80-9-v3-0-kv100": {
-    "cents": 57990,
+    "cents": 47990,
     "name": "AK80-9 V3.0 KV100",
+    "series": "AK Series"
+  },
+  "ak80-9-v3-0-kv100-with-driver": {
+    "cents": 57990,
+    "name": "AK80-9 V3.0 KV100 with driver",
     "series": "AK Series"
   },
   "aka10-9-kv60": {
@@ -403,7 +398,7 @@ const SITE = "https://picassointelligence.com";
 /* Freight is charged once per order, not per line. Free above the threshold so
    large orders are not penalised for a cost that barely moves with weight. */
 const SHIPPING_CENTS = 5000;
-const FREE_SHIPPING_OVER_CENTS = 100000;
+const FREE_SHIPPING_OVER_CENTS = 50000;
 
 const CORS = {
   "Access-Control-Allow-Origin": SITE,

@@ -1158,6 +1158,12 @@
     return '<aside class="summary"><h3>Order summary</h3>' +
       '<div class="row"><span>Subtotal</span><span>' + money(sub) + "</span></div>" +
       '<div class="row"><span>Shipping</span><span class="muted">' + shippingLabel(sub) + "</span></div>" +
+      /* Freight is per order, so the useful thing to say is how much more it
+         takes to stop paying it — not to discount the freight itself. */
+      (S.shipping && sub > 0 && sub < S.shipping.freeOver
+        ? '<p class="ship-nudge">Add ' + money(S.shipping.freeOver - sub) +
+          " more and shipping is on us.</p>"
+        : "") +
       '<div class="row"><span>Sales tax</span><span class="muted">Where applicable</span></div>' +
       '<div class="row total"><span>Total</span><span>' + money(sub) + "</span></div>" +
       (withCheckout

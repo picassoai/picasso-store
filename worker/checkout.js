@@ -19,7 +19,7 @@ const SITE = "https://picassointelligence.com";
 /* Freight is charged once per order, not per line. Free above the threshold so
    large orders are not penalised for a cost that barely moves with weight. */
 const SHIPPING_CENTS = 5000;
-const FREE_SHIPPING_OVER_CENTS = 100000;
+const FREE_SHIPPING_OVER_CENTS = 50000;
 
 const CORS = {
   "Access-Control-Allow-Origin": SITE,
