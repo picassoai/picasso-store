@@ -1256,13 +1256,23 @@
       '<div class="row"><span>Sales tax</span><span class="muted">Where applicable</span></div>' +
       '<div class="row total"><span>Total</span><span>' + money(sub + (f || 0)) + "</span></div>" +
       (withCheckout
-        ? (S.checkoutEndpoint
+        ? (S.selfServeMax && sub > S.selfServeMax
+            ? '<a class="btn btn-accent btn-block" href="checkout.html">Request a quote for this order</a>' +
+              '<p class="note muted" style="font-size:12.5px;margin-top:10px">Orders over ' +
+                money(S.selfServeMax) + ' are quoted rather than paid online. At this size the ' +
+                'volume price and the freight are both worth working out properly, and you will ' +
+                'do better on a quote than on this page.</p>'
+            : S.checkoutEndpoint
             ? '<button class="btn btn-accent btn-block" type="button" data-pay-now>Checkout</button>' +
               '<p class="note muted" style="font-size:12.5px;margin-top:10px" data-pay-note>' +
                 'Pay by card or US bank transfer on our secure Stripe checkout.</p>'
             : '<a class="btn btn-accent btn-block" href="checkout.html">Send us this order</a>') +
-          '<p class="note muted" style="font-size:12.5px;margin-top:12px">Need a volume quote? ' +
-          '<a href="contact.html">Contact us</a>.</p>'
+          /* Over the ceiling the button already says "request a quote", so this
+             would be the same offer twice. */
+          (S.selfServeMax && sub > S.selfServeMax
+            ? ''
+            : '<p class="note muted" style="font-size:12.5px;margin-top:12px">Need a volume quote? ' +
+              '<a href="contact.html">Contact us</a>.</p>')
         : "") +
       "</aside>";
   }

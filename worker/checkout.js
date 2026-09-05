@@ -14,9 +14,14 @@
  */
 
 import PRICES from "./prices.json";
-import ZONES from "./zones.json";
+import SHIPPING from "./shipping.json";
 
 const SITE = "https://picassointelligence.com";
+
+const ZONES = SHIPPING.zones;
+/* The cart hides the pay button above this, but the button is not the
+   control — a crafted request would sail past it. */
+const SELF_SERVE_MAX_CENTS = SHIPPING.selfServeMax * 100;
 
 /* Freight is charged once per order, not per line, and priced from the zone
    table in data.js — the same one the cart reads, so the total the customer
@@ -84,6 +89,14 @@ export default {
         form.set(`line_items[${i}][price_data][product_data][description]`, item.series);
       }
       i++;
+    }
+
+    if (subtotal > SELF_SERVE_MAX_CENTS) {
+      return json({
+        error: "Orders over $" + SHIPPING.selfServeMax.toLocaleString("en-US") +
+          " are quoted rather than paid online. Send us the order and we will come " +
+          "back with volume pricing.",
+      }, 400);
     }
 
     const freight = freightCents(zone, subtotal);

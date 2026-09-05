@@ -17,6 +17,12 @@ window.SITE = {
      resolved there, never here, so a tampered cart cannot set its own total.
      Empty until the worker is deployed — the cart falls back to the email flow. */
   checkoutEndpoint: "https://checkout.picasso-intelligence.workers.dev/",
+  /* Above this order value the cart stops offering online payment and sends
+     the buyer to a quote instead. Not a margin limit — the margin is flat
+     above the free-shipping threshold — but an order this size deserves the
+     volume price from the supplier and freight worked out by a person. The
+     worker enforces it too; the button alone is only a suggestion. */
+  selfServeMax: 5000,
   /* Freight zones, charged once per order. This array is the ONE source of
      truth: tools/build-static.py copies it verbatim into the worker, so what
      the cart shows and what Stripe charges cannot drift apart. Keys are quoted
