@@ -411,14 +411,22 @@ img, svg { max-width: 100%; }
   color: var(--ink-4); width: 92px; flex: none;
 }
 .chips { display: flex; gap: 6px; flex-wrap: wrap; }
-/* Divides the coarse ranges from the exact diameters in the same chip row. */
-.chip-sep { width: 1px; align-self: stretch; min-height: 22px; margin: 0 5px; background: var(--line); }
 .chip {
   font: inherit; font-size: 12.5px; padding: 4px 11px; border-radius: var(--pill);
   border: 1px solid var(--line); background: #fff; color: var(--ink-2); cursor: pointer;
 }
 .chip:hover { border-color: var(--ink-4); }
 .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+/* The exact-diameter tail folds away behind .chip-more so the five ranges
+   are not buried under 32 chips. */
+.chips-fold { display: contents; }
+.chips-fold[hidden] { display: none; }
+.chip-more { border-style: dashed; color: var(--ink-2); }
+.chip-more[aria-expanded="true"] { border-style: solid; }
+.chip-reset { border-color: transparent; color: var(--accent); padding-left: 0; }
+.chip-reset:hover { text-decoration: underline; }
+.chip-reset[hidden] { display: none; }
 .count { font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .collection-bar select, .filter-row select { margin-left: auto; }
 /* The sort control is chrome, not a form field — keep it the height of a chip. */
@@ -473,8 +481,6 @@ img, svg { max-width: 100%; }
 .next-steps { padding-left: 20px; margin: 0; }
 .next-steps li { margin-bottom: 14px; color: var(--ink-2); }
 
-.btn-buy { background: var(--ink); color: #fff; border-color: var(--ink); text-decoration: none; }
-.btn-buy:hover { opacity: .88; text-decoration: none; }
 
 .grid-section { padding: 6px 0 80px; }
 .od-group { margin: 26px 0 14px; display: flex; align-items: center; gap: 14px; }

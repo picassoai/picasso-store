@@ -143,7 +143,6 @@
     truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4l3 3v4h-7"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>',
     shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>',
     tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3H21v8.5L11 21.5 2.5 13z"/><circle cx="17" cy="7" r="1.4"/></svg>',
-    mark: '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#14181d"/><circle cx="16" cy="16" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="16" r="3" fill="#1d64d8"/><path d="M16 1.4v5.2M16 25.4v5.2M1.4 16h5.2M25.4 16h5.2" stroke="#fff" stroke-width="2"/></svg>',
     /* Drawn rather than the 🇺🇸 emoji: Windows renders regional-indicator
        flags as the plain letters "US", so the emoji shows no flag at all. */
     flag: '<svg class="flag-svg" viewBox="0 0 38 20" aria-hidden="true">' +
@@ -479,7 +478,7 @@
         if (note) {
           note.innerHTML = "<strong>" + esc(err.message) + "</strong> " +
             'You can still <a href="checkout.html">send us the order</a> and we will ' +
-            "reply with a payment link or an invoice.";
+            "reply with an invoice you can pay online.";
         }
       });
     });
@@ -719,16 +718,27 @@
     { key: "d5", label: "Over 100",  lo: 100, hi: Infinity }
   ];
 
-  /* A row whose only option is "All" filters nothing — don't render it. */
+  /* A row whose only option is "All" filters nothing — don't render it.
+     An option marked { fold: true } starts a collapsed tail: the chips after
+     it live behind a toggle, so a row of 32 exact diameters does not bury the
+     five ranges most people actually want. */
   function chipRow(label, name, opts) {
     if (opts.length < 2) return "";
+    var out = "", folded = false;
+    [{ k: "all", l: "All" }].concat(opts).forEach(function (o) {
+      if (o.fold) {
+        folded = true;
+        out += '<button class="chip chip-more" type="button" data-fold-toggle ' +
+          'aria-expanded="false">' + esc(o.l) + "</button>" +
+          '<span class="chips-fold" data-fold hidden>';
+        return;
+      }
+      out += '<button class="chip" type="button" data-f="' + name + '" data-v="' + esc(o.k) +
+        '" aria-pressed="' + (o.k === "all") + '">' + esc(o.l) + "</button>";
+    });
+    if (folded) out += "</span>";
     return '<div class="filter-row"><span class="filter-label">' + esc(label) + "</span>" +
-      '<div class="chips">' +
-      [{ k: "all", l: "All" }].concat(opts).map(function (o) {
-        if (o.sep) return '<span class="chip-sep" aria-hidden="true"></span>';
-        return '<button class="chip" type="button" data-f="' + name + '" data-v="' + esc(o.k) +
-          '" aria-pressed="' + (o.k === "all") + '">' + esc(o.l) + "</button>";
-      }).join("") + "</div></div>";
+      '<div class="chips">' + out + "</div></div>";
   }
 
   /* Only offer the bands and values that actually occur in this set. */
@@ -754,10 +764,10 @@
         return ods.some(function (o) { return o >= b.lo && o < b.hi; });
       }).map(function (b) { return { k: b.key, l: b.label }; });
       /* One range covering everything is the same as "All" — skip the row. */
+      var exact = ods.map(function (o) { return { k: String(o), l: "Ф" + o }; });
       var odOpts = odRanges.length > 1
-        ? odRanges.concat([{ sep: true }]).concat(
-            ods.map(function (o) { return { k: String(o), l: "Ф" + o }; }))
-        : ods.map(function (o) { return { k: String(o), l: "Ф" + o }; });
+        ? odRanges.concat([{ fold: true, l: "Exact Ф (" + exact.length + ")" }]).concat(exact)
+        : exact;
       html += chipRow("Outer dia. (mm)", "od", odOpts);
     }
     /* Gear ratio only exists on geared families — an empty filter on the
@@ -773,6 +783,11 @@
         return w != null && w >= b.lo && w < b.hi;
       });
     }).map(function (b) { return { k: b.key, l: b.label }; }));
+    /* Undoing four filters used to mean finding "All" in four rows. The button
+       appears only once something is actually filtered. */
+    html += '<div class="filter-row"><span class="filter-label"></span><div class="chips">' +
+      '<button class="chip chip-reset" type="button" data-reset-filters hidden>' +
+      "Clear filters</button></div></div>";
     return { html: html, ods: ods, scale: scale };
   }
 
@@ -799,8 +814,16 @@
            odMatches(picked.od, coreNum(p, "od"));
   }
 
-  function wireFilters(mount, picked, redraw) {
+  function wireFilters(mount, picked, redraw, resetExtra) {
     if (!mount) return;
+    var reset = $("[data-reset-filters]", mount);
+
+    function sync() {
+      if (reset) {
+        reset.hidden = !Object.keys(picked).some(function (k) { return picked[k] !== "all"; });
+      }
+    }
+
     $$("[data-f]", mount).forEach(function (btn) {
       btn.addEventListener("click", function () {
         var name = btn.getAttribute("data-f");
@@ -808,9 +831,34 @@
         $$('[data-f="' + name + '"]', mount).forEach(function (o) {
           o.setAttribute("aria-pressed", o.getAttribute("data-v") === picked[name]);
         });
+        sync();
         redraw();
       });
     });
+
+    $$("[data-fold-toggle]", mount).forEach(function (btn) {
+      var tail = btn.nextElementSibling;
+      function open(v) {
+        tail.hidden = !v;
+        btn.setAttribute("aria-expanded", String(v));
+      }
+      btn.addEventListener("click", function () { open(tail.hidden); });
+      /* A choice hidden inside a closed fold looks like no choice at all. */
+      if (tail && $('[aria-pressed="true"]', tail)) open(true);
+    });
+
+    if (reset) reset.addEventListener("click", function () {
+      /* Mutate in place: the click handlers above closed over this object. */
+      Object.keys(picked).forEach(function (k) { picked[k] = "all"; });
+      $$("[data-f]", mount).forEach(function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-v") === "all");
+      });
+      if (resetExtra) resetExtra();
+      sync();
+      redraw();
+    });
+
+    sync();
   }
 
   /* Real links, not buttons: the whole point of splitting humanoid work by
@@ -1095,21 +1143,10 @@
                 '<button type="button" data-step="1" aria-label="Increase quantity">+</button>' +
               "</div>" +
               '<button class="btn btn-accent" type="button" data-add-pdp>Add to cart</button>' +
-              /* Only models with a Stripe Payment Link can be bought outright.
-                 Quantity is chosen on Stripe's page, not by the stepper above,
-                 so the note says so rather than letting the two disagree. */
-              (p.buyLink
-                ? '<a class="btn btn-buy" href="' + esc(p.buyLink) + '">Buy now</a>'
-                : "") +
             "</div>" +
-            (p.buyLink
-              ? '<p class="muted" style="font-size:13px">Buy now opens our secure Stripe checkout, ' +
-                  'where you can pay by card or US bank transfer and choose the quantity. ' +
-                  'Price includes shipping within the United States. ' +
-                  'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>'
-              : '<p class="muted" style="font-size:13px">Add to cart to send us the order and we will ' +
-                  'reply with an invoice you can pay by card or bank transfer. ' +
-                  'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>')) +
+            '<p class="muted" style="font-size:13px">Check out from the cart by card, US bank ' +
+              'transfer, Apple Pay or Google Pay. Import duty on US orders is on us. ' +
+              'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>') +
         driverBoardLine(p) +
         specTiles(p) +
         (Object.keys(p.specs).length
@@ -1337,9 +1374,10 @@
             'Nothing about the order changes — only how it gets paid for.</p>' +
           '<div class="pay-options">' + payOptionsMarkup(Cart.subtotal()) + "</div>" +
           '<div class="notice" style="margin:20px 0 22px">' +
-            "<strong>No card details are entered here.</strong> Send us the order and we will reply " +
-            "with a Stripe payment link or an invoice, whichever suits how you buy. To pay by card " +
-            'straight away instead, use <a href="cart.html">Checkout</a> in the cart.' +
+            "<strong>No card details are entered here.</strong> This page builds a summary you can " +
+            "send us or print; we reply with a firm price and a Stripe invoice you can pay by card " +
+            'or bank transfer. To pay straight away instead, use <a href="cart.html">Checkout</a> ' +
+            "in the cart." +
           "</div>" +
           '<button class="btn btn-accent" type="submit">Continue</button>' +
           '<p class="muted" style="font-size:13px;margin-top:12px">Takes you to a summary you can send us or print. Nothing is charged at this step.</p>' +
@@ -1618,7 +1656,10 @@
       wireCompare(host);
     }
 
-    wireFilters(mount, picked, draw);
+    wireFilters(mount, picked, draw, function () {
+      if (modelBox) modelBox.value = "";
+      if (modelClear) modelClear.hidden = true;
+    });
     if (modelBox) {
       modelBox.addEventListener("input", function () {
         if (modelClear) modelClear.hidden = !modelBox.value;

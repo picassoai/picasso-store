@@ -109,12 +109,12 @@ const PRICES = {
   },
   "ak70-9-kv60": {
     "cents": 49890,
-    "name": "AK70-9 KV60 with driver",
+    "name": "AK70-9 V3.0 KV60 with driver",
     "series": "AK Series"
   },
   "ak70-9-v3-0-kv60": {
     "cents": 39890,
-    "name": "AK70-9 KV60",
+    "name": "AK70-9 V3.0 KV60",
     "series": "AK Series"
   },
   "ak80-64-kv80": {
@@ -268,7 +268,7 @@ const PRICES = {
     "series": "Accessories"
   },
   "driver-board-for-ake-series": {
-    "cents": 7990,
+    "cents": 7999,
     "name": "Driver board for AKE60-8",
     "series": "Accessories"
   },

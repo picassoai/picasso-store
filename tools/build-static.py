@@ -29,11 +29,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NOINDEX = [
     "cart.html", "checkout.html", "summary.html", "compare.html", "search.html",
     "thank-you.html", "404.html",
-    "privacy-policy.html", "refund-policy.html",
-    "shipping-policy.html", "terms-of-service.html",
+    # The policy pages stay crawlable: shipping and returns terms are a trust
+    # signal for a commerce site, and Merchant Center expects to reach them.
 ]
 
-STATIC_PAGES = ["index.html", "select.html", "contact.html"]
+STATIC_PAGES = [
+    "index.html", "select.html", "contact.html",
+    # Hand-written, but indexable and worth listing: buyers do read the terms
+    # before a first order from a supplier they have not used.
+    "shipping-policy.html", "refund-policy.html",
+    "terms-of-service.html", "privacy-policy.html",
+]
 
 
 def json_dump(obj):
@@ -211,15 +217,18 @@ def product_page(p):
                 '{ id: "%s" }' % p["id"], body, "product")
 
 
-def joint_page(j):
-    slug = "%s-%s-joint-actuators" % (j["app"], j["id"])
-    title = "%s joint actuators for %s | Picasso Intelligence" % (
-        j["name"], j["appName"].lower())
-    desc = j["note"][:155].rsplit(" ", 1)[0] + "…"
-    body = """<section class="page-head compact">
+def slugify(name):
+    s = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+    return s
+
+
+def browse_body(h1, blurb):
+    """The catalogue browser, used by the joint, collection and application
+    pages alike. app.js fills in whichever parts the route calls for."""
+    return """<section class="page-head compact">
   <div class="wrap">
     <div class="crumbs"><a href="index.html">Store</a><span>/</span><span data-crumb></span></div>
-    <h1 data-col-name>%s joint actuators</h1>
+    <h1 data-col-name>%s</h1>
     <p data-col-blurb>%s</p>
     <p class="joint-scale" data-joint-scale hidden></p>
   </div>
@@ -254,11 +263,51 @@ def joint_page(j):
     <span class="count"></span>
     <a class="btn btn-accent" href="compare.html" data-compare-go>Compare side by side</a>
   </div>
-</div>""" % (esc(j["name"]), esc(j["note"]))
+</div>""" % (esc(h1), esc(blurb))
 
+
+def joint_page(j):
+    slug = "%s-%s-joint-actuators" % (j["app"], j["id"])
+    title = "%s joint actuators for %s | Picasso Intelligence" % (
+        j["name"], j["appName"].lower())
+    desc = j["note"][:155].rsplit(" ", 1)[0] + "…"
+    body = browse_body("%s joint actuators" % j["name"], j["note"])
     return slug, page(title, desc, "%s/%s.html" % (SITE, slug),
                       '{ a: "%s", j: "%s" }' % (j["app"], j["id"]),
                       body, "collection")
+
+
+def parse_taxonomy(src, block_name, tail):
+    """id / name / blurb for COLLECTIONS and APPLICATIONS. Without these pages
+    a crawler saw eleven sitemap URLs that all served the same generic
+    collection.html, title and all."""
+    i = src.index("window.%s" % block_name)
+    body = src[i:src.index(chr(10) + "];", i)]
+    out = []
+    hits = list(re.finditer(r'\{\s*id: "([a-z0-9\-]+)", name: "([^"]+)", %s' % tail, body))
+    for n, m in enumerate(hits):
+        end = hits[n + 1].start() if n + 1 < len(hits) else len(body)
+        chunk = body[m.start():end]
+        blurb = re.search(r'blurb: "((?:[^"\\]|\\.)*)"', chunk)
+        out.append({"id": m.group(1), "name": m.group(2),
+                    "blurb": (blurb.group(1).replace('\\"', '"') if blurb else "")})
+    return out
+
+
+def collection_page(c):
+    slug = slugify(c["name"])
+    title = "%s — CubeMars | Picasso Intelligence" % c["name"]
+    return slug, page(title, c["blurb"], "%s/%s.html" % (SITE, slug),
+                      '{ c: "%s" }' % c["id"],
+                      browse_body(c["name"], c["blurb"]), "collection")
+
+
+def application_page(a):
+    slug = "actuators-for-%s" % slugify(a["name"])
+    title = "Actuators for %s | Picasso Intelligence" % a["name"]
+    return slug, page(title, a["blurb"], "%s/%s.html" % (SITE, slug),
+                      '{ a: "%s" }' % a["id"],
+                      browse_body("Actuators for %s" % a["name"], a["blurb"]), "collection")
 
 
 # ---------------------------------------------------------------- main
@@ -276,10 +325,16 @@ def main():
     for f in STATIC_PAGES:
         urls.append("%s/%s" % (SITE, f))
 
-    for c in re.findall(r'\{\s*id:\s*"([a-z]+)",\s*name:\s*"[^"]+",\s*parent:', src):
-        urls.append("%s/collection.html?c=%s" % (SITE, c))
-    for a in re.findall(r'\{\s*id:\s*"([a-z\-]+)",\s*name:\s*"[^"]+",\s*art:', src):
-        urls.append("%s/collection.html?a=%s" % (SITE, a))
+    cols = parse_taxonomy(data_src, "COLLECTIONS", "parent:")
+    apps = parse_taxonomy(data_src, "APPLICATIONS", "art:")
+    for c in cols:
+        slug, html = collection_page(c)
+        write("%s.html" % slug, html)
+        urls.append("%s/%s.html" % (SITE, slug))
+    for a in apps:
+        slug, html = application_page(a)
+        write("%s.html" % slug, html)
+        urls.append("%s/%s.html" % (SITE, slug))
 
     for p in products:
         write("%s.html" % p["id"], product_page(p))
@@ -361,6 +416,7 @@ def main():
 
     print("products      %d" % len(products))
     print("joint pages   %d" % len(joints))
+    print("taxonomy      %d collections + %d applications" % (len(cols), len(apps)))
     print("sitemap URLs  %d" % len(urls))
     print("worker prices %d" % len(prices))
     print("ship zones    %s" % ", ".join(z["code"] for z in zones))
