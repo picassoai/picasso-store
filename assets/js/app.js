@@ -408,7 +408,7 @@
         if (note) {
           note.innerHTML = "<strong>" + esc(err.message) + "</strong> " +
             'You can still <a href="checkout.html">send us the order</a> and we will ' +
-            "reply with an invoice.";
+            "reply with a payment link or an invoice.";
         }
       });
     });
@@ -1191,13 +1191,12 @@
             'Nothing about the order changes — only how it gets paid for.</p>' +
           '<div class="pay-options">' + payOptionsMarkup(Cart.subtotal()) + "</div>" +
           '<div class="notice" style="margin:20px 0 22px">' +
-            "<strong>No payment processor is connected yet.</strong> Card details are deliberately not " +
-            "collected on this page — they must go straight to Stripe's hosted checkout, never through " +
-            "your own site. Each option above is wired to the point where the Stripe call belongs; " +
-            "see README.md." +
+            "<strong>No card details are entered here.</strong> Send us the order and we will reply " +
+            "with a Stripe payment link or an invoice, whichever suits how you buy. To pay by card " +
+            'straight away instead, use <a href="cart.html">Checkout</a> in the cart.' +
           "</div>" +
           '<button class="btn btn-accent" type="submit">Continue</button>' +
-          '<p class="muted" style="font-size:13px;margin-top:12px">Records the order locally and empties your cart. No money moves, nothing is transmitted.</p>' +
+          '<p class="muted" style="font-size:13px;margin-top:12px">Takes you to a summary you can send us or print. Nothing is charged at this step.</p>' +
         "</form>" +
       "</div>" + summaryMarkup(false) + "</div>";
 

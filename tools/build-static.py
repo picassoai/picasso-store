@@ -28,7 +28,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # out of the index until real terms replace them.
 NOINDEX = [
     "cart.html", "checkout.html", "summary.html", "compare.html", "search.html",
-    "thank-you.html",
+    "thank-you.html", "404.html",
     "privacy-policy.html", "refund-policy.html",
     "shipping-policy.html", "terms-of-service.html",
 ]

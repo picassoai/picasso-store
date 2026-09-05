@@ -368,20 +368,20 @@ window.PRODUCTS = [
 window.PAYMENT_METHODS = [
   {
     id: "card", label: "Credit Card / Apple Pay", eyebrow: "Instant",
-    blurb: "Pay now by card, Apple Pay, or Google Pay. Ships as soon as payment clears.",
-    detail: "Best for one or two units. Card details are entered on Stripe's own hosted page — they never touch this site.",
+    blurb: "We send a Stripe payment link you can pay by card, Apple Pay, or Google Pay.",
+    detail: "Best for one or two units. Card details are entered on Stripe's own hosted page — they never touch this site. For a single model you can also check out directly from the cart.",
     fee: "No surcharge"
   },
   {
     id: "ach", label: "ACH Bank Payment", eyebrow: "Recommended over $1,000",
     blurb: "Pay directly from a US bank account through Stripe.",
-    detail: "The cheapest way to pay for larger orders, and the one most finance departments prefer. Settlement takes a few business days; we reserve your stock as soon as the payment is initiated.",
+    detail: "The cheapest way to pay for larger orders, and the one most finance departments prefer. Settlement takes a few business days, and we ship once it clears.",
     fee: "No surcharge", recommended: true
   },
   {
     id: "quote", label: "Request Volume Quote", eyebrow: "10+ units",
     blurb: "Volume pricing, scheduled releases, and custom configurations.",
-    detail: "Price breaks start at 10 units per model and improve again at 50 and 250. We can also hold stock against a release forecast so you are not warehousing a year of inventory.",
+    detail: "Price breaks start at 10 units per model. Tell us the quantity and the schedule you need and we will come back with a firm number.",
     fee: "Reply within 2 business days"
   }
 ];

@@ -5,6 +5,7 @@ Disallow: /summary.html
 Disallow: /compare.html
 Disallow: /search.html
 Disallow: /thank-you.html
+Disallow: /404.html
 Disallow: /privacy-policy.html
 Disallow: /refund-policy.html
 Disallow: /shipping-policy.html
