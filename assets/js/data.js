@@ -504,7 +504,7 @@ window.FAQ = [
   },
   {
     q: "Do I pay tariffs or import duties?",
-    a: "It depends on the parts and where they ship from and to. Where duty or customs charges apply, they are itemised in your quote before you pay — we do not leave you with a brokerage invoice you were not told about."
+    a: "Not on orders to the United States. Our goods are made overseas, so duty and tariffs apply to every shipment — we pay them, and the price at checkout is the price you pay. Nothing arrives later from the carrier or a customs broker. International orders are different: duty varies a great deal by destination, so those are quoted individually with the charges itemised before you pay."
   },
   {
     q: "Can you supply something not listed here?",
