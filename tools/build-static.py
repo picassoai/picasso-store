@@ -82,10 +82,22 @@ def parse_products(src):
     for m in pat.finditer(src):
         pid, name, brand, series, coll, price, tail = m.groups()
         specs = dict(re.findall(r'"([^"]+)"\s*:\s*"([^"]*)"', tail))
+        grp = re.search(r'variantGroup: "([^"]+)"', tail[:300])
         out.append({
             "id": pid, "name": name, "brand": brand, "series": series,
             "collection": coll, "price": float(price), "specs": specs,
+            "group": grp.group(1) if grp else None,
         })
+    # The cheapest of a group is the one listings link to; the others keep their
+    # page so old links still resolve, but point their canonical at it and stay
+    # out of the sitemap so Google indexes one page per motor.
+    lead = {}
+    for pr in out:
+        g = pr["group"]
+        if g and (g not in lead or pr["price"] < lead[g]["price"]):
+            lead[g] = pr
+    for pr in out:
+        pr["lead"] = lead[pr["group"]]["id"] if pr["group"] else pr["id"]
     return out
 
 
@@ -195,7 +207,7 @@ def product_page(p):
                  esc(summary + "." if summary else ""),
                  p["price"])
 
-    return page(title, desc, "%s/%s.html" % (SITE, p["id"]),
+    return page(title, desc, "%s/%s.html" % (SITE, p["lead"]),
                 '{ id: "%s" }' % p["id"], body, "product")
 
 
@@ -268,7 +280,8 @@ def main():
 
     for p in products:
         write("%s.html" % p["id"], product_page(p))
-        urls.append("%s/%s.html" % (SITE, p["id"]))
+        if p["lead"] == p["id"]:
+            urls.append("%s/%s.html" % (SITE, p["id"]))
 
     for j in joints:
         slug, html = joint_page(j)

@@ -31,6 +31,11 @@ const PRICES = {
     "name": "AK40-10 KV170",
     "series": "AK Series"
   },
+  "ak40-10-kv170-with-driver": {
+    "cents": 13590,
+    "name": "AK40-10 KV170 with driver",
+    "series": "AK Series"
+  },
   "ak40-10-v3-0-kv170": {
     "cents": 13590,
     "name": "AK40-10 V3.0 KV170",
@@ -41,6 +46,11 @@ const PRICES = {
     "name": "AK45-10 KV75",
     "series": "AK Series"
   },
+  "ak45-10-kv75-with-driver": {
+    "cents": 15590,
+    "name": "AK45-10 KV75 with driver",
+    "series": "AK Series"
+  },
   "ak45-10-v3-0-kv75": {
     "cents": 15590,
     "name": "AK45-10 V3.0 KV75",
@@ -48,6 +58,11 @@ const PRICES = {
   },
   "ak45-36-kv80": {
     "cents": 18590,
+    "name": "AK45-36 KV80 with driver",
+    "series": "AK Series"
+  },
+  "ak45-36-kv80-no-driver": {
+    "cents": 14990,
     "name": "AK45-36 KV80",
     "series": "AK Series"
   },
@@ -76,6 +91,11 @@ const PRICES = {
     "name": "AK70-10 KV100",
     "series": "AK Series"
   },
+  "ak70-10-kv100-with-driver": {
+    "cents": 49890,
+    "name": "AK70-10 KV100 with driver",
+    "series": "AK Series"
+  },
   "ak70-9-kv60": {
     "cents": 49890,
     "name": "AK70-9 KV60 with driver",
@@ -96,9 +116,19 @@ const PRICES = {
     "name": "AK80-8 KV60",
     "series": "AK Series"
   },
+  "ak80-8-kv60-with-driver": {
+    "cents": 56990,
+    "name": "AK80-8 KV60 with driver",
+    "series": "AK Series"
+  },
   "ak80-9-kv100": {
     "cents": 47990,
     "name": "AK80-9 KV100",
+    "series": "AK Series"
+  },
+  "ak80-9-kv100-with-driver": {
+    "cents": 57990,
+    "name": "AK80-9 KV100 with driver",
     "series": "AK Series"
   },
   "ak80-9-v3-0-kv100": {
@@ -181,14 +211,29 @@ const PRICES = {
     "name": "GL30 KV290",
     "series": "GL Series"
   },
+  "gl30-kv290-with-driver": {
+    "cents": 7599,
+    "name": "GL30 KV290 with driver",
+    "series": "GL Series"
+  },
   "gl35-kv100": {
     "cents": 5499,
     "name": "GL35 KV100",
     "series": "GL Series"
   },
+  "gl35-kv100-with-driver": {
+    "cents": 7999,
+    "name": "GL35 KV100 with driver",
+    "series": "GL Series"
+  },
   "gl40-kv70": {
     "cents": 7299,
     "name": "GL40 KV70",
+    "series": "GL Series"
+  },
+  "gl40-kv70-with-driver": {
+    "cents": 9799,
+    "name": "GL40 KV70 with driver",
     "series": "GL Series"
   },
   "gl40-kv82-5": {
@@ -199,6 +244,11 @@ const PRICES = {
   "gl60-kv25": {
     "cents": 10899,
     "name": "GL60 KV25",
+    "series": "GL Series"
+  },
+  "gl60-kv25-with-driver": {
+    "cents": 13399,
+    "name": "GL60 KV25 with driver",
     "series": "GL Series"
   },
   "gl60-kv28": {
@@ -221,6 +271,11 @@ const PRICES = {
     "name": "RI100 KV105",
     "series": "RI Series"
   },
+  "ri100-kv105-with-hall": {
+    "cents": 16390,
+    "name": "RI100 KV105 with hall sensor",
+    "series": "RI Series"
+  },
   "ri115-ph-kv40": {
     "cents": 19990,
     "name": "RI115-PH KV40",
@@ -241,14 +296,29 @@ const PRICES = {
     "name": "RI50 KV100",
     "series": "RI Series"
   },
+  "ri50-kv100-with-hall": {
+    "cents": 7690,
+    "name": "RI50 KV100 with hall sensor",
+    "series": "RI Series"
+  },
   "ri60-kv120": {
     "cents": 9890,
     "name": "RI60 KV120",
     "series": "RI Series"
   },
+  "ri60-kv120-with-hall": {
+    "cents": 11390,
+    "name": "RI60 KV120 with hall sensor",
+    "series": "RI Series"
+  },
   "ri70-kv95": {
     "cents": 12390,
     "name": "RI70 KV95",
+    "series": "RI Series"
+  },
+  "ri70-kv95-with-hall": {
+    "cents": 13890,
+    "name": "RI70 KV95 with hall sensor",
     "series": "RI Series"
   },
   "ri75-ph-kv70": {
@@ -261,6 +331,11 @@ const PRICES = {
     "name": "RI80 V2.0 KV75",
     "series": "RI Series"
   },
+  "ri80-v2-0-kv75-with-hall": {
+    "cents": 14790,
+    "name": "RI80 V2.0 KV75 with hall sensor",
+    "series": "RI Series"
+  },
   "ri85-ph-kv85": {
     "cents": 14790,
     "name": "RI85-PH KV85",
@@ -269,6 +344,11 @@ const PRICES = {
   "ro100-kv55": {
     "cents": 15690,
     "name": "RO100 KV55",
+    "series": "RO Series"
+  },
+  "ro100-kv55-standard": {
+    "cents": 17190,
+    "name": "RO100 KV55 Standard",
     "series": "RO Series"
   },
   "ro40-kv140-lite": {
@@ -286,9 +366,19 @@ const PRICES = {
     "name": "RO60 KV115",
     "series": "RO Series"
   },
+  "ro60-kv115-standard": {
+    "cents": 8590,
+    "name": "RO60 KV115 Standard",
+    "series": "RO Series"
+  },
   "ro80-kv105": {
     "cents": 10490,
     "name": "RO80 KV105",
+    "series": "RO Series"
+  },
+  "ro80-kv105-standard": {
+    "cents": 11490,
+    "name": "RO80 KV105 Standard",
     "series": "RO Series"
   },
   "rubik-link-v2-0": {
