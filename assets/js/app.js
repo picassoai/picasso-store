@@ -58,10 +58,22 @@
 
   function collection(id) { return COLS.filter(function (c) { return c.id === id; })[0]; }
   function product(id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; }
-  function inCollection(id) { return PRODUCTS.filter(function (p) { return p.collection === id; }); }
+  /* One motor sold with or without its driver board is two ids — the cart and
+     the worker need to price them separately — but a listing showing both reads
+     as the same product twice. Listings show the cheapest; the product page
+     offers the choice. */
+  function variants(p) {
+    if (!p.variantGroup) return [p];
+    return PRODUCTS.filter(function (x) { return x.variantGroup === p.variantGroup; })
+                   .slice().sort(function (a, b) { return a.price - b.price; });
+  }
+  function isLeadVariant(p) { return !p.variantGroup || variants(p)[0].id === p.id; }
+  function collapseVariants(list) { return list.filter(isLeadVariant); }
+
+  function inCollection(id) { return collapseVariants(PRODUCTS.filter(function (p) { return p.collection === id; })); }
   function application(id) { return (window.APPLICATIONS || []).filter(function (a) { return a.id === id; })[0]; }
   function inApplication(a) {
-    return a.products.map(product).filter(Boolean);
+    return collapseVariants(a.products.map(product).filter(Boolean));
   }
 
   /* The four numbers people actually choose a motor on. Everything else is
@@ -508,7 +520,8 @@
         '<h3 class="card-title"><a href="' + productHref(p) + '">' + esc(p.name) + '</a></h3>' +
         cardSpecs(p) +
         '<div class="card-price' + (q ? " is-quote" : "") + '">' +
-          (q ? "Request a quote" : money(p.price)) + "</div>" +
+          (q ? "Request a quote"
+             : (variants(p).length > 1 ? "From " + money(p.price) : money(p.price))) + "</div>" +
         (q
           ? '<a class="btn btn-ghost" href="' + quoteHref(p) + '">Request a quote</a>'
           : '<button class="btn btn-ghost" type="button" data-add="' + esc(p.id) + '">Add to cart</button>') +
@@ -940,6 +953,22 @@
 
   /* The four selection parameters, given the weight they deserve. Anything
      with no value at all is dropped rather than rendered as an em dash. */
+  /* Each variant keeps its own page, price and cart line — the switch is a
+     link, not state, so a shared or bookmarked URL is unambiguous about which
+     one was priced. */
+  function variantSwitch(p) {
+    var vs = variants(p);
+    if (vs.length < 2) return "";
+    return '<div class="variant-row">' +
+      '<span class="variant-label">' + esc(p.variantAxis || "Options") + "</span>" +
+      vs.map(function (v) {
+        var on = v.id === p.id;
+        return '<a class="chip" href="' + productHref(v) + '"' +
+          (on ? ' aria-current="page"' : "") + ">" + esc(v.variantLabel || v.name) +
+          ' <span class="variant-price">' + money(v.price) + "</span></a>";
+      }).join("") + "</div>";
+  }
+
   function specTiles(p) {
     var t = torqueText(spec(p, CORE.torque));
     var tiles = [
@@ -998,7 +1027,7 @@
             '<div class="buy"><a class="btn btn-accent" href="' + quoteHref(p) + '">Request a quote</a></div>' +
             '<p class="muted" style="font-size:13px">' + esc(p.brand) +
               ' prices this line per order rather than publishing a list price. Send the model and quantity and we will come back with a firm number.</p>'
-          : '<div class="price">' + money(p.price) + "</div>" +
+          : variantSwitch(p) + '<div class="price">' + money(p.price) + "</div>" +
             '<div class="buy">' +
               '<div class="qty">' +
                 '<button type="button" data-step="-1" aria-label="Decrease quantity">&minus;</button>' +
@@ -1060,7 +1089,7 @@
 
     var related = inCollection(p.collection).filter(function (x) { return x.id !== p.id; });
     if (related.length < 4) {
-      related = related.concat(PRODUCTS.filter(function (x) {
+      related = related.concat(collapseVariants(PRODUCTS).filter(function (x) {
         return x.collection !== p.collection && related.indexOf(x) < 0;
       }).slice(0, 8));
     }
@@ -1390,9 +1419,9 @@
 
   function pageSelect() {
     /* Accessories carry no specs, so they would be an all-dashes row. */
-    var items = PRODUCTS.filter(function (p) {
+    var items = collapseVariants(PRODUCTS.filter(function (p) {
       return p.specs && Object.keys(p.specs).length > 0;
-    });
+    }));
     var mount = $("[data-filters]");
     var host = $("[data-finder]");
     var picked = { torque: "all", od: "all", weight: "all", ratio: "all" };
@@ -1552,7 +1581,7 @@
 
     function draw(term) {
       term = term.trim().toLowerCase();
-      var hits = !term ? [] : PRODUCTS.filter(function (p) {
+      var hits = !term ? [] : collapseVariants(PRODUCTS).filter(function (p) {
         var c = collection(p.collection);
         var hay = [p.name, p.blurb, c.name, c.tease, c.blurb,
           Object.keys(p.specs).map(function (k) { return k + " " + p.specs[k]; }).join(" ")].join(" ").toLowerCase();

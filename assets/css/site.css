@@ -426,6 +426,16 @@ img, svg { max-width: 100%; }
 
 /* Joint selector: chips are anchors here, so they need the link reset that the
    button version gets for free. aria-current marks the active joint. */
+.variant-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+.variant-row .variant-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink-4); margin-right: 4px;
+}
+.variant-row .chip { text-decoration: none; display: inline-block; line-height: 1.45; }
+.variant-row .chip[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.variant-price { color: var(--ink-4); }
+.variant-row .chip[aria-current="page"] .variant-price { color: rgba(255,255,255,.7); }
+
 .joint-scale {
   font-size: 13px; color: var(--ink-4); max-width: 74ch;
   margin-top: 8px; padding-left: 11px; border-left: 2px solid var(--line);
