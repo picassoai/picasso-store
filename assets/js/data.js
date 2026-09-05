@@ -381,7 +381,7 @@ window.PAYMENT_METHODS = [
   {
     id: "quote", label: "Request Volume Quote", eyebrow: "10+ units",
     blurb: "Volume pricing, scheduled releases, and custom configurations.",
-    detail: "Price breaks start at 10 units per model. Tell us the quantity and the schedule you need and we will come back with a firm number.",
+    detail: "Price breaks start at 10 units per model and improve again at 40 and 80. Tell us the quantity and the schedule you need and we will come back with a firm number.",
     fee: "Reply within 2 business days"
   }
 ];
