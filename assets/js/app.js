@@ -70,8 +70,20 @@
     torque: "Rated Torque (N·m)",
     od:     "OD (mm)",
     weight: "Weight (g)",
-    ratio:  "Reduction Ratio"
+    ratio:  "Reduction Ratio",
+    kv:     "Kv (RPM/V)"
   };
+
+  /* Direct-drive motors have no reduction ratio, which left two GL80 variants
+     showing the same three figures at the same price when Kv — the thing that
+     actually separates them — was the difference. Fall back to it. */
+  function ratioOrKv(p) {
+    var r = spec(p, CORE.ratio);
+    if (r) return { value: r, label: "Gear ratio", unit: "" };
+    var kv = spec(p, CORE.kv);
+    if (kv) return { value: kv, label: "Kv", unit: "RPM/V" };
+    return { value: "", label: "", unit: "" };
+  }
   function spec(p, key) { return (p.specs && p.specs[key]) || ""; }
   /* Gimbal motors sit around 0.08 N·m, which reads as noise next to an
      actuator's 74. Below 1 N·m, switch to mN·m. */
@@ -464,7 +476,7 @@
     var rest = [
       spec(p, CORE.od) && "Ф" + spec(p, CORE.od) + " mm",
       spec(p, CORE.weight) && spec(p, CORE.weight) + " g",
-      spec(p, CORE.ratio)
+      (function () { var r = ratioOrKv(p); return r.value && (r.value + (r.unit ? " " + r.unit : "")); })()
     ].filter(Boolean);
     if (!t.value && !rest.length) return '<p class="spec-pending">Specifications on request</p>';
     return '<div class="card-specs">' +
@@ -934,7 +946,7 @@
       { v: t.value,              u: t.unit, l: "Rated torque" },
       { v: spec(p, CORE.od),     u: "mm",   l: "Outer diameter" },
       { v: spec(p, CORE.weight), u: "g",    l: "Weight" },
-      { v: spec(p, CORE.ratio),  u: "",     l: "Gear ratio" }
+      (function () { var r = ratioOrKv(p); return { v: r.value, u: r.unit, l: r.label }; })()
     ].filter(function (x) { return x.v; });
     if (!tiles.length) return "";
     return '<div class="spec-tiles">' + tiles.map(function (t) {
