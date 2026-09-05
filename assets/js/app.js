@@ -517,7 +517,8 @@
           photo(p, 0) + '</a></div>' +
       '<div class="card-body">' +
         '<div class="card-series">' + esc(p.series) + "</div>" +
-        '<h3 class="card-title"><a href="' + productHref(p) + '">' + esc(p.name) + '</a></h3>' +
+        '<h3 class="card-title"><a href="' + productHref(p) + '">' +
+          esc(variants(p).length > 1 && p.variantGroupName ? p.variantGroupName : p.name) + '</a></h3>' +
         cardSpecs(p) +
         '<div class="card-price' + (q ? " is-quote" : "") + '">' +
           (q ? "Request a quote"
@@ -969,6 +970,18 @@
       }).join("") + "</div>";
   }
 
+  /* Pendulum tells the customer to consult a compatibility table. We already
+     know which motor they are looking at, so answer the question instead. */
+  function driverBoardLine(p) {
+    if (!p.driverBoard) return "";
+    var b = product(p.driverBoard);
+    if (!b) return "";
+    return '<div class="addon"><div><span class="addon-label">Matching driver board</span>' +
+      '<a href="' + productHref(b) + '">' + esc(b.name) + "</a> " +
+      '<span class="addon-price">' + money(b.price) + "</span></div>" +
+      '<button class="btn btn-ghost" type="button" data-add="' + esc(b.id) + '">Add</button></div>';
+  }
+
   function specTiles(p) {
     var t = torqueText(spec(p, CORE.torque));
     var tiles = [
@@ -1050,6 +1063,7 @@
               : '<p class="muted" style="font-size:13px">Add to cart to send us the order and we will ' +
                   'reply with an invoice you can pay by card or bank transfer. ' +
                   'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>')) +
+        driverBoardLine(p) +
         specTiles(p) +
         (Object.keys(p.specs).length
           ? '<details class="spec-all"><summary>Full technical specifications</summary>' +
@@ -1085,6 +1099,9 @@
         Cart.add(p.id, n);
         toast(n + " × " + p.name + " added.", { href: "cart.html", label: "View cart" });
       });
+      /* The driver-board add button renders inside the pdp, after the global
+         pass over the document has already run. */
+      wireAddButtons($("[data-pdp]"));
     }
 
     var related = inCollection(p.collection).filter(function (x) { return x.id !== p.id; });

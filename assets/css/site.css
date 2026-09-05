@@ -426,6 +426,18 @@ img, svg { max-width: 100%; }
 
 /* Joint selector: chips are anchors here, so they need the link reset that the
    button version gets for free. aria-current marks the active joint. */
+.addon {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  border: 1px solid var(--line-soft); border-radius: 12px;
+  padding: 12px 14px; margin: 4px 0 20px; font-size: 14px;
+}
+.addon-label {
+  display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--ink-4); margin-bottom: 3px;
+}
+.addon-price { color: var(--ink-3); }
+.addon .btn { flex: none; }
+
 .ship-nudge {
   font-size: 12.5px; color: var(--accent); margin: 2px 0 0;
   padding: 6px 0 2px; border-top: 1px dashed var(--line-soft);

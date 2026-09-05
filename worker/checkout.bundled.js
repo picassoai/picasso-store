@@ -168,22 +168,112 @@ const PRICES = {
   },
   "driver-board-for-ak-series": {
     "cents": 5999,
-    "name": "Driver Board for AK Series",
+    "name": "Driver board for AK40-10",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak10-9-v20": {
+    "cents": 12990,
+    "name": "Driver board for AK10-9 V2.0",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak10-9-v30": {
+    "cents": 12990,
+    "name": "Driver board for AK10-9 V3.0",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak40-10-v30": {
+    "cents": 6600,
+    "name": "Driver board for AK40-10 V3.0",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak45-10": {
+    "cents": 5999,
+    "name": "Driver board for AK45-10",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak45-10-v30": {
+    "cents": 6600,
+    "name": "Driver board for AK45-10 V3.0",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak45-36": {
+    "cents": 5999,
+    "name": "Driver board for AK45-36",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak45-36-v30": {
+    "cents": 6600,
+    "name": "Driver board for AK45-36 V3.0",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak60-6-v11": {
+    "cents": 7990,
+    "name": "Driver board for AK60-6 V1.1",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak60-6-v30": {
+    "cents": 7990,
+    "name": "Driver board for AK60-6 V3.0",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak70-10": {
+    "cents": 12990,
+    "name": "Driver board for AK70-10",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak70-9-v30": {
+    "cents": 12990,
+    "name": "Driver board for AK70-9 V3.0",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak80-64": {
+    "cents": 12990,
+    "name": "Driver board for AK80-64",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak80-8": {
+    "cents": 12990,
+    "name": "Driver board for AK80-8",
+    "series": "Accessories"
+  },
+  "driver-board-for-ak-series-ak80-9-v30": {
+    "cents": 12990,
+    "name": "Driver board for AK80-9 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-aka-series": {
     "cents": 7990,
-    "name": "Driver Board for AKA Series",
+    "name": "Driver board for AKA60-6",
+    "series": "Accessories"
+  },
+  "driver-board-for-aka-series-aka10-9": {
+    "cents": 12990,
+    "name": "Driver board for AKA10-9",
     "series": "Accessories"
   },
   "driver-board-for-ake-series": {
     "cents": 7990,
-    "name": "Driver Board for AKE Series",
+    "name": "Driver board for AKE60-8",
+    "series": "Accessories"
+  },
+  "driver-board-for-ake-series-ake80-8": {
+    "cents": 12990,
+    "name": "Driver board for AKE80-8",
+    "series": "Accessories"
+  },
+  "driver-board-for-ake-series-ake90-8": {
+    "cents": 15990,
+    "name": "Driver board for AKE90-8",
     "series": "Accessories"
   },
   "driver-board-for-akh-series": {
     "cents": 10300,
-    "name": "Driver Board for AKH Series",
+    "name": "Driver board for AKH70-16",
+    "series": "Accessories"
+  },
+  "driver-board-for-akh-series-akh70-48": {
+    "cents": 10300,
+    "name": "Driver board for AKH70-48",
     "series": "Accessories"
   },
   "driver-board-v2-1": {
