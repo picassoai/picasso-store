@@ -259,16 +259,6 @@
     "name": "Driver board for AKH70-48",
     "series": "Accessories"
   },
-  "driver-board-v2-1": {
-    "cents": 12990,
-    "name": "Driver-board-V2.1",
-    "series": "Accessories"
-  },
-  "driver-board-v2-2": {
-    "cents": 7990,
-    "name": "Driver-board-V2.2",
-    "series": "Accessories"
-  },
   "gl100-kv10": {
     "cents": 27299,
     "name": "GL100 KV10",

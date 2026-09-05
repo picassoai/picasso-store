@@ -455,18 +455,12 @@ window.PRODUCTS = [
   { id: "driver-board-for-ake-series-ake90-8", name: "Driver board for AKE90-8", brand: "CubeMars", series: "Accessories", collection: "accessories", art: "accessory", size: 0.8, price: 159.9, variantGroup: "driver-board-for-ake-series", variantAxis: "Fits", variantLabel: "AKE90-8",
     blurb: "",
     specs: {}, images: ["driver-board-for-ake-series-1.jpg", "driver-board-for-ake-series-2.jpg", "driver-board-for-ake-series-3.jpg"] },
-  { id: "driver-board-v2-2", name: "Driver-board-V2.2", brand: "CubeMars", series: "Accessories", collection: "accessories", art: "accessory", size: 0.8, price: 79.9,
-    blurb: "The CubeMars Driver Board-V2.2 is designed for use with the AK60-6 model integrated into the AK series. It operates at a rated voltage of 24V, has a peak current of 10A, an onboard 14-bit si",
-    specs: {}, images: ["driver-board-v2-2-1.jpg", "driver-board-v2-2-2.jpg", "driver-board-v2-2-3.jpg"] },
   { id: "driver-board-for-akh-series", name: "Driver board for AKH70-16", brand: "CubeMars", series: "Accessories", collection: "accessories", art: "accessory", size: 0.8, price: 103, variantGroupName: "Driver board for AKH Series", variantGroup: "driver-board-for-akh-series", variantAxis: "Fits", variantLabel: "AKH70-16",
     blurb: "",
     specs: {}, images: ["driver-board-for-akh-series-1.jpg", "driver-board-for-akh-series-2.jpg", "driver-board-for-akh-series-3.jpg"] },
   { id: "driver-board-for-akh-series-akh70-48", name: "Driver board for AKH70-48", brand: "CubeMars", series: "Accessories", collection: "accessories", art: "accessory", size: 0.8, price: 103, variantGroup: "driver-board-for-akh-series", variantAxis: "Fits", variantLabel: "AKH70-48",
     blurb: "",
     specs: {}, images: ["driver-board-for-akh-series-1.jpg", "driver-board-for-akh-series-2.jpg", "driver-board-for-akh-series-3.jpg"] },
-  { id: "driver-board-v2-1", name: "Driver-board-V2.1", brand: "CubeMars", series: "Accessories", collection: "accessories", art: "accessory", size: 0.8, price: 129.9,
-    blurb: "The CubeMars Driver Board-V2.1 is the second version of the planetary brushless motor controller integrated into the AK series,",
-    specs: {}, images: ["driver-board-v2-1-1.jpg", "driver-board-v2-1-2.jpg", "driver-board-v2-1-3.jpg"] }
 ];
 
 /* Checkout methods offered. Order here is the order shown at checkout. */
