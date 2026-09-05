@@ -395,13 +395,59 @@
     });
   }
 
-  /* Freight is a flat fee per order, waived above a threshold — the same rule
-     the worker applies, stated here so the total is not a surprise at Stripe. */
-  function shippingLabel(subtotalDollars) {
-    var sh = S.shipping;
-    if (!sh) return "Quoted per order";
-    if (subtotalDollars >= sh.freeOver) return "Included";
-    return money(sh.flat) + " — free over " + money(sh.freeOver);
+  /* Freight is priced per order from SITE.shippingZones — the same table the
+     worker holds, so the total shown here is the total Stripe charges. */
+  var ZONE_KEY = "pi.zone.v1";
+
+  function zones() { return S.shippingZones || []; }
+
+  function zoneByCode(code) {
+    var list = zones();
+    for (var i = 0; i < list.length; i++) if (list[i].code === code) return list[i];
+    return list[0] || null;
+  }
+
+  function chosenZone() {
+    var saved = null;
+    try { saved = localStorage.getItem(ZONE_KEY); } catch (e) {}
+    return zoneByCode(saved);
+  }
+
+  function setZone(code) {
+    try { localStorage.setItem(ZONE_KEY, code); } catch (e) {}
+  }
+
+  /* The first band the subtotal has not outgrown. The last band carries
+     "upTo": null and catches everything above. */
+  function freight(z, subtotalDollars) {
+    if (!z || !z.rates) return null;
+    for (var i = 0; i < z.rates.length; i++) {
+      var r = z.rates[i];
+      if (r.upTo === null || subtotalDollars < r.upTo) return r.cost;
+    }
+    return z.rates[z.rates.length - 1].cost;
+  }
+
+  /* What it costs to reach the next cheaper band, so the cart can say how much
+     more it takes rather than just quoting the fee. */
+  function nextBand(z, subtotalDollars) {
+    if (!z || !z.rates) return null;
+    for (var i = 0; i < z.rates.length; i++) {
+      var r = z.rates[i];
+      if (r.upTo !== null && subtotalDollars < r.upTo) {
+        var next = z.rates[i + 1];
+        return next && next.cost < r.cost
+          ? { spend: r.upTo - subtotalDollars, cost: next.cost }
+          : null;
+      }
+    }
+    return null;
+  }
+
+  function shippingLabel(z, subtotalDollars) {
+    var f = freight(z, subtotalDollars);
+    if (f === null) return "Quoted per order";
+    return f === 0 ? "Included" : money(f);
   }
 
   /* Sends ids and quantities only. The worker prices them and hands back a
@@ -413,6 +459,7 @@
     btn.addEventListener("click", function () {
       var lines = Cart.read();
       if (!lines.length) return;
+      var z = chosenZone();
       var label = btn.textContent;
       btn.disabled = true;
       btn.textContent = "Opening checkout…";
@@ -420,7 +467,7 @@
       fetch(S.checkoutEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lines: lines })
+        body: JSON.stringify({ lines: lines, zone: z ? z.code : null })
       }).then(function (r) {
         return r.json().then(function (d) {
           if (!r.ok || !d.url) throw new Error(d.error || "Checkout could not be started.");
@@ -1158,6 +1205,8 @@
         });
       });
       $("[data-clear]").addEventListener("click", function () { Cart.clear(); draw(); });
+      var picker = $("[data-ship-zone]");
+      if (picker) picker.addEventListener("change", function () { setZone(picker.value); draw(); });
       wirePayNow();
     }
 
@@ -1172,17 +1221,40 @@
 
   function summaryMarkup(withCheckout) {
     var sub = Cart.subtotal();
-    return '<aside class="summary"><h3>Order summary</h3>' +
+    var z = chosenZone();
+    var f = freight(z, sub);
+    var nb = nextBand(z, sub);
+    var list = zones();
+
+    /* The picker only earns its place once there is more than one destination;
+       with a single zone it would be a control that cannot be operated. */
+    var picker = list.length < 2
+      ? (z ? '<div class="row"><span>Ship to</span><span class="muted">' + esc(z.name) + "</span></div>" : "")
+      : withCheckout
+        ? '<div class="row"><span><label for="ship-zone">Ship to</label></span>' +
+          '<span><select class="field field-inline" id="ship-zone" data-ship-zone>' +
+            list.map(function (o) {
+              return '<option value="' + esc(o.code) + '"' +
+                (z && o.code === z.code ? " selected" : "") + ">" + esc(o.name) + "</option>";
+            }).join("") +
+          "</select></span></div>"
+        : '<div class="row"><span>Ship to</span><span class="muted">' + esc(z.name) + "</span></div>";
+
+    return '<aside class="summary"><h3>Order summary</h3>' + picker +
       '<div class="row"><span>Subtotal</span><span>' + money(sub) + "</span></div>" +
-      '<div class="row"><span>Shipping</span><span class="muted">' + shippingLabel(sub) + "</span></div>" +
+      '<div class="row"><span>Shipping</span><span class="muted">' + shippingLabel(z, sub) + "</span></div>" +
       /* Freight is per order, so the useful thing to say is how much more it
          takes to stop paying it — not to discount the freight itself. */
-      (S.shipping && sub > 0 && sub < S.shipping.freeOver
-        ? '<p class="ship-nudge">Add ' + money(S.shipping.freeOver - sub) +
-          " more and shipping is on us.</p>"
+      (nb && sub > 0
+        ? '<p class="ship-nudge">Add ' + money(nb.spend) + " more and shipping " +
+          (nb.cost === 0 ? "is on us." : "drops to " + money(nb.cost) + ".") + "</p>"
+        : "") +
+      (z
+        ? '<div class="row"><span>Import duty</span><span class="muted">' +
+          (z.dutyPaid ? "Included" : "Payable on delivery") + "</span></div>"
         : "") +
       '<div class="row"><span>Sales tax</span><span class="muted">Where applicable</span></div>' +
-      '<div class="row total"><span>Total</span><span>' + money(sub) + "</span></div>" +
+      '<div class="row total"><span>Total</span><span>' + money(sub + (f || 0)) + "</span></div>" +
       (withCheckout
         ? (S.checkoutEndpoint
             ? '<button class="btn btn-accent btn-block" type="button" data-pay-now>Checkout</button>' +

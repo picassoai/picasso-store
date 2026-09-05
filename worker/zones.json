@@ -1,0 +1,20 @@
+[
+  {
+    "code": "US",
+    "countries": [
+      "US"
+    ],
+    "dutyPaid": true,
+    "name": "United States",
+    "rates": [
+      {
+        "cost": 50,
+        "upTo": 500
+      },
+      {
+        "cost": 0,
+        "upTo": null
+      }
+    ]
+  }
+]

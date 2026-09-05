@@ -1,4 +1,4 @@
-/* Vectra Robotics — inline SVG product illustrations.
+/* Picasso Intelligence — inline SVG product illustrations.
    Stand-ins for real product photography: swap ART.render() for an <img>
    pointing at your own photos and nothing else needs to change. */
 

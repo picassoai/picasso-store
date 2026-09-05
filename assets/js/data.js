@@ -17,8 +17,25 @@ window.SITE = {
      resolved there, never here, so a tampered cart cannot set its own total.
      Empty until the worker is deployed — the cart falls back to the email flow. */
   checkoutEndpoint: "https://checkout.picasso-intelligence.workers.dev/",
-  /* Freight, charged once per order. Must match worker/checkout.js. */
-  shipping: { flat: 50, freeOver: 500 },
+  /* Freight zones, charged once per order. This array is the ONE source of
+     truth: tools/build-static.py copies it verbatim into the worker, so what
+     the cart shows and what Stripe charges cannot drift apart. Keys are quoted
+     because the generator parses this block as JSON.
+
+     rates    bands in ascending order; the first band whose `upTo` the
+              subtotal has not reached wins. The last band must have
+              "upTo": null so there is always a match.
+     dutyPaid true where we pay the import duty (DDP). Only the US today —
+              elsewhere duty varies far too much by destination.
+
+     To open a country: add a zone with real freight numbers, e.g.
+       { "code": "CA", "name": "Canada", "countries": ["CA"], "dutyPaid": false,
+         "rates": [{ "upTo": 1500, "cost": 90 }, { "upTo": null, "cost": 0 }] }
+     A second zone makes a "Ship to" selector appear in the cart by itself. */
+  shippingZones: [
+    { "code": "US", "name": "United States", "countries": ["US"], "dutyPaid": true,
+      "rates": [{ "upTo": 500, "cost": 50 }, { "upTo": null, "cost": 0 }] }
+  ],
   address: "215 W 125th St, New York, NY 10027",
   location: "New York",
   linkedin: "#",

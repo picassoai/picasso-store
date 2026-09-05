@@ -659,6 +659,11 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
   font-size: 19px; font-weight: 600; color: var(--ink);
 }
 .summary .btn { margin-top: 16px; }
+.field-inline {
+  width: auto; font-size: 14px; padding: 4px 8px; text-align: right;
+  border-color: transparent; background: transparent; color: var(--ink);
+}
+.field-inline:hover { border-color: var(--line); }
 
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-grid .full { grid-column: 1 / -1; }
