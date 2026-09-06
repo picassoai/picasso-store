@@ -109,12 +109,12 @@ const PRICES = {
   },
   "ak70-9-kv60": {
     "cents": 49890,
-    "name": "AK70-9 V3.0 KV60 with driver",
+    "name": "AK70-9 KV60 with driver",
     "series": "AK Series"
   },
   "ak70-9-v3-0-kv60": {
     "cents": 39890,
-    "name": "AK70-9 V3.0 KV60",
+    "name": "AK70-9 KV60",
     "series": "AK Series"
   },
   "ak80-64-kv80": {
@@ -173,17 +173,17 @@ const PRICES = {
     "series": "AKE Series"
   },
   "akh70-16-v1-0-kv41": {
-    "cents": 59800,
+    "cents": 59890,
     "name": "AKH70-16 V1.0 KV41",
     "series": "AKH Series"
   },
   "akh70-48-v1-0-kv41": {
-    "cents": 69800,
+    "cents": 69890,
     "name": "AKH70-48 V1.0 KV41",
     "series": "AKH Series"
   },
   "driver-board-for-ak-series": {
-    "cents": 5999,
+    "cents": 5990,
     "name": "Driver board for AK40-10",
     "series": "Accessories"
   },
@@ -203,7 +203,7 @@ const PRICES = {
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-10": {
-    "cents": 5999,
+    "cents": 5990,
     "name": "Driver board for AK45-10",
     "series": "Accessories"
   },
@@ -213,7 +213,7 @@ const PRICES = {
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-36": {
-    "cents": 5999,
+    "cents": 5990,
     "name": "Driver board for AK45-36",
     "series": "Accessories"
   },
@@ -268,7 +268,7 @@ const PRICES = {
     "series": "Accessories"
   },
   "driver-board-for-ake-series": {
-    "cents": 7999,
+    "cents": 7990,
     "name": "Driver board for AKE60-8",
     "series": "Accessories"
   },
@@ -304,7 +304,7 @@ const PRICES = {
   },
   "gl30-kv290-with-driver": {
     "cents": 7599,
-    "name": "GL30 KV290 with driver",
+    "name": "GL30 KV290 with encoder",
     "series": "GL Series"
   },
   "gl35-kv100": {
@@ -314,7 +314,7 @@ const PRICES = {
   },
   "gl35-kv100-with-driver": {
     "cents": 7999,
-    "name": "GL35 KV100 with driver",
+    "name": "GL35 KV100 with encoder",
     "series": "GL Series"
   },
   "gl40-kv70": {
@@ -324,7 +324,7 @@ const PRICES = {
   },
   "gl40-kv70-with-driver": {
     "cents": 9799,
-    "name": "GL40 KV70 with driver",
+    "name": "GL40 KV70 with encoder",
     "series": "GL Series"
   },
   "gl40-kv82-5": {
@@ -339,7 +339,7 @@ const PRICES = {
   },
   "gl60-kv25-with-driver": {
     "cents": 13399,
-    "name": "GL60 KV25 with driver",
+    "name": "GL60 KV25 with encoder",
     "series": "GL Series"
   },
   "gl60-kv28": {
