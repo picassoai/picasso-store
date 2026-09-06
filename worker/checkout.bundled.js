@@ -23,13 +23,8 @@ const PRICES = {
     "series": "AK Series"
   },
   "ak10-9-v3-0-kv60": {
-    "cents": 69890,
-    "name": "AK10-9 V3.0 KV60",
-    "series": "AK Series"
-  },
-  "ak10-9-v3-0-kv60-with-driver": {
     "cents": 79890,
-    "name": "AK10-9 V3.0 KV60 with driver",
+    "name": "AK10-9 V3.0 KV60",
     "series": "AK Series"
   },
   "ak40-10-kv170": {
@@ -88,13 +83,8 @@ const PRICES = {
     "series": "AK Series"
   },
   "ak60-6-v3-0-kv80": {
-    "cents": 22990,
-    "name": "AK60-6 V3.0 KV80",
-    "series": "AK Series"
-  },
-  "ak60-6-v3-0-kv80-with-driver": {
     "cents": 29890,
-    "name": "AK60-6 V3.0 KV80 with driver",
+    "name": "AK60-6 V3.0 KV80",
     "series": "AK Series"
   },
   "ak70-10-kv100": {
@@ -109,22 +99,17 @@ const PRICES = {
   },
   "ak70-9-kv60": {
     "cents": 49890,
-    "name": "AK70-9 KV60 with driver",
+    "name": "AK70-9 V3.0 KV60 with driver",
     "series": "AK Series"
   },
   "ak70-9-v3-0-kv60": {
     "cents": 39890,
-    "name": "AK70-9 KV60",
+    "name": "AK70-9 V3.0 KV60",
     "series": "AK Series"
   },
   "ak80-64-kv80": {
-    "cents": 88990,
-    "name": "AK80-64 KV80",
-    "series": "AK Series"
-  },
-  "ak80-64-kv80-with-driver": {
     "cents": 98990,
-    "name": "AK80-64 KV80 with driver",
+    "name": "AK80-64 KV80",
     "series": "AK Series"
   },
   "ak80-8-kv60": {
