@@ -173,17 +173,17 @@ const PRICES = {
     "series": "AKE Series"
   },
   "akh70-16-v1-0-kv41": {
-    "cents": 59890,
+    "cents": 59800,
     "name": "AKH70-16 V1.0 KV41",
     "series": "AKH Series"
   },
   "akh70-48-v1-0-kv41": {
-    "cents": 69890,
+    "cents": 69800,
     "name": "AKH70-48 V1.0 KV41",
     "series": "AKH Series"
   },
   "driver-board-for-ak-series": {
-    "cents": 5990,
+    "cents": 5999,
     "name": "Driver board for AK40-10",
     "series": "Accessories"
   },
@@ -203,7 +203,7 @@ const PRICES = {
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-10": {
-    "cents": 5990,
+    "cents": 5999,
     "name": "Driver board for AK45-10",
     "series": "Accessories"
   },
@@ -213,7 +213,7 @@ const PRICES = {
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-36": {
-    "cents": 5990,
+    "cents": 5999,
     "name": "Driver board for AK45-36",
     "series": "Accessories"
   },
