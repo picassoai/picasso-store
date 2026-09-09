@@ -266,7 +266,10 @@ img, svg { max-width: 100%; }
 
 /* ---------- category + product cards ---------- */
 
-.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+/* Five series, one row. At four columns the fifth dropped onto a row of
+   its own with three empty slots beside it, which reads as an orphan
+   rather than as part of the set. */
+.cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
 /* White, like the product photography itself — on a tinted card the photo's
    own white background shows as a pale rectangle sitting inside the card. */
 .cat-card {
@@ -786,8 +789,12 @@ select.field { appearance: none; background-image: none; }
 
 /* ---------- responsive ---------- */
 
+@media (max-width: 1240px) {
+  .cat-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 1040px) {
-  .cat-grid, .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
