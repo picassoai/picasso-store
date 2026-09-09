@@ -266,9 +266,9 @@ img, svg { max-width: 100%; }
 
 /* ---------- category + product cards ---------- */
 
-/* One row, however many series are on the home grid — four since
-   accessories came off it. */
-.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+/* All five series on one row, accessories last. Four columns would drop
+   the fifth onto a row of its own beside three empty slots. */
+.cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
 /* White, like the product photography itself — on a tinted card the photo's
    own white background shows as a pale rectangle sitting inside the card. */
 .cat-card {

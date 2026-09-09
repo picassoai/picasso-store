@@ -507,6 +507,11 @@ const PRICES = {
     "name": "RUBIK LINK V3.0",
     "series": "Accessories"
   },
+  "rubik-link-v3-0-cables": {
+    "cents": 500,
+    "name": "RUBIK LINK V3.0 Cable Set",
+    "series": "Accessories"
+  },
   "s-link-v1-0": {
     "cents": 3990,
     "name": "S-LINK V1.0",

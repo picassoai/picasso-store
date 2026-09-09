@@ -79,9 +79,6 @@ window.COLLECTIONS = [
   },
   {
     id: "accessories", name: "Accessories", parent: "actuators", art: "accessory",
-    /* Not on the home grid: nobody sets out to buy a driver board. Still in
-       the nav, still has its own page, still linked from each actuator. */
-    onHome: false,
     tease: "Drivers, adapters, links",
     blurb: "Driver boards, CAN adapters, and configuration links for the actuators we carry.",
     long: "The small parts that hold up a build: standalone driver boards for each actuator series, USB-to-CAN links for configuration and tuning, and the cabling that connects them."
@@ -220,6 +217,9 @@ window.APPLICATIONS = [
 ];
 
 window.PRODUCTS = [
+  { id: "rubik-link-v3-0-cables", name: "RUBIK LINK V3.0 Cable Set", brand: "CubeMars", series: "Accessories", collection: "accessories", art: "accessory", size: 0.8, price: 5.0,
+    blurb: "Replacement cable set. Supplied loose, not with a motor.",
+    specs: { "Contents": "AKA debug ×2, AK debug ×2", "Fits": "RUBIK LINK V3.0" }, images: ["rubik-link-v3-0-cables-1.jpg"] },
   { id: "sw7-thruster", name: "SW7 Thruster CW", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 239.9, variantGroupName: "SW7 Thruster", variantGroup: "sw7-thruster", variantAxis: "Rotation", variantLabel: "CW",
     blurb: "Sealed underwater thruster. The working parts sit inside a sealed aluminium casing filled with thermally conductive compound, so it sheds heat into the water it is running in and keeps sand and grit out. Two-stage sealing chamber on the main shaft.",
     specs: { "Maximum Bollard Thrust (kgf)": "≥7", "Rated Power (W)": "360", "Rated Voltage (V)": "36", "Applicable Water Depth": "0–30 m", "Propeller Diameter": "Ø80 mm", "Weight in Air (g)": "700", "Weight in Water (g)": "395", "Nozzle Material": "POM", "Shell Material": "Aluminium alloy", "Propeller Material": "Aluminium alloy", "Main Shaft Sealing": "Low-resistance dynamic seal", "Main Body Structure": "Two-stage sealing chamber", "Cable": "TPU (matte) Ø6.5 mm, 3×18 AWG, 1.5 m", "Driver": "External ESC (TW-40A-12S or TW-80A-12S)", "Operating Temperature": "0–40 °C (storage 0–50 °C)" }, images: ["sw7-thruster-1.jpg", "sw7-thruster-2.jpg", "sw7-thruster-3.jpg"] },
