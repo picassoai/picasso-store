@@ -322,34 +322,34 @@ const PRICES = {
     "name": "GL100 KV10",
     "series": "GL Series"
   },
-  "gl30-kv290": {
-    "cents": 5711,
-    "name": "GL30 KV290",
-    "series": "GL Series"
-  },
-  "gl30-kv290-with-driver": {
+  "gl30-kv290-with-encoder": {
     "cents": 8511,
     "name": "GL30 KV290 with encoder",
     "series": "GL Series"
   },
-  "gl35-kv100": {
-    "cents": 6159,
-    "name": "GL35 KV100",
+  "gl30-kv290-without-encoder": {
+    "cents": 5711,
+    "name": "GL30 KV290 without encoder",
     "series": "GL Series"
   },
-  "gl35-kv100-with-driver": {
+  "gl35-kv100-with-encoder": {
     "cents": 8959,
     "name": "GL35 KV100 with encoder",
     "series": "GL Series"
   },
-  "gl40-kv70": {
-    "cents": 8175,
-    "name": "GL40 KV70",
+  "gl35-kv100-without-encoder": {
+    "cents": 6159,
+    "name": "GL35 KV100 without encoder",
     "series": "GL Series"
   },
-  "gl40-kv70-with-driver": {
+  "gl40-kv70-with-encoder": {
     "cents": 10975,
     "name": "GL40 KV70 with encoder",
+    "series": "GL Series"
+  },
+  "gl40-kv70-without-encoder": {
+    "cents": 8175,
+    "name": "GL40 KV70 without encoder",
     "series": "GL Series"
   },
   "gl40-kv82-5": {
@@ -357,14 +357,14 @@ const PRICES = {
     "name": "GL40Ⅱ KV82.5",
     "series": "GL Series"
   },
-  "gl60-kv25": {
-    "cents": 12207,
-    "name": "GL60 KV25",
-    "series": "GL Series"
-  },
-  "gl60-kv25-with-driver": {
+  "gl60-kv25-with-encoder": {
     "cents": 15007,
     "name": "GL60 KV25 with encoder",
+    "series": "GL Series"
+  },
+  "gl60-kv25-without-encoder": {
+    "cents": 12207,
+    "name": "GL60 KV25 without encoder",
     "series": "GL Series"
   },
   "gl60-kv28": {
