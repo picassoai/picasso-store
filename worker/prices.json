@@ -259,6 +259,46 @@
     "name": "Driver board for AKH70-48",
     "series": "Accessories"
   },
+  "dw10-thruster": {
+    "cents": 29990,
+    "name": "DW10 Thruster CW",
+    "series": "Underwater"
+  },
+  "dw10-thruster-ccw": {
+    "cents": 29990,
+    "name": "DW10 Thruster CCW",
+    "series": "Underwater"
+  },
+  "dw15-thruster": {
+    "cents": 39990,
+    "name": "DW15 Thruster CW",
+    "series": "Underwater"
+  },
+  "dw15-thruster-ccw": {
+    "cents": 39990,
+    "name": "DW15 Thruster CCW",
+    "series": "Underwater"
+  },
+  "dw20-thruster": {
+    "cents": 52990,
+    "name": "DW20 Thruster CW",
+    "series": "Underwater"
+  },
+  "dw20-thruster-ccw": {
+    "cents": 52990,
+    "name": "DW20 Thruster CCW",
+    "series": "Underwater"
+  },
+  "dw25-thruster": {
+    "cents": 59990,
+    "name": "DW25 Thruster CW",
+    "series": "Underwater"
+  },
+  "dw25-thruster-ccw": {
+    "cents": 59990,
+    "name": "DW25 Thruster CCW",
+    "series": "Underwater"
+  },
   "gl100-kv10": {
     "cents": 27299,
     "name": "GL100 KV10",
@@ -453,5 +493,50 @@
     "cents": 3990,
     "name": "S-LINK V1.0",
     "series": "Accessories"
+  },
+  "sw12-thruster": {
+    "cents": 33990,
+    "name": "SW12 Thruster CW",
+    "series": "Underwater"
+  },
+  "sw12-thruster-ccw": {
+    "cents": 33990,
+    "name": "SW12 Thruster CCW",
+    "series": "Underwater"
+  },
+  "sw17-thruster": {
+    "cents": 46990,
+    "name": "SW17 Thruster CW",
+    "series": "Underwater"
+  },
+  "sw17-thruster-ccw": {
+    "cents": 46990,
+    "name": "SW17 Thruster CCW",
+    "series": "Underwater"
+  },
+  "sw7-thruster": {
+    "cents": 23990,
+    "name": "SW7 Thruster CW",
+    "series": "Underwater"
+  },
+  "sw7-thruster-ccw": {
+    "cents": 23990,
+    "name": "SW7 Thruster CCW",
+    "series": "Underwater"
+  },
+  "tw-40a-12s": {
+    "cents": 17999,
+    "name": "TW-40A-12S ESC (2 per set)",
+    "series": "Underwater"
+  },
+  "tw-80a-12s": {
+    "cents": 21999,
+    "name": "TW-80A-12S ESC (2 per set)",
+    "series": "Underwater"
+  },
+  "w30-thruster": {
+    "cents": 21099,
+    "name": "W30 Thruster",
+    "series": "Underwater"
   }
 }
