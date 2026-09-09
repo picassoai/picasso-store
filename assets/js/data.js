@@ -66,6 +66,12 @@ window.COLLECTIONS = [
     long: "Frameless sets ship as a matched rotor and stator with no housing, bearings, or shaft, so the actuator geometry is entirely yours. RI inrunner sets suit long, slim joints; RO outrunner sets suit short, wide pancake designs."
   },
   {
+    id: "underwater", name: "Underwater Thrusters", parent: "actuators", art: "prop",
+    tease: "Sealed thrusters and ESCs",
+    blurb: "Sealed thrusters for ROVs, unmanned surface vessels and electric surfboards.",
+    long: "Sealed units built to run submerged without maintenance: the working parts sit inside an aluminium casing filled with thermally conductive compound, so heat leaves through the water rather than through a fan. The choice between the two series is depth \u2014 SW is rated to 30 m and suits surface craft and boards, DW to 350 m and suits ROVs. Both need an external ESC, sold two to a set."
+  },
+  {
     id: "gimbal", name: "Gimbal Motors", parent: "actuators", art: "gimbal",
     tease: "Low cogging, direct drive",
     blurb: "Low-cogging direct-drive motors for stabilisers, scanning heads, and sensor pods.",
@@ -73,16 +79,12 @@ window.COLLECTIONS = [
   },
   {
     id: "accessories", name: "Accessories", parent: "actuators", art: "accessory",
+    /* Not on the home grid: nobody sets out to buy a driver board. Still in
+       the nav, still has its own page, still linked from each actuator. */
+    onHome: false,
     tease: "Drivers, adapters, links",
     blurb: "Driver boards, CAN adapters, and configuration links for the actuators we carry.",
     long: "The small parts that hold up a build: standalone driver boards for each actuator series, USB-to-CAN links for configuration and tuning, and the cabling that connects them."
-  }
-,
-  {
-    id: "underwater", name: "Underwater Thrusters", parent: "actuators", art: "prop",
-    tease: "Sealed thrusters and ESCs",
-    blurb: "Sealed thrusters for ROVs, unmanned surface vessels and electric surfboards.",
-    long: "Sealed units built to run submerged without maintenance: the working parts sit inside an aluminium casing filled with thermally conductive compound, so heat leaves through the water rather than through a fan. The choice between the two series is depth \u2014 SW is rated to 30 m and suits surface craft and boards, DW to 350 m and suits ROVs. Both need an external ESC, sold two to a set."
   }
 
 ];
@@ -254,10 +256,10 @@ window.PRODUCTS = [
   { id: "dw20-thruster-ccw", name: "DW20 Thruster CCW", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 529.9, variantGroupName: "DW20 Thruster", variantGroup: "dw20-thruster", variantAxis: "Rotation", variantLabel: "CCW",
     blurb: "Sealed underwater thruster. The working parts sit inside a sealed aluminium casing filled with thermally conductive compound, so it sheds heat into the water it is running in and keeps sand and grit out. Two-stage sealing chamber on the main shaft.",
     specs: { "Maximum Bollard Thrust (kgf)": "≥20", "Rated Power (W)": "910", "Rated Voltage (V)": "48", "Applicable Water Depth": "0–350 m", "Propeller Diameter": "Ø126 mm", "Weight in Air (g)": "1630", "Weight in Water (g)": "950", "Nozzle Material": "POM", "Shell Material": "Aluminium alloy", "Propeller Material": "Aluminium alloy", "Main Shaft Sealing": "Low-resistance dynamic seal", "Main Body Structure": "Two-stage sealing chamber", "Cable": "TPU (matte) Ø9 mm, 3×13 AWG, 1.5 m", "Driver": "External ESC (TW-40A-12S or TW-80A-12S)", "Operating Temperature": "0–40 °C (storage 0–50 °C)" }, images: ["dw20-thruster-1.jpg", "dw20-thruster-2.jpg", "dw20-thruster-3.jpg"] },
-  { id: "dw25-thruster", name: "DW25 Thruster CW", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 599.9, variantGroupName: "DW25 Thruster", variantGroup: "dw25-thruster", variantAxis: "Rotation", variantLabel: "CW",
+  { id: "dw25-thruster", name: "DW25 Thruster CW", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 670.0, variantGroupName: "DW25 Thruster", variantGroup: "dw25-thruster", variantAxis: "Rotation", variantLabel: "CW",
     blurb: "Sealed underwater thruster. The working parts sit inside a sealed aluminium casing filled with thermally conductive compound, so it sheds heat into the water it is running in and keeps sand and grit out. Two-stage sealing chamber on the main shaft.",
     specs: { "Maximum Bollard Thrust (kgf)": "≥25", "Rated Power (W)": "1315", "Rated Voltage (V)": "48", "Applicable Water Depth": "0–350 m", "Propeller Diameter": "Ø126 mm", "Weight in Air (g)": "1790", "Weight in Water (g)": "995", "Nozzle Material": "POM", "Shell Material": "Aluminium alloy", "Propeller Material": "Aluminium alloy", "Main Shaft Sealing": "Low-resistance dynamic seal", "Main Body Structure": "Two-stage sealing chamber", "Cable": "TPU (matte) Ø9.5 mm, 3×12 AWG, 1.5 m", "Driver": "External ESC (TW-40A-12S or TW-80A-12S)", "Operating Temperature": "0–40 °C (storage 0–50 °C)" }, images: ["dw25-thruster-1.jpg", "dw25-thruster-2.jpg", "dw25-thruster-3.jpg"] },
-  { id: "dw25-thruster-ccw", name: "DW25 Thruster CCW", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 599.9, variantGroupName: "DW25 Thruster", variantGroup: "dw25-thruster", variantAxis: "Rotation", variantLabel: "CCW",
+  { id: "dw25-thruster-ccw", name: "DW25 Thruster CCW", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 670.0, variantGroupName: "DW25 Thruster", variantGroup: "dw25-thruster", variantAxis: "Rotation", variantLabel: "CCW",
     blurb: "Sealed underwater thruster. The working parts sit inside a sealed aluminium casing filled with thermally conductive compound, so it sheds heat into the water it is running in and keeps sand and grit out. Two-stage sealing chamber on the main shaft.",
     specs: { "Maximum Bollard Thrust (kgf)": "≥25", "Rated Power (W)": "1315", "Rated Voltage (V)": "48", "Applicable Water Depth": "0–350 m", "Propeller Diameter": "Ø126 mm", "Weight in Air (g)": "1790", "Weight in Water (g)": "995", "Nozzle Material": "POM", "Shell Material": "Aluminium alloy", "Propeller Material": "Aluminium alloy", "Main Shaft Sealing": "Low-resistance dynamic seal", "Main Body Structure": "Two-stage sealing chamber", "Cable": "TPU (matte) Ø9.5 mm, 3×12 AWG, 1.5 m", "Driver": "External ESC (TW-40A-12S or TW-80A-12S)", "Operating Temperature": "0–40 °C (storage 0–50 °C)" }, images: ["dw25-thruster-1.jpg", "dw25-thruster-2.jpg", "dw25-thruster-3.jpg"] },
   { id: "w30-thruster", name: "W30 Thruster", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 210.99,

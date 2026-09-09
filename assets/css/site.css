@@ -266,10 +266,9 @@ img, svg { max-width: 100%; }
 
 /* ---------- category + product cards ---------- */
 
-/* Five series, one row. At four columns the fifth dropped onto a row of
-   its own with three empty slots beside it, which reads as an orphan
-   rather than as part of the set. */
-.cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+/* One row, however many series are on the home grid — four since
+   accessories came off it. */
+.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 /* White, like the product photography itself — on a tinted card the photo's
    own white background shows as a pale rectangle sitting inside the card. */
 .cat-card {

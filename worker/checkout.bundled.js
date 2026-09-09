@@ -308,12 +308,12 @@ const PRICES = {
     "series": "Underwater"
   },
   "dw25-thruster": {
-    "cents": 59990,
+    "cents": 67000,
     "name": "DW25 Thruster CW",
     "series": "Underwater"
   },
   "dw25-thruster-ccw": {
-    "cents": 59990,
+    "cents": 67000,
     "name": "DW25 Thruster CCW",
     "series": "Underwater"
   },

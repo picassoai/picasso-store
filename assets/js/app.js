@@ -620,7 +620,9 @@
        a description and a model count, application cards are picture-led. */
     var pickCat = groupPhotoPicker();
     var cg = $("[data-cat-grid]");
-    if (cg) cg.innerHTML = COLS.map(function (c) {
+    if (cg) cg.innerHTML = COLS.filter(function (c) {
+      return c.onHome !== false;
+    }).map(function (c) {
       var items = inCollection(c.id);
       var n = items.length;
       return '<a class="cat-card" href="' + collectionHref(c) + '">' +
