@@ -661,7 +661,7 @@
 
     /* Lead with the flagship rather than a drawing. Not lazy — it is the
        first thing on the page. */
-    var star = product("ak80-9-v3-0-kv100") || PRODUCTS[0];
+    var star = product("ak80-9-v3-0-kv100-without-driver") || PRODUCTS[0];
     $("[data-hero-art]").innerHTML = photo(star, 0, star.name, false);
     $$("[data-sku-count]").forEach(function (n) { n.textContent = PRODUCTS.length; });
 
