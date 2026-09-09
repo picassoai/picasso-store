@@ -79,6 +79,10 @@ window.COLLECTIONS = [
   },
   {
     id: "accessories", name: "Accessories", parent: "actuators", art: "accessory",
+    /* Left to itself the card picks the first accessory with a photo, which
+       is a bare circuit board — it reads as a spare part, not a category.
+       The R-LINK is the one accessory that looks like a product. */
+    hero: "rubik-link-v3-0",
     tease: "Drivers, adapters, links",
     blurb: "Driver boards, CAN adapters, and configuration links for the actuators we carry.",
     long: "The small parts that hold up a build: standalone driver boards for each actuator series, USB-to-CAN links for configuration and tuning, and the cabling that connects them."

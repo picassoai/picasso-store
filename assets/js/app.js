@@ -623,9 +623,13 @@
     if (cg) cg.innerHTML = COLS.map(function (c) {
       var items = inCollection(c.id);
       var n = items.length;
+      /* A collection can name the photo that stands for it; otherwise the
+         picker takes the first member that has one. */
+      var named = c.hero && items.filter(function (p) { return p.id === c.hero; })[0];
       return '<a class="cat-card" href="' + collectionHref(c) + '">' +
         '<span class="badge-us compact">' + ICON.flag + "<span>US-based support</span></span>" +
-        '<div class="thumb">' + pickCat(items, c.name) + "</div>" +
+        '<div class="thumb">' +
+          (named ? photo(named, 0, c.name) : pickCat(items, c.name)) + "</div>" +
         "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
         '<span class="more">' + n + " model" + (n === 1 ? "" : "s") + " &rarr;</span></a>";
     }).join("");
