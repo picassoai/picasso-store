@@ -1351,6 +1351,7 @@
       var picker = $("[data-ship-zone]");
       if (picker) picker.addEventListener("change", function () { setZone(picker.value); draw(); });
       wirePayNow();
+    wirePayPal();
     }
 
     function bump(id, d) {
@@ -1410,7 +1411,11 @@
             : S.checkoutEndpoint
             ? '<button class="btn btn-accent btn-block" type="button" data-pay-now>Checkout</button>' +
               '<p class="note muted" style="font-size:12.5px;margin-top:10px" data-pay-note>' +
-                'Pay by card or US bank transfer on our secure Stripe checkout.</p>'
+                'Pay by card or US bank transfer on our secure Stripe checkout.</p>' +
+              /* Empty until SITE.paypalClientId is set; wirePayPal fills it. */
+              (S.paypalClientId
+                ? '<div class="pay-or"><span>or</span></div><div data-paypal></div>'
+                : "")
             : '<a class="btn btn-accent btn-block" href="checkout.html">Send us this order</a>') +
           /* Over the ceiling the button already says "request a quote", so this
              would be the same offer twice. */
@@ -1420,6 +1425,81 @@
               '<a href="contact.html">Contact us</a>.</p>')
         : "") +
       "</aside>";
+  }
+
+  /* ---------- PayPal (and Venmo, which rides on the same SDK) ---------- */
+
+  var paypalSdk = null;
+  function loadPayPal() {
+    if (paypalSdk) return paypalSdk;
+    paypalSdk = new Promise(function (resolve, reject) {
+      var el = document.createElement("script");
+      el.src = "https://www.paypal.com/sdk/js?client-id=" +
+        encodeURIComponent(S.paypalClientId) +
+        "&currency=USD&intent=capture&components=buttons&enable-funding=venmo";
+      el.onload = function () { resolve(window.paypal); };
+      el.onerror = function () { reject(new Error("PayPal could not be loaded.")); };
+      document.head.appendChild(el);
+    });
+    return paypalSdk;
+  }
+
+  function wirePayPal(root) {
+    var mount = $("[data-paypal]", root || document);
+    if (!mount || !S.paypalClientId || !S.checkoutEndpoint) return;
+    var note = $("[data-pay-note]", root || document);
+    var base = S.checkoutEndpoint.replace(/\/+$/, "");
+
+    function ask(path, body) {
+      return fetch(base + path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      }).then(function (r) {
+        return r.json().then(function (d) {
+          if (!r.ok) throw new Error(d.error || "PayPal could not be reached.");
+          return d;
+        });
+      });
+    }
+    function cart() {
+      var z = chosenZone();
+      return { lines: Cart.read(), zone: z ? z.code : null };
+    }
+    function fail(err) {
+      if (note) {
+        note.innerHTML = "<strong>" + esc(err.message) + "</strong> " +
+          'You can still <a href="checkout.html">send us the order</a> and we will ' +
+          "reply with an invoice you can pay online.";
+      }
+    }
+
+    loadPayPal().then(function (paypal) {
+      paypal.Buttons({
+        style: { layout: "vertical", height: 46 },
+        createOrder: function () {
+          return ask("/paypal/order", cart()).then(function (d) { return d.id; });
+        },
+        /* PayPal gives city, state and postcode when the buyer picks an
+           address -- enough for Stripe Tax, and the same basis Stripe Checkout
+           uses. The worker patches the order; nothing here can set a total. */
+        onShippingAddressChange: function (data, actions) {
+          var body = cart();
+          body.orderId = data.orderID;
+          body.address = data.shippingAddress;
+          return ask("/paypal/tax", body).catch(function () {
+            return actions.reject(actions.redirect ? undefined : undefined);
+          });
+        },
+        onApprove: function (data) {
+          return ask("/paypal/capture", { orderId: data.orderID }).then(function () {
+            Cart.write([]);
+            window.location.href = "thank-you.html";
+          });
+        },
+        onError: fail
+      }).render(mount).catch(fail);
+    }).catch(fail);
   }
 
   /* ---------- page: checkout ------------------------------------------ */

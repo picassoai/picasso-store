@@ -617,6 +617,16 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
   font-size: 14px; color: var(--ink-2); margin: 18px 0;
 }
 .note { font-size: 13px; color: var(--ink-3); }
+
+/* The rule between the two ways to pay. A plain gap reads as a layout error;
+   a labelled rule says these are alternatives, not steps. */
+.pay-or {
+  display: flex; align-items: center; gap: 12px;
+  margin: 16px 0 14px; color: var(--ink-4); font-size: 12px;
+}
+.pay-or::before, .pay-or::after {
+  content: ""; flex: 1; height: 1px; background: var(--line-soft);
+}
 /* Stated once, at the foot of the home page. The US flag on a product card is
    about where the company sits, and a reader is entitled to be told plainly
    that it is not about where the motor was built. */

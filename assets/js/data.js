@@ -17,6 +17,15 @@ window.SITE = {
      resolved there, never here, so a tampered cart cannot set its own total.
      Empty until the worker is deployed — the cart falls back to the email flow. */
   checkoutEndpoint: "https://checkout.picasso-intelligence.workers.dev/",
+  /* PayPal, taken directly rather than through Stripe: Stripe process PayPal
+     only for businesses in 29 European countries, and this one is in New York.
+     Venmo rides on the same integration -- one parameter on the SDK -- so it
+     appears for US buyers who have the app, at no extra work.
+
+     This id is public: it names the merchant to PayPal and ships in the page.
+     The secret is a Cloudflare secret, PAYPAL_CLIENT_SECRET, and is not in
+     this repository. Empty here means no PayPal button renders at all. */
+  paypalClientId: "",
   /* Our price is the CubeMars online price × 1.12. Change a price here and
      nowhere else: tools/build-static.py regenerates the product pages, the
      sitemap, worker/prices.json and worker/checkout.bundled.js from this file.
