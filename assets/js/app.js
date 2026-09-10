@@ -648,31 +648,24 @@
        a description and a model count, application cards are picture-led. */
     var pickCat = groupPhotoPicker();
     var cg = $("[data-cat-grid]");
-    /* Only the top level gets a card. A series belongs under the family it is
-       part of: thirty integrated actuators in one list is a list, not a
-       choice, and AK, AKE, AKA and AKH answer four different questions. */
-    if (cg) cg.innerHTML = COLS.filter(function (c) { return !c.group; })
+    /* home: N says which collections get a card and in what order. Six of
+       them, all the same shape: AK on its own because it is 23 of the 30
+       integrated actuators, and AKE/AKH/AKA together because seven models
+       across three series would otherwise be three nearly empty cards. */
+    if (cg) cg.innerHTML = COLS.filter(function (c) { return c.home; })
+      .sort(function (a, b) { return a.home - b.home; })
       .map(function (c) {
         var items = inCollection(c.id);
         var n = items.length;
         /* A collection can name the photo that stands for it; otherwise the
            picker takes the first member that has one. */
         var named = c.hero && items.filter(function (p) { return p.id === c.hero; })[0];
-        var kids = COLS.filter(function (k) { return k.group === c.id; });
-        return '<div class="cat-cell">' +
-          '<a class="cat-card" href="' + collectionHref(c) + '">' +
-            '<span class="badge-us compact">' + ICON.flag + "<span>US-based team</span></span>" +
-            '<div class="thumb">' +
-              (named ? photo(named, 0, c.name) : pickCat(items, c.name)) + "</div>" +
-            "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
-            '<span class="more">' + n + " model" + (n === 1 ? "" : "s") + " &rarr;</span></a>" +
-          (kids.length
-            ? '<div class="series-links">' + kids.map(function (k) {
-                return '<a href="' + collectionHref(k) + '"><b>' + esc(k.name) +
-                  "</b><span>" + esc(k.tease) + "</span></a>";
-              }).join("") + "</div>"
-            : "") +
-          "</div>";
+        return '<a class="cat-card" href="' + collectionHref(c) + '">' +
+          '<span class="badge-us compact">' + ICON.flag + "<span>US-based team</span></span>" +
+          '<div class="thumb">' +
+            (named ? photo(named, 0, c.name) : pickCat(items, c.name)) + "</div>" +
+          "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
+          '<span class="more">' + n + " model" + (n === 1 ? "" : "s") + " &rarr;</span></a>";
       }).join("");
 
     var pickApp = groupPhotoPicker();

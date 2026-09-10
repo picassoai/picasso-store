@@ -67,7 +67,7 @@ window.COLLECTIONS = [
     long: "Everything needed to drive a joint, in one housing. AK covers the widest range of ratios and frame sizes, AKE trades a little range for lower backlash and higher torque density, AKA is built for high radial load, and AKH runs the cable straight through a hollow output shaft."
   },
   {
-    id: "ak", name: "AK Series", parent: "actuators", group: "integrated", art: "actuator",
+    id: "ak", name: "AK Series", parent: "actuators", group: "integrated", home: 1, art: "actuator",
     tease: "Planetary QDD, 1.3–48 N·m",
     blurb: "The general-purpose planetary joint, in the widest range of frame sizes and ratios.",
     long: "The line the rest are measured against: a brushless motor, a planetary reducer, an encoder and a driver in one housing, from a 53 mm 1.3 N·m joint up to a 98 mm 48 N·m one. Most models are sold with or without the driver board, so a design that already has its own electronics does not pay for a second set."
@@ -91,25 +91,32 @@ window.COLLECTIONS = [
     long: "The output shaft is hollow, so power and signal pass through the joint rather than looping around the outside of it — which is what lets a multi-axis arm rotate without a service loop, and what stops a harness from being the part that fails first."
   },
   {
-    id: "frameless", name: "Frameless Motors", parent: "actuators", art: "frameless",
+    id: "ak-variants", name: "AKE · AKH · AKA", parent: "actuators", group: "integrated",
+    children: ["ake", "akh", "aka"], home: 2, art: "actuator",
+    tease: "Torque density, hollow shaft, radial load",
+    blurb: "Three AK variants, each re-engineered for one demand the standard line does not meet.",
+    long: "Where the AK line is the general answer, these three are specific ones. AKE trades some of AK's range for a stiffer joint with less lost motion at reversal. AKH runs the cable through a hollow output shaft, so an arm can keep rotating without a service loop. AKA rebuilds the output around the bearing so it can take radial load directly, which is what a drive wheel does to a joint."
+  },
+  {
+    id: "frameless", name: "Frameless Motors", parent: "actuators", home: 3, art: "frameless",
     tease: "Rotor + stator sets",
     blurb: "Rotor and stator sets with no housing, for teams designing their own actuator.",
     long: "Frameless sets ship as a matched rotor and stator with no housing, bearings, or shaft, so the actuator geometry is entirely yours. RI inrunner sets suit long, slim joints; RO outrunner sets suit short, wide pancake designs."
   },
   {
-    id: "underwater", name: "Underwater Thrusters", parent: "actuators", art: "prop",
+    id: "underwater", name: "Underwater Thrusters", parent: "actuators", home: 5, art: "prop",
     tease: "Sealed thrusters and ESCs",
     blurb: "Sealed thrusters for ROVs, unmanned surface vessels and electric surfboards.",
     long: "Sealed units built to run submerged without maintenance: the working parts sit inside an aluminium casing filled with thermally conductive compound, so heat leaves through the water rather than through a fan. The choice between the two series is depth \u2014 SW is rated to 30 m and suits surface craft and boards, DW to 350 m and suits ROVs. Both need an external ESC, sold two to a set."
   },
   {
-    id: "gimbal", name: "Gimbal Motors", parent: "actuators", art: "gimbal",
+    id: "gimbal", name: "Gimbal Motors", parent: "actuators", home: 4, art: "gimbal",
     tease: "Low cogging, direct drive",
     blurb: "Low-cogging direct-drive motors for stabilisers, scanning heads, and sensor pods.",
     long: "High pole count and a large hollow centre, tuned so the motor holds position smoothly at near-zero speed. Standard picks for camera stabilisers, lidar and radar heads, and any pod that must stay pointed while the vehicle under it does not."
   },
   {
-    id: "accessories", name: "Accessories", parent: "actuators", art: "accessory",
+    id: "accessories", name: "Accessories", parent: "actuators", home: 6, art: "accessory",
     /* Left to itself the card picks the first accessory with a photo, which
        is a bare circuit board — it reads as a spare part, not a category.
        The R-LINK is the one accessory that looks like a product. */
