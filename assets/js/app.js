@@ -970,6 +970,37 @@
     }
     renderJointNav(app, joint);
 
+    /* A parent collection is a choice between its children, not a list of
+       everything beneath it: AKE, AKH and AKA differ by what they are for, and
+       grouping their seven motors by outer diameter interleaves the three so
+       that the distinction is the one thing the page fails to show. */
+    var kids = c && c.children
+      ? c.children.map(collection).filter(Boolean)
+      : [];
+    if (kids.length) {
+      var g = $("[data-grid]");
+      if (g) {
+        /* Same picker the home page uses: it hands each card a different
+           member's photo so three cards are not the same motor three times. */
+        var pickKid = groupPhotoPicker();
+        g.className = "cat-grid";
+        g.innerHTML = kids.map(function (k) {
+          var kit = inCollection(k.id), kn = kit.length;
+          return '<a class="cat-card" href="' + collectionHref(k) + '">' +
+            '<span class="badge-us compact">' + ICON.flag + "<span>US-based team</span></span>" +
+            '<div class="thumb">' + pickKid(kit, k.name) + "</div>" +
+            "<h3>" + esc(k.name) + "</h3><p>" + esc(k.blurb) + "</p>" +
+            '<span class="more">' + kn + " model" + (kn === 1 ? "" : "s") + " &rarr;</span></a>";
+        }).join("");
+      }
+      /* Nothing on the page to filter, sort or count. */
+      [".filters", ".collection-bar"].forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (el) el.hidden = true;
+      });
+      return;
+    }
+
     /* Every joint note is scale-dependent, so state the assumed machine size
        once rather than repeating the caveat in all seven. */
     var scale = $("[data-joint-scale]");
