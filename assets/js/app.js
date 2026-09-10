@@ -70,7 +70,16 @@
   function isLeadVariant(p) { return !p.variantGroup || variants(p)[0].id === p.id; }
   function collapseVariants(list) { return list.filter(isLeadVariant); }
 
-  function inCollection(id) { return collapseVariants(PRODUCTS.filter(function (p) { return p.collection === id; })); }
+  /* A parent collection holds no products of its own: "integrated" gathers
+     AK, AKE, AKA and AKH, so its page still answers for someone who has not
+     narrowed to a series yet. */
+  function inCollection(id) {
+    var c = collection(id);
+    var ids = [id].concat((c && c.children) || []);
+    return collapseVariants(PRODUCTS.filter(function (p) {
+      return ids.indexOf(p.collection) >= 0;
+    }));
+  }
   function application(id) { return (window.APPLICATIONS || []).filter(function (a) { return a.id === id; })[0]; }
   function inApplication(a) {
     return collapseVariants(a.products.map(product).filter(Boolean));
@@ -218,8 +227,14 @@
 
   /* ---------- header / footer ------------------------------------------ */
 
-  function collectionHref(c) { return "collection.html?c=" + encodeURIComponent(c.id); }
-  function applicationHref(a) { return "collection.html?a=" + encodeURIComponent(a.id); }
+  /* Must stay in step with slugify() in tools/build-static.py, which names
+     the generated pages: lowercase, runs of anything else become one dash. */
+  function slug(name) {
+    return String(name).toLowerCase().replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+  function collectionHref(c) { return slug(c.name) + ".html"; }
+  function applicationHref(a) { return "actuators-for-" + slug(a.name) + ".html"; }
 
   function renderHeader() {
     var mount = $("#site-header");
@@ -229,10 +244,19 @@
 
     /* Two dropdowns, one per axis: the series you already know, or the machine
        you are building. Both land on the same catalogue page. */
-    var seriesMenu = COLS.map(function (c) {
-      return '<li><a href="' + collectionHref(c) + '">' + esc(c.name) +
-        '<span class="sub-note">' + esc(c.tease) + "</span></a></li>";
-    }).join("");
+    var seriesMenu = COLS.filter(function (c) { return !c.group; })
+      .map(function (c) {
+        var row = '<li><a href="' + collectionHref(c) + '">' + esc(c.name) +
+          '<span class="sub-note">' + esc(c.tease) + "</span></a></li>";
+        /* Indented beneath their family rather than listed flat beside it, so
+           the menu still reads as five choices and not nine. */
+        return row + COLS.filter(function (k) { return k.group === c.id; })
+          .map(function (k) {
+            return '<li class="menu-sub"><a href="' + collectionHref(k) + '">' +
+              esc(k.name) + '<span class="sub-note">' + esc(k.tease) +
+              "</span></a></li>";
+          }).join("");
+      }).join("");
 
     var appMenu = apps.map(function (a) {
       return '<li><a href="' + applicationHref(a) + '">' + esc(a.name) + "</a></li>";
@@ -251,7 +275,7 @@
               esc(S.brand) + '">' +
             "</a>" +
           '<ul class="nav">' +
-            '<li><a class="nav-link" href="collection.html?c=integrated"' + (seriesActive ? ' aria-current="page"' : "") +
+            '<li><a class="nav-link" href="integrated-actuators.html"' + (seriesActive ? ' aria-current="page"' : "") +
               '>Product series' + ICON.chev + '</a><ul class="submenu">' + seriesMenu + '</ul></li>' +
             '<li><a class="nav-link" href="' + (apps[0] ? applicationHref(apps[0]) : "#") + '"' +
               (appActive ? ' aria-current="page"' : "") +
@@ -624,19 +648,32 @@
        a description and a model count, application cards are picture-led. */
     var pickCat = groupPhotoPicker();
     var cg = $("[data-cat-grid]");
-    if (cg) cg.innerHTML = COLS.map(function (c) {
-      var items = inCollection(c.id);
-      var n = items.length;
-      /* A collection can name the photo that stands for it; otherwise the
-         picker takes the first member that has one. */
-      var named = c.hero && items.filter(function (p) { return p.id === c.hero; })[0];
-      return '<a class="cat-card" href="' + collectionHref(c) + '">' +
-        '<span class="badge-us compact">' + ICON.flag + "<span>US-based support</span></span>" +
-        '<div class="thumb">' +
-          (named ? photo(named, 0, c.name) : pickCat(items, c.name)) + "</div>" +
-        "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
-        '<span class="more">' + n + " model" + (n === 1 ? "" : "s") + " &rarr;</span></a>";
-    }).join("");
+    /* Only the top level gets a card. A series belongs under the family it is
+       part of: thirty integrated actuators in one list is a list, not a
+       choice, and AK, AKE, AKA and AKH answer four different questions. */
+    if (cg) cg.innerHTML = COLS.filter(function (c) { return !c.group; })
+      .map(function (c) {
+        var items = inCollection(c.id);
+        var n = items.length;
+        /* A collection can name the photo that stands for it; otherwise the
+           picker takes the first member that has one. */
+        var named = c.hero && items.filter(function (p) { return p.id === c.hero; })[0];
+        var kids = COLS.filter(function (k) { return k.group === c.id; });
+        return '<div class="cat-cell">' +
+          '<a class="cat-card" href="' + collectionHref(c) + '">' +
+            '<span class="badge-us compact">' + ICON.flag + "<span>US-based support</span></span>" +
+            '<div class="thumb">' +
+              (named ? photo(named, 0, c.name) : pickCat(items, c.name)) + "</div>" +
+            "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
+            '<span class="more">' + n + " model" + (n === 1 ? "" : "s") + " &rarr;</span></a>" +
+          (kids.length
+            ? '<div class="series-links">' + kids.map(function (k) {
+                return '<a href="' + collectionHref(k) + '"><b>' + esc(k.name) +
+                  "</b><span>" + esc(k.tease) + "</span></a>";
+              }).join("") + "</div>"
+            : "") +
+          "</div>";
+      }).join("");
 
     var pickApp = groupPhotoPicker();
     var ag = $("[data-app-grid]");
@@ -1710,7 +1747,7 @@
     if (items.length < 2) {
       host.innerHTML = '<div class="empty-state"><h2>Pick two or more models</h2>' +
         "<p>Tick <em>Compare</em> on any model in the catalogue, then come back.</p>" +
-        '<a class="btn" href="collection.html?c=integrated">Browse actuators</a></div>';
+        '<a class="btn" href="integrated-actuators.html">Browse actuators</a></div>';
       return;
     }
 
