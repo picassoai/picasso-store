@@ -527,6 +527,21 @@ img, svg { max-width: 100%; }
 .pdp-media .badge-us .flag { font-size: 24px; }
 .pdp-main { display: grid; place-items: center; min-height: 320px; }
 .pdp-main img { max-width: 100%; max-height: 420px; object-fit: contain; display: block; }
+
+/* The same control as the home-page rails, sitting on the photo rather than
+   beside a row. Kept on small screens, where the rails hide theirs: there the
+   thumbnails are the only other way through and they are 58px wide. */
+.shot-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; border-radius: 50%; border: 0;
+  background: rgba(255, 255, 255, .92); color: var(--ink);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .12); cursor: pointer; z-index: 3;
+  display: grid; place-items: center;
+}
+.shot-btn.prev { left: 14px; }
+.shot-btn.next { right: 14px; }
+.shot-btn:hover { background: #fff; }
+
 .pdp-thumbs { display: flex; gap: 10px; margin-top: 18px; justify-content: center; }
 .pdp-thumbs button {
   width: 58px; height: 58px; border-radius: var(--radius-sm); border: 1px solid var(--line);

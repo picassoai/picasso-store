@@ -1200,6 +1200,12 @@
         '<span class="badge-us">' + ICON.flag + "<span>US-based<br>team</span></span>" +
         '<div class="pdp-main" data-main>' + photo(p, 0, p.name, false, true) + "</div>" +
         (views.length > 1
+          ? '<button class="shot-btn prev" type="button" data-shot="-1" ' +
+              'aria-label="Previous photo">' + ICON.left + "</button>" +
+            '<button class="shot-btn next" type="button" data-shot="1" ' +
+              'aria-label="Next photo">' + ICON.right + "</button>"
+          : "") +
+        (views.length > 1
           ? '<div class="pdp-thumbs" data-thumbs>' +
             views.map(function (_v, i) {
               return '<button type="button" data-view="' + i + '" aria-pressed="' + (i === 0) +
@@ -1247,11 +1253,26 @@
       "</div>";
 
     var main = $("[data-main]");
+    var shot = 0;
+    /* One path for both controls, so the pressed thumbnail follows the arrows
+       as well as itself. The index wraps: at the last view, next returns to
+       the first rather than doing nothing. */
+    function show(i) {
+      var n = views.length;
+      shot = ((i % n) + n) % n;
+      main.innerHTML = photo(p, shot, p.name, false, true);
+      $$("[data-view]").forEach(function (b) {
+        b.setAttribute("aria-pressed", Number(b.getAttribute("data-view")) === shot);
+      });
+    }
     $$("[data-view]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        var i = Number(btn.getAttribute("data-view"));
-        main.innerHTML = photo(p, i, p.name, false, true);
-        $$("[data-view]").forEach(function (b2) { b2.setAttribute("aria-pressed", b2 === btn); });
+        show(Number(btn.getAttribute("data-view")));
+      });
+    });
+    $$("[data-shot]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        show(shot + Number(btn.getAttribute("data-shot")));
       });
     });
 
