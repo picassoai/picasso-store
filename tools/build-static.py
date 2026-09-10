@@ -165,7 +165,26 @@ def page(title, desc, canonical, route, body, page_attr):
 """ % (esc(title), esc(desc), canonical, page_attr, body, route)
 
 
-def product_page(p):
+def torque_text(v):
+    """Under a newton-metre, say it in mN·m: "0.024 N·m" is not how anyone
+    writes 24 millinewton-metres, and the site's own tiles already switch."""
+    f = float(v)
+    return ("%g mN·m" % round(f * 1000, 3)) if f < 1 else ("%g N·m" % f)
+
+
+def integrated_ids(src):
+    """Every collection under the Integrated family. Derived rather than
+    listed: the noun below used to test for "integrated" alone, and when the
+    series became collections of their own, thirty actuators silently started
+    calling themselves accessories."""
+    ids = {"integrated"}
+    ids.update(re.findall(
+        r'id: "([a-z0-9\-]+)", name: "[^"]+", parent: "[^"]+", group: "integrated"',
+        src))
+    return ids
+
+
+def product_page(p, actuators=frozenset(["integrated"])):
     s = p["specs"]
     torque = lead_num(s.get("Rated Torque (N·m)"))
     peak = lead_num(s.get("Peak Torque (N·m)"))
@@ -176,9 +195,9 @@ def product_page(p):
 
     bits = []
     if torque:
-        bits.append("%s N·m rated" % torque)
+        bits.append("%s rated" % torque_text(torque))
     if peak:
-        bits.append("%s N·m peak" % peak)
+        bits.append("%s peak" % torque_text(peak))
     if od:
         bits.append("Ф%s mm" % od)
     if weight:
@@ -189,10 +208,10 @@ def product_page(p):
         bits.append("%s V" % volts)
     summary = ", ".join(bits)
 
-    kind = "actuator" if p["collection"] == "integrated" else (
+    kind = "actuator" if p["collection"] in actuators else (
         "motor" if p["collection"] in ("frameless", "gimbal") else "accessory")
 
-    title = "%s — %s N·m %s | Picasso Intelligence" % (p["name"], torque, kind) \
+    title = "%s — %s %s | Picasso Intelligence" % (p["name"], torque_text(torque), kind) \
         if torque else "%s — %s | Picasso Intelligence" % (p["name"], p["series"])
     desc = ("%s %s. %s. Full specifications and pricing from an authorized "
             "North American CubeMars distributor." % (p["name"], kind, summary)) \
@@ -330,6 +349,7 @@ def main():
         urls.append("%s/%s" % (SITE, f))
 
     cols = parse_taxonomy(data_src, "COLLECTIONS", "parent:")
+    actuators = integrated_ids(data_src)
     apps = parse_taxonomy(data_src, "APPLICATIONS", "art:")
     for c in cols:
         slug, html = collection_page(c)
@@ -341,7 +361,7 @@ def main():
         urls.append("%s/%s.html" % (SITE, slug))
 
     for p in products:
-        write("%s.html" % p["id"], product_page(p))
+        write("%s.html" % p["id"], product_page(p, actuators))
         if p["lead"] == p["id"]:
             urls.append("%s/%s.html" % (SITE, p["id"]))
 

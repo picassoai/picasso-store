@@ -582,7 +582,7 @@
       '<div class="card-media">' +
         /* The flag belongs to the support, not to the goods — the motors are
            made in China, so anything implying US origin or US stock is off. */
-        '<span class="badge-us">' + ICON.flag + "<span>US-based<br>support</span></span>" +
+        '<span class="badge-us">' + ICON.flag + "<span>US-based<br>team</span></span>" +
         /* No "Available" label — stock is not guaranteed, so claiming it on
            every card would be a promise we cannot keep. The quote-only badge
            stays, because that is about pricing, not availability. */
@@ -661,7 +661,7 @@
         var kids = COLS.filter(function (k) { return k.group === c.id; });
         return '<div class="cat-cell">' +
           '<a class="cat-card" href="' + collectionHref(c) + '">' +
-            '<span class="badge-us compact">' + ICON.flag + "<span>US-based support</span></span>" +
+            '<span class="badge-us compact">' + ICON.flag + "<span>US-based team</span></span>" +
             '<div class="thumb">' +
               (named ? photo(named, 0, c.name) : pickCat(items, c.name)) + "</div>" +
             "<h3>" + esc(c.name) + "</h3><p>" + esc(c.blurb) + "</p>" +
@@ -679,7 +679,7 @@
     var ag = $("[data-app-grid]");
     if (ag) ag.innerHTML = (window.APPLICATIONS || []).map(function (a) {
       return '<a class="app-card" href="' + applicationHref(a) + '">' +
-        '<span class="badge-us compact">' + ICON.flag + "<span>US-based support</span></span>" +
+        '<span class="badge-us compact">' + ICON.flag + "<span>US-based team</span></span>" +
         '<span class="thumb">' + pickApp(inApplication(a), a.name) + "</span>" +
         "<h4>" + esc(a.name) + "</h4>" +
         "<p>" + esc(a.blurb) + "</p></a>";
@@ -1173,7 +1173,7 @@
       '<div class="pdp-media">' +
         /* Outside [data-main] on purpose — switching thumbnails replaces that
            element's contents, which would take the badge with it. */
-        '<span class="badge-us">' + ICON.flag + "<span>US-based<br>support</span></span>" +
+        '<span class="badge-us">' + ICON.flag + "<span>US-based<br>team</span></span>" +
         '<div class="pdp-main" data-main>' + photo(p, 0, p.name, false, true) + "</div>" +
         (views.length > 1
           ? '<div class="pdp-thumbs" data-thumbs>' +
