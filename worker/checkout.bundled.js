@@ -57,7 +57,7 @@ const PRICES = {
     "name": "AK45-10 V3.0 KV75",
     "series": "AK Series"
   },
-  "ak45-36-kv80": {
+  "ak45-36-kv80-with-driver": {
     "cents": 20821,
     "name": "AK45-36 KV80 with driver",
     "series": "AK Series"
@@ -97,7 +97,7 @@ const PRICES = {
     "name": "AK70-10 KV100 without driver",
     "series": "AK Series"
   },
-  "ak70-9-kv60": {
+  "ak70-9-v3-0-kv60-with-driver": {
     "cents": 55877,
     "name": "AK70-9 V3.0 KV60 with driver",
     "series": "AK Series"
@@ -382,14 +382,14 @@ const PRICES = {
     "name": "GL80 KV60",
     "series": "GL Series"
   },
-  "ri100-kv105": {
-    "cents": 16677,
-    "name": "RI100 KV105",
-    "series": "RI Series"
-  },
   "ri100-kv105-with-hall": {
     "cents": 18357,
     "name": "RI100 KV105 with hall sensor",
+    "series": "RI Series"
+  },
+  "ri100-kv105-without-hall": {
+    "cents": 16677,
+    "name": "RI100 KV105 without hall sensor",
     "series": "RI Series"
   },
   "ri115-ph-kv40": {
@@ -407,19 +407,14 @@ const PRICES = {
     "name": "RI30 KV260",
     "series": "RI Series"
   },
-  "ri50-kv100": {
-    "cents": 6933,
-    "name": "RI50 KV100",
-    "series": "RI Series"
-  },
   "ri50-kv100-with-hall": {
     "cents": 8613,
     "name": "RI50 KV100 with hall sensor",
     "series": "RI Series"
   },
-  "ri60-kv120": {
-    "cents": 11077,
-    "name": "RI60 KV120",
+  "ri50-kv100-without-hall": {
+    "cents": 6933,
+    "name": "RI50 KV100 without hall sensor",
     "series": "RI Series"
   },
   "ri60-kv120-with-hall": {
@@ -427,9 +422,9 @@ const PRICES = {
     "name": "RI60 KV120 with hall sensor",
     "series": "RI Series"
   },
-  "ri70-kv95": {
-    "cents": 13877,
-    "name": "RI70 KV95",
+  "ri60-kv120-without-hall": {
+    "cents": 11077,
+    "name": "RI60 KV120 without hall sensor",
     "series": "RI Series"
   },
   "ri70-kv95-with-hall": {
@@ -437,14 +432,14 @@ const PRICES = {
     "name": "RI70 KV95 with hall sensor",
     "series": "RI Series"
   },
+  "ri70-kv95-without-hall": {
+    "cents": 13877,
+    "name": "RI70 KV95 without hall sensor",
+    "series": "RI Series"
+  },
   "ri75-ph-kv70": {
     "cents": 15557,
     "name": "RI75-PH KV70",
-    "series": "RI Series"
-  },
-  "ri80-v2-0-kv75": {
-    "cents": 14885,
-    "name": "RI80 V2.0 KV75",
     "series": "RI Series"
   },
   "ri80-v2-0-kv75-with-hall": {
@@ -452,14 +447,19 @@ const PRICES = {
     "name": "RI80 V2.0 KV75 with hall sensor",
     "series": "RI Series"
   },
+  "ri80-v2-0-kv75-without-hall": {
+    "cents": 14885,
+    "name": "RI80 V2.0 KV75 without hall sensor",
+    "series": "RI Series"
+  },
   "ri85-ph-kv85": {
     "cents": 16565,
     "name": "RI85-PH KV85",
     "series": "RI Series"
   },
-  "ro100-kv55": {
+  "ro100-kv55-lite": {
     "cents": 17573,
-    "name": "RO100 KV55",
+    "name": "RO100 KV55 Lite",
     "series": "RO Series"
   },
   "ro100-kv55-standard": {
@@ -477,9 +477,9 @@ const PRICES = {
     "name": "RO50 KV108 Lite",
     "series": "RO Series"
   },
-  "ro60-kv115": {
+  "ro60-kv115-lite": {
     "cents": 8725,
-    "name": "RO60 KV115",
+    "name": "RO60 KV115 Lite",
     "series": "RO Series"
   },
   "ro60-kv115-standard": {
@@ -487,9 +487,9 @@ const PRICES = {
     "name": "RO60 KV115 Standard",
     "series": "RO Series"
   },
-  "ro80-kv105": {
+  "ro80-kv105-lite": {
     "cents": 11749,
-    "name": "RO80 KV105",
+    "name": "RO80 KV105 Lite",
     "series": "RO Series"
   },
   "ro80-kv105-standard": {
