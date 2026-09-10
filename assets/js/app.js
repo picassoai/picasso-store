@@ -1298,11 +1298,13 @@
       '<div class="row total"><span>Total</span><span>' + money(sub + (f || 0)) + "</span></div>" +
       (withCheckout
         ? (S.selfServeMax && sub > S.selfServeMax
-            ? '<a class="btn btn-accent btn-block" href="checkout.html">Request a quote for this order</a>' +
-              '<p class="note muted" style="font-size:12.5px;margin-top:10px">Orders over ' +
-                money(S.selfServeMax) + ' are quoted rather than paid online. At this size the ' +
-                'volume price and the freight are both worth working out properly, and you will ' +
-                'do better on a quote than on this page.</p>'
+            ? /* Above the button, not under it: this is the reason the Checkout
+             button a customer expected is missing, so it has to be read first. */
+          '<p class="notice notice-accent"><strong>Orders over ' +
+                money(S.selfServeMax) + ' are quoted, not paid online.</strong> ' +
+                'At this size the volume price and the freight are both worth working ' +
+                'out properly, and you will do better on a quote than on this page.</p>' +
+              '<a class="btn btn-accent btn-block" href="checkout.html">Request a quote for this order</a>'
             : S.checkoutEndpoint
             ? '<button class="btn btn-accent btn-block" type="button" data-pay-now>Checkout</button>' +
               '<p class="note muted" style="font-size:12.5px;margin-top:10px" data-pay-note>' +

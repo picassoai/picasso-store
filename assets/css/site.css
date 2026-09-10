@@ -592,6 +592,15 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
 }
 .note { font-size: 13px; color: var(--ink-3); }
 
+/* The house callout in the accent colour, for the one message a reader must
+   not skim past. Left rule rather than a full border so it still reads as a
+   note and not as an error. */
+.notice-accent {
+  background: #eaf3fd; border-left: 3px solid var(--accent);
+  color: var(--accent-ink); margin: 0 0 14px; padding: 14px 16px;
+}
+.notice-accent strong { display: block; margin-bottom: 5px; color: var(--accent-ink); }
+
 /* ---------- find by spec ---------- */
 
 .finder-table { border-collapse: collapse; font-size: 14px; width: 100%; }
