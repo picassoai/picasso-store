@@ -711,9 +711,10 @@
     { key: "g4", label: "Over 50:1",   lo: 50, hi: Infinity }
   ];
 
-  /* Diameters run 25 to 115 across 31 distinct values. The exact chips stay —
-     people do shop for a specific Ф — but most of the time the question is
-     "will it fit this bore", so offer coarse ranges alongside them. */
+  /* Diameters run 25 to 115 across 31 distinct values, but any one collection
+     has far fewer — 11 integrated, 8 gimbal, 14 frameless. Those are printed
+     outright (see INLINE_OD_MAX); the ranges below are for select.html, where
+     all 31 are pooled and a row of exact chips would bury everything else. */
   var OD_BANDS = [
     { key: "d1", label: "Under 40",  lo: 0,   hi: 40 },
     { key: "d2", label: "40 – 60",   lo: 40,  hi: 60 },
@@ -721,6 +722,11 @@
     { key: "d4", label: "80 – 100",  lo: 80,  hi: 100 },
     { key: "d5", label: "Over 100",  lo: 100, hi: Infinity }
   ];
+
+  /* Above this many distinct diameters the row stops being scannable and
+     falls back to ranges plus a fold. Frameless, the widest collection,
+     has 14. */
+  var INLINE_OD_MAX = 14;
 
   /* A row whose only option is "All" filters nothing — don't render it.
      An option marked { fold: true } starts a collapsed tail: the chips after
@@ -769,7 +775,12 @@
       }).map(function (b) { return { k: b.key, l: b.label }; });
       /* One range covering everything is the same as "All" — skip the row. */
       var exact = ods.map(function (o) { return { k: String(o), l: "Ф" + o }; });
-      var odOpts = odRanges.length > 1
+      /* Few enough to read at a glance: print them and drop the ranges. A
+         reader sizing a bore is better served by "Ф89" than by "80 – 100",
+         and showing both would double the row to say the same thing. */
+      var odOpts = exact.length <= INLINE_OD_MAX
+        ? exact
+        : odRanges.length > 1
         ? odRanges.concat([{ fold: true, l: "Exact Ф (" + exact.length + ")" }]).concat(exact)
         : exact;
       html += chipRow("Outer dia. (mm)", "od", odOpts);
@@ -787,11 +798,16 @@
         return w != null && w >= b.lo && w < b.hi;
       });
     }).map(function (b) { return { k: b.key, l: b.label }; }));
-    /* Undoing four filters used to mean finding "All" in four rows. The button
-       appears only once something is actually filtered. */
-    html += '<div class="filter-row"><span class="filter-label"></span><div class="chips">' +
-      '<button class="chip chip-reset" type="button" data-reset-filters hidden>' +
-      "Clear filters</button></div></div>";
+    /* Accessories and Underwater have no numbers to filter on, so every row
+       above came back empty. Returning the reset row on its own would draw a
+       blank band with an invisible button in it. */
+    if (html) {
+      /* Undoing four filters used to mean finding "All" in four rows. The button
+         appears only once something is actually filtered. */
+      html += '<div class="filter-row"><span class="filter-label"></span><div class="chips">' +
+        '<button class="chip chip-reset" type="button" data-reset-filters hidden>' +
+        "Clear filters</button></div></div>";
+    }
     return { html: html, ods: ods, scale: scale };
   }
 
