@@ -591,6 +591,12 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
   font-size: 14px; color: var(--ink-2); margin: 18px 0;
 }
 .note { font-size: 13px; color: var(--ink-3); }
+/* Stated once, at the foot of the home page. The US flag on a product card is
+   about where the support sits, and a reader is entitled to be told plainly
+   that it is not about where the motor was built. */
+.origin-note {
+  margin: 0; text-align: center; font-size: 13px; color: var(--ink-3);
+}
 
 /* The house callout in the accent colour, for the one message a reader must
    not skim past. Left rule rather than a full border so it still reads as a

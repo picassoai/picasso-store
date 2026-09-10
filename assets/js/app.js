@@ -494,7 +494,11 @@
 
   /* ---------- product card ------------------------------------------- */
 
-  function productHref(p) { return "product.html?id=" + encodeURIComponent(p.id); }
+  /* The generated page, not the renderer: build-static.py writes one per
+     product, and it ships the title, description and canonical in the HTML
+     rather than waiting for JavaScript. product.html?id= still works for
+     anyone holding an older link. */
+  function productHref(p) { return encodeURIComponent(p.id) + ".html"; }
 
   /* Real product photography from the manufacturer, at most three per model,
      in two cuts of the same shots:
