@@ -6,5 +6,6 @@ Disallow: /compare.html
 Disallow: /search.html
 Disallow: /thank-you.html
 Disallow: /404.html
+Disallow: /track.html
 
 Sitemap: https://picassointelligence.com/sitemap.xml

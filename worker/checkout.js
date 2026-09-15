@@ -13,6 +13,10 @@
  *      (the sk_live_... value — it never appears in this repository)
  *   3. Copy the worker URL into SITE.checkoutEndpoint in assets/js/data.js
  *
+ * Tracking numbers: open the payment in the Dashboard and add metadata
+ * `tracking`, and optionally `carrier` and `tracking_url`. That is what the
+ * order lookup on the site reads; nothing else has to be kept in step.
+ *
  * For PayPal (and Venmo, which rides on the same integration), also add
  * secrets PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET, and put the same client
  * id — it is public — in SITE.paypalClientId. Leave them unset and the PayPal
@@ -184,6 +188,7 @@ export default {
 
     const path = new URL(request.url).pathname.replace(/\/+$/, "");
     try {
+      if (path === "/order") return await orderStatus(payload, env);
       if (path === "/paypal/order") return await paypalOrder(payload, env);
       if (path === "/paypal/tax") return await paypalTax(payload, env);
       if (path === "/paypal/capture") return await paypalCapture(payload, env);
@@ -196,6 +201,65 @@ export default {
     }
   },
 };
+
+/* ---------- order reference and lookup ---------------------------------- */
+
+/* Short enough to read down a phone and type back, from an alphabet with no
+   O/0 or I/1 so it survives being read aloud. */
+const REF_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+function orderRef() {
+  let out = "";
+  for (const b of crypto.getRandomValues(new Uint8Array(6))) {
+    out += REF_ALPHABET[b % REF_ALPHABET.length];
+  }
+  return "PI-" + out;
+}
+
+async function stripeGet(env, path) {
+  const res = await fetch("https://api.stripe.com/v1" + path, {
+    headers: { Authorization: "Bearer " + env.STRIPE_SECRET_KEY },
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error("stripe " + path + ": " + JSON.stringify(data));
+  return data;
+}
+
+async function orderStatus(payload, env) {
+  if (!env.STRIPE_SECRET_KEY) return json({ error: "Lookup is not configured." }, 500);
+  const ref = String(payload.reference || "").trim().toUpperCase();
+  const email = String(payload.email || "").trim().toLowerCase();
+  if (!/^PI-[A-Z2-9]{6}$/.test(ref) || !email) {
+    return json({ error: "Enter the order reference and the email you paid with." }, 400);
+  }
+
+  /* One message for "no such reference" and for "wrong email", so the form
+     cannot be used to discover which references exist. */
+  const no = () => json({ error: "No order matches that reference and email." }, 404);
+
+  const q = encodeURIComponent('metadata["order"]:"' + ref + '"');
+  const found = await stripeGet(env, "/payment_intents/search?limit=1&query=" + q);
+  const hit = (found.data || [])[0];
+  if (!hit) return no();
+
+  const full = await stripeGet(env, "/payment_intents/" + hit.id + "?expand[]=latest_charge");
+  const charge = full.latest_charge || {};
+  const paidBy = [full.receipt_email, (charge.billing_details || {}).email]
+    .filter(Boolean).map((e) => e.toLowerCase());
+  if (!paidBy.includes(email)) return no();
+
+  const meta = full.metadata || {};
+  return json({
+    reference: ref,
+    placed: full.created,
+    amount: money(full.amount),
+    paid: full.status === "succeeded",
+    refunded: Boolean(charge.refunded) || (charge.amount_refunded || 0) > 0,
+    carrier: meta.carrier || "",
+    tracking: meta.tracking || "",
+    trackingUrl: meta.tracking_url || "",
+  });
+}
 
 /* ---------- Stripe ------------------------------------------------------ */
 
@@ -226,7 +290,13 @@ async function stripeSession(payload, env) {
   );
 
   form.set("mode", "payment");
-  form.set("success_url", SITE + "/thank-you.html");
+  /* The same reference on the session and on the PaymentIntent: the session is
+     what Checkout knows about, the PaymentIntent is what the lookup searches
+     and what the Dashboard shows when a tracking number gets typed in. */
+  const ref = orderRef();
+  form.set("metadata[order]", ref);
+  form.set("payment_intent_data[metadata][order]", ref);
+  form.set("success_url", SITE + "/thank-you.html?o=" + ref);
   form.set("cancel_url", SITE + "/cart.html");
   /* Physical goods: without an address there is nowhere to send them. The list
      is the chosen zone's, so the address cannot land outside the area whose

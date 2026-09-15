@@ -28,7 +28,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # out of the index until real terms replace them.
 NOINDEX = [
     "cart.html", "checkout.html", "summary.html", "compare.html", "search.html",
-    "thank-you.html", "404.html",
+    "thank-you.html", "404.html", "track.html",
     # The policy pages stay crawlable: shipping and returns terms are a trust
     # signal for a commerce site, and Merchant Center expects to reach them.
 ]

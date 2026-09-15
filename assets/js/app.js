@@ -384,6 +384,7 @@
             '<a href="refund-policy.html">Returns</a>' +
             '<a href="terms-of-service.html">Terms</a>' +
             '<a href="privacy-policy.html">Privacy</a>' +
+            '<a href="track.html">Track an order</a>' +
             '<a href="contact.html">Contact information</a>' +
             '<a href="' + esc(S.linkedin) + '">LinkedIn</a>' +
           '</nav>' +
@@ -1431,6 +1432,70 @@
       "</aside>";
   }
 
+  /* ---------- page: track an order ------------------------------------ */
+
+  function pageTrack() {
+    var form = $("[data-track-form]");
+    var out = $("[data-track-result]");
+    if (!form || !out) return;
+
+    /* Prefill from the thank-you page's link, so a customer who has just paid
+       and clicked through does not retype what they were shown. */
+    var pre = param("o");
+    if (pre) $("#ref").value = pre;
+
+    function line(label, value) {
+      return '<div class="row"><span>' + esc(label) + "</span><span>" + value + "</span></div>";
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!S.checkoutEndpoint) return;
+      var btn = $("button", form), label = btn.textContent;
+      btn.disabled = true; btn.textContent = "Looking…";
+      out.innerHTML = "";
+
+      fetch(S.checkoutEndpoint.replace(/\/+$/, "") + "/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reference: $("#ref").value, email: $("#email").value })
+      }).then(function (r) {
+        return r.json().then(function (d) {
+          if (!r.ok) throw new Error(d.error || "The lookup could not be completed.");
+          return d;
+        });
+      }).then(function (d) {
+        var when = new Date(d.placed * 1000).toLocaleDateString("en-US",
+          { year: "numeric", month: "long", day: "numeric" });
+        var status = d.refunded ? "Refunded"
+          : d.tracking ? "Shipped"
+          : d.paid ? "Paid — preparing your shipment"
+          : "Payment not completed";
+        var track = d.tracking
+          ? (d.trackingUrl
+              ? '<a href="' + esc(d.trackingUrl) + '" rel="noopener">' + esc(d.tracking) + "</a>"
+              : esc(d.tracking))
+          : '<span class="muted">Not shipped yet</span>';
+        out.innerHTML = '<div class="notice track-card">' +
+          line("Order", esc(d.reference)) +
+          line("Placed", esc(when)) +
+          line("Total", "$" + esc(d.amount)) +
+          line("Status", esc(status)) +
+          line("Carrier", d.carrier ? esc(d.carrier) : '<span class="muted">—</span>') +
+          line("Tracking", track) +
+          '</div><p class="note muted">Anything look wrong? Email ' +
+          '<a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a> " +
+          "and quote the order reference.</p>";
+      }).catch(function (err) {
+        out.innerHTML = '<p class="note"><strong>' + esc(err.message) + "</strong> " +
+          'If you cannot find the reference, email <a href="mailto:' + esc(S.email) +
+          '">' + esc(S.email) + "</a> and we will look it up for you.</p>";
+      }).then(function () {
+        btn.disabled = false; btn.textContent = label;
+      });
+    });
+  }
+
   /* ---------- PayPal (and Venmo, which rides on the same SDK) ---------- */
 
   var paypalSdk = null;
@@ -2023,10 +2088,19 @@
     select: pageSelect,
     compare: pageCompare,
     search: pageSearch,
+    track: pageTrack,
     contact: pageContact
   };
 
   document.addEventListener("DOMContentLoaded", function () {
+    /* The reference Checkout was told to hand back. Shown here because this is
+       the only moment the customer has it before the email arrives. */
+    var refEl = $("[data-order-ref]"), ref = param("o");
+    if (refEl && ref) {
+      refEl.innerHTML = "Order reference <strong>" + esc(ref) + "</strong> — " +
+        'keep it to <a href="track.html?o=' + encodeURIComponent(ref) + '">track this order</a>.';
+      refEl.hidden = false;
+    }
     renderHeader();
     renderFooter();
     document.addEventListener("cart:change", paintCartCount);

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#548490">
+<title>Track an order — Picasso Intelligence</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="track">
+
+<div id="site-header"></div>
+
+<section class="page-head">
+  <div class="wrap-narrow">
+    <div class="crumbs"><a href="index.html">Store</a><span>/</span>Track an order</div>
+    <h1>Track an order</h1>
+    <p class="muted">Your order reference is on the page you saw after paying and in
+      the confirmation email. No account needed.</p>
+    <form class="track-form" data-track-form>
+      <label class="sr" for="ref">Order reference</label>
+      <input class="field" id="ref" name="reference" placeholder="PI-XXXXXX"
+             autocomplete="off" spellcheck="false" required>
+      <label class="sr" for="email">Email used at checkout</label>
+      <input class="field" id="email" name="email" type="email"
+             placeholder="The email you paid with" autocomplete="email" required>
+      <button class="btn btn-accent" type="submit">Look up</button>
+    </form>
+    <div data-track-result></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
