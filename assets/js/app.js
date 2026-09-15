@@ -380,6 +380,10 @@
         '<div class="wrap footer-legal">' +
           '<span>&copy; ' + S.year + " " + esc(S.brand) + '</span>' +
           '<nav>' +
+            '<a href="shipping-policy.html">Shipping</a>' +
+            '<a href="refund-policy.html">Returns</a>' +
+            '<a href="terms-of-service.html">Terms</a>' +
+            '<a href="privacy-policy.html">Privacy</a>' +
             '<a href="contact.html">Contact information</a>' +
             '<a href="' + esc(S.linkedin) + '">LinkedIn</a>' +
           '</nav>' +
