@@ -630,7 +630,7 @@ window.FAQ = [
   },
   {
     q: "How can I pay?",
-    a: "Card and Apple Pay for small orders, ACH bank payment for anything over about $1,000. Orders of 10 or more units per model should request a volume quote first."
+    a: "Card, Apple Pay and Google Pay at checkout, or ACH bank transfer — ACH costs a fraction of card on a larger order, so we suggest it once an order passes about $1,000. Over $5,000 you get volume pricing: send us the order and we come back with the discounted price rather than charging list at checkout."
   },
   {
     q: "How fast will my order arrive?",
