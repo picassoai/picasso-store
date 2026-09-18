@@ -250,7 +250,7 @@
           '<span class="sub-note">' + esc(c.tease) + "</span></a></li>";
         /* Indented beneath their family rather than listed flat beside it, so
            the menu still reads as five choices and not nine. */
-        return row + COLS.filter(function (k) { return k.group === c.id; })
+        return row + COLS.filter(function (k) { return k.group === c.id && k.listed !== false; })
           .map(function (k) {
             return '<li class="menu-sub"><a href="' + collectionHref(k) + '">' +
               esc(k.name) + '<span class="sub-note">' + esc(k.tease) +
@@ -347,7 +347,7 @@
   function renderFooter() {
     var mount = $("#site-footer");
     if (!mount) return;
-    var shopLinks = COLS.map(function (c) {
+    var shopLinks = COLS.filter(function (c) { return c.listed !== false; }).map(function (c) {
       return '<li><a href="' + collectionHref(c) + '">' + esc(c.name) + '</a></li>';
     }).join("");
 
@@ -1242,7 +1242,7 @@
             "</div>" +
             '<p class="muted" style="font-size:13px">Check out from the cart by card, US bank ' +
               'transfer, Apple Pay or Google Pay. Import duty on US orders is on us. ' +
-              'Volume pricing from 10 units — <a href="' + quoteHref(p) + '">request a quote</a>.</p>') +
+              'Volume pricing on orders over $5,000 — <a href="' + quoteHref(p) + '">request a quote</a>.</p>') +
         driverBoardLine(p) +
         specTiles(p) +
         (Object.keys(p.specs).length

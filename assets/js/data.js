@@ -101,7 +101,7 @@ window.COLLECTIONS = [
   },
   {
     id: "ak-variants", name: "AKE · AKH · AKA", parent: "actuators", group: "integrated",
-    children: ["ake", "akh", "aka"], home: 2, art: "actuator",
+    children: ["ake", "akh", "aka"], home: 2, listed: false, art: "actuator",
     tease: "Torque density, hollow shaft, radial load",
     blurb: "Three AK variants, each re-engineered for one demand the standard line does not meet.",
     long: "Where the AK line is the general answer, these three are specific ones. AKE trades some of AK's range for a stiffer joint with less lost motion at reversal. AKH runs the cable through a hollow output shaft, so an arm can keep rotating without a service loop. AKA rebuilds the output around the bearing so it can take radial load directly, which is what a drive wheel does to a joint."
@@ -602,7 +602,7 @@ window.PAYMENT_METHODS = [
   {
     id: "card", label: "Credit Card / Apple Pay", eyebrow: "Instant",
     blurb: "Pay by card, Apple Pay, or Google Pay on Stripe's hosted checkout.",
-    detail: "Fastest route: add what you need to the cart and check out — it takes a couple of minutes, and card details are entered on Stripe's own page rather than ours. If you would rather be invoiced, say so here and we will send a Stripe invoice you can pay the same way.",
+    detail: "Orders up to $5,000 pay by card straight from the cart, on Stripe's own page. For a larger order, or if you would rather be invoiced, choose this and we will send a Stripe invoice you can pay by card.",
     fee: "No surcharge"
   },
   {
@@ -612,9 +612,9 @@ window.PAYMENT_METHODS = [
     fee: "No surcharge", recommended: true
   },
   {
-    id: "quote", label: "Request Volume Quote", eyebrow: "10+ units",
+    id: "quote", label: "Request Volume Quote", eyebrow: "Over $5,000",
     blurb: "Volume pricing, scheduled releases, and custom configurations.",
-    detail: "Price breaks start at 10 units per model and improve again at 40 and 80. Tell us the quantity and the schedule you need and we will come back with a firm number.",
+    detail: "Orders over $5,000 are priced with a volume discount. Tell us the quantity and the schedule you need and we will come back with a firm number.",
     fee: "Reply within 2 business days"
   }
 ];
@@ -622,11 +622,11 @@ window.PAYMENT_METHODS = [
 window.FAQ = [
   {
     q: "What do you carry?",
-    a: "The CubeMars line: AK integrated planetary actuators, AKE and AKA variants, AKH hollow-bore joints, GL gimbal motors, RI and RO frameless sets, and the driver boards, CAN adapters, and links that go with them."
+    a: "The CubeMars line: AK integrated planetary actuators, AKE and AKA variants, AKH hollow-shaft joints, GL gimbal motors, RI and RO frameless sets, SW and DW underwater thrusters with their ESCs, and the driver boards, CAN adapters, and links that go with them."
   },
   {
-    q: "How do I choose between planetary, hollow-bore, and frameless?",
-    a: "Planetary is the default: best price per Nm, decent backdrivability at low ratios, some backlash. Hollow-bore is the same idea with a through shaft, so power and CAN run inside the joint instead of around it — worth it once an arm has more than two or three degrees of freedom. Frameless sets have no housing at all and suit teams designing their own actuator geometry. If you are closing a torque loop, stay at low ratios or go direct drive."
+    q: "How do I choose between AK, AKE, AKA, AKH and frameless?",
+    a: "AK is the default: best price per Nm, decent backdrivability at low ratios, some backlash. AKE trades a little of that range for a stiffer joint with less lost motion. AKA takes radial load directly, which is what a drive wheel puts on a joint. AKH is the same idea as AK with a hollow output shaft, so power and CAN run inside the joint instead of around it — worth it once an arm has more than two or three degrees of freedom. Frameless sets have no housing at all and suit teams designing their own actuator geometry. If you are closing a torque loop, stay at low ratios or go direct drive."
   },
   {
     q: "How can I pay?",

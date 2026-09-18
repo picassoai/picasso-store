@@ -1,0 +1,16 @@
+# GitHub Pages builds this site with Jekyll. Nothing here uses Jekyll's
+# templating -- no page has front matter -- so the only job of this file is to
+# keep the build tooling and the worker's source off the public site.
+#
+#   README.md   internal notes, including an out-of-date to-do list
+#   tools/      the static-page generator
+#   worker/     the Cloudflare worker's source and price table. It holds no
+#               secret -- STRIPE_SECRET_KEY lives in Cloudflare -- but there is
+#               no reason to publish how checkout validates a request.
+#
+# The site never fetches any of these at runtime; the worker is pasted into
+# Cloudflare by hand, not served from here.
+exclude:
+  - README.md
+  - tools
+  - worker
