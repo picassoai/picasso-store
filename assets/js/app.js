@@ -8,6 +8,8 @@
 
   var S = window.SITE, COLS = window.COLLECTIONS, PRODUCTS = window.PRODUCTS;
   var CART_KEY = "picassoai.cart.v1";
+  /* The last order whose cart was cleared, so it is cleared once and not again. */
+  var PAID_KEY = "picassoai.paid.v1";
 
   /* ---------- small helpers ------------------------------------------ */
 
@@ -2100,6 +2102,17 @@
       refEl.innerHTML = "Order reference <strong>" + esc(ref) + "</strong> — " +
         'keep it to <a href="track.html?o=' + encodeURIComponent(ref) + '">track this order</a>.';
       refEl.hidden = false;
+
+      /* Paid, so the cart is finished with. Checkout redirects through
+         stripe.com and back here, which is why nothing on this side had
+         cleared it. Remember which order was cleared: reopening an old
+         confirmation link should not empty a cart filled since. */
+      try {
+        if (localStorage.getItem(PAID_KEY) !== ref) {
+          Cart.clear();
+          localStorage.setItem(PAID_KEY, ref);
+        }
+      } catch (e) { Cart.clear(); }
     }
     renderHeader();
     renderFooter();
