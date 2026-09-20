@@ -51,6 +51,51 @@ const CORS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
+/* Rate limit.
+ *
+ * CORS is not a defence: it only constrains browsers, and a plain curl sails
+ * straight past it. Nothing here risks money - every price is looked up server
+ * side and the order ceiling is enforced below - but without a limit anyone can
+ * loop on this endpoint and fill the Stripe dashboard with dead sessions, burn
+ * the account's API quota and eat the free Workers allowance.
+ *
+ * The counter lives in the isolate, not in KV or a Durable Object, because those
+ * need a binding configured by hand and this worker has to stay a single file
+ * that gets pasted into the dashboard. The cost of that choice: the limit is per
+ * isolate, so traffic spread across Cloudflare colos gets more headroom than the
+ * number below suggests. It still stops what it is aimed at - one script
+ * hammering from one machine, which lands in one colo.
+ *
+ * 12 a minute per IP per path is far above any human: a buyer clicks Checkout
+ * once and retries twice at worst. A loop hits it in seconds.
+ */
+const RATE_WINDOW_MS = 60000;
+const RATE_MAX = 12;
+const hits = new Map();
+
+function rateLimited(request, path) {
+  /* Cloudflare always sets this. If it is somehow absent, allow the request:
+     bucketing every unidentified caller together would throttle real buyers,
+     and this guards against nuisance, not fraud. */
+  const ip = request.headers.get("CF-Connecting-IP");
+  if (!ip) return false;
+
+  const now = Date.now();
+  const cutoff = now - RATE_WINDOW_MS;
+  const key = ip + " " + path;
+  const recent = (hits.get(key) || []).filter((t) => t > cutoff);
+  recent.push(now);
+  hits.set(key, recent);
+
+  /* A long-lived isolate would otherwise keep every IP it has ever seen. */
+  if (hits.size > 5000) {
+    for (const [k, times] of hits) {
+      if (times[times.length - 1] <= cutoff) hits.delete(k);
+    }
+  }
+  return recent.length > RATE_MAX;
+}
+
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -176,8 +221,26 @@ function paypalAmount(priced, tax) {
 
 export default {
   async fetch(request, env) {
+    /* Preflight is legitimate and costs nothing, so it is not counted. */
     if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
     if (request.method !== "POST") return json({ error: "POST only" }, 405);
+
+    const path = new URL(request.url).pathname.replace(/\/+$/, "");
+
+    /* Checked before the body is read, so a flood costs almost nothing. */
+    if (rateLimited(request, path)) {
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Wait a minute and try again." }),
+        {
+          status: 429,
+          headers: {
+            "Content-Type": "application/json",
+            "Retry-After": String(RATE_WINDOW_MS / 1000),
+            ...CORS,
+          },
+        }
+      );
+    }
 
     let payload;
     try {
@@ -186,7 +249,6 @@ export default {
       return json({ error: "Malformed request." }, 400);
     }
 
-    const path = new URL(request.url).pathname.replace(/\/+$/, "");
     try {
       if (path === "/order") return await orderStatus(payload, env);
       if (path === "/paypal/order") return await paypalOrder(payload, env);
