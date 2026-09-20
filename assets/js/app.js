@@ -370,7 +370,7 @@
             '<li><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a></li>' +
           '</ul></div>' +
           '<div class="news"><h4>Get updates</h4>' +
-            '<p>New models, price breaks, and catalogue updates. Roughly monthly.</p>' +
+            '<p>New models and price changes, when there are some. Leave your email and we will let you know.</p>' +
             '<form data-newsletter novalidate>' +
               '<label class="sr" for="news-email">Email</label>' +
               '<input class="field" id="news-email" name="email" type="email" placeholder="you@company.com" required>' +
@@ -412,13 +412,13 @@
       fd.append("form", "newsletter");
 
       postForm(fd).then(function () {
-        note.textContent = "Thanks — you are on the list.";
+        note.textContent = "Thanks — we have your address.";
         input.value = "";
-        toast("You are subscribed.");
+        toast("Got your email.");
       }).catch(function (err) {
-        /* Say it failed rather than let them think they subscribed. */
-        note.textContent = "That did not go through. Email " + S.email + " and we will add you.";
-        toast("Signup failed.");
+        /* Say it failed rather than let them think we have their address. */
+        note.textContent = "That did not go through. Email " + S.email + " and we will note it down.";
+        toast("That did not send.");
       }).then(function () {
         if (btn) { btn.disabled = false; btn.textContent = label; }
       });
