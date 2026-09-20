@@ -346,7 +346,10 @@ def main():
     urls = []
 
     for f in STATIC_PAGES:
-        urls.append("%s/%s" % (SITE, f))
+        # The homepage is served at both / and /index.html. The sitemap has to
+        # name the same one its canonical does, or the two forms compete and
+        # Google picks its own.
+        urls.append(SITE + "/" if f == "index.html" else "%s/%s" % (SITE, f))
 
     cols = parse_taxonomy(data_src, "COLLECTIONS", "parent:")
     actuators = integrated_ids(data_src)
