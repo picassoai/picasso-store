@@ -24,6 +24,24 @@
   function money(cents) {
     return "$" + Number(cents).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
+  /* Volume breaks, printed whole and with the one this order has reached
+     called out. A buyer refused the Checkout button wants to know what the
+     quote is likely to say, not just that there will be one. Rounded to whole
+     dollars: "$5,000+" reads as a threshold, "$5,000.00+" reads as a price. */
+  function tierLine(sub) {
+    var tiers = (window.SITE.volumeTiers || []);
+    if (!tiers.length) return "";
+    var reached = null;
+    tiers.forEach(function (t) { if (sub >= t.from) reached = t; });
+    return '<p class="note muted" style="font-size:12.5px;margin-top:10px">' +
+      "Volume discount off list: " +
+      tiers.map(function (t) {
+        return "$" + t.from.toLocaleString("en-US") + "+ " + t.off + "%";
+      }).join(" · ") +
+      (reached ? ". This order reaches <strong>" + reached.off + "% off</strong>." : ".") +
+      "</p>";
+  }
+
   /* Generated static pages (tools/build-static.py) carry their route in
      window.ROUTE instead of a query string, so a crawler gets a real title and
      body in the source. A query string still wins when one is present. */
@@ -1414,7 +1432,8 @@
                 money(S.selfServeMax) + ' are quoted, not paid online.</strong> ' +
                 'At this size the volume price and the freight are both worth working ' +
                 'out properly, and you will do better on a quote than on this page.</p>' +
-              '<a class="btn btn-accent btn-block" href="checkout.html">Request a quote for this order</a>'
+              '<a class="btn btn-accent btn-block" href="checkout.html">Request a quote for this order</a>' +
+              tierLine(sub)
             : S.checkoutEndpoint
             ? '<button class="btn btn-accent btn-block" type="button" data-pay-now>Checkout</button>' +
               '<p class="note muted" style="font-size:12.5px;margin-top:10px" data-pay-note>' +

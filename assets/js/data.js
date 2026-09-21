@@ -33,11 +33,23 @@ window.SITE = {
      up a change when checkout.bundled.js is pasted into the dashboard. */
 
   /* Above this order value the cart stops offering online payment and sends
-     the buyer to a quote instead. Not a margin limit — the markup is a flat
-     12% at every order size — but an order this size deserves the
+     the buyer to a quote instead, because an order this size deserves the
      volume price from the supplier and freight worked out by a person. The
      worker enforces it too; the button alone is only a suggestion. */
   selfServeMax: 5000,
+
+  /* Published volume discounts, off the list price of the goods. Nothing here
+     is applied by code: an order this size is quoted rather than paid online,
+     so these are the numbers a person quotes from. They are printed anyway,
+     because a buyer sizing up a fleet order should be able to see the break
+     before deciding whether it is worth asking.
+     The FAQ answer and the "Request Volume Quote" card further down repeat
+     these in prose. Change all three together. */
+  volumeTiers: [
+    { from: 5000,  off: 3 },
+    { from: 10000, off: 5 },
+    { from: 25000, off: 8 }
+  ],
   /* Freight zones, charged once per order. This array is the ONE source of
      truth: tools/build-static.py copies it verbatim into the worker, so what
      the cart shows and what Stripe charges cannot drift apart. Keys are quoted
@@ -614,7 +626,7 @@ window.PAYMENT_METHODS = [
   {
     id: "quote", label: "Request Volume Quote", eyebrow: "Over $5,000",
     blurb: "Volume pricing, scheduled releases, and custom configurations.",
-    detail: "Orders over $5,000 are priced with a volume discount. Tell us the quantity and the schedule you need and we will come back with a firm number.",
+    detail: "Orders over $5,000 are priced with a volume discount off list: 3% from $5,000, 5% from $10,000, 8% from $25,000. Tell us the quantity and the schedule you need and we will come back with a firm number.",
     fee: "Reply within 2 business days"
   }
 ];
@@ -630,7 +642,7 @@ window.FAQ = [
   },
   {
     q: "How can I pay?",
-    a: "Card, Apple Pay and Google Pay at checkout, or ACH bank transfer. ACH costs a fraction of card on a larger order, so we suggest it once an order passes about $1,000. Over $5,000 you get volume pricing: send us the order and we come back with the discounted price rather than charging list at checkout."
+    a: "Card, Apple Pay and Google Pay at checkout, or ACH bank transfer. ACH costs a fraction of card on a larger order, so we suggest it once an order passes about $1,000. Over $5,000 you get volume pricing off list: 3% from $5,000, 5% from $10,000, and 8% from $25,000. Send us the order and we come back with the discounted price rather than charging list at checkout."
   },
   {
     q: "How fast will my order arrive?",
