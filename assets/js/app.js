@@ -1472,6 +1472,7 @@
         var status = d.refunded ? "Refunded"
           : d.tracking ? "Shipped"
           : d.paid ? "Paid — preparing your shipment"
+          : d.clearing ? "Bank payment clearing, usually three to four business days"
           : "Payment not completed";
         var track = d.tracking
           ? (d.trackingUrl

@@ -316,6 +316,12 @@ async function orderStatus(payload, env) {
     placed: full.created,
     amount: money(full.amount),
     paid: full.status === "succeeded",
+    /* An ACH debit sits at "processing" for a few business days after the
+       customer has done everything right. Without this it fell through to the
+       same branch as a failed card and the page told them their payment had
+       not completed, which is both false and the likeliest way to make someone
+       pay a second time. */
+    clearing: full.status === "processing",
     refunded: Boolean(charge.refunded) || (charge.amount_refunded || 0) > 0,
     carrier: meta.carrier || "",
     tracking: meta.tracking || "",
