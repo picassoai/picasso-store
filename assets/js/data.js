@@ -626,11 +626,11 @@ window.FAQ = [
   },
   {
     q: "How do I choose between AK, AKE, AKA, AKH and frameless?",
-    a: "AK is the default: best price per Nm, decent backdrivability at low ratios, some backlash. AKE trades a little of that range for a stiffer joint with less lost motion. AKA takes radial load directly, which is what a drive wheel puts on a joint. AKH is the same idea as AK with a hollow output shaft, so power and CAN run inside the joint instead of around it — worth it once an arm has more than two or three degrees of freedom. Frameless sets have no housing at all and suit teams designing their own actuator geometry. If you are closing a torque loop, stay at low ratios or go direct drive."
+    a: "AK is the default: best price per Nm, decent backdrivability at low ratios, some backlash. AKE trades a little of that range for a stiffer joint with less lost motion. AKA takes radial load directly, which is what a drive wheel puts on a joint. AKH is the same idea as AK with a hollow output shaft, so power and CAN run inside the joint instead of around it, which is worth it once an arm has more than two or three degrees of freedom. Frameless sets have no housing at all and suit teams designing their own actuator geometry. If you are closing a torque loop, stay at low ratios or go direct drive."
   },
   {
     q: "How can I pay?",
-    a: "Card, Apple Pay and Google Pay at checkout, or ACH bank transfer — ACH costs a fraction of card on a larger order, so we suggest it once an order passes about $1,000. Over $5,000 you get volume pricing: send us the order and we come back with the discounted price rather than charging list at checkout."
+    a: "Card, Apple Pay and Google Pay at checkout, or ACH bank transfer. ACH costs a fraction of card on a larger order, so we suggest it once an order passes about $1,000. Over $5,000 you get volume pricing: send us the order and we come back with the discounted price rather than charging list at checkout."
   },
   {
     q: "How fast will my order arrive?",
@@ -638,11 +638,11 @@ window.FAQ = [
   },
   {
     q: "Do I pay tariffs or import duties?",
-    a: "Not on orders to the United States. Our goods are made overseas, so duty and tariffs apply to every shipment — we pay them, and the price at checkout is the price you pay. Nothing arrives later from the carrier or a customs broker. International orders are different: duty varies a great deal by destination, so those are quoted individually with the charges itemised before you pay."
+    a: "Not on orders to the United States. Our goods are made overseas, so duty and tariffs apply to every shipment. We pay them, and the price at checkout is the price you pay. Nothing arrives later from the carrier or a customs broker. International orders are different: duty varies a great deal by destination, so those are quoted individually with the charges itemised before you pay."
   },
   {
     q: "What if a part is faulty, or I ordered the wrong one?",
-    a: "Email info@picassointelligence.com with your order reference and what happened, and we send back an RMA number and the return address — do not ship anything before you have both, or the parcel cannot be matched to an order and gets held. A unit that fails from a manufacturing defect is replaced outright for six months from delivery, with no restocking fee. Unopened parts you no longer want go back within 14 days, less a 15% restocking fee and return shipping. Once a unit has been unpacked and powered it can only come back under the warranty, so if you are unsure which model fits, ask us before you buy — that costs nothing. Shipping itself is not refunded, and where an order shipped free for passing $200 the freight we paid comes out of the refund. Refunds reach the original payment method within five business days of the parts arriving and being inspected; full terms are on the Returns page linked in the footer."
+    a: "Email info@picassointelligence.com with your order reference and what happened, and we send back an RMA number and the return address. Do not ship anything before you have both, or the parcel cannot be matched to an order and gets held. A unit that fails from a manufacturing defect is replaced outright for six months from delivery, with no restocking fee. Unopened parts you no longer want go back within 14 days, less a 15% restocking fee and return shipping. Once a unit has been unpacked and powered it can only come back under the warranty, so if you are unsure which model fits, ask us before you buy. That costs nothing. Shipping itself is not refunded, and where an order shipped free for passing $200 the freight we paid comes out of the refund. Refunds reach the original payment method within five business days of the parts arriving and being inspected; full terms are on the Returns page linked in the footer."
   },
   {
     q: "Can you supply something not listed here?",
