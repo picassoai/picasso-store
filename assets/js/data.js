@@ -5,7 +5,11 @@
 window.SITE = {
   brand: "Picasso Intelligence",
   tagline: "",
-  announce: ["US-based team", "Engineering support before and after you buy"],
+  /* The strip at the top of every page. "No customs bill" rather than "no
+     tariffs": the tariff is real and we pay it, and a buyer who has been
+     stung before is afraid of the bill, not of the word. The US qualifier
+     stays because an international order really can be charged on delivery. */
+  announce: ["US-based team", "No customs bill on US orders", "Engineering support before and after you buy"],
   /* No phone number on the site by choice — enquiries come in by email so
      they arrive with the model and quantity written down. */
   email: "info@picassointelligence.com",
@@ -650,7 +654,7 @@ window.FAQ = [
   },
   {
     q: "Do I pay tariffs or import duties?",
-    a: "Not on orders to the United States. Our goods are made overseas, so duty and tariffs apply to every shipment. We pay them, and the price at checkout is the price you pay. Nothing arrives later from the carrier or a customs broker. International orders are different: duty varies a great deal by destination, so those are quoted individually with the charges itemised before you pay."
+    a: "Not on orders to the United States. Our goods are made overseas, so duty and tariffs apply to every shipment. We pay them, and the price at checkout is the price you pay. Nothing arrives later from the carrier or a customs broker. Order the same part direct from the factory and both of those land on you instead, after the parts have already shipped. International orders are different: duty varies a great deal by destination, so those are quoted individually with the charges itemised before you pay."
   },
   {
     q: "What if a part is faulty, or I ordered the wrong one?",

@@ -286,7 +286,12 @@
     var appActive = apps.some(function (a) { return a.id === hereApp; });
 
     mount.outerHTML =
-      '<div class="announce">' + S.announce.map(esc).join('<span>|</span>') + '</div>' +
+      '<div class="announce">' +
+        S.announce.map(function (a, i) {
+          return '<span class="ann">' +
+            (i ? '<span class="sep">|</span>' : "") + esc(a) + "</span>";
+        }).join("") +
+      "</div>" +
       '<header class="site-header">' +
         '<div class="header-bar">' +
           '<button class="icon-btn burger" type="button" data-open-drawer aria-label="Open menu">' + ICON.burger + '</button>' +

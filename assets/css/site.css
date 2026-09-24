@@ -121,7 +121,13 @@ img, svg { max-width: 100%; }
   font-size: 12px; text-align: center; padding: 10px 16px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.announce span { opacity: .4; margin: 0 10px; }
+.announce .sep { opacity: .4; margin: 0 10px; }
+/* The strip clips instead of scrolling, so a third item did not shorten the
+   others - it vanished off the right edge unread. On a phone only the first
+   two are shown, and the order in SITE.announce decides which survive. */
+@media (max-width: 640px) {
+  .announce .ann:nth-child(n+3) { display: none; }
+}
 
 .site-header {
   position: sticky; top: 0; z-index: 40;
