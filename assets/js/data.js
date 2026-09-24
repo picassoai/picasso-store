@@ -5,11 +5,13 @@
 window.SITE = {
   brand: "Picasso Intelligence",
   tagline: "",
-  /* The strip at the top of every page. "No customs bill" rather than "no
-     tariffs": the tariff is real and we pay it, and a buyer who has been
-     stung before is afraid of the bill, not of the word. The US qualifier
-     stays because an international order really can be charged on delivery. */
-  announce: ["US-based team", "No customs bill on US orders", "Engineering support before and after you buy"],
+  /* The strip at the top of every page, rendered by renderChrome, so this list
+     is the whole site's banner. "No Tariffs" is the trade's shorthand for DDP
+     and what a competitor selling the same parts runs; the tariff is real and
+     we pay it, and the buyer pays nothing on delivery. It holds for US orders.
+     International orders are quoted per country with duty itemised, which the
+     FAQ and the shipping policy say - the banner has no room to. */
+  announce: ["US-based team", "No Tariffs", "Engineering support before and after you buy"],
   /* No phone number on the site by choice — enquiries come in by email so
      they arrive with the model and quantity written down. */
   email: "info@picassointelligence.com",
