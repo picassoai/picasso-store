@@ -1189,7 +1189,11 @@
     return '<div class="addon"><div><span class="addon-label">Matching driver board</span>' +
       '<a href="' + productHref(b) + '">' + esc(b.name) + "</a> " +
       '<span class="addon-price">' + money(b.price) + "</span></div>" +
-      '<button class="btn btn-ghost" type="button" data-add="' + esc(b.id) + '">Add</button></div>';
+      /* Named, not just "Add". Beside the product's own "Add to cart" a bare
+         "Add" reads as a second helping of the actuator, and the board is a
+         separate part the motor does not run without. */
+      '<button class="btn btn-ghost" type="button" data-add="' + esc(b.id) +
+        '">Add driver board</button></div>';
   }
 
   function specTiles(p) {
