@@ -1186,6 +1186,24 @@
     if (!p.driverBoard) return "";
     var b = product(p.driverBoard);
     if (!b) return "";
+    /* If this motor has a with-driver version, that version is the answer and
+       it costs less than this one plus the loose board - AK80-9 is $112.00 to
+       step up and $145.49 to add the board. Offering both, with the board sat
+       directly under Add to cart, sent people down the dearer path for the
+       same outcome and charged them for the privilege of assembling it. */
+    var fitted = variants(p).filter(function (v) {
+      return v.id !== p.id && /with\s+driver/i.test(v.variantLabel || v.name || "");
+    })[0];
+    if (fitted && p.price != null && fitted.price != null && b.price != null &&
+        fitted.price - p.price < b.price) {
+      var step = fitted.price - p.price;
+      return '<div class="addon"><div>' +
+        '<span class="addon-label">Need the driver?</span>' +
+        esc("With driver is " + money(step) + " more than this one and comes " +
+            "assembled " + "—" + " " + money(b.price - step) +
+            " less than fitting the board yourself.") + "</div>" +
+        '<a class="btn btn-ghost" href="' + productHref(fitted) + '">See with driver</a></div>';
+    }
     return '<div class="addon"><div><span class="addon-label">Matching driver board</span>' +
       '<a href="' + productHref(b) + '">' + esc(b.name) + "</a> " +
       '<span class="addon-price">' + money(b.price) + "</span></div>" +
