@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#548490">
+<title>How to read a CubeMars part number — Picasso Intelligence</title>
+<meta name="description" content="What the digits mean in AK80-9, RI70, GL60 and SW17 — the reduction, the frame size, the KV and the thrust rating, decoded against the parts themselves.">
+<link rel="canonical" href="https://picassointelligence.com/part-numbers.html">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="static">
+
+<div id="site-header"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Store</a><span>/</span>How to read a part number</div>
+    <h1>How to read a part number</h1>
+  </div>
+</section>
+
+<div class="wrap-narrow prose">
+  <p>CubeMars name five different kinds of product on five different schemes and
+    publish none of them. This is what the digits mean, worked out against the
+    parts themselves. Where a reading comes from comparing the number with the
+    measured part it says so, and where there is no rule to be had it says that
+    rather than guessing.</p>
+
+  <h2>AK, AKE, AKH — geared joint actuators</h2>
+  <div class="pn-strip">
+    <span><b>AK</b>Family</span>
+    <span><b>80</b>Frame size</span>
+    <span><b>9</b>9:1 reduction</span>
+    <span><b>V3.0</b>Revision</span>
+    <span><b>KV100</b>Speed constant</span>
+  </div>
+
+  <p><strong>The number after the dash is the reduction.</strong> It holds right
+    across the range: <a href="ak40-10-v3-0-kv170.html">AK40-<b>10</b></a> is
+    10:1, <a href="ak45-36-v3-0-kv80.html">AK45-<b>36</b></a> is 36:1,
+    <a href="ak80-64-kv80.html">AK80-<b>64</b></a> is 64:1 and
+    <a href="akh70-48-v1-0-kv41.html">AKH70-<b>48</b></a> is 48:1. It is the one
+    part of the name you can rely on.</p>
+
+  <p><strong>The frame size is not the outside diameter.</strong> An
+    <a href="ak80-9-v3-0-kv100-without-driver.html">AK80-9</a> measures Ф98 mm
+    across its housing; the 80 describes the motor inside it. From AK40 up to
+    AK80 the two track each other closely enough to be useful, and then AK10
+    breaks the pattern completely — it is not a 10 mm anything, it is a
+    higher-torque motor in the same Ф98 housing as the AK80. Read the number as
+    a series name and take the diameter off the specification table.</p>
+
+  <p><strong>KV is the motor's speed constant</strong>, in rpm per volt, measured
+    at the rotor and before the gearbox. A high KV is a fast motor, not a strong
+    one, and the same actuator is often sold in two KVs: the low-KV version
+    makes more torque for the same current and gives up top speed for it.</p>
+
+  <p><strong>With driver and without.</strong> The with-driver version has the
+    controller built into the housing and is ready to take CAN. The
+    without-driver version is the bare actuator, for a customer running their
+    own electronics or fitting
+    <a href="accessories.html">the driver board</a> separately. Where both
+    exist, the with-driver version is the cheaper way to end up with a driver.</p>
+
+  <p class="pn-unknown">CubeMars do not publish what the <b>E</b>, <b>A</b> and
+    <b>H</b> stand for in AKE, AKA and AKH. Each is a distinct family at similar
+    frame sizes — AKH is the hollow-shaft one — and the reduction still reads off
+    the trailing number. We have asked them.</p>
+
+  <h2>RI, RO, GL — frameless and gimbal motors</h2>
+  <div class="pn-strip">
+    <span><b>RI</b>Inner rotor</span>
+    <span><b>70</b>Frame size</span>
+    <span><b>KV95</b>Speed constant</span>
+  </div>
+
+  <p><b>RI</b> is an inner-rotor frameless motor, <b>RO</b> an outer-rotor one,
+    and <b>GL</b> a gimbal motor. A frameless motor is a rotor and a stator and
+    nothing else: no housing, no bearings, no shaft. You provide those, which is
+    the point — it lets the motor disappear into your own structure.</p>
+
+  <p>The number is a frame size rather than a diameter you will measure:
+    <a href="ri70-kv95-without-hall.html">RI70</a> is Ф76,
+    <a href="ro80-kv105-lite.html">RO80</a> is Ф92.6,
+    <a href="gl60-kv25-without-encoder.html">GL60</a> is Ф69. On the RO parts
+    <b>Lite</b> means no hall sensors and <b>Standard</b> means with them; on the
+    RI and GL parts that choice is spelled out in words instead.</p>
+
+  <p class="pn-unknown">The <b>-PH</b> on
+    <a href="ri75-ph-kv70.html">RI75-PH</a>, RI85-PH and RI115-PH is not
+    explained in any CubeMars document we have found.</p>
+
+  <h2>SW, DW, W — underwater thrusters</h2>
+  <div class="pn-strip">
+    <span><b>SW</b>Shallow water</span>
+    <span><b>17</b>≥17 kgf thrust</span>
+    <span><b>CW</b>Rotation</span>
+  </div>
+
+  <p><strong>The number is the bollard thrust in kgf</strong>, not a diameter and
+    not a power rating — <a href="sw17-thruster.html">SW17</a> is rated at 17 kgf
+    or better, <a href="dw25-thruster.html">DW25</a> at 25 kgf. This is the one
+    CubeMars scheme that names the thing you actually select on.</p>
+
+  <p><b>SW</b> is the shallow-water series, rated to 30 m. <b>DW</b> goes
+    deeper. <b>CW</b> and <b>CCW</b> are the propeller's rotation: a vessel with
+    two thrusters wants one of each, or it will yaw under thrust.</p>
+
+  <p>A thruster is a complete propulsion unit — motor, propeller, nozzle and a
+    sealed housing — so it is quoted in kilograms-force, not in newton-metres,
+    and it needs a plain sensorless ESC rather than the CAN controller a joint
+    module uses.</p>
+
+  <h2>TW — electronic speed controllers</h2>
+  <p><a href="tw-80a-12s.html">TW-<b>80A</b>-<b>12S</b></a> reads as 80 A
+    continuous on up to a 12-cell lithium pack. That is the usual convention for
+    an ESC and it matches the parts, but CubeMars do not print the rule, so size
+    the controller from its own specification sheet rather than from its
+    name.</p>
+
+  <h2>Driver boards</h2>
+  <p>A driver board is named after the actuator it fits, not after itself, and
+    they are not interchangeable: the board for an
+    <a href="driver-board-for-ak-series-ak80-9-v30.html">AK80-9 V3.0</a> is a
+    different part from the one for an AK80-8. When in doubt, the product page
+    for your motor links its own board.</p>
+
+  <h2>Why we print the numbers exactly as CubeMars does</h2>
+  <p>AK80-9 is stamped on the motor, indexed by search engines and typed into
+    purchase orders in that form. We show it that way even where a hyphen or a
+    space would read more easily, because a part number that exists only on our
+    pages is a part number nobody can match to an invoice, a customs entry or a
+    datasheet.</p>
+
+  <p>If you know the model and want the figures,
+    <a href="select.html">the specification table</a> lists every part we carry
+    on one page, sorted on whichever column matters to you. If you know the job
+    but not the part, <a href="contact.html">tell us what the joint has to
+    do</a>.</p>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

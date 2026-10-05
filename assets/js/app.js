@@ -405,6 +405,7 @@
         '<div class="wrap footer-legal">' +
           '<span>&copy; ' + S.year + " " + esc(S.brand) + '</span>' +
           '<nav>' +
+            '<a href="part-numbers.html">How to read a part number</a>' +
             '<a href="shipping-policy.html">Shipping</a>' +
             '<a href="refund-policy.html">Returns</a>' +
             '<a href="terms-of-service.html">Terms</a>' +

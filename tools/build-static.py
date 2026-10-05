@@ -39,6 +39,9 @@ STATIC_PAGES = [
     # before a first order from a supplier they have not used.
     "shipping-policy.html", "refund-policy.html",
     "terms-of-service.html", "privacy-policy.html",
+    # "what does the 9 in AK80-9 mean" is a real search, and nobody - CubeMars
+    # included - answers it in English.
+    "part-numbers.html",
 ]
 
 
