@@ -13,3 +13,6 @@ desktop.ini
 *.pdf
 *.eml
 *.msg
+
+# Byte-compiled generator modules.
+tools/__pycache__/

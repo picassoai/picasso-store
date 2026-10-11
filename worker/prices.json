@@ -439,6 +439,16 @@
     "name": "RI85-PH KV85",
     "series": "RI Series"
   },
+  "rmd-h-50-15": {
+    "cents": 18000,
+    "name": "MyActuator RMD-H-50-15",
+    "series": "H Series"
+  },
+  "rmd-l-4010": {
+    "cents": 14000,
+    "name": "MyActuator RMD-L-4010",
+    "series": "L Series"
+  },
   "ro100-kv55-lite": {
     "cents": 17573,
     "name": "RO100 KV55 Lite",

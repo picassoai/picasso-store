@@ -130,8 +130,22 @@ window.COLLECTIONS = [
     blurb: "Rotor and stator sets with no housing, for teams designing their own actuator.",
     long: "Frameless sets ship as a matched rotor and stator with no housing, bearings, or shaft, so the actuator geometry is entirely yours. RI inrunner sets suit long, slim joints; RO outrunner sets suit short, wide pancake designs."
   },
+  /* Neither of the two parts here fits anywhere else: they have no gearbox,
+     so they are not integrated actuators; they have a housing, bearings and a
+     shaft, so they are not frameless sets; and they are not tuned for the
+     near-zero-speed holding a gimbal motor is built for. Two products is a
+     thin collection, but filing them under a heading that is wrong is worse.
+     The comment lives outside the braces because tools/build-static.py finds
+     a collection with `{\s*id:` and will not see one that opens with a
+     comment - that is how this collection got no page the first time. */
   {
-    id: "underwater", name: "Underwater Thrusters", parent: "actuators", home: 5, art: "prop",
+    id: "directdrive", name: "Direct Drive Motors", parent: "actuators", home: 5, art: "frameless",
+    tease: "No gearbox, no backlash",
+    blurb: "Housed motors that drive the load straight off the rotor, with no reduction in between.",
+    long: "A gearbox multiplies torque and adds backlash, friction and one more thing to wear out. A direct drive has none of it: what the rotor makes is what the output gives, and the position you command is the position you get. The price is torque — these are measured in tenths of a newton-metre where a geared joint of the same diameter is measured in tens — so they suit light, fast, precise axes rather than anything that has to hold a load up."
+  },
+  {
+    id: "underwater", name: "Underwater Thrusters", parent: "actuators", home: 6, art: "prop",
     tease: "Sealed thrusters and ESCs",
     blurb: "Sealed thrusters for ROVs, unmanned surface vessels and electric surfboards.",
     long: "Sealed units built to run submerged without maintenance: the working parts sit inside an aluminium casing filled with thermally conductive compound, so heat leaves through the water rather than through a fan. The choice between the two series is depth \u2014 SW is rated to 30 m and suits surface craft and boards, DW to 350 m and suits ROVs. Both need an external ESC, sold two to a set."
@@ -143,7 +157,7 @@ window.COLLECTIONS = [
     long: "High pole count and a large hollow centre, tuned so the motor holds position smoothly at near-zero speed. Standard picks for camera stabilisers, lidar and radar heads, and any pod that must stay pointed while the vehicle under it does not."
   },
   {
-    id: "accessories", name: "Accessories", parent: "actuators", home: 6, art: "accessory",
+    id: "accessories", name: "Accessories", parent: "actuators", home: 7, art: "accessory",
     /* Left to itself the card picks the first accessory with a photo, which
        is a bare circuit board — it reads as a spare part, not a category.
        The R-LINK is the one accessory that looks like a product. */
@@ -311,6 +325,16 @@ window.PRODUCTS = [
   { id: "rubik-link-v3-0-cables", name: "RUBIK LINK V3.0 Cable Set", brand: "CubeMars", series: "Accessories", collection: "accessories", art: "accessory", size: 0.8, price: 5.60,
     blurb: "Replacement cable set. Supplied loose, not with a motor.",
     specs: { "Contents": "AKA debug ×2, AK debug ×2", "Fits": "RUBIK LINK V3.0" }, images: ["rubik-link-v3-0-cables-1.jpg"] },
+  /* MyActuator, not CubeMars. The brand is in the name on purpose: this site
+     stopped rendering brand anywhere on 2026-08-25, and a second maker's part
+     on an unlabelled card would read as a CubeMars one. Nothing else about
+     the brand UI comes back for these two. */
+  { id: "rmd-l-4010", name: "MyActuator RMD-L-4010", brand: "MyActuator", series: "L Series", collection: "directdrive", art: "frameless", size: 0.78, price: 140.00,
+    blurb: "A 40 mm direct drive with the driver built in: 0.15 N·m continuous off the rotor with no gearbox between it and the output, so there is no backlash to take up and nothing to wear. 92 g, CAN bus, 24 V.",
+    specs: { "Reduction Ratio": "1:1", "Rated Torque (N·m)": "0.15", "OD (mm)": "39.6", "Weight (g)": "92", "Peak Torque (N·m)": "0.33", "Rated Voltage (V)": "24", "Rated Speed (RPM)": "560", "No-Load Speed (RPM)": "1120", "Kt (N·m/A)": "0.1", "Rotor Type": "Outer rotor", "Communication": "CAN BUS", "Driving Way": "FOC" }, images: ["rmd-l-4010-1.png"] },
+  { id: "rmd-h-50-15", name: "MyActuator RMD-H-50-15", brand: "MyActuator", series: "H Series", collection: "directdrive", art: "hollow", size: 0.86, price: 180.00,
+    blurb: "A 50 mm direct drive with a 16 mm hollow bore through the middle, so the harness runs through the joint instead of around it. 0.35 N·m continuous, 0.9 N·m peak, no gearbox and no backlash.",
+    specs: { "Reduction Ratio": "1:1", "Rated Torque (N·m)": "0.35", "OD (mm)": "50", "Weight (g)": "240", "Peak Torque (N·m)": "0.9", "Rated Voltage (V)": "24", "Rated Power (W)": "91.6", "Rated Speed (RPM)": "2500", "No-Load Speed (RPM)": "3200", "Height (mm)": "46", "Hollow Bore (mm)": "16", "Kt (N·m/A)": "0.07", "Rotor Type": "Outer rotor", "Communication": "CAN BUS", "Driving Way": "FOC" }, images: ["rmd-h-50-15-1.png"] },
   { id: "sw7-thruster", name: "SW7 Thruster CW", brand: "CubeMars", series: "Underwater", collection: "underwater", art: "prop", size: 0.95, price: 268.69, variantGroupName: "SW7 Thruster", variantGroup: "sw7-thruster", variantAxis: "Rotation", variantLabel: "CW",
     blurb: "Sealed underwater thruster. The working parts sit inside a sealed aluminium casing filled with thermally conductive compound, so it sheds heat into the water it is running in and keeps sand and grit out. Two-stage sealing chamber on the main shaft.",
     specs: { "Maximum Bollard Thrust (kgf)": "≥7", "Rated Power (W)": "360", "Rated Voltage (V)": "36", "Applicable Water Depth": "0–30 m", "Propeller Diameter": "Ø80 mm", "Weight in Air (g)": "700", "Weight in Water (g)": "395", "Nozzle Material": "POM", "Shell Material": "Aluminium alloy", "Propeller Material": "Aluminium alloy", "Main Shaft Sealing": "Low-resistance dynamic seal", "Main Body Structure": "Two-stage sealing chamber", "Cable": "TPU (matte) Ø6.5 mm, 3×18 AWG, 1.5 m", "Driver": "External ESC (TW-40A-12S or TW-80A-12S)", "Operating Temperature": "0–40 °C (storage 0–50 °C)" }, images: ["sw7-thruster-1.jpg", "sw7-thruster-2.jpg", "sw7-thruster-3.jpg"] },

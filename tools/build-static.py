@@ -212,15 +212,20 @@ def product_page(p, actuators=frozenset(["integrated"])):
     summary = ", ".join(bits)
 
     kind = "actuator" if p["collection"] in actuators else (
-        "motor" if p["collection"] in ("frameless", "gimbal") else "accessory")
+        "motor" if p["collection"] in ("frameless", "gimbal", "directdrive")
+        else "accessory")
 
     title = "%s — %s %s | Picasso Intelligence" % (p["name"], torque_text(torque), kind) \
         if torque else "%s — %s | Picasso Intelligence" % (p["name"], p["series"])
-    desc = ("%s %s. %s. Full specifications and pricing from an authorized "
-            "North American CubeMars distributor." % (p["name"], kind, summary)) \
-        if summary else ("%s from the %s. Specifications and pricing from an "
-                         "authorized North American CubeMars distributor."
-                         % (p["name"], p["series"]))
+    # The distributor claim is true of CubeMars and of nothing else we list,
+    # so it is made on CubeMars pages and nowhere else.
+    auth = ("an authorized North American CubeMars distributor"
+            if p.get("brand", "CubeMars") == "CubeMars"
+            else "a US distributor")
+    desc = ("%s %s. %s. Full specifications and pricing from %s."
+            % (p["name"], kind, summary, auth)) if summary else (
+        "%s from the %s. Specifications and pricing from %s."
+        % (p["name"], p["series"], auth))
 
     # This block is what a crawler sees before JS runs; app.js replaces it with
     # the rendered product page, which states the same facts.
@@ -320,9 +325,17 @@ def parse_taxonomy(src, block_name, tail):
     return out
 
 
-def collection_page(c):
+def collection_page(c, products=None):
     slug = slugify(c["name"])
-    title = "%s — CubeMars | Picasso Intelligence" % c["name"]
+    # Name the brand only where there is one to name. Every collection
+    # held CubeMars alone until Direct Drive Motors, and a title reading
+    # "Direct Drive Motors - CubeMars" over a MyActuator part is a lie in
+    # the one place a search engine quotes verbatim.
+    brands = sorted({q.get("brand", "CubeMars") for q in (products or [])
+                     if q["collection"] == c["id"]})
+    title = ("%s — %s | Picasso Intelligence" % (c["name"], brands[0])
+             if len(brands) == 1
+             else "%s | Picasso Intelligence" % c["name"])
     return slug, page(title, c["blurb"], "%s/%s.html" % (SITE, slug),
                       '{ c: "%s" }' % c["id"],
                       browse_body(c["name"], c["blurb"]), "collection")
@@ -358,7 +371,7 @@ def main():
     actuators = integrated_ids(data_src)
     apps = parse_taxonomy(data_src, "APPLICATIONS", "art:")
     for c in cols:
-        slug, html = collection_page(c)
+        slug, html = collection_page(c, products)
         write("%s.html" % slug, html)
         urls.append("%s/%s.html" % (SITE, slug))
     for a in apps:
