@@ -124,6 +124,16 @@
     "name": "AKA60-6 KV80",
     "series": "AKA Series"
   },
+  "ake40-6-kv90": {
+    "cents": 13429,
+    "name": "AKE40-6 KV90",
+    "series": "AKE Series"
+  },
+  "ake50-8-kv110": {
+    "cents": 19029,
+    "name": "AKE50-8 KV110",
+    "series": "AKE Series"
+  },
   "ake60-8-kv80": {
     "cents": 24517,
     "name": "AKE60-8 KV80",
