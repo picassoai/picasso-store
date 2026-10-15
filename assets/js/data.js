@@ -73,7 +73,9 @@ window.SITE = {
      A second zone makes a "Ship to" selector appear in the cart by itself. */
   shippingZones: [
     { "code": "US", "name": "United States", "countries": ["US"], "dutyPaid": true,
-      "rates": [{ "upTo": 200, "cost": 10 }, { "upTo": null, "cost": 0 }] }
+      "rates": [{ "upTo": 75, "cost": 25 },
+                { "upTo": 200, "cost": 10 },
+                { "upTo": null, "cost": 0 }] }
   ],
   address: "215 W 125th St, New York, NY 10027",
   location: "New York",

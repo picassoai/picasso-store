@@ -1289,7 +1289,9 @@
               '<button class="btn btn-accent" type="button" data-add-pdp>Add to cart</button>' +
             "</div>" +
             '<p class="muted" style="font-size:13px">Check out from the cart by card, US bank ' +
-              'transfer, Apple Pay or Google Pay. Import duty on US orders is on us. ' +
+              'transfer, Apple Pay or Google Pay. Import duty on US orders is on us, and ' +
+              '<strong>shipping is free on orders of $200 or more</strong> — ' +
+              '<a href="shipping-policy.html">see the rates</a>. ' +
               'Volume pricing on orders over $5,000 — <a href="' + quoteHref(p) + '">request a quote</a>.</p>') +
         driverBoardLine(p) +
         specTiles(p) +

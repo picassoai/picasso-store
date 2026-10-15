@@ -829,6 +829,18 @@ select.field { appearance: none; background-image: none; }
 /* What CubeMars do not publish, set apart from what they do. */
 .prose p.pn-unknown { color: var(--ink-4); }
 
+/* The shipping bands, as a table rather than a sentence: three numbers in a
+   row of prose are three numbers nobody reads. */
+.ship-rates { border-collapse: collapse; margin: 18px 0 22px; font-size: 16px; }
+.ship-rates th {
+  text-align: left; font-weight: 400; color: var(--ink-2);
+  padding: 9px 28px 9px 0; border-bottom: 1px solid var(--line-soft);
+}
+.ship-rates td {
+  text-align: right; padding: 9px 0; border-bottom: 1px solid var(--line-soft);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
 .prose { padding: 10px 0 90px; font-size: 17px; color: var(--ink-2); }
 .prose h2 { font-size: 26px; margin: 40px 0 12px; color: var(--ink); }
 .prose li { margin-bottom: 8px; }
