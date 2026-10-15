@@ -1082,6 +1082,22 @@
       "price-desc":  byNum(function (p) { return p.price; }, -1)
     };
 
+    /* A diameter heading earns a row of its own when it collects several
+       models under it - "Ф98 mm" over the four AK80/AK10 parts says something.
+       Where every model is a different diameter, as the whole AKE series is,
+       each group holds one card in a four-column grid and the page turns into
+       one model per row with three quarters of every row empty. */
+    function groupsEarnTheirKeep(view) {
+      var seen = {}, most = 0;
+      view.forEach(function (p) {
+        var o = coreNum(p, "od");
+        var k = o == null ? "other" : String(o);
+        seen[k] = (seen[k] || 0) + 1;
+        if (seen[k] > most) { most = seen[k]; }
+      });
+      return most > 1;
+    }
+
     function draw() {
       var view = items.filter(keep);
       var mode = sort ? sort.value : "od-asc";
@@ -1090,7 +1106,7 @@
       if (!view.length) {
         grid.innerHTML = '<p class="muted">Nothing matches those filters. ' +
           '<button class="link-btn" type="button" data-reset>Clear filters</button></p>';
-      } else if (mode === "od-asc" && ods.length) {
+      } else if (mode === "od-asc" && ods.length && groupsEarnTheirKeep(view)) {
         /* Grouping only makes sense while the list is ordered by diameter;
            any other sort would have the rules cutting across the order. */
         var html = "", last = null;
