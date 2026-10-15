@@ -28,452 +28,452 @@
 
 const PRICES = {
   "ak10-9-v2-0-kv60": {
-    "cents": 89477,
+    "cents": 89500,
     "name": "AK10-9 V2.0 KV60",
     "series": "AK Series"
   },
   "ak10-9-v3-0-kv60": {
-    "cents": 89477,
+    "cents": 89500,
     "name": "AK10-9 V3.0 KV60",
     "series": "AK Series"
   },
   "ak40-10-kv170-with-driver": {
-    "cents": 15221,
+    "cents": 15200,
     "name": "AK40-10 KV170 with driver",
     "series": "AK Series"
   },
   "ak40-10-kv170-without-driver": {
-    "cents": 11189,
+    "cents": 11200,
     "name": "AK40-10 KV170 without driver",
     "series": "AK Series"
   },
   "ak40-10-v3-0-kv170": {
-    "cents": 15221,
+    "cents": 15200,
     "name": "AK40-10 V3.0 KV170",
     "series": "AK Series"
   },
   "ak45-10-kv75-with-driver": {
-    "cents": 17461,
+    "cents": 17500,
     "name": "AK45-10 KV75 with driver",
     "series": "AK Series"
   },
   "ak45-10-kv75-without-driver": {
-    "cents": 13429,
+    "cents": 13400,
     "name": "AK45-10 KV75 without driver",
     "series": "AK Series"
   },
   "ak45-10-v3-0-kv75": {
-    "cents": 17461,
+    "cents": 17500,
     "name": "AK45-10 V3.0 KV75",
     "series": "AK Series"
   },
   "ak45-36-kv80-with-driver": {
-    "cents": 20821,
+    "cents": 20800,
     "name": "AK45-36 KV80 with driver",
     "series": "AK Series"
   },
   "ak45-36-kv80-without-driver": {
-    "cents": 16789,
+    "cents": 16800,
     "name": "AK45-36 KV80 without driver",
     "series": "AK Series"
   },
   "ak45-36-v3-0-kv80": {
-    "cents": 20821,
+    "cents": 20800,
     "name": "AK45-36 V3.0 KV80",
     "series": "AK Series"
   },
   "ak60-39-v3-0": {
-    "cents": 50277,
+    "cents": 50300,
     "name": "AK60-39 V3.0",
     "series": "AK Series"
   },
   "ak60-6-v1-1-kv140": {
-    "cents": 33477,
+    "cents": 33500,
     "name": "AK60-6 V1.1 KV140",
     "series": "AK Series"
   },
   "ak60-6-v3-0-kv80": {
-    "cents": 33477,
+    "cents": 33500,
     "name": "AK60-6 V3.0 KV80",
     "series": "AK Series"
   },
   "ak70-10-kv100-with-driver": {
-    "cents": 55877,
+    "cents": 55900,
     "name": "AK70-10 KV100 with driver",
     "series": "AK Series"
   },
   "ak70-10-kv100-without-driver": {
-    "cents": 44677,
+    "cents": 44700,
     "name": "AK70-10 KV100 without driver",
     "series": "AK Series"
   },
   "ak70-9-v3-0-kv60-with-driver": {
-    "cents": 55877,
+    "cents": 55900,
     "name": "AK70-9 V3.0 KV60 with driver",
     "series": "AK Series"
   },
   "ak70-9-v3-0-kv60-without-driver": {
-    "cents": 44677,
+    "cents": 44700,
     "name": "AK70-9 V3.0 KV60 without driver",
     "series": "AK Series"
   },
   "ak80-64-kv80": {
-    "cents": 110869,
+    "cents": 110900,
     "name": "AK80-64 KV80",
     "series": "AK Series"
   },
   "ak80-8-kv60-with-driver": {
-    "cents": 63829,
+    "cents": 63800,
     "name": "AK80-8 KV60 with driver",
     "series": "AK Series"
   },
   "ak80-8-kv60-without-driver": {
-    "cents": 52629,
+    "cents": 52600,
     "name": "AK80-8 KV60 without driver",
     "series": "AK Series"
   },
   "ak80-9-v3-0-kv100-with-driver": {
-    "cents": 64949,
+    "cents": 64900,
     "name": "AK80-9 V3.0 KV100 with driver",
     "series": "AK Series"
   },
   "ak80-9-v3-0-kv100-without-driver": {
-    "cents": 53749,
+    "cents": 53700,
     "name": "AK80-9 V3.0 KV100 without driver",
     "series": "AK Series"
   },
   "aka10-9-kv60": {
-    "cents": 89477,
+    "cents": 89500,
     "name": "AKA10-9 KV60",
     "series": "AKA Series"
   },
   "aka60-6-kv80": {
-    "cents": 33477,
+    "cents": 33500,
     "name": "AKA60-6 KV80",
     "series": "AKA Series"
   },
   "ake40-6-kv90": {
-    "cents": 13429,
+    "cents": 13400,
     "name": "AKE40-6 KV90",
     "series": "AKE Series"
   },
   "ake50-8-kv110": {
-    "cents": 19029,
+    "cents": 19000,
     "name": "AKE50-8 KV110",
     "series": "AKE Series"
   },
   "ake60-8-kv80": {
-    "cents": 24517,
+    "cents": 24500,
     "name": "AKE60-8 KV80",
     "series": "AKE Series"
   },
   "ake80-8-kv30": {
-    "cents": 38069,
+    "cents": 38100,
     "name": "AKE80-8 KV30",
     "series": "AKE Series"
   },
   "ake90-8-kv35": {
-    "cents": 54197,
+    "cents": 54200,
     "name": "AKE90-8 KV35",
     "series": "AKE Series"
   },
   "akh70-16-v1-0-kv41": {
-    "cents": 66976,
+    "cents": 67000,
     "name": "AKH70-16 V1.0 KV41",
     "series": "AKH Series"
   },
   "akh70-48-v1-0-kv41": {
-    "cents": 78176,
+    "cents": 78200,
     "name": "AKH70-48 V1.0 KV41",
     "series": "AKH Series"
   },
   "driver-board-for-ak-series": {
-    "cents": 6719,
+    "cents": 6700,
     "name": "Driver board for AK40-10",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak10-9-v20": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AK10-9 V2.0",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak10-9-v30": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AK10-9 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak40-10-v30": {
-    "cents": 7392,
+    "cents": 7400,
     "name": "Driver board for AK40-10 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-10": {
-    "cents": 6719,
+    "cents": 6700,
     "name": "Driver board for AK45-10",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-10-v30": {
-    "cents": 7392,
+    "cents": 7400,
     "name": "Driver board for AK45-10 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-36": {
-    "cents": 6719,
+    "cents": 6700,
     "name": "Driver board for AK45-36",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak45-36-v30": {
-    "cents": 7392,
+    "cents": 7400,
     "name": "Driver board for AK45-36 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak60-6-v11": {
-    "cents": 8949,
+    "cents": 8900,
     "name": "Driver board for AK60-6 V1.1",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak60-6-v30": {
-    "cents": 8949,
+    "cents": 8900,
     "name": "Driver board for AK60-6 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak70-10": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AK70-10",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak70-9-v30": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AK70-9 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak80-64": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AK80-64",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak80-8": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AK80-8",
     "series": "Accessories"
   },
   "driver-board-for-ak-series-ak80-9-v30": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AK80-9 V3.0",
     "series": "Accessories"
   },
   "driver-board-for-aka-series": {
-    "cents": 8949,
+    "cents": 8900,
     "name": "Driver board for AKA60-6",
     "series": "Accessories"
   },
   "driver-board-for-aka-series-aka10-9": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AKA10-9",
     "series": "Accessories"
   },
   "driver-board-for-ake-series": {
-    "cents": 8949,
+    "cents": 8900,
     "name": "Driver board for AKE60-8",
     "series": "Accessories"
   },
   "driver-board-for-ake-series-ake80-8": {
-    "cents": 14549,
+    "cents": 14500,
     "name": "Driver board for AKE80-8",
     "series": "Accessories"
   },
   "driver-board-for-ake-series-ake90-8": {
-    "cents": 17909,
+    "cents": 17900,
     "name": "Driver board for AKE90-8",
     "series": "Accessories"
   },
   "driver-board-for-akh-series": {
-    "cents": 11536,
+    "cents": 11500,
     "name": "Driver board for AKH70-16",
     "series": "Accessories"
   },
   "driver-board-for-akh-series-akh70-48": {
-    "cents": 11536,
+    "cents": 11500,
     "name": "Driver board for AKH70-48",
     "series": "Accessories"
   },
   "dw10-thruster": {
-    "cents": 33589,
+    "cents": 33600,
     "name": "DW10 Thruster CW",
     "series": "Underwater"
   },
   "dw10-thruster-ccw": {
-    "cents": 33589,
+    "cents": 33600,
     "name": "DW10 Thruster CCW",
     "series": "Underwater"
   },
   "dw15-thruster": {
-    "cents": 44789,
+    "cents": 44800,
     "name": "DW15 Thruster CW",
     "series": "Underwater"
   },
   "dw15-thruster-ccw": {
-    "cents": 44789,
+    "cents": 44800,
     "name": "DW15 Thruster CCW",
     "series": "Underwater"
   },
   "dw20-thruster": {
-    "cents": 59349,
+    "cents": 59300,
     "name": "DW20 Thruster CW",
     "series": "Underwater"
   },
   "dw20-thruster-ccw": {
-    "cents": 59349,
+    "cents": 59300,
     "name": "DW20 Thruster CCW",
     "series": "Underwater"
   },
   "dw25-thruster": {
-    "cents": 67189,
+    "cents": 67200,
     "name": "DW25 Thruster CW",
     "series": "Underwater"
   },
   "dw25-thruster-ccw": {
-    "cents": 67189,
+    "cents": 67200,
     "name": "DW25 Thruster CCW",
     "series": "Underwater"
   },
   "gl100-kv10": {
-    "cents": 30575,
+    "cents": 30600,
     "name": "GL100 KV10",
     "series": "GL Series"
   },
   "gl30-kv290-with-encoder": {
-    "cents": 8511,
+    "cents": 8500,
     "name": "GL30 KV290 with encoder",
     "series": "GL Series"
   },
   "gl30-kv290-without-encoder": {
-    "cents": 5711,
+    "cents": 5700,
     "name": "GL30 KV290 without encoder",
     "series": "GL Series"
   },
   "gl35-kv100-with-encoder": {
-    "cents": 8959,
+    "cents": 9000,
     "name": "GL35 KV100 with encoder",
     "series": "GL Series"
   },
   "gl35-kv100-without-encoder": {
-    "cents": 6159,
+    "cents": 6200,
     "name": "GL35 KV100 without encoder",
     "series": "GL Series"
   },
   "gl40-kv70-with-encoder": {
-    "cents": 10975,
+    "cents": 11000,
     "name": "GL40 KV70 with encoder",
     "series": "GL Series"
   },
   "gl40-kv70-without-encoder": {
-    "cents": 8175,
+    "cents": 8200,
     "name": "GL40 KV70 without encoder",
     "series": "GL Series"
   },
   "gl40-kv82-5": {
-    "cents": 15007,
+    "cents": 15000,
     "name": "GL40Ⅱ KV82.5",
     "series": "GL Series"
   },
   "gl60-kv25-with-encoder": {
-    "cents": 15007,
+    "cents": 15000,
     "name": "GL60 KV25 with encoder",
     "series": "GL Series"
   },
   "gl60-kv25-without-encoder": {
-    "cents": 12207,
+    "cents": 12200,
     "name": "GL60 KV25 without encoder",
     "series": "GL Series"
   },
   "gl60-kv28": {
-    "cents": 18703,
+    "cents": 18700,
     "name": "GL60 Ⅱ KV28",
     "series": "GL Series"
   },
   "gl80-kv30": {
-    "cents": 20383,
+    "cents": 20400,
     "name": "GL80 KV30",
     "series": "GL Series"
   },
   "gl80-kv60": {
-    "cents": 20383,
+    "cents": 20400,
     "name": "GL80 KV60",
     "series": "GL Series"
   },
   "ri100-kv105-with-hall": {
-    "cents": 18357,
+    "cents": 18400,
     "name": "RI100 KV105 with hall sensor",
     "series": "RI Series"
   },
   "ri100-kv105-without-hall": {
-    "cents": 16677,
+    "cents": 16700,
     "name": "RI100 KV105 without hall sensor",
     "series": "RI Series"
   },
   "ri115-ph-kv40": {
-    "cents": 22389,
+    "cents": 22400,
     "name": "RI115-PH KV40",
     "series": "RI Series"
   },
   "ri20-kv600": {
-    "cents": 4805,
+    "cents": 4800,
     "name": "RI20 KV600",
     "series": "RI Series"
   },
   "ri30-kv260": {
-    "cents": 5813,
+    "cents": 5800,
     "name": "RI30 KV260",
     "series": "RI Series"
   },
   "ri50-kv100-with-hall": {
-    "cents": 8613,
+    "cents": 8600,
     "name": "RI50 KV100 with hall sensor",
     "series": "RI Series"
   },
   "ri50-kv100-without-hall": {
-    "cents": 6933,
+    "cents": 6900,
     "name": "RI50 KV100 without hall sensor",
     "series": "RI Series"
   },
   "ri60-kv120-with-hall": {
-    "cents": 12757,
+    "cents": 12800,
     "name": "RI60 KV120 with hall sensor",
     "series": "RI Series"
   },
   "ri60-kv120-without-hall": {
-    "cents": 11077,
+    "cents": 11100,
     "name": "RI60 KV120 without hall sensor",
     "series": "RI Series"
   },
   "ri70-kv95-with-hall": {
-    "cents": 15557,
+    "cents": 15600,
     "name": "RI70 KV95 with hall sensor",
     "series": "RI Series"
   },
   "ri70-kv95-without-hall": {
-    "cents": 13877,
+    "cents": 13900,
     "name": "RI70 KV95 without hall sensor",
     "series": "RI Series"
   },
   "ri75-ph-kv70": {
-    "cents": 15557,
+    "cents": 15600,
     "name": "RI75-PH KV70",
     "series": "RI Series"
   },
   "ri80-v2-0-kv75-with-hall": {
-    "cents": 16565,
+    "cents": 16600,
     "name": "RI80 V2.0 KV75 with hall sensor",
     "series": "RI Series"
   },
   "ri80-v2-0-kv75-without-hall": {
-    "cents": 14885,
+    "cents": 14900,
     "name": "RI80 V2.0 KV75 without hall sensor",
     "series": "RI Series"
   },
   "ri85-ph-kv85": {
-    "cents": 16565,
+    "cents": 16600,
     "name": "RI85-PH KV85",
     "series": "RI Series"
   },
@@ -488,107 +488,107 @@ const PRICES = {
     "series": "L Series"
   },
   "ro100-kv55-lite": {
-    "cents": 17573,
+    "cents": 17600,
     "name": "RO100 KV55 Lite",
     "series": "RO Series"
   },
   "ro100-kv55-standard": {
-    "cents": 19253,
+    "cents": 19300,
     "name": "RO100 KV55 Standard",
     "series": "RO Series"
   },
   "ro40-kv140-lite": {
-    "cents": 5813,
+    "cents": 5800,
     "name": "RO40 KV140 Lite",
     "series": "RO Series"
   },
   "ro50-kv108-lite": {
-    "cents": 7381,
+    "cents": 7400,
     "name": "RO50 KV108 Lite",
     "series": "RO Series"
   },
   "ro60-kv115-lite": {
-    "cents": 8725,
+    "cents": 8700,
     "name": "RO60 KV115 Lite",
     "series": "RO Series"
   },
   "ro60-kv115-standard": {
-    "cents": 9621,
+    "cents": 9600,
     "name": "RO60 KV115 Standard",
     "series": "RO Series"
   },
   "ro80-kv105-lite": {
-    "cents": 11749,
+    "cents": 11700,
     "name": "RO80 KV105 Lite",
     "series": "RO Series"
   },
   "ro80-kv105-standard": {
-    "cents": 12869,
+    "cents": 12900,
     "name": "RO80 KV105 Standard",
     "series": "RO Series"
   },
   "rubik-link-v2-0": {
-    "cents": 4469,
+    "cents": 4500,
     "name": "RUBIK LINK V2.0",
     "series": "Accessories"
   },
   "rubik-link-v3-0": {
-    "cents": 2453,
+    "cents": 2500,
     "name": "RUBIK LINK V3.0",
     "series": "Accessories"
   },
   "rubik-link-v3-0-cables": {
-    "cents": 560,
+    "cents": 600,
     "name": "RUBIK LINK V3.0 Cable Set",
     "series": "Accessories"
   },
   "s-link-v1-0": {
-    "cents": 4469,
+    "cents": 4500,
     "name": "S-LINK V1.0",
     "series": "Accessories"
   },
   "sw12-thruster": {
-    "cents": 38069,
+    "cents": 38100,
     "name": "SW12 Thruster CW",
     "series": "Underwater"
   },
   "sw12-thruster-ccw": {
-    "cents": 38069,
+    "cents": 38100,
     "name": "SW12 Thruster CCW",
     "series": "Underwater"
   },
   "sw17-thruster": {
-    "cents": 52629,
+    "cents": 52600,
     "name": "SW17 Thruster CW",
     "series": "Underwater"
   },
   "sw17-thruster-ccw": {
-    "cents": 52629,
+    "cents": 52600,
     "name": "SW17 Thruster CCW",
     "series": "Underwater"
   },
   "sw7-thruster": {
-    "cents": 26869,
+    "cents": 26900,
     "name": "SW7 Thruster CW",
     "series": "Underwater"
   },
   "sw7-thruster-ccw": {
-    "cents": 26869,
+    "cents": 26900,
     "name": "SW7 Thruster CCW",
     "series": "Underwater"
   },
   "tw-40a-12s": {
-    "cents": 20159,
+    "cents": 20200,
     "name": "TW-40A-12S ESC (2 per set)",
     "series": "Underwater"
   },
   "tw-80a-12s": {
-    "cents": 24639,
+    "cents": 24600,
     "name": "TW-80A-12S ESC (2 per set)",
     "series": "Underwater"
   },
   "w30-thruster": {
-    "cents": 23631,
+    "cents": 23600,
     "name": "W30 Thruster",
     "series": "Underwater"
   }

@@ -21,8 +21,13 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  /* Every list price is a whole number of dollars, so printing ".00" after
+     each one is noise the reader has to look past. Cents still appear where
+     they are real - tax that Stripe computed, a legacy order being re-shown. */
   function money(cents) {
-    return "$" + Number(cents).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    var n = Number(cents), whole = Math.abs(n % 1) < 0.005;
+    return "$" + n.toLocaleString("en-US", {
+      minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2 });
   }
   /* Volume breaks, printed whole and with the one this order has reached
      called out. A buyer refused the Checkout button wants to know what the
