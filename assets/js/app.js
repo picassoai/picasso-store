@@ -641,12 +641,18 @@
           photo(p, 0) + '</a></div>' +
       '<div class="card-body">' +
         '<div class="card-series">' + esc(p.series) + "</div>" +
+        /* A listing card stands for the whole family, so it carries the group
+           name. Search is a lookup: the reader typed something specific and
+           needs to see which variant answered, so it asks for the exact name
+           and two cards from one group stay telling apart. */
         '<h3 class="card-title"><a href="' + productHref(p) + '">' +
-          esc(variants(p).length > 1 && p.variantGroupName ? p.variantGroupName : p.name) + '</a></h3>' +
+          esc(!(opts && opts.exact) && variants(p).length > 1 && p.variantGroupName
+            ? p.variantGroupName : p.name) + '</a></h3>' +
         cardSpecs(p) +
         '<div class="card-price' + (q ? " is-quote" : "") + '">' +
           (q ? "Request a quote"
-             : (variants(p).length > 1 ? "From " + money(p.price) : money(p.price))) + "</div>" +
+             : (!(opts && opts.exact) && variants(p).length > 1
+                 ? "From " + money(p.price) : money(p.price))) + "</div>" +
         (q
           ? '<a class="btn btn-ghost" href="' + quoteHref(p) + '">Request a quote</a>'
           : '<button class="btn btn-ghost" type="button" data-add="' + esc(p.id) + '">Add to cart</button>') +
@@ -2088,7 +2094,12 @@
 
     function draw(term) {
       term = term.trim().toLowerCase();
-      var hits = !term ? [] : collapseVariants(PRODUCTS).filter(function (p) {
+      /* Every orderable model is searchable, variants included. Collapsing to
+         the cheapest member answered "driver board AK80-9" with nothing - the
+         board exists at $145, but only the AK40-10 board survived the collapse
+         and its name does not contain AK80-9. Worse, "GL40 with encoder"
+         returned the one without, because "without" contains "with". */
+      var hits = !term ? [] : PRODUCTS.filter(function (p) {
         var c = collection(p.collection);
         var hay = [p.name, p.blurb, c.name, c.tease, c.blurb,
           Object.keys(p.specs).map(function (k) { return k + " " + p.specs[k]; }).join(" ")].join(" ").toLowerCase();
@@ -2099,7 +2110,8 @@
         ? "Type a model number, a torque figure, or a category."
         : hits.length + (hits.length === 1 ? " result for “" : " results for “") + term + "”";
 
-      $("[data-search-grid]").innerHTML = hits.map(card).join("") ||
+      $("[data-search-grid]").innerHTML =
+        hits.map(function (p) { return card(p, { exact: true }); }).join("") ||
         (term ? '<p class="muted">Nothing matched. We can usually source parts we do not stock — <a href="contact.html">tell us what you need</a>.</p>' : "");
       wireAddButtons($("[data-search-grid]"));
     }
