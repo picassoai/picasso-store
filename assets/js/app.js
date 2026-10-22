@@ -1911,10 +1911,21 @@
   ];
 
   function pageSelect() {
-    /* Accessories carry no specs, so they would be an all-dashes row. */
-    var items = collapseVariants(PRODUCTS.filter(function (p) {
+    /* Every orderable model gets a row, variants included - this page does not
+       collapse them the way the listings do.
+       A listing collapses because two rows for the same motor read as the same
+       product twice, and the product page is one click away to offer the
+       choice. The finder is the opposite instrument: someone filters to 0.25
+       N·m and Ф46.5 and reads what comes back as the answer. Collapsing to the
+       cheapest variant hid 44 of 113 models here, and the hidden half is where
+       the capability lives - every encoder, every hall sensor, every fitted
+       driver board, and fourteen of the fifteen AK driver boards. A buyer
+       looking for the board that fits an AK80-9 was shown the one for an
+       AK40-10 and nothing else.
+       Accessories carry no specs, so they would be an all-dashes row. */
+    var items = PRODUCTS.filter(function (p) {
       return p.specs && Object.keys(p.specs).length > 0;
-    }));
+    });
     var mount = $("[data-filters]");
     var host = $("[data-finder]");
     var picked = { torque: "all", od: "all", weight: "all", ratio: "all" };
