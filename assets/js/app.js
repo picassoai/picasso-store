@@ -503,6 +503,20 @@
     return null;
   }
 
+  /* The subtotal at which freight stops being charged, read from the band
+     table rather than written into the sentence that quotes it. Prose that
+     repeats a threshold goes stale silently: the shipping page was still
+     promising a flat $10 two revisions after the bands had moved, and nothing
+     failed to say so. Returns null when no band is free, 0 when every band is.
+   */
+  function freeFrom(z) {
+    if (!z || !z.rates) return null;
+    for (var i = 0; i < z.rates.length; i++) {
+      if (z.rates[i].cost === 0) return i ? z.rates[i - 1].upTo : 0;
+    }
+    return null;
+  }
+
   function shippingLabel(z, subtotalDollars) {
     var f = freight(z, subtotalDollars);
     if (f === null) return "Quoted per order";
@@ -1311,9 +1325,15 @@
             "</div>" +
             '<p class="muted" style="font-size:13px">Check out from the cart by card, US bank ' +
               'transfer, Apple Pay or Google Pay. Import duty on US orders is on us, and ' +
-              '<strong>shipping is free on orders of $200 or more</strong> — ' +
+              (freeFrom(chosenZone())
+                ? '<strong>shipping is free on orders of ' +
+                  money(freeFrom(chosenZone())) + ' or more</strong> — '
+                : "") +
               '<a href="shipping-policy.html">see the rates</a>. ' +
-              'Volume pricing on orders over $5,000 — <a href="' + quoteHref(p) + '">request a quote</a>.</p>') +
+              (S.selfServeMax
+                ? "Volume pricing on orders over " + money(S.selfServeMax) +
+                  ' — <a href="' + quoteHref(p) + '">request a quote</a>.'
+                : "") + "</p>") +
         driverBoardLine(p) +
         specTiles(p) +
         (Object.keys(p.specs).length
