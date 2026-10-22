@@ -1,0 +1,45 @@
+# The website and the Worker used to reach production by different routes:
+# Pages went out on every push, the Worker only when somebody remembered to
+# paste it into the Cloudflare dashboard. The two drifted, and nothing
+# announced it - the cart quoted one price and Stripe charged another. This
+# closes the gap: one push moves both.
+name: Deploy worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "worker/**"
+      - "wrangler.toml"
+      - ".github/workflows/deploy-worker.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # worker/prices.json and worker/shipping.json are generated from
+      # assets/js/data.js. Editing a price and pushing without re-running the
+      # generator would leave the Worker on the old numbers and reopen exactly
+      # the drift this workflow exists to prevent, so fail loudly rather than
+      # deploy something that does not match the site.
+      - name: Generated worker files match assets/js/data.js
+        run: |
+          python tools/build-static.py > /dev/null
+          if ! git diff --quiet -- worker/; then
+            echo "::error::worker/ is stale. Run tools/build-static.py and commit the result."
+            git --no-pager diff --stat -- worker/
+            exit 1
+          fi
+
+      # The account is named in wrangler.toml, so the token is the only secret
+      # this workflow needs.
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

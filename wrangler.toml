@@ -1,0 +1,27 @@
+# Deploys the checkout Worker from worker/checkout.js.
+#
+# `name` must match the Worker that is already live, or wrangler creates a
+# second script and the old one keeps serving every real customer while this
+# repository looks deployed. The site calls
+# https://checkout.picasso-intelligence.workers.dev, so the script should be
+# "checkout" on the picasso-intelligence subdomain - confirm that in the
+# Cloudflare dashboard before the first automated deploy and fix this line if
+# it reads otherwise.
+#
+# No [vars] block, deliberately. STRIPE_SECRET_KEY, PAYPAL_CLIENT_ID and
+# PAYPAL_CLIENT_SECRET are secrets set in the dashboard; a deploy leaves them
+# alone, but declaring a var of the same name here would shadow one.
+#
+# wrangler bundles the two JSON imports in worker/checkout.js itself, so the
+# generated worker/checkout.bundled.js is no longer on the deploy path. It
+# stays in the repository as the paste-by-hand fallback for when CI is down.
+
+# account_id is an identifier, not a credential - it appears in the path of
+# every dashboard URL - so it lives here rather than in a second CI secret.
+# Knowing it grants nothing without the API token.
+
+name = "checkout"
+main = "worker/checkout.js"
+account_id = "e25288781fc75f7135a0980fffb01808"
+compatibility_date = "2026-09-01"
+workers_dev = true
