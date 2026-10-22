@@ -73,7 +73,8 @@ window.SITE = {
      A second zone makes a "Ship to" selector appear in the cart by itself. */
   shippingZones: [
     { "code": "US", "name": "United States", "countries": ["US"], "dutyPaid": true,
-      "rates": [{ "upTo": 75, "cost": 25 },
+      "rates": [{ "upTo": 100, "cost": 50 },
+                { "upTo": 150, "cost": 25 },
                 { "upTo": 200, "cost": 10 },
                 { "upTo": null, "cost": 0 }] }
   ],

@@ -605,8 +605,12 @@ const SHIPPING = {
       "name": "United States",
       "rates": [
         {
+          "cost": 50,
+          "upTo": 100
+        },
+        {
           "cost": 25,
-          "upTo": 75
+          "upTo": 150
         },
         {
           "cost": 10,
