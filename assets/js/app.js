@@ -1233,18 +1233,31 @@
        step up and $145.49 to add the board. Offering both, with the board sat
        directly under Add to cart, sent people down the dearer path for the
        same outcome and charged them for the privilege of assembling it. */
+    /* Usually that version is a sibling in the same variant group. Where
+       CubeMars has moved a model to V3.0 it is a separate product instead -
+       they build only V3.0 now, it carries the driver board, and it sells for
+       what the old with-driver configuration did. fittedAlternative names it,
+       so the arithmetic below still finds the cheaper assembled answer rather
+       than quietly selling the loose board at $27 more. */
     var fitted = variants(p).filter(function (v) {
       return v.id !== p.id && /with\s+driver/i.test(v.variantLabel || v.name || "");
-    })[0];
+    })[0] || (p.fittedAlternative ? product(p.fittedAlternative) : null);
     if (fitted && p.price != null && fitted.price != null && b.price != null &&
         fitted.price - p.price < b.price) {
       var step = fitted.price - p.price;
+      /* A sibling variant is "with driver"; a V3.0 successor has a name of its
+         own and is worth saying, because it is not the same actuator with a
+         board bolted on - it is the revision CubeMars still builds. */
+      var sup = fitted.id === p.fittedAlternative;
       return '<div class="addon"><div>' +
         '<span class="addon-label">Need the driver?</span>' +
-        esc("With driver is " + money(step) + " more than this one and comes " +
-            "assembled " + "—" + " " + money(b.price - step) +
-            " less than fitting the board yourself.") + "</div>" +
-        '<a class="btn btn-ghost" href="' + productHref(fitted) + '">See with driver</a></div>';
+        esc((sup ? "The " + fitted.name : "With driver") + " is " + money(step) +
+            " more than this one and comes assembled " + "—" + " " +
+            money(b.price - step) + " less than fitting the board yourself" +
+            (sup ? ", and it is the version CubeMars still builds" : "") + ".") +
+        "</div>" +
+        '<a class="btn btn-ghost" href="' + productHref(fitted) + '">' +
+          (sup ? "See the V3.0" : "See with driver") + "</a></div>";
     }
     return '<div class="addon"><div><span class="addon-label">Matching driver board</span>' +
       '<a href="' + productHref(b) + '">' + esc(b.name) + "</a> " +

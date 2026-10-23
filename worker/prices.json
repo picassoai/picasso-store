@@ -9,14 +9,9 @@
     "name": "AK10-9 V3.0 KV60",
     "series": "AK Series"
   },
-  "ak40-10-kv170-with-driver": {
-    "cents": 15200,
-    "name": "AK40-10 KV170 with driver",
-    "series": "AK Series"
-  },
   "ak40-10-kv170-without-driver": {
     "cents": 11200,
-    "name": "AK40-10 KV170 without driver",
+    "name": "AK40-10 KV170",
     "series": "AK Series"
   },
   "ak40-10-v3-0-kv170": {
@@ -24,14 +19,9 @@
     "name": "AK40-10 V3.0 KV170",
     "series": "AK Series"
   },
-  "ak45-10-kv75-with-driver": {
-    "cents": 17500,
-    "name": "AK45-10 KV75 with driver",
-    "series": "AK Series"
-  },
   "ak45-10-kv75-without-driver": {
     "cents": 13400,
-    "name": "AK45-10 KV75 without driver",
+    "name": "AK45-10 KV75",
     "series": "AK Series"
   },
   "ak45-10-v3-0-kv75": {
