@@ -67,14 +67,9 @@ const PRICES = {
     "name": "AK45-10 V3.0 KV75",
     "series": "AK Series"
   },
-  "ak45-36-kv80-with-driver": {
-    "cents": 20800,
-    "name": "AK45-36 KV80 with driver",
-    "series": "AK Series"
-  },
   "ak45-36-kv80-without-driver": {
     "cents": 16800,
-    "name": "AK45-36 KV80 without driver",
+    "name": "AK45-36 KV80",
     "series": "AK Series"
   },
   "ak45-36-v3-0-kv80": {
