@@ -90,12 +90,30 @@ def parse_products(src):
         r'(.*?)(?=\n  \{ id:|\n\];)', re.S)
     for m in pat.finditer(src):
         pid, name, brand, series, coll, price, tail = m.groups()
-        specs = dict(re.findall(r'"([^"]+)"\s*:\s*"([^"]*)"', tail))
-        grp = re.search(r'variantGroup: "([^"]+)"', tail[:300])
+        head = tail[:400]
+        # Read specs from inside the specs block only. Taking every quoted pair
+        # in the tail would sweep in variantLabel, blurb and the image names as
+        # though a reader had asked for them.
+        sp = re.search(r'specs: \{(.*?)\}, images', tail, re.S)
+        specs = dict(re.findall(r'"([^"]+)"\s*:\s*"([^"]*)"', sp.group(1))) if sp else {}
+        imgs = re.search(r'images: \[([^\]]*)\]', tail)
+        blurb = re.search(r'blurb: "((?:[^"\\]|\\.)*)"', tail)
+
+        def field(key):
+            m2 = re.search(r'%s: "((?:[^"\\]|\\.)*)"' % key, head)
+            return m2.group(1).replace('\\"', '"') if m2 else ""
+
+        grp = re.search(r'variantGroup: "([^"]+)"', head)
         out.append({
             "id": pid, "name": name, "brand": brand, "series": series,
             "collection": coll, "price": float(price), "specs": specs,
             "group": grp.group(1) if grp else None,
+            "blurb": blurb.group(1).replace('\\"', '"') if blurb else "",
+            "images": re.findall(r'"([^"]+)"', imgs.group(1)) if imgs else [],
+            "variantLabel": field("variantLabel"),
+            "variantAxis": field("variantAxis"),
+            "variantGroupName": field("variantGroupName"),
+            "fittedAlternative": field("fittedAlternative"),
         })
     # The cheapest of a group is the one listings link to; the others keep their
     # page so old links still resolve, but point their canonical at it and stay
@@ -107,6 +125,24 @@ def parse_products(src):
             lead[g] = pr
     for pr in out:
         pr["lead"] = lead[pr["group"]]["id"] if pr["group"] else pr["id"]
+
+    # A variant earns its own place in the index when it is a different thing
+    # to buy. With the specifications in the source, the encoder, hall sensor,
+    # driver-board and grade variants come out 79-84% alike - different enough
+    # that the right one should be findable, and someone searching for the
+    # encoder version should not land on the one without.
+    #
+    # The clockwise and counter-clockwise thrusters are not that. Same price,
+    # same specification table to the last row, same photographs: one product
+    # mirrored, 99.5% identical however much true copy is added, because there
+    # is nothing further that honestly differs. That is what a canonical is
+    # for, so those still point at one page.
+    for pr in out:
+        twin = pr["group"] and pr["lead"] != pr["id"]
+        if twin:
+            boss = next(q for q in out if q["id"] == pr["lead"])
+            same = pr["price"] == boss["price"] and pr["specs"] == boss["specs"]
+        pr["canonical"] = pr["lead"] if (twin and same) else pr["id"]
     return out
 
 
@@ -135,6 +171,59 @@ def parse_joints(src):
 
 # ---------------------------------------------------------------- page template
 
+# Filled by main() once the taxonomy is parsed. app.js replaces both mounts
+# with the rendered header and footer (it assigns outerHTML, so whatever is
+# here is discarded, not duplicated) - but a crawler reads what is here, and
+# before this the two mounts were empty divs. Every page shipped zero links,
+# which meant a crawl that started at the homepage reached eleven of a hundred
+# and eighty pages and no page passed any authority to another.
+NAV_HTML = ""
+FOOT_HTML = ""
+
+
+def nav_markup(cols, apps):
+    shop = "".join('<li><a href="%s.html">%s</a></li>' % (slugify(c["name"]), esc(c["name"]))
+                   for c in cols)
+    use = "".join('<li><a href="actuators-for-%s.html">%s</a></li>'
+                  % (slugify(a["name"]), esc(a["name"])) for a in apps)
+    return ('<nav id="site-header" aria-label="Main">'
+            '<a href="index.html">Picasso Intelligence</a>'
+            '<ul>%s</ul><ul>%s</ul>'
+            '<ul><li><a href="select.html">Find by spec</a></li>'
+            '<li><a href="part-numbers.html">How to read a part number</a></li>'
+            '<li><a href="contact.html">Contact</a></li></ul></nav>') % (shop, use)
+
+
+def foot_markup(cols):
+    shop = "".join('<li><a href="%s.html">%s</a></li>' % (slugify(c["name"]), esc(c["name"]))
+                   for c in cols)
+    return ('<footer id="site-footer">'
+            '<ul>%s</ul>'
+            '<ul><li><a href="shipping-policy.html">Shipping</a></li>'
+            '<li><a href="refund-policy.html">Returns</a></li>'
+            '<li><a href="terms-of-service.html">Terms</a></li>'
+            '<li><a href="privacy-policy.html">Privacy</a></li>'
+            '<li><a href="part-numbers.html">How to read a part number</a></li>'
+            '<li><a href="contact.html">Contact</a></li></ul>'
+            '<p>Picasso Intelligence LLC, New York. Authorized CubeMars '
+            'distributor for North America.</p></footer>') % shop
+
+
+def inject_shell(html):
+    """Put the same header and footer into the hand-written pages.
+
+    index.html and the policy pages are written by hand, not by page(), and
+    they carried the same empty mounts - so the homepage, of all things,
+    offered a crawler three links. The markers make this safe to run again:
+    a second build replaces what the first one wrote rather than nesting it.
+    """
+    html = re.sub(r'<!--nav-->.*?<!--/nav-->|<div id="site-header"></div>',
+                  lambda m: "<!--nav-->" + NAV_HTML + "<!--/nav-->", html, flags=re.S)
+    html = re.sub(r'<!--foot-->.*?<!--/foot-->|<div id="site-footer"></div>',
+                  lambda m: "<!--foot-->" + FOOT_HTML + "<!--/foot-->", html, flags=re.S)
+    return html
+
+
 def page(title, desc, canonical, route, body, page_attr):
     return """<!DOCTYPE html>
 <html lang="en">
@@ -152,11 +241,11 @@ def page(title, desc, canonical, route, body, page_attr):
 </head>
 <body data-page="%s">
 
-<div id="site-header"></div>
+%s
 
 %s
 
-<div id="site-footer"></div>
+%s
 
 <!-- Generated by tools/build-static.py - do not edit by hand. -->
 <script>window.ROUTE = %s;</script>
@@ -165,7 +254,7 @@ def page(title, desc, canonical, route, body, page_attr):
 <script src="assets/js/app.js"></script>
 </body>
 </html>
-""" % (esc(title), esc(desc), canonical, page_attr, body, route)
+""" % (esc(title), esc(desc), canonical, page_attr, NAV_HTML, body, FOOT_HTML, route)
 
 
 def torque_text(v):
@@ -187,7 +276,7 @@ def integrated_ids(src):
     return ids
 
 
-def product_page(p, actuators=frozenset(["integrated"])):
+def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=""):
     s = p["specs"]
     torque = lead_num(s.get("Rated Torque (N·m)"))
     peak = lead_num(s.get("Peak Torque (N·m)"))
@@ -227,24 +316,105 @@ def product_page(p, actuators=frozenset(["integrated"])):
         "%s from the %s. Specifications and pricing from %s."
         % (p["name"], p["series"], auth))
 
-    # This block is what a crawler sees before JS runs; app.js replaces it with
-    # the rendered product page, which states the same facts.
+    # Everything below sits inside [data-pdp], which app.js overwrites with
+    # innerHTML - so the rendered page is unchanged and nothing is duplicated,
+    # while a crawler that never runs the script still reads the whole product.
+    # It used to read three lines: name, one summary sentence, price. Ninety
+    # seven characters, which is both too thin to rank and too close to the
+    # next variant to tell apart - "SW7 Thruster CW" and "SW7 Thruster CCW"
+    # were 98.9% identical, so Google kept one and dropped the other.
+    crumbs = ('<nav class="crumbs"><a href="index.html">Store</a> / '
+              '<a href="%s.html">%s</a> / <span>%s</span></nav>'
+              % (slugify(coll_name), esc(coll_name), esc(p["name"]))) if coll_name else ""
+
+    img = ""
+    if p["images"]:
+        img = ('<img src="assets/img/products-branded/%s" width="800" height="800" '
+               'alt="%s">' % (esc(p["images"][0]), esc(p["name"])))
+
+    rows = "".join("<tr><th>%s</th><td>%s</td></tr>" % (esc(k), esc(v))
+                   for k, v in p["specs"].items() if v)
+    table = ('<h2>Specifications</h2><table class="spec-table"><tbody>%s</tbody></table>'
+             % rows) if rows else ""
+
+    # Say which variant this is, in a sentence rather than only in the name.
+    # Without it the CW and CCW thrusters were 99.9% identical once the shared
+    # specifications went in - same table, same price, same photographs, three
+    # letters apart - and two pages that alike are one page as far as an index
+    # is concerned. Everything here follows from the variant label itself,
+    # except the pairing note, which is how counter-rotating thrusters are
+    # specified on any vehicle and is worth a reader knowing.
+    which = ""
+    axis, label = p["variantAxis"], p["variantLabel"]
+    if axis == "Rotation" and label:
+        other = "counter-clockwise" if label.upper() == "CW" else "clockwise"
+        which = ("This is the %s unit. Thrusters are specified in counter-rotating "
+                 "pairs so the reaction torques cancel, so a vehicle carrying more "
+                 "than one needs the %s unit for the opposing position."
+                 % ("clockwise" if label.upper() == "CW" else "counter-clockwise",
+                    other))
+    elif axis and label:
+        which = "This is the %s configuration." % label.lower()
+
+    sibs = [q for q in siblings if q["id"] != p["id"]]
+    alt = ""
+    if sibs:
+        links = "".join('<li><a href="%s.html">%s — US$%.2f</a></li>'
+                        % (q["id"], esc(q["name"]), q["price"]) for q in sibs)
+        alt = ("<h2>%s</h2><ul>%s</ul>"
+               % (esc(p["variantAxis"] or "Other versions"), links))
+
+    fitted = p.get("fittedAlternative")
+    if fitted:
+        alt += ('<p>Current production version: '
+                '<a href="%s.html">%s</a>.</p>' % (esc(fitted), esc(fitted)))
+
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": p["name"],
+        "sku": p["id"],
+        "description": p["blurb"] or desc,
+        "brand": {"@type": "Brand", "name": p.get("brand") or "CubeMars"},
+        "offers": {
+            "@type": "Offer",
+            "url": "%s/%s.html" % (SITE, p["id"]),
+            "priceCurrency": "USD",
+            "price": "%.2f" % p["price"],
+            "availability": "https://schema.org/InStock",
+            "seller": {"@type": "Organization", "name": "Picasso Intelligence LLC"},
+        },
+    }
+    if p["images"]:
+        ld["image"] = ["%s/assets/img/products-branded/%s" % (SITE, i) for i in p["images"]]
+
     body = """<div class="wrap">
   <div class="pdp" data-pdp>
+    %s
     <h1>%s</h1>
+    %s
     <p>%s%s</p>
-    <p>US$%.2f</p>
+    <p><strong>US$%.2f</strong></p>
+    %s
+    %s
+    %s
   </div>
 </div>
 
 <section class="section alt">
   <div class="wrap" data-related></div>
-</section>""" % (esc(p["name"]),
-                 esc(p["series"] + ". ") if p["series"] else "",
-                 esc(summary + "." if summary else ""),
-                 p["price"])
+</section>
+<script type="application/ld+json">%s</script>""" % (
+        crumbs, esc(p["name"]), img,
+        esc(p["series"] + ". ") if p["series"] else "",
+        esc(summary + "." if summary else ""),
+        p["price"],
+        ("<p>%s</p>" % esc(which) if which else "") +
+        ("<p>%s</p>" % esc(p["blurb"]) if p["blurb"] else ""),
+        alt, table,
+        json.dumps(ld, ensure_ascii=False))
 
-    return page(title, desc, "%s/%s.html" % (SITE, p["lead"]),
+    return page(title, desc, "%s/%s.html" % (SITE, p["canonical"]),
                 '{ id: "%s" }' % p["id"], body, "product")
 
 
@@ -253,9 +423,24 @@ def slugify(name):
     return s
 
 
-def browse_body(h1, blurb):
+def browse_body(h1, blurb, listing=()):
     """The catalogue browser, used by the joint, collection and application
-    pages alike. app.js fills in whichever parts the route calls for."""
+    pages alike. app.js fills in whichever parts the route calls for.
+
+    `listing` is written into [data-grid], which app.js overwrites, so the
+    rendered page is unchanged - but a crawler now reads the models a category
+    holds and can follow them. The AKE Series page used to carry no link to a
+    single AKE motor.
+    """
+    def row(q):
+        t = lead_num(q["specs"].get("Rated Torque (N·m)"))
+        lead = "%s rated, " % torque_text(t) if t else ""
+        return ('<li><a href="%s.html">%s</a> &mdash; %sUS$%.2f</li>'
+                % (q["id"], esc(q["name"]), esc(lead), q["price"]))
+
+    rows = "".join(row(q) for q in listing)
+    grid = ('<ul class="grid" data-grid>%s</ul>' % rows) if rows else \
+        '<div class="grid" data-grid></div>'
     return """<section class="page-head compact">
   <div class="wrap">
     <div class="crumbs"><a href="index.html">Store</a><span>/</span><span data-crumb></span></div>
@@ -285,7 +470,7 @@ def browse_body(h1, blurb):
 
 <section class="section grid-section">
   <div class="wrap">
-    <div class="grid" data-grid></div>
+    %s
   </div>
 </section>
 
@@ -294,7 +479,7 @@ def browse_body(h1, blurb):
     <span class="count"></span>
     <a class="btn btn-accent" href="compare.html" data-compare-go>Compare side by side</a>
   </div>
-</div>""" % (esc(h1), esc(blurb))
+</div>""" % (esc(h1), esc(blurb), grid)
 
 
 def joint_page(j):
@@ -336,9 +521,12 @@ def collection_page(c, products=None):
     title = ("%s — %s | Picasso Intelligence" % (c["name"], brands[0])
              if len(brands) == 1
              else "%s | Picasso Intelligence" % c["name"])
+    mine = [q for q in (products or [])
+            if q["collection"] == c["id"] and q["canonical"] == q["id"]]
+    mine.sort(key=lambda q: q["price"])
     return slug, page(title, c["blurb"], "%s/%s.html" % (SITE, slug),
                       '{ c: "%s" }' % c["id"],
-                      browse_body(c["name"], c["blurb"]), "collection")
+                      browse_body(c["name"], c["blurb"], mine), "collection")
 
 
 def application_page(a):
@@ -360,16 +548,26 @@ def main():
     joints = parse_joints(src)
     lastmod = last_commit_date()
     urls = []
+    # Collected before the nav exists, rewritten once it does.
+    static_pending = []
 
     for f in STATIC_PAGES:
         # The homepage is served at both / and /index.html. The sitemap has to
         # name the same one its canonical does, or the two forms compete and
         # Google picks its own.
         urls.append(SITE + "/" if f == "index.html" else "%s/%s" % (SITE, f))
+        static_pending.append(f)
 
     cols = parse_taxonomy(data_src, "COLLECTIONS", "parent:")
     actuators = integrated_ids(data_src)
     apps = parse_taxonomy(data_src, "APPLICATIONS", "art:")
+
+    # Every page from here on carries the same header and footer in its source.
+    global NAV_HTML, FOOT_HTML
+    NAV_HTML = nav_markup(cols, apps)
+    FOOT_HTML = foot_markup(cols)
+    for f in static_pending:
+        write(f, inject_shell(read(f)))
     for c in cols:
         slug, html = collection_page(c, products)
         write("%s.html" % slug, html)
@@ -379,9 +577,24 @@ def main():
         write("%s.html" % slug, html)
         urls.append("%s/%s.html" % (SITE, slug))
 
+    # Every variant now has a page of its own worth indexing, so every variant
+    # gets a self-canonical and a sitemap entry. The old rule pointed the other
+    # 41 at the cheapest of their group and left them out, which was right when
+    # the pages were ninety-seven characters and all but identical: Google
+    # would have picked one anyway, and saying which beat letting it guess.
+    # With the specifications, the description and the images in the source,
+    # they are different documents, and someone searching for the encoder
+    # version should land on the encoder version.
+    by_coll = {c["id"]: c["name"] for c in cols}
     for p in products:
-        write("%s.html" % p["id"], product_page(p, actuators))
-        if p["lead"] == p["id"]:
+        sibs = [q for q in products
+                if p["group"] and q["group"] == p["group"]] if p["group"] else []
+        write("%s.html" % p["id"],
+              product_page(p, actuators, sibs, by_coll.get(p["collection"], "")))
+        # A page whose canonical names another page does not belong in the
+        # sitemap: it would ask Google to index a URL we have just told it to
+        # fold away.
+        if p["canonical"] == p["id"]:
             urls.append("%s/%s.html" % (SITE, p["id"]))
 
     for j in joints:
