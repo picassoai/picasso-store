@@ -14,6 +14,7 @@ Run from the site root after changing data.js:
 """
 
 import io
+import itertools
 import json
 import os
 import re
@@ -191,6 +192,7 @@ def nav_markup(cols, apps):
             '<a href="index.html">Picasso Intelligence</a>'
             '<ul>%s</ul><ul>%s</ul>'
             '<ul><li><a href="select.html">Find by spec</a></li>'
+            '<li><a href="comparisons.html">Comparisons</a></li>'
             '<li><a href="part-numbers.html">How to read a part number</a></li>'
             '<li><a href="contact.html">Contact</a></li></ul></nav>') % (shop, use)
 
@@ -204,6 +206,7 @@ def foot_markup(cols):
             '<li><a href="refund-policy.html">Returns</a></li>'
             '<li><a href="terms-of-service.html">Terms</a></li>'
             '<li><a href="privacy-policy.html">Privacy</a></li>'
+            '<li><a href="comparisons.html">Comparisons</a></li>'
             '<li><a href="part-numbers.html">How to read a part number</a></li>'
             '<li><a href="contact.html">Contact</a></li></ul>'
             '<p>Picasso Intelligence LLC, New York. Authorized CubeMars '
@@ -238,7 +241,288 @@ def inject_shell(html):
     return html
 
 
-def llms_txt(products, cols, apps):
+# ------------------------------------------------- side-by-side comparisons
+#
+# "AK80-8 vs AK80-9" is a real search and the page that answers it today
+# belongs to a forum. What this must not become is a page per pair: a hundred
+# and ten products make six thousand pairs, almost all of them between things
+# nobody would hold up against each other, and six thousand near-empty pages
+# on a hundred and thirty-five page site is exactly the pattern Google's
+# helpful-content guidance is aimed at. The pairs are chosen, not enumerated.
+#
+# A pair qualifies when a buyer would really be deciding between the two:
+# within thirty percent of each other on the figures that pick a joint, in
+# the same part of the catalogue, one entry per variant group so the encoder
+# and no-encoder builds of one motor do not produce four copies of the same
+# comparison. The catalogue grouping does work the numbers cannot - a gimbal
+# motor and a frameless inrunner can match on torque and diameter by
+# coincidence, and one of them is a rotor and a stator with no housing.
+
+INTEGRATED_COLLECTIONS = frozenset(("ak", "ake", "aka", "akh"))
+
+# Each axis, which way wins it, how a winner is described, and the noun to
+# use when recommending. Every claim on every comparison page is assembled
+# from this table and from the catalogue's own figures.
+AXES = (
+    # key, better, verb, how the winner reads, unit, what to choose it for,
+    # the noun used when the two tie, and which number to read out of a cell
+    # that holds a range.
+    ("Rated Torque (N·m)", "more", "has", "more continuous torque",
+     "N·m", "more continuous torque", "continuous torque", "first"),
+    ("Peak Torque (N·m)", "more", "has", "more peak torque",
+     "N·m", "more peak torque", "peak torque", "first"),
+    # Two windings of one frame differ on nothing else that matters. Without
+    # these the GL80 KV60 and KV30 - same torque, same size, same price -
+    # compared on output speed alone, which reads as "buy the fast one" and
+    # leaves out the reason the slow one exists.
+    ("Kt (N·m/A)", "more", "has", "a higher torque constant",
+     "N·m/A", "more torque per amp", "torque constant", "first"),
+    ("Rated Current (A)", "less", "draws", "less current at its rating",
+     "A", "a lower current draw", "current draw", "first"),
+    ("Weight (g)", "less", "is", "lighter", "g", "less weight", "weight",
+     "first"),
+    ("OD (mm)", "less", "is", "narrower", "mm", "a smaller diameter",
+     "diameter", "first"),
+    ("Height (mm)", "less", "is", "shallower", "mm", "less depth", "depth",
+     "first"),
+    ("Rated Speed (RPM)", "more", "turns", "faster at the output", "RPM",
+     "more output speed", "output speed", "first"),
+    # Thrusters publish none of the above, so a shallow-water unit against a
+    # deep-water one compared on nothing at all and said so.
+    ("Maximum Bollard Thrust (kgf)", "more", "puts out", "more thrust",
+     "kgf", "more thrust", "thrust", "first"),
+    ("Applicable Water Depth", "more", "is", "rated deeper", "",
+     "a greater working depth", "working depth", "last"),
+    ("Weight in Air (g)", "less", "is", "lighter in air", "g",
+     "less weight in air", "weight in air", "first"),
+)
+THRUST = "Maximum Bollard Thrust (kgf)"
+
+
+def andjoin(items):
+    items = [i for i in items if i]
+    if len(items) < 2:
+        return items[0] if items else ""
+    return ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def fmt_price(v):
+    return ("%.2f" % v).rstrip("0").rstrip(".")
+
+
+def cmp_num(p, key, which="first"):
+    """A number out of the cell, for ranking only.
+
+    lead_num wants the number at the start of the value and the thrust column
+    is written ">=7 kgf", so this searches instead. Depth is written as a
+    range - "0-350 m" - where the figure that decides anything is the end of
+    it, so `which` says which end to read."""
+    ns = re.findall(r"-?\d+(?:\.\d+)?", str(p["specs"].get(key) or ""))
+    if not ns:
+        return None
+    return float(ns[-1] if which == "last" else ns[0])
+
+
+def comparable(a, b, keys, tol=0.30):
+    for k in keys:
+        x, y = cmp_num(a, k), cmp_num(b, k)
+        if not x or not y or max(x, y) / min(x, y) > 1 + tol:
+            return False
+    return True
+
+
+def compare_family(p):
+    return ("Integrated actuators" if p["collection"] in INTEGRATED_COLLECTIONS
+            else {"frameless": "Frameless motors",
+                  "gimbal": "Gimbal motors",
+                  "underwater": "Underwater thrusters",
+                  "directdrive": "Direct drive motors"}.get(
+                      p["collection"], p["collection"].title()))
+
+
+def compare_pairs(products):
+    reps = [p for p in products
+            if p["price"] and p["id"] == (p["lead"] or p["id"])]
+    motors = [p for p in reps
+              if cmp_num(p, "Rated Torque (N·m)") and cmp_num(p, "OD (mm)")]
+    thrusters = [p for p in reps if cmp_num(p, THRUST)]
+    out = [(a, b) for a, b in itertools.combinations(motors, 2)
+           if compare_family(a) == compare_family(b)
+           and comparable(a, b, ("Rated Torque (N·m)", "OD (mm)"))]
+    out += [(a, b) for a, b in itertools.combinations(thrusters, 2)
+            if comparable(a, b, (THRUST,))]
+    return out
+
+
+def compare_slug(a, b):
+    return "%s-vs-%s" % (a["id"], b["id"])
+
+
+def verdict(a, b):
+    """What each one wins on, and what they tie on.
+
+    When two parts differ on nothing this compares, the page says that.
+    Manufacturing a distinction would be the easiest thing here to generate
+    and the only claim on the page that was not true."""
+    wins = {a["id"]: [], b["id"]: []}
+    tied = []
+    for key, direction, verb, phrase, unit, recommend, noun, which in AXES:
+        x, y = cmp_num(a, key, which), cmp_num(b, key, which)
+        if x is None or y is None:
+            continue
+        if abs(x - y) < 1e-9:
+            tied.append(noun)
+            continue
+        hi = x > y
+        better = (a if hi else b) if direction == "more" else (b if hi else a)
+        other = b if better is a else a
+        wins[better["id"]].append(
+            (verb, phrase, recommend,
+             ("%s %s" % (better["specs"][key], unit)).strip(),
+             ("%s %s" % (other["specs"][key], unit)).strip()))
+    return wins, tied
+
+
+def compare_body(a, b):
+    wins, tied = verdict(a, b)
+
+    def side(p):
+        got = wins[p["id"]]
+        if not got:
+            return ""
+        # One verb per clause: "has more continuous torque and has more peak
+        # torque" was what writing the verb into every item produced.
+        clauses, verb, held = [], None, []
+        for v, ph, _rec, mine, theirs in got:
+            if v != verb and held:
+                clauses.append("%s %s" % (verb, andjoin(held)))
+                held = []
+            verb = v
+            held.append("%s (%s against %s)" % (ph, mine, theirs))
+        if held:
+            clauses.append("%s %s" % (verb, andjoin(held)))
+        # Clauses joined with a comma, not another "and": "has more torque
+        # and a higher torque constant and draws less current" is three ands
+        # in one sentence.
+        return "The %s %s." % (esc(p["name"]), ", and ".join(clauses))
+
+    lead = " ".join(x for x in (side(a), side(b)) if x) or (
+        "The %s and the %s publish the same figures on every point compared "
+        "here." % (esc(a["name"]), esc(b["name"])))
+    if tied:
+        lead += " They match on %s." % andjoin(tied)
+
+    # Price against the figure the part is actually bought for. A reader
+    # comparing two actuators is dividing one by the other whether or not the
+    # page does it for them.
+    money = ["The %s is US$%s and the %s is US$%s."
+             % (esc(a["name"]), fmt_price(a["price"]),
+                esc(b["name"]), fmt_price(b["price"]))]
+    per = []
+    for p in (a, b):
+        t = cmp_num(p, "Rated Torque (N·m)")
+        k = cmp_num(p, THRUST)
+        if t:
+            per.append("US$%.2f per rated N·m for the %s"
+                       % (p["price"] / t, esc(p["name"])))
+        elif k:
+            per.append("US$%.2f per kgf of thrust for the %s"
+                       % (p["price"] / k, esc(p["name"])))
+    if len(per) == 2:
+        money.append("That is %s." % andjoin(per))
+
+    def pick(p):
+        got = wins[p["id"]]
+        if not got:
+            return ""
+        return ('<li>Choose the <a href="%s.html">%s</a> for %s.</li>'
+                % (p["id"], esc(p["name"]),
+                   andjoin([rec for _v, _ph, rec, _m, _t in got])))
+
+    picks = "".join(x for x in (pick(a), pick(b)) if x)
+
+    keys = list(a["specs"])
+    keys += [k for k in b["specs"] if k not in a["specs"]]
+    rows = "".join(
+        "<tr%s><th>%s</th><td>%s</td><td>%s</td></tr>"
+        % (' class="differs"' if a["specs"].get(k) != b["specs"].get(k) else "",
+           esc(k), esc(a["specs"].get(k, "—")),
+           esc(b["specs"].get(k, "—")))
+        for k in keys)
+
+    return """<section class="page-head compact">
+  <div class="wrap">
+    <nav class="crumbs"><a href="index.html">Store</a><span>/</span><a href="comparisons.html">Comparisons</a><span>/</span>%s vs %s</nav>
+    <h1>%s vs %s</h1>
+  </div>
+</section>
+
+<div class="wrap-narrow prose">
+  <p>%s</p>
+  <p>%s</p>
+  %s
+  <h2>Every published specification</h2>
+  <table class="spec-table compare-table">
+    <thead><tr><th></th><th><a href="%s.html">%s</a></th><th><a href="%s.html">%s</a></th></tr></thead>
+    <tbody>%s</tbody>
+  </table>
+  <p>Rows the two disagree on are marked; the figures are CubeMars'. To put
+    any other two parts side by side, <a href="compare.html">build your own
+    comparison</a>.</p>
+</div>""" % (esc(a["name"]), esc(b["name"]), esc(a["name"]), esc(b["name"]),
+             lead, " ".join(money),
+             ("<h2>Which to buy</h2><ul>%s</ul>" % picks) if picks else "",
+             a["id"], esc(a["name"]), b["id"], esc(b["name"]), rows)
+
+
+def compare_page(a, b):
+    slug = compare_slug(a, b)
+    return slug, page(
+        "%s vs %s | Picasso Intelligence" % (a["name"], b["name"]),
+        "%s or %s: torque, size, weight and price side by side, with every "
+        "published specification." % (a["name"], b["name"]),
+        "%s/%s.html" % (SITE, slug), "null", compare_body(a, b), "comparisons",
+        [("Store", "index.html"), ("Comparisons", "comparisons.html"),
+         ("%s vs %s" % (a["name"], b["name"]), None)])
+
+
+def comparisons_index(pairs):
+    by = {}
+    for a, b in pairs:
+        by.setdefault(compare_family(a), []).append((a, b))
+    lists = []
+    for fam in sorted(by):
+        lists.append("<h2>%s</h2><ul>%s</ul>" % (esc(fam), "".join(
+            '<li><a href="%s.html">%s vs %s</a></li>'
+            % (compare_slug(a, b), esc(a["name"]), esc(b["name"]))
+            for a, b in sorted(by[fam], key=lambda ab: ab[0]["name"]))))
+    body = """<section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs"><a href="index.html">Store</a><span>/</span>Comparisons</nav>
+    <h1>Comparisons</h1>
+  </div>
+</section>
+
+<div class="wrap-narrow prose">
+  <p>The pairs people actually decide between: two parts within thirty per
+    cent of each other on the figures that pick a joint, from the same part of
+    the catalogue. Each page puts every published specification side by side,
+    works out the price per newton-metre, and says which to buy and why.</p>
+  <p>For any other two parts, <a href="compare.html">build your own
+    comparison</a>, or <a href="select.html">sort the whole catalogue</a> on
+    the column that matters to you.</p>
+  %s
+</div>""" % "".join(lists)
+    return page(
+        "Compare CubeMars actuators and motors side by side | Picasso Intelligence",
+        "Side-by-side comparisons of the CubeMars actuators, motors and "
+        "thrusters buyers decide between, with every published specification "
+        "and the price per newton-metre.",
+        "%s/comparisons.html" % SITE, "null", body, "comparisons",
+        [("Store", "index.html"), ("Comparisons", None)])
+
+
+def llms_txt(products, cols, apps, pairs=()):
     """A plain-text map of the catalogue at /llms.txt.
 
     The convention is a proposal, not a standard: no major crawler is known to
@@ -282,6 +566,15 @@ def llms_txt(products, cols, apps):
             out.append("- [%s](%s/%s.html): US$%s. %s"
                        % (p["name"], SITE, p["id"],
                           ("%.2f" % p["price"]).rstrip("0").rstrip("."), why))
+        out.append("")
+
+    if pairs:
+        out += ["## Comparisons", ""]
+        for a, b in pairs:
+            out.append("- [%s vs %s](%s/%s.html): every published "
+                       "specification side by side, with the price per "
+                       "newton-metre."
+                       % (a["name"], b["name"], SITE, compare_slug(a, b)))
         out.append("")
 
     out += ["## Choosing a part", ""]
@@ -795,7 +1088,16 @@ def main():
         write("%s.html" % slug, html)
         urls.append("%s/%s.html" % (SITE, slug))
 
-    write("llms.txt", llms_txt(products, cols, apps))
+    pairs = compare_pairs(products)
+    for a, b in pairs:
+        slug, html = compare_page(a, b)
+        write("%s.html" % slug, html)
+        urls.append("%s/%s.html" % (SITE, slug))
+    write("comparisons.html", comparisons_index(pairs))
+    urls.append("%s/comparisons.html" % SITE)
+    print("comparisons  %d pairs" % len(pairs))
+
+    write("llms.txt", llms_txt(products, cols, apps, pairs))
 
     entries = []
     for u in urls:

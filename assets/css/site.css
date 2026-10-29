@@ -937,3 +937,12 @@ select.field { appearance: none; background-image: none; }
    above them. */
 .prose h3 { font-size: 19px; margin: 28px 0 6px; color: var(--ink); }
 .prose .faq p { margin-top: 0; }
+
+/* Two columns of figures read as one block unless the rows that actually
+   differ are marked; on an AK80-8 against an AK80-9 that is nine rows out of
+   thirty-four. */
+.compare-table th:first-child { width: 42%; text-align: left; }
+.compare-table thead th { text-align: left; padding-bottom: 10px; }
+.compare-table tr.differs th,
+.compare-table tr.differs td { background: var(--wash, rgba(84,132,144,.07)); }
+.compare-table td { text-align: left; white-space: normal; }

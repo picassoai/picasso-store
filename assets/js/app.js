@@ -313,6 +313,11 @@
             '<li><a class="nav-link nav-tool" href="select.html"' +
               (document.body.getAttribute("data-page") === "select" ? ' aria-current="page"' : "") +
               ">Find by spec</a></li>" +
+            /* Thirty-eight generated comparison pages reachable only from the
+               sitemap are thirty-eight pages nobody reads. */
+            '<li><a class="nav-link nav-tool" href="comparisons.html"' +
+              (document.body.getAttribute("data-page") === "comparisons" ? ' aria-current="page"' : "") +
+              ">Compare</a></li>" +
           '</ul>' +
           '<div class="header-tools">' +
             '<button class="icon-btn" type="button" data-toggle-search aria-label="Search products">' + ICON.search + '</button>' +
@@ -347,6 +352,7 @@
         }).join("") +
         '<div class="drawer-group">Store</div>' +
         '<a href="select.html">Find by spec</a>' +
+        '<a href="comparisons.html">Comparisons</a>' +
         '<a href="search.html">Search</a><a href="cart.html">Cart</a>' +
         '<a href="contact.html">Contact us</a>' +
       '</nav></div>';
@@ -410,6 +416,7 @@
         '<div class="wrap footer-legal">' +
           '<span>&copy; ' + S.year + " " + esc(S.brand) + '</span>' +
           '<nav>' +
+            '<a href="comparisons.html">Comparisons</a>' +
             '<a href="part-numbers.html">How to read a part number</a>' +
             '<a href="shipping-policy.html">Shipping</a>' +
             '<a href="refund-policy.html">Returns</a>' +
