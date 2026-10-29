@@ -1326,6 +1326,12 @@
           '<a href="' + collectionHref(c) + '">' + esc(c.name) + "</a><span>/</span>" + esc(p.name) + "</div>" +
         '<div class="pdp-brand"><span>' + esc(p.series) + "</span></div>" +
         "<h1>" + esc(p.name) + "</h1>" +
+        /* The model's own figures ahead of the series paragraph, where there
+           is one. Fifty-six products had no description but their series',
+           so a reader comparing the GL80 KV60 with the KV30 was given the
+           same four sentences on both pages and the difference only in a
+           table. */
+        (p.fit ? '<p class="muted">' + esc(p.fit) + "</p>" : "") +
         '<p class="muted">' + esc(p.blurb) + "</p>" +
         (quoteOnly(p)
           ? '<div class="price is-quote">Price on request</div>' +
@@ -2114,7 +2120,7 @@
          returned the one without, because "without" contains "with". */
       var hits = !term ? [] : PRODUCTS.filter(function (p) {
         var c = collection(p.collection);
-        var hay = [p.name, p.blurb, c.name, c.tease, c.blurb,
+        var hay = [p.name, p.fit, p.blurb, c.name, c.tease, c.blurb,
           Object.keys(p.specs).map(function (k) { return k + " " + p.specs[k]; }).join(" ")].join(" ").toLowerCase();
         return term.split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; });
       });

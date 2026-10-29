@@ -141,6 +141,64 @@
     on one page, sorted on whichever column matters to you. If you know the job
     but not the part, <a href="contact.html">tell us what the joint has to
     do</a>.</p>
+
+  <h2>Questions we are asked</h2>
+  <!-- build-static.py reads the h3/p pairs below and writes the FAQPage
+       structured data from them, so the markup cannot drift from what the
+       page says. Edit the questions here and rebuild; do not hand-write the
+       JSON-LD. One question, one answer, answer immediately after. -->
+  <div class="faq">
+    <h3>Does the 80 in AK80-9 mean 80 mm?</h3>
+    <p>No. An AK80-9 measures Ф98 mm across its housing. The 80 is the frame
+      size of the motor inside it, and from AK40 to AK80 that figure tracks the
+      outside diameter closely enough to mislead. AK10 breaks it altogether: it
+      is a higher-torque motor in the same Ф98 housing as the AK80. Take the
+      diameter from the specification table, not from the name.</p>
+
+    <h3>What does the number after the dash mean?</h3>
+    <p>The gear reduction. AK40-10 is 10:1, AK45-36 is 36:1, AK80-64 is 64:1
+      and AKH70-48 is 48:1. It holds across the whole geared range and it is
+      the one part of a CubeMars actuator name you can rely on.</p>
+
+    <h3>What does KV mean on an actuator?</h3>
+    <p>The motor's speed constant in rpm per volt, measured at the rotor and
+      before the gearbox. A high KV is a fast motor, not a strong one. Where
+      the same actuator is sold in two KVs, the low-KV version makes more
+      torque for the same current and gives up top speed for it.</p>
+
+    <h3>Should I buy the with-driver or the without-driver version?</h3>
+    <p>The with-driver version has the controller built into the housing and is
+      ready to take CAN. The without-driver version is the bare actuator, for
+      running your own electronics or fitting the driver board separately.
+      Where both exist, the with-driver version is the cheaper way to end up
+      with a driver.</p>
+
+    <h3>What is the difference between RO Lite and RO Standard?</h3>
+    <p>Lite has no hall sensors and Standard has them, and the Lite is the
+      smaller part for it: an RO60 Lite is Ф70.5 by 15 mm and 195 g against the
+      Standard's Ф73.8 by 23 mm and 248 g. On the RI and GL motors the same
+      choice is spelled out in words rather than as Lite and Standard.</p>
+
+    <h3>What does the number on a thruster mean?</h3>
+    <p>Bollard thrust in kilograms-force. An SW17 is rated at 17 kgf or better
+      and a DW25 at 25 kgf. It is not a diameter and not a power rating — this
+      is the one CubeMars scheme that names the figure you select on.</p>
+
+    <h3>What is the difference between an SW and a DW thruster?</h3>
+    <p>Working depth. SW is the shallow-water series, rated to 30 m; DW is
+      rated to 350 m. Thrust and propeller sizes overlap between the two, so
+      choose the series on depth and the number on thrust.</p>
+
+    <h3>Do I need both a CW and a CCW thruster?</h3>
+    <p>On a vehicle with more than one, yes. The rotations are specified in
+      counter-rotating pairs so the reaction torques cancel; two units turning
+      the same way will yaw the vessel under thrust.</p>
+
+    <h3>Will a driver board from one actuator fit another?</h3>
+    <p>No. A driver board is named after the actuator it fits and they are not
+      interchangeable — the board for an AK80-9 V3.0 is a different part from
+      the one for an AK80-8. Each motor's product page links its own board.</p>
+  </div>
 </div>
 
 <!--foot--><footer id="site-footer"><ul><li><a href="integrated-actuators.html">Integrated Actuators</a></li><li><a href="ak-series.html">AK Series</a></li><li><a href="ake-series.html">AKE Series</a></li><li><a href="aka-series.html">AKA Series</a></li><li><a href="akh-series.html">AKH Series</a></li><li><a href="ake-akh-aka.html">AKE · AKH · AKA</a></li><li><a href="frameless-motors.html">Frameless Motors</a></li><li><a href="direct-drive-motors.html">Direct Drive Motors</a></li><li><a href="underwater-thrusters.html">Underwater Thrusters</a></li><li><a href="gimbal-motors.html">Gimbal Motors</a></li><li><a href="accessories.html">Accessories</a></li></ul><ul><li><a href="shipping-policy.html">Shipping</a></li><li><a href="refund-policy.html">Returns</a></li><li><a href="terms-of-service.html">Terms</a></li><li><a href="privacy-policy.html">Privacy</a></li><li><a href="part-numbers.html">How to read a part number</a></li><li><a href="contact.html">Contact</a></li></ul><p>Picasso Intelligence LLC, New York. Authorized CubeMars distributor for North America.</p></footer><!--/foot-->
@@ -148,5 +206,7 @@
 <script src="assets/js/data.js"></script>
 <script src="assets/js/art.js"></script>
 <script src="assets/js/app.js"></script>
+<!--org--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://picassointelligence.com/#org", "name": "Picasso Intelligence LLC", "alternateName": "Picasso Intelligence", "url": "https://picassointelligence.com/", "logo": "https://picassointelligence.com/apple-touch-icon.png", "email": "info@picassointelligence.com", "description": "Authorized CubeMars distributor for North America. Robotic actuators, frameless and gimbal motors and underwater thrusters, sold and supported from the United States with import duty paid.", "address": {"@type": "PostalAddress", "streetAddress": "215 W 125th St", "addressLocality": "New York", "addressRegion": "NY", "postalCode": "10027", "addressCountry": "US"}, "areaServed": {"@type": "Place", "name": "North America"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the 80 in AK80-9 mean 80 mm?", "acceptedAnswer": {"@type": "Answer", "text": "No. An AK80-9 measures Ф98 mm across its housing. The 80 is the frame size of the motor inside it, and from AK40 to AK80 that figure tracks the outside diameter closely enough to mislead. AK10 breaks it altogether: it is a higher-torque motor in the same Ф98 housing as the AK80. Take the diameter from the specification table, not from the name."}}, {"@type": "Question", "name": "What does the number after the dash mean?", "acceptedAnswer": {"@type": "Answer", "text": "The gear reduction. AK40-10 is 10:1, AK45-36 is 36:1, AK80-64 is 64:1 and AKH70-48 is 48:1. It holds across the whole geared range and it is the one part of a CubeMars actuator name you can rely on."}}, {"@type": "Question", "name": "What does KV mean on an actuator?", "acceptedAnswer": {"@type": "Answer", "text": "The motor's speed constant in rpm per volt, measured at the rotor and before the gearbox. A high KV is a fast motor, not a strong one. Where the same actuator is sold in two KVs, the low-KV version makes more torque for the same current and gives up top speed for it."}}, {"@type": "Question", "name": "Should I buy the with-driver or the without-driver version?", "acceptedAnswer": {"@type": "Answer", "text": "The with-driver version has the controller built into the housing and is ready to take CAN. The without-driver version is the bare actuator, for running your own electronics or fitting the driver board separately. Where both exist, the with-driver version is the cheaper way to end up with a driver."}}, {"@type": "Question", "name": "What is the difference between RO Lite and RO Standard?", "acceptedAnswer": {"@type": "Answer", "text": "Lite has no hall sensors and Standard has them, and the Lite is the smaller part for it: an RO60 Lite is Ф70.5 by 15 mm and 195 g against the Standard's Ф73.8 by 23 mm and 248 g. On the RI and GL motors the same choice is spelled out in words rather than as Lite and Standard."}}, {"@type": "Question", "name": "What does the number on a thruster mean?", "acceptedAnswer": {"@type": "Answer", "text": "Bollard thrust in kilograms-force. An SW17 is rated at 17 kgf or better and a DW25 at 25 kgf. It is not a diameter and not a power rating — this is the one CubeMars scheme that names the figure you select on."}}, {"@type": "Question", "name": "What is the difference between an SW and a DW thruster?", "acceptedAnswer": {"@type": "Answer", "text": "Working depth. SW is the shallow-water series, rated to 30 m; DW is rated to 350 m. Thrust and propeller sizes overlap between the two, so choose the series on depth and the number on thrust."}}, {"@type": "Question", "name": "Do I need both a CW and a CCW thruster?", "acceptedAnswer": {"@type": "Answer", "text": "On a vehicle with more than one, yes. The rotations are specified in counter-rotating pairs so the reaction torques cancel; two units turning the same way will yaw the vessel under thrust."}}, {"@type": "Question", "name": "Will a driver board from one actuator fit another?", "acceptedAnswer": {"@type": "Answer", "text": "No. A driver board is named after the actuator it fits and they are not interchangeable — the board for an AK80-9 V3.0 is a different part from the one for an AK80-8. Each motor's product page links its own board."}}]}</script><!--/org-->
 </body>
 </html>

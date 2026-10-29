@@ -931,3 +931,9 @@ select.field { appearance: none; background-image: none; }
   .doc-table th, .doc-table td { border-color: #999; }
   a { color: #000; text-decoration: none; }
 }
+
+/* The question list on part-numbers.html. h3 had no rule in .prose, so the
+   questions arrived at the browser's own default and sat heavier than the h2
+   above them. */
+.prose h3 { font-size: 19px; margin: 28px 0 6px; color: var(--ink); }
+.prose .faq p { margin-top: 0; }

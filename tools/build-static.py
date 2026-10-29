@@ -113,6 +113,7 @@ def parse_products(src):
             "variantLabel": field("variantLabel"),
             "variantAxis": field("variantAxis"),
             "variantGroupName": field("variantGroupName"),
+            "fit": field("fit"),
             "fittedAlternative": field("fittedAlternative"),
         })
     # The cheapest of a group is the one listings link to; the others keep their
@@ -221,10 +222,191 @@ def inject_shell(html):
                   lambda m: "<!--nav-->" + NAV_HTML + "<!--/nav-->", html, flags=re.S)
     html = re.sub(r'<!--foot-->.*?<!--/foot-->|<div id="site-footer"></div>',
                   lambda m: "<!--foot-->" + FOOT_HTML + "<!--/foot-->", html, flags=re.S)
+    # index.html is the page an engine reads to learn who the site belongs to,
+    # and it is hand-written, so page() never reached it. The marker is
+    # written on the first run and replaced on every one after.
+    extra = org_ld()
+    faq = faq_ld(html)
+    if faq:
+        extra += '</script>\n<script type="application/ld+json">' + faq
+    org = ('<!--org--><script type="application/ld+json">%s</script><!--/org-->'
+           % extra)
+    if "<!--org-->" in html:
+        html = re.sub(r"<!--org-->.*?<!--/org-->", lambda m: org, html, flags=re.S)
+    elif "</body>" in html:
+        html = html.replace("</body>", org + "\n</body>", 1)
     return html
 
 
-def page(title, desc, canonical, route, body, page_attr):
+def llms_txt(products, cols, apps):
+    """A plain-text map of the catalogue at /llms.txt.
+
+    The convention is a proposal, not a standard: no major crawler is known to
+    fetch this file, and it may never be read. It costs one generated file and
+    no change to any page, which is the only reason it is worth doing at all -
+    nothing here is relied on, and nothing is said here that the pages do not
+    already say.
+
+    Generated from data.js so it cannot go stale behind a price change, and
+    every line carries the figure a question would be asked about: a part
+    number, a price, and the sentence that distinguishes that model.
+    """
+    by_coll = {}
+    for p in products:
+        by_coll.setdefault(p["collection"], []).append(p)
+    names = {c["id"]: c["name"] for c in cols}
+
+    out = ["# Picasso Intelligence",
+           "",
+           "> Authorized CubeMars distributor for North America. Robotic "
+           "actuators, frameless and gimbal motors and underwater thrusters, "
+           "sold and supported from the United States.",
+           "",
+           "Prices are in US dollars and are what the site charges. Import "
+           "duty on orders to the United States is paid by us, so there is no "
+           "carrier invoice after delivery. Shipping within the United States "
+           "is free on orders over $200 and $45 below that. Orders above "
+           "$5,000 and all orders outside the United States are quoted "
+           "individually.",
+           ""]
+
+    for cid, items in sorted(by_coll.items(),
+                             key=lambda kv: names.get(kv[0], kv[0])):
+        out.append("## %s" % names.get(cid, cid))
+        out.append("")
+        for p in sorted(items, key=lambda q: q["price"]):
+            why = p["fit"] or p["blurb"]
+            why = re.sub(r"\s+", " ", why).strip()
+            if len(why) > 300:
+                why = why[:300].rsplit(" ", 1)[0] + "..."
+            out.append("- [%s](%s/%s.html): US$%s. %s"
+                       % (p["name"], SITE, p["id"],
+                          ("%.2f" % p["price"]).rstrip("0").rstrip("."), why))
+        out.append("")
+
+    out += ["## Choosing a part", ""]
+    for a in apps:
+        out.append("- [Actuators for %s](%s/actuators-for-%s.html): %s"
+                   % (a["name"], SITE, slugify(a["name"]),
+                      re.sub(r"\s+", " ", a["blurb"]).strip()))
+    out += ["- [How to read a CubeMars part number](%s/part-numbers.html): "
+            "what the digits mean in AK, AKE, AKH, RI, RO, GL, SW, DW and TW "
+            "names, and which of them CubeMars does not publish." % SITE,
+            "- [Find by specification](%s/select.html): every part on one "
+            "table, sortable by torque, diameter, weight or price." % SITE,
+            "",
+            "## Terms", "",
+            "- [Shipping and import duty](%s/shipping-policy.html)" % SITE,
+            "- [Returns](%s/refund-policy.html)" % SITE,
+            "- [Contact](%s/contact.html): info@picassointelligence.com" % SITE,
+            ""]
+    return "\n".join(out)
+
+
+def faq_ld(html):
+    """FAQPage structured data, read off the page's own visible question and
+    answer pairs - or "" when the page has none.
+
+    A div.faq holds h3 questions each followed by one p answer. Deriving the
+    markup from that rather than keeping a second copy of the text in Python
+    means the two cannot disagree, which is the failure this is written to
+    avoid: Google's own guidance is that FAQ markup must match what the reader
+    sees, and a hand-maintained duplicate drifts the first time a sentence is
+    reworded.
+
+    Worth being plain about what this buys. Google withdrew FAQ rich results
+    for ordinary sites in 2023 and shows them now only for government and
+    health pages, so this will not put a dropdown in the search result. It is
+    here because the answer engines read JSON-LD, and a question with an
+    answer attached is the form they quote.
+    """
+    m = re.search(r'<div class="faq">(.*?)</div>', html, re.S)
+    if not m:
+        return ""
+    pairs = re.findall(r"<h3>(.*?)</h3>\s*<p>(.*?)</p>", m.group(1), re.S)
+    if not pairs:
+        return ""
+
+    def flat(s):
+        # The answers carry links and em dashes; strip the tags and collapse
+        # the source's line breaks so the stored text reads as one paragraph.
+        return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s)).strip()
+
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": flat(q),
+             "acceptedAnswer": {"@type": "Answer", "text": flat(a)}}
+            for q, a in pairs
+        ],
+    }, ensure_ascii=False)
+
+
+ORG_ID = SITE + "/#org"
+
+
+def org_ld():
+    """The company as one node, repeated on every page under one @id.
+
+    Every page already carried an Organization, but only as the seller inside
+    an Offer - enough to say who is selling a motor, not enough to say who we
+    are. An engine asked "who distributes CubeMars in the United States" had
+    to infer it from a footer line. This states it, and the @id lets the
+    sellers in the offers point at the same node rather than a hundred
+    unconnected ones.
+
+    No sameAs: the only social link in data.js is a "#" placeholder, and a
+    sameAs pointing nowhere is worse than none. No telephone either, which is
+    a deliberate choice on this site, not an omission.
+    """
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": ORG_ID,
+        "name": "Picasso Intelligence LLC",
+        "alternateName": "Picasso Intelligence",
+        "url": SITE + "/",
+        "logo": SITE + "/apple-touch-icon.png",
+        "email": "info@picassointelligence.com",
+        "description": ("Authorized CubeMars distributor for North America. "
+                        "Robotic actuators, frameless and gimbal motors and "
+                        "underwater thrusters, sold and supported from the "
+                        "United States with import duty paid."),
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "215 W 125th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10027",
+            "addressCountry": "US",
+        },
+        "areaServed": {"@type": "Place", "name": "North America"},
+    }, ensure_ascii=False)
+
+
+def crumb_ld(trail):
+    """The trail the page already shows, in the form an index reads.
+
+    The visible crumbs have been on the product pages since the last pass;
+    this is the same path said again where a crawler looks for it, so a result
+    can be filed under Store > Frameless Motors rather than at the root."""
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            dict({"@type": "ListItem", "position": n + 1, "name": name},
+                 **({"item": "%s/%s" % (SITE, href)} if href else {}))
+            for n, (name, href) in enumerate(trail)
+        ],
+    }, ensure_ascii=False)
+
+
+def page(title, desc, canonical, route, body, page_attr, crumbs=()):
+    body = '%s\n<script type="application/ld+json">%s</script>' % (
+        body, org_ld())
+    if crumbs:
+        body += '\n<script type="application/ld+json">%s</script>' % crumb_ld(crumbs)
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -374,7 +556,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         "@type": "Product",
         "name": p["name"],
         "sku": p["id"],
-        "description": p["blurb"] or desc,
+        "description": " ".join(x for x in (p["fit"], p["blurb"]) if x) or desc,
         "brand": {"@type": "Brand", "name": p.get("brand") or "CubeMars"},
         "offers": {
             "@type": "Offer",
@@ -382,7 +564,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
             "priceCurrency": "USD",
             "price": "%.2f" % p["price"],
             "availability": "https://schema.org/InStock",
-            "seller": {"@type": "Organization", "name": "Picasso Intelligence LLC"},
+            "seller": {"@id": ORG_ID},
         },
     }
     if p["images"]:
@@ -409,13 +591,18 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         esc(p["series"] + ". ") if p["series"] else "",
         esc(summary + "." if summary else ""),
         p["price"],
+        ("<p>%s</p>" % esc(p["fit"]) if p["fit"] else "") +
         ("<p>%s</p>" % esc(which) if which else "") +
         ("<p>%s</p>" % esc(p["blurb"]) if p["blurb"] else ""),
         alt, table,
         json.dumps(ld, ensure_ascii=False))
 
+    trail = [("Store", "index.html")]
+    if coll_name:
+        trail.append((coll_name, "%s.html" % slugify(coll_name)))
+    trail.append((p["name"], None))
     return page(title, desc, "%s/%s.html" % (SITE, p["canonical"]),
-                '{ id: "%s" }' % p["id"], body, "product")
+                '{ id: "%s" }' % p["id"], body, "product", trail)
 
 
 def slugify(name):
@@ -490,7 +677,9 @@ def joint_page(j):
     body = browse_body("%s joint actuators" % j["name"], j["note"])
     return slug, page(title, desc, "%s/%s.html" % (SITE, slug),
                       '{ a: "%s", j: "%s" }' % (j["app"], j["id"]),
-                      body, "collection")
+                      body, "collection",
+                      [("Store", "index.html"),
+                       ("%s joint actuators" % j["name"], None)])
 
 
 def parse_taxonomy(src, block_name, tail):
@@ -526,7 +715,8 @@ def collection_page(c, products=None):
     mine.sort(key=lambda q: q["price"])
     return slug, page(title, c["blurb"], "%s/%s.html" % (SITE, slug),
                       '{ c: "%s" }' % c["id"],
-                      browse_body(c["name"], c["blurb"], mine), "collection")
+                      browse_body(c["name"], c["blurb"], mine), "collection",
+                      [("Store", "index.html"), (c["name"], None)])
 
 
 def application_page(a):
@@ -534,7 +724,10 @@ def application_page(a):
     title = "Actuators for %s | Picasso Intelligence" % a["name"]
     return slug, page(title, a["blurb"], "%s/%s.html" % (SITE, slug),
                       '{ a: "%s" }' % a["id"],
-                      browse_body("Actuators for %s" % a["name"], a["blurb"]), "collection")
+                      browse_body("Actuators for %s" % a["name"], a["blurb"]),
+                      "collection",
+                      [("Store", "index.html"),
+                       ("Actuators for %s" % a["name"], None)])
 
 
 # ---------------------------------------------------------------- main
@@ -601,6 +794,8 @@ def main():
         slug, html = joint_page(j)
         write("%s.html" % slug, html)
         urls.append("%s/%s.html" % (SITE, slug))
+
+    write("llms.txt", llms_txt(products, cols, apps))
 
     entries = []
     for u in urls:

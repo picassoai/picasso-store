@@ -1,0 +1,159 @@
+# Picasso Intelligence
+
+> Authorized CubeMars distributor for North America. Robotic actuators, frameless and gimbal motors and underwater thrusters, sold and supported from the United States.
+
+Prices are in US dollars and are what the site charges. Import duty on orders to the United States is paid by us, so there is no carrier invoice after delivery. Shipping within the United States is free on orders over $200 and $45 below that. Orders above $5,000 and all orders outside the United States are quoted individually.
+
+## AK Series
+
+- [AK40-10 KV170](https://picassointelligence.com/ak40-10-kv170-without-driver.html): US$112. The smallest joint in the AK line: brushless motor, planetary reducer, encoder and driver in one housing. Sized for the places an actuator has to disappear into the limb — humanoid wrists, grippers, small pan-tilt heads. Supplied without the driver board.
+- [AK45-10 KV75](https://picassointelligence.com/ak45-10-kv75-without-driver.html): US$134. A wider, slower AK40-10: the same 53 mm frame and 10:1 reduction, wound for roughly twice the torque at half the speed. The usual pick when a wrist or elbow needs holding torque more than it needs travel. Supplied without the driver board.
+- [AK40-10 V3.0 KV170](https://picassointelligence.com/ak40-10-v3-0-kv170.html): US$152. 1.3 N·m rated and 4.1 N·m peak from a Ф53 x 40.2 mm, 190 g frame, geared 10:1, on 24 V. Kv 170, 370 RPM rated and 435 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK45-36 KV80](https://picassointelligence.com/ak45-36-kv80-without-driver.html): US$168. A 36:1 reduction in the 55 mm frame, which is what turns a small actuator into a load-holding one — the torque of a joint half again its diameter, at a speed to match. That trade suits a joint that spends most of its time holding a position rather than moving through one: an ankle, a wrist, a...
+- [AK45-10 V3.0 KV75](https://picassointelligence.com/ak45-10-v3-0-kv75.html): US$175. 2.5 N·m rated and 7 N·m peak from a Ф53 x 45.2 mm, 262 g frame, geared 10:1, on 24 V. Kv 75, 120 RPM rated and 180 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK45-36 V3.0 KV80](https://picassointelligence.com/ak45-36-v3-0-kv80.html): US$208. The V3.0 revision of the AK45-36: the same 36:1 gearing and torque density, on the current driver board and the V3.0 configuration tool. Dual encoders, on the rotor and the output, so the joint reports where the load actually is rather than where the motor thinks it put it.
+- [AK60-6 V3.0 KV80](https://picassointelligence.com/ak60-6-v3-0-kv80.html): US$335. 3 N·m rated and 9 N·m peak from a Ф79 x 43 mm, 380 g frame, geared 6:1, on 24 V. Kv 80, 233 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK60-6 V1.1 KV140](https://picassointelligence.com/ak60-6-v1-1-kv140.html): US$335. 3 N·m rated and 9 N·m peak from a Ф79 x 39.5 mm, 368 g frame, geared 6:1, on 24 V. Kv 140, 420 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK70-9 V3.0 KV60 without driver](https://picassointelligence.com/ak70-9-v3-0-kv60-without-driver.html): US$447. The mid-size V3.0 joint, at the ratio where a planetary reducer stops costing much speed — 9:1 on an 89 mm frame. Legs, shoulders, and anything that has to move as well as hold. Supplied without the driver board.
+- [AK70-10 KV100 without driver](https://picassointelligence.com/ak70-10-kv100-without-driver.html): US$447. 8.3 N·m rated and 24.8 N·m peak from a Ф89 x 50.25 mm, 621 g frame, geared 10:1, on 24 V. Kv 100, 148 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK60-39 V3.0](https://picassointelligence.com/ak60-39-v3-0.html): US$503. Two planetary stages for a 39:1 reduction, so a 79 mm joint holds what an unreduced one its size could not. Dual magnetic encoders on both sides of the gearbox, and speed, torque, position and MIT modes.
+- [AK80-8 KV60 without driver](https://picassointelligence.com/ak80-8-kv60-without-driver.html): US$526. 10 N·m rated and 25 N·m peak from a Ф98 x 43.9 mm, 570 g frame, geared 8:1, on 48 V. Kv 60, 243 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK80-9 V3.0 KV100 without driver](https://picassointelligence.com/ak80-9-v3-0-kv100-without-driver.html): US$537. 9 N·m rated and 22 N·m peak from a Ф98 x 38.5 mm, 490 g frame, geared 9:1, on 48 V. Kv 100, 390 RPM rated and 570 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK70-10 KV100 with driver](https://picassointelligence.com/ak70-10-kv100-with-driver.html): US$559. 8.3 N·m rated and 24.8 N·m peak from a Ф89 x 50.25 mm, 621 g frame, geared 10:1, on 24 V. Kv 100, 148 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK70-9 V3.0 KV60 with driver](https://picassointelligence.com/ak70-9-v3-0-kv60-with-driver.html): US$559. The mid-size V3.0 joint, at the ratio where a planetary reducer stops costing much speed — 9:1 on an 89 mm frame. Legs, shoulders, and anything that has to move as well as hold. Supplied with the driver board fitted.
+- [AK80-8 KV60 with driver](https://picassointelligence.com/ak80-8-kv60-with-driver.html): US$638. 10 N·m rated and 25 N·m peak from a Ф98 x 43.9 mm, 570 g frame, geared 8:1, on 48 V. Kv 60, 243 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK80-9 V3.0 KV100 with driver](https://picassointelligence.com/ak80-9-v3-0-kv100-with-driver.html): US$649. 9 N·m rated and 22 N·m peak from a Ф98 x 38.5 mm, 490 g frame, geared 9:1, on 48 V. Kv 100, 390 RPM rated and 570 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK10-9 V3.0 KV60](https://picassointelligence.com/ak10-9-v3-0-kv60.html): US$895. 18 N·m rated and 53 N·m peak from a Ф98 x 61.7 mm, 940 g frame, geared 9:1, on 48 V. Kv 60, 235 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK10-9 V2.0 KV60](https://picassointelligence.com/ak10-9-v2-0-kv60.html): US$895. 18 N·m rated and 48 N·m peak from a Ф98 x 61.7 mm, 960 g frame, geared 9:1, on 24 V. Kv 60, 109 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+- [AK80-64 KV80](https://picassointelligence.com/ak80-64-kv80.html): US$1109. The highest-torque AK: 48 N·m rated and 120 N·m peak from a Ф98 x 61.9 mm, 850 g frame, geared 64:1, on 24 V. Kv 80, 23 RPM rated. CubeMars lists it for legged robots, exoskeletons and AGVs.
+
+## AKA Series
+
+- [AKA60-6 KV80](https://picassointelligence.com/aka60-6-kv80.html): US$335. The AKA series is suitable for applications with high radial loads such as wheeled robots and AGVs. This series of products adopts a completely new structural design scheme.
+- [AKA10-9 KV60](https://picassointelligence.com/aka10-9-kv60.html): US$895. The AKA series is suitable for applications with high radial loads, such as wheeled robots and AGVs.
+
+## AKE Series
+
+- [AKE40-6 KV90](https://picassointelligence.com/ake40-6-kv90.html): US$134. The smallest AKE: 140 g and 24.5 mm deep, for 1.8 N·m continuous and 5.5 N·m peak at 9 arcmin of backlash. The weight is the point — on a limb, every gram at the far end is carried by every joint above it.
+- [AKE50-8 KV110](https://picassointelligence.com/ake50-8-kv110.html): US$190. 190 g and 22.5 mm deep for 2.5 N·m continuous and 7.5 N·m peak, at the same 9 arcmin of backlash as the rest of the series. The flattest joint CubeMars make at this torque.
+- [AKE60-8 KV80](https://picassointelligence.com/ake60-8-kv80.html): US$245. 5 N·m rated and 12.5 N·m peak from a Ф69 x 25 mm, 260 g frame, geared 8:1, on 24 V. Kv 80, 180 RPM rated and 240 RPM no-load. CubeMars lists it for exoskeletons.
+- [AKE80-8 KV30](https://picassointelligence.com/ake80-8-kv30.html): US$381. 12 N·m rated and 30 N·m peak from a Ф87 x 32 mm, 570 g frame, geared 8:1, on 48 V. Kv 30, 150 RPM rated and 195 RPM no-load. CubeMars lists it for exoskeletons.
+- [AKE90-8 KV35](https://picassointelligence.com/ake90-8-kv35.html): US$542. CubeMars' AKE90-8 KV35 Quasi Direct Drive is the ideal choice for the industrial automation and robotics.
+
+## AKH Series
+
+- [AKH70-16 V1.0 KV41](https://picassointelligence.com/akh70-16-v1-0-kv41.html): US$670. A two-stage 16:1 hollow-shaft joint. Power and signal run through the middle of the output rather than around the outside of it, which is what lets an arm keep rotating without a service loop.
+- [AKH70-48 V1.0 KV41](https://picassointelligence.com/akh70-48-v1-0-kv41.html): US$782. Three planetary stages for 48:1, through a hollow output shaft. Dual encoders on both sides of the gearbox, so the controller sees the load and not just the motor.
+
+## Accessories
+
+- [RUBIK LINK V3.0 Cable Set](https://picassointelligence.com/rubik-link-v3-0-cables.html): US$6. Replacement cable set. Supplied loose, not with a motor.
+- [RUBIK LINK V3.0](https://picassointelligence.com/rubik-link-v3-0.html): US$25. USB-to-serial module for the AK V3.0 modules. With CubeMars TOOL V3.0 it handles encoder calibration, CAN ID assignment, PID settings and calibration of the position, torque and speed loops.
+- [S-LINK V1.0](https://picassointelligence.com/s-link-v1-0.html): US$45. Serial, CAN and USB link between a computer and the GL II series modules. Records the module's real-time status and runs encoder calibration and tuning from the CubeMars upper-computer software.
+- [RUBIK LINK V2.0](https://picassointelligence.com/rubik-link-v2-0.html): US$45. Configuration link for the earlier AK modules, in a machined aluminium case. CubeMars publish no specification for this one — ask us and we will get it from the factory.
+- [Driver board for AK40-10](https://picassointelligence.com/driver-board-for-ak-series.html): US$67. Fits the AK40-10 KV170. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK45-10](https://picassointelligence.com/driver-board-for-ak-series-ak45-10.html): US$67. Fits the AK45-10 KV75. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK45-36](https://picassointelligence.com/driver-board-for-ak-series-ak45-36.html): US$67. Fits the AK45-36 KV80. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK40-10 V3.0](https://picassointelligence.com/driver-board-for-ak-series-ak40-10-v30.html): US$74. Fits the AK40-10 V3.0 KV170. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK45-10 V3.0](https://picassointelligence.com/driver-board-for-ak-series-ak45-10-v30.html): US$74. Fits the AK45-10 V3.0 KV75. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK45-36 V3.0](https://picassointelligence.com/driver-board-for-ak-series-ak45-36-v30.html): US$74. Fits the AK45-36 V3.0 KV80. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK60-6 V1.1](https://picassointelligence.com/driver-board-for-ak-series-ak60-6-v11.html): US$89. Fits the AK60-6 V1.1 KV140. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK60-6 V3.0](https://picassointelligence.com/driver-board-for-ak-series-ak60-6-v30.html): US$89. Fits the AK60-6 V3.0 KV80. CAN and UART interface. For a 24 V motor.
+- [Driver board for AKA60-6](https://picassointelligence.com/driver-board-for-aka-series.html): US$89. Fits the AKA60-6 KV80. CAN and UART interface. For a 24 V motor.
+- [Driver board for AKE60-8](https://picassointelligence.com/driver-board-for-ake-series.html): US$89. Fits the AKE60-8 KV80. CAN and UART interface. For a 24 V motor.
+- [Driver board for AKH70-16](https://picassointelligence.com/driver-board-for-akh-series.html): US$115. Fits the AKH70-16 V1.0 KV41. CAN and UART interface. For a 48 V motor.
+- [Driver board for AKH70-48](https://picassointelligence.com/driver-board-for-akh-series-akh70-48.html): US$115. Fits the AKH70-48 V1.0 KV41. CAN and UART interface. For a 48 V motor.
+- [Driver board for AK70-9 V3.0](https://picassointelligence.com/driver-board-for-ak-series-ak70-9-v30.html): US$145. Fits the AK70-9 V3.0 KV60. CAN and UART interface. For a 48 V motor.
+- [Driver board for AK70-10](https://picassointelligence.com/driver-board-for-ak-series-ak70-10.html): US$145. Fits the AK70-10 KV100. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK80-8](https://picassointelligence.com/driver-board-for-ak-series-ak80-8.html): US$145. Fits the AK80-8 KV60. CAN and UART interface. For a 48 V motor.
+- [Driver board for AK80-9 V3.0](https://picassointelligence.com/driver-board-for-ak-series-ak80-9-v30.html): US$145. Fits the AK80-9 V3.0 KV100. CAN and UART interface. For a 48 V motor.
+- [Driver board for AK80-64](https://picassointelligence.com/driver-board-for-ak-series-ak80-64.html): US$145. Fits the AK80-64 KV80. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK10-9 V2.0](https://picassointelligence.com/driver-board-for-ak-series-ak10-9-v20.html): US$145. Fits the AK10-9 V2.0 KV60. CAN and UART interface. For a 24 V motor.
+- [Driver board for AK10-9 V3.0](https://picassointelligence.com/driver-board-for-ak-series-ak10-9-v30.html): US$145. Fits the AK10-9 V3.0 KV60. CAN and UART interface. For a 48 V motor.
+- [Driver board for AKA10-9](https://picassointelligence.com/driver-board-for-aka-series-aka10-9.html): US$145. Fits the AKA10-9 KV60. CAN and UART interface. For a 48 V motor.
+- [Driver board for AKE80-8](https://picassointelligence.com/driver-board-for-ake-series-ake80-8.html): US$145. Fits the AKE80-8 KV30. CAN and UART interface. For a 48 V motor.
+- [Driver board for AKE90-8](https://picassointelligence.com/driver-board-for-ake-series-ake90-8.html): US$179. Fits the AKE90-8 KV35. CAN and UART interface. For a 48 V motor.
+
+## Direct Drive Motors
+
+- [MyActuator RMD-L-4010](https://picassointelligence.com/rmd-l-4010.html): US$140. A 40 mm direct drive with the driver built in: 0.15 N·m continuous off the rotor with no gearbox between it and the output, so there is no backlash to take up and nothing to wear. 92 g, CAN bus, 24 V.
+- [MyActuator RMD-H-50-15](https://picassointelligence.com/rmd-h-50-15.html): US$180. A 50 mm direct drive with a 16 mm hollow bore through the middle, so the harness runs through the joint instead of around it. 0.35 N·m continuous, 0.9 N·m peak, no gearbox and no backlash.
+
+## Frameless Motors
+
+- [RI20 KV600](https://picassointelligence.com/ri20-kv600.html): US$48. The smallest frameless set in the catalogue — a rotor and stator with no housing, bearings or shaft, so the joint geometry is yours. An 11.6 mm bore through the middle for a shaft or a cable.
+- [RI30 KV260](https://picassointelligence.com/ri30-kv260.html): US$58. A frameless rotor and stator with a 17 mm bore, in a 14 mm stack. For a finger, a wrist or a scanning head being designed around the motor rather than the other way round.
+- [RO40 KV140 Lite](https://picassointelligence.com/ro40-kv140-lite.html): US$58. The Lite build of the RO40: the aluminium case and the hall sensors come off, leaving the rotor and stator. Cheaper and lighter where the housing and the commutation are already part of your own design.
+- [RI50 KV100 without hall sensor](https://picassointelligence.com/ri50-kv100-without-hall.html): US$69. 580 mN·m rated and 1.67 N·m peak from a Ф54 x 27 mm, 180.8 g frame, on 24 V. Kv 100, 1090 RPM rated and 2004 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RO50 KV108 Lite](https://picassointelligence.com/ro50-kv108-lite.html): US$74. The Lite build of the RO50 — rotor and stator only, no case and no hall sensors. A short, wide pancake set for a joint that has more room across than along.
+- [RI50 KV100 with hall sensor](https://picassointelligence.com/ri50-kv100-with-hall.html): US$86. 580 mN·m rated and 1.67 N·m peak from a Ф54 x 27 mm, 180.8 g frame, on 24 V. Kv 100, 1090 RPM rated and 2004 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RO60 KV115 Lite](https://picassointelligence.com/ro60-kv115-lite.html): US$87. 800 mN·m rated and 2.4 N·m peak from a Ф70.5 x 15 mm, 195 g frame, on 48 V. Kv 115, 4200 RPM rated and 5230 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RO60 KV115 Standard](https://picassointelligence.com/ro60-kv115-standard.html): US$96. 800 mN·m rated and 2.4 N·m peak from a Ф73.8 x 23 mm, 248 g frame, on 48 V. Kv 115, 4200 RPM rated and 5230 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RI60 KV120 without hall sensor](https://picassointelligence.com/ri60-kv120-without-hall.html): US$111. 570 mN·m rated and 1.63 N·m peak from a Ф60 x 23 mm, 155.9 g frame, on 24 V. Kv 120, 1440 RPM rated and 2532 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RO80 KV105 Lite](https://picassointelligence.com/ro80-kv105-lite.html): US$117. 1.3 N·m rated and 4.5 N·m peak from a Ф88.6 x 17.7 mm, 265 g frame, on 48 V. Kv 105, 4000 RPM rated and 4800 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RI60 KV120 with hall sensor](https://picassointelligence.com/ri60-kv120-with-hall.html): US$128. 570 mN·m rated and 1.63 N·m peak from a Ф60 x 23 mm, 155.9 g frame, on 24 V. Kv 120, 1440 RPM rated and 2532 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RO80 KV105 Standard](https://picassointelligence.com/ro80-kv105-standard.html): US$129. 1.3 N·m rated and 4.5 N·m peak from a Ф92.6 x 26.4 mm, 352 g frame, on 48 V. Kv 105, 4000 RPM rated and 4800 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RI70 KV95 without hall sensor](https://picassointelligence.com/ri70-kv95-without-hall.html): US$139. 940 mN·m rated and 2.68 N·m peak from a Ф76 x 24 mm, 270.4 g frame, on 24 V. Kv 95, 1270 RPM rated and 1956 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RI80 V2.0 KV75 without hall sensor](https://picassointelligence.com/ri80-v2-0-kv75-without-hall.html): US$149. 1.45 N·m rated and 4.1 N·m peak from a Ф85 x 27 mm, 411 g frame, on 24 V. Kv 75, 1135 RPM rated and 1480 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RI70 KV95 with hall sensor](https://picassointelligence.com/ri70-kv95-with-hall.html): US$156. 940 mN·m rated and 2.68 N·m peak from a Ф76 x 24 mm, 270.4 g frame, on 24 V. Kv 95, 1270 RPM rated and 1956 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RI75-PH KV70](https://picassointelligence.com/ri75-ph-kv70.html): US$156. 1.2 N·m rated and 3.8 N·m peak from a Ф70 x 31.8 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load.
+- [RI80 V2.0 KV75 with hall sensor](https://picassointelligence.com/ri80-v2-0-kv75-with-hall.html): US$166. 1.45 N·m rated and 4.1 N·m peak from a Ф85 x 27 mm, 411 g frame, on 24 V. Kv 75, 1135 RPM rated and 1480 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RI85-PH KV85](https://picassointelligence.com/ri85-ph-kv85.html): US$166. 2 N·m rated and 5 N·m peak from a Ф85 x 27.3 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load.
+- [RI100 KV105 without hall sensor](https://picassointelligence.com/ri100-kv105-without-hall.html): US$167. 1.76 N·m rated and 4.95 N·m peak from a Ф104 x 26 mm, 500 g frame, on 24 V. Kv 105, 1370 RPM rated and 2184 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RO100 KV55 Lite](https://picassointelligence.com/ro100-kv55-lite.html): US$176. The largest RO: 4 N·m rated and 12 N·m peak from a Ф108.3 x 28 mm, 525 g frame, on 48 V. Kv 55. CubeMars lists it for cobot arms and exoskeletons.
+- [RI100 KV105 with hall sensor](https://picassointelligence.com/ri100-kv105-with-hall.html): US$184. 1.76 N·m rated and 4.95 N·m peak from a Ф104 x 26 mm, 500 g frame, on 24 V. Kv 105, 1370 RPM rated and 2184 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
+- [RO100 KV55 Standard](https://picassointelligence.com/ro100-kv55-standard.html): US$193. The largest RO: 4 N·m rated and 12 N·m peak from a Ф113.5 x 36.2 mm, 710 g frame, on 48 V. Kv 55. CubeMars lists it for cobot arms and exoskeletons.
+- [RI115-PH KV40](https://picassointelligence.com/ri115-ph-kv40.html): US$224. The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 38.1 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load.
+
+## Gimbal Motors
+
+- [GL30 KV290 without encoder](https://picassointelligence.com/gl30-kv290-without-encoder.html): US$57. The smallest GL: 80 mN·m rated and 280 mN·m peak from a Ф34.5 x 15.7 mm, 41 g frame, on 12 V. Kv 290, 1990 RPM rated and 3060 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL35 KV100 without encoder](https://picassointelligence.com/gl35-kv100-without-encoder.html): US$62. 150 mN·m rated and 460 mN·m peak from a Ф41.8 x 21 mm, 90 g frame, on 16 V. Kv 100, 815 RPM rated and 1320 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL40 KV70 without encoder](https://picassointelligence.com/gl40-kv70-without-encoder.html): US$82. 250 mN·m rated and 500 mN·m peak from a Ф46.5 x 21.5 mm, 107 g frame, on 16 V. Kv 70, 430 RPM rated and 1015 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL30 KV290 with encoder](https://picassointelligence.com/gl30-kv290-with-encoder.html): US$85. The smallest GL: 80 mN·m rated and 280 mN·m peak from a Ф34.5 x 15.7 mm, 41 g frame, on 12 V. Kv 290, 1990 RPM rated and 3060 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL35 KV100 with encoder](https://picassointelligence.com/gl35-kv100-with-encoder.html): US$90. 150 mN·m rated and 460 mN·m peak from a Ф41.8 x 21 mm, 90 g frame, on 16 V. Kv 100, 815 RPM rated and 1320 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL40 KV70 with encoder](https://picassointelligence.com/gl40-kv70-with-encoder.html): US$110. 250 mN·m rated and 500 mN·m peak from a Ф46.5 x 21.5 mm, 107 g frame, on 16 V. Kv 70, 430 RPM rated and 1015 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL60 KV25 without encoder](https://picassointelligence.com/gl60-kv25-without-encoder.html): US$122. 600 mN·m rated and 1.75 N·m peak from a Ф69 x 22.3 mm, 230 g frame, on 24 V. Kv 25, 310 RPM rated and 516 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL60 KV25 with encoder](https://picassointelligence.com/gl60-kv25-with-encoder.html): US$150. 600 mN·m rated and 1.75 N·m peak from a Ф69 x 22.3 mm, 230 g frame, on 24 V. Kv 25, 310 RPM rated and 516 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL40Ⅱ KV82.5](https://picassointelligence.com/gl40-kv82-5.html): US$150. The GL40ll series motors, specifically engineered for premium gimbal systems, excel in both gimbals and autonomous driving applications. Advancing from the GL series, the GL40ll series incorporates a cutting-edge electromagnetic and structural design.
+- [GL60 Ⅱ KV28](https://picassointelligence.com/gl60-kv28.html): US$187. The GLII series motors are specifically designed for high-end gimbal systems. With outstanding performance and innovative technology, they are widely used in high-precision control scenarios such as gimbal systems and autonomous driving.
+- [GL80 KV60](https://picassointelligence.com/gl80-kv60.html): US$204. 1 N·m rated and 2.9 N·m peak from a Ф87 x 22.3 mm, 315 g frame, on 24 V. Kv 60, 1010 RPM rated and 1300 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL80 KV30](https://picassointelligence.com/gl80-kv30.html): US$204. 1 N·m rated and 2.9 N·m peak from a Ф87 x 22.3 mm, 315 g frame, on 24 V. Kv 30, 450 RPM rated and 650 RPM no-load. CubeMars lists it for gimbals and radar.
+- [GL100 KV10](https://picassointelligence.com/gl100-kv10.html): US$306. The largest GL: 3 N·m rated and 7.7 N·m peak from a Ф106.8 x 34.2 mm, 698 g frame, on 24 V. Kv 10, 130 RPM rated and 223 RPM no-load. CubeMars lists it for gimbals and radar.
+
+## Underwater Thrusters
+
+- [TW-40A-12S ESC (2 per set)](https://picassointelligence.com/tw-40a-12s.html): US$202. Fits the SW7, SW12, DW10 and DW15. Serial communication. Takes 6–12S input.
+- [W30 Thruster](https://picassointelligence.com/w30-thruster.html): US$236. Compact 30 mm-class thruster set: motor, purple PC propeller, nozzle and ESC. Rated to 200 m.
+- [TW-80A-12S ESC (2 per set)](https://picassointelligence.com/tw-80a-12s.html): US$246. Fits the SW17, DW20 and DW25. Serial communication. Takes 6–12S input.
+- [SW7 Thruster CW](https://picassointelligence.com/sw7-thruster.html): US$269. The smallest SW thruster: ≥7 kgf of bollard thrust on 360 W at 36 V. A Ø80 mm propeller, 700 g in air, 395 g in water and a working depth of 0–30 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [SW7 Thruster CCW](https://picassointelligence.com/sw7-thruster-ccw.html): US$269. The smallest SW thruster: ≥7 kgf of bollard thrust on 360 W at 36 V. A Ø80 mm propeller, 700 g in air, 395 g in water and a working depth of 0–30 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW10 Thruster CW](https://picassointelligence.com/dw10-thruster.html): US$336. The smallest DW thruster: ≥10 kgf of bollard thrust on 540 W at 36 V. A Ø80 mm propeller, 845 g in air, 480 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW10 Thruster CCW](https://picassointelligence.com/dw10-thruster-ccw.html): US$336. The smallest DW thruster: ≥10 kgf of bollard thrust on 540 W at 36 V. A Ø80 mm propeller, 845 g in air, 480 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [SW12 Thruster CW](https://picassointelligence.com/sw12-thruster.html): US$381. ≥12 kgf of bollard thrust on 520 W at 48 V. A Ø106 mm propeller, 1180 g in air, 640 g in water and a working depth of 0–30 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [SW12 Thruster CCW](https://picassointelligence.com/sw12-thruster-ccw.html): US$381. ≥12 kgf of bollard thrust on 520 W at 48 V. A Ø106 mm propeller, 1180 g in air, 640 g in water and a working depth of 0–30 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW15 Thruster CW](https://picassointelligence.com/dw15-thruster.html): US$448. ≥15 kgf of bollard thrust on 750 W at 48 V. A Ø106 mm propeller, 1260 g in air, 735 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW15 Thruster CCW](https://picassointelligence.com/dw15-thruster-ccw.html): US$448. ≥15 kgf of bollard thrust on 750 W at 48 V. A Ø106 mm propeller, 1260 g in air, 735 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [SW17 Thruster CW](https://picassointelligence.com/sw17-thruster.html): US$526. The largest SW thruster: ≥17 kgf of bollard thrust on 870 W at 48 V. A Ø106 mm propeller, 1350 g in air, 775 g in water and a working depth of 0–30 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [SW17 Thruster CCW](https://picassointelligence.com/sw17-thruster-ccw.html): US$526. The largest SW thruster: ≥17 kgf of bollard thrust on 870 W at 48 V. A Ø106 mm propeller, 1350 g in air, 775 g in water and a working depth of 0–30 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW20 Thruster CW](https://picassointelligence.com/dw20-thruster.html): US$593. ≥20 kgf of bollard thrust on 910 W at 48 V. A Ø126 mm propeller, 1630 g in air, 950 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW20 Thruster CCW](https://picassointelligence.com/dw20-thruster-ccw.html): US$593. ≥20 kgf of bollard thrust on 910 W at 48 V. A Ø126 mm propeller, 1630 g in air, 950 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW25 Thruster CW](https://picassointelligence.com/dw25-thruster.html): US$672. The largest DW thruster: ≥25 kgf of bollard thrust on 1315 W at 48 V. A Ø126 mm propeller, 1790 g in air, 995 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+- [DW25 Thruster CCW](https://picassointelligence.com/dw25-thruster-ccw.html): US$672. The largest DW thruster: ≥25 kgf of bollard thrust on 1315 W at 48 V. A Ø126 mm propeller, 1790 g in air, 995 g in water and a working depth of 0–350 m. Driven by an external ESC (TW-40A-12S or TW-80A-12S), which is a separate part.
+
+## Choosing a part
+
+- [Actuators for Humanoid Robots](https://picassointelligence.com/actuators-for-humanoid-robots.html): Joint modules from wrist to hip. Distal joints are chosen on weight, proximal joints on torque.
+- [Actuators for Exoskeletons](https://picassointelligence.com/actuators-for-exoskeletons.html): Backdrivable joints at low reduction, where the wearer has to be able to push the actuator around.
+- [Actuators for Quadruped Robots](https://picassointelligence.com/actuators-for-quadruped-robots.html): High peak torque with enough transparency to run a torque loop on the leg.
+- [Actuators for Cobot and Medical Arms](https://picassointelligence.com/actuators-for-cobot-and-medical-arms.html): Low backlash and hollow output shafts, so power and CAN run inside the arm instead of around it.
+- [Actuators for Wheeled Robots and AGVs](https://picassointelligence.com/actuators-for-wheeled-robots-and-agvs.html): Built for the radial load a driven wheel puts on the output bearing.
+- [Actuators for Gimbals and Sensor Pods](https://picassointelligence.com/actuators-for-gimbals-and-sensor-pods.html): Direct drive with low cogging, so the pod holds its aim at near-zero speed.
+- [How to read a CubeMars part number](https://picassointelligence.com/part-numbers.html): what the digits mean in AK, AKE, AKH, RI, RO, GL, SW, DW and TW names, and which of them CubeMars does not publish.
+- [Find by specification](https://picassointelligence.com/select.html): every part on one table, sortable by torque, diameter, weight or price.
+
+## Terms
+
+- [Shipping and import duty](https://picassointelligence.com/shipping-policy.html)
+- [Returns](https://picassointelligence.com/refund-policy.html)
+- [Contact](https://picassointelligence.com/contact.html): info@picassointelligence.com

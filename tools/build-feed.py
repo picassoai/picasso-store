@@ -95,7 +95,10 @@ def item(p, zones, coll_name):
               "Weight (g)", "Reduction Ratio", "Rated Voltage (V)"):
         if p["specs"].get(k):
             bits.append("%s %s" % (k.split(" (")[0], p["specs"][k]))
-    desc = p["blurb"] or ""
+    # The per-model sentence first: fourteen thrusters shared one series
+    # paragraph, and Merchant Center reads a feed of identical descriptions
+    # the same way an index reads a site of identical pages.
+    desc = " ".join(x for x in (p.get("fit"), p["blurb"]) if x)
     if bits:
         desc = (desc + " " if desc else "") + "; ".join(bits) + "."
     desc += (" Delivered duty paid from a US distributor; no customs for you "
