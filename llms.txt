@@ -181,6 +181,33 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 - [SW17 Thruster CW vs DW15 Thruster CW](https://picassointelligence.com/sw17-thruster-vs-dw15-thruster.html): every published specification side by side, with the price per newton-metre.
 - [SW17 Thruster CW vs DW20 Thruster CW](https://picassointelligence.com/sw17-thruster-vs-dw20-thruster.html): every published specification side by side, with the price per newton-metre.
 - [DW20 Thruster CW vs DW25 Thruster CW](https://picassointelligence.com/dw20-thruster-vs-dw25-thruster.html): every published specification side by side, with the price per newton-metre.
+- [AK40-10 V3.0 KV170 vs AK45-10 KV75](https://picassointelligence.com/ak40-10-v3-0-kv170-vs-ak45-10-kv75-without-driver.html): every published specification side by side, with the price per newton-metre.
+- [AK45-10 V3.0 KV75 vs AK60-6 V1.1 KV140](https://picassointelligence.com/ak45-10-v3-0-kv75-vs-ak60-6-v1-1-kv140.html): every published specification side by side, with the price per newton-metre.
+- [AK60-6 V3.0 KV80 vs AK45-36 KV80](https://picassointelligence.com/ak60-6-v3-0-kv80-vs-ak45-36-kv80-without-driver.html): every published specification side by side, with the price per newton-metre.
+- [AK45-36 V3.0 KV80 vs AK70-10 KV100 without driver](https://picassointelligence.com/ak45-36-v3-0-kv80-vs-ak70-10-kv100-without-driver.html): every published specification side by side, with the price per newton-metre.
+- [AK80-8 KV60 without driver vs AK10-9 V2.0 KV60](https://picassointelligence.com/ak80-8-kv60-without-driver-vs-ak10-9-v2-0-kv60.html): every published specification side by side, with the price per newton-metre.
+- [AK10-9 V3.0 KV60 vs AK60-39 V3.0](https://picassointelligence.com/ak10-9-v3-0-kv60-vs-ak60-39-v3-0.html): every published specification side by side, with the price per newton-metre.
+- [AK60-39 V3.0 vs AK80-64 KV80](https://picassointelligence.com/ak60-39-v3-0-vs-ak80-64-kv80.html): every published specification side by side, with the price per newton-metre.
+- [AKE40-6 KV90 vs AKE50-8 KV110](https://picassointelligence.com/ake40-6-kv90-vs-ake50-8-kv110.html): every published specification side by side, with the price per newton-metre.
+- [AKE50-8 KV110 vs AKE60-8 KV80](https://picassointelligence.com/ake50-8-kv110-vs-ake60-8-kv80.html): every published specification side by side, with the price per newton-metre.
+- [AKE60-8 KV80 vs AKE80-8 KV30](https://picassointelligence.com/ake60-8-kv80-vs-ake80-8-kv30.html): every published specification side by side, with the price per newton-metre.
+- [AKE80-8 KV30 vs AKE90-8 KV35](https://picassointelligence.com/ake80-8-kv30-vs-ake90-8-kv35.html): every published specification side by side, with the price per newton-metre.
+- [AKA60-6 KV80 vs AKA10-9 KV60](https://picassointelligence.com/aka60-6-kv80-vs-aka10-9-kv60.html): every published specification side by side, with the price per newton-metre.
+- [AKH70-16 V1.0 KV41 vs AKH70-48 V1.0 KV41](https://picassointelligence.com/akh70-16-v1-0-kv41-vs-akh70-48-v1-0-kv41.html): every published specification side by side, with the price per newton-metre.
+- [GL30 KV290 without encoder vs GL35 KV100 without encoder](https://picassointelligence.com/gl30-kv290-without-encoder-vs-gl35-kv100-without-encoder.html): every published specification side by side, with the price per newton-metre.
+- [GL35 KV100 without encoder vs GL40 KV70 without encoder](https://picassointelligence.com/gl35-kv100-without-encoder-vs-gl40-kv70-without-encoder.html): every published specification side by side, with the price per newton-metre.
+- [GL40Ⅱ KV82.5 vs GL60 KV25 without encoder](https://picassointelligence.com/gl40-kv82-5-vs-gl60-kv25-without-encoder.html): every published specification side by side, with the price per newton-metre.
+- [GL60 Ⅱ KV28 vs GL80 KV30](https://picassointelligence.com/gl60-kv28-vs-gl80-kv30.html): every published specification side by side, with the price per newton-metre.
+- [GL80 KV60 vs GL100 KV10](https://picassointelligence.com/gl80-kv60-vs-gl100-kv10.html): every published specification side by side, with the price per newton-metre.
+- [RI20 KV600 vs RI30 KV260](https://picassointelligence.com/ri20-kv600-vs-ri30-kv260.html): every published specification side by side, with the price per newton-metre.
+- [RI30 KV260 vs RI60 KV120 without hall sensor](https://picassointelligence.com/ri30-kv260-vs-ri60-kv120-without-hall.html): every published specification side by side, with the price per newton-metre.
+- [RI50 KV100 without hall sensor vs RI70 KV95 without hall sensor](https://picassointelligence.com/ri50-kv100-without-hall-vs-ri70-kv95-without-hall.html): every published specification side by side, with the price per newton-metre.
+- [RI85-PH KV85 vs RI115-PH KV40](https://picassointelligence.com/ri85-ph-kv85-vs-ri115-ph-kv40.html): every published specification side by side, with the price per newton-metre.
+- [RO40 KV140 Lite vs RO50 KV108 Lite](https://picassointelligence.com/ro40-kv140-lite-vs-ro50-kv108-lite.html): every published specification side by side, with the price per newton-metre.
+- [RO50 KV108 Lite vs RO60 KV115 Lite](https://picassointelligence.com/ro50-kv108-lite-vs-ro60-kv115-lite.html): every published specification side by side, with the price per newton-metre.
+- [RO60 KV115 Lite vs RO80 KV105 Lite](https://picassointelligence.com/ro60-kv115-lite-vs-ro80-kv105-lite.html): every published specification side by side, with the price per newton-metre.
+- [RO80 KV105 Lite vs RO100 KV55 Lite](https://picassointelligence.com/ro80-kv105-lite-vs-ro100-kv55-lite.html): every published specification side by side, with the price per newton-metre.
+- [SW7 Thruster CW vs DW10 Thruster CW](https://picassointelligence.com/sw7-thruster-vs-dw10-thruster.html): every published specification side by side, with the price per newton-metre.
 
 ## Choosing a part
 

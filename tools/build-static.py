@@ -359,6 +359,33 @@ def compare_pairs(products):
            and comparable(a, b, ("Rated Torque (N·m)", "OD (mm)"))]
     out += [(a, b) for a, b in itertools.combinations(thrusters, 2)
             if comparable(a, b, (THRUST,))]
+
+    # The rungs of a range, which the rule above cannot reach.
+    #
+    # Thirty per cent answers "which of these two similar parts", and that is
+    # not the question a range asks. The AKE ladder steps 5 -> 12 -> 55 N.m:
+    # consecutive models are 2.4 and 4.6 times apart, so every neighbouring
+    # pair fell outside the tolerance and the series a customer was actively
+    # choosing between had no comparison page at all. Verterra bought the 5
+    # and the 55, then wrote back asking about the middle one - "which rung"
+    # is a real question and a different one.
+    #
+    # Only neighbours: AKE60-8 against AKE90-8 is not a decision anybody is
+    # making, and pairing every rung with every other rung is how this turns
+    # back into enumeration.
+    seen = {frozenset((a["id"], b["id"])) for a, b in out}
+    ladders = {}
+    for p in motors + thrusters:
+        rung = cmp_num(p, "Rated Torque (N·m)") or cmp_num(p, THRUST)
+        if rung and p["series"]:
+            ladders.setdefault(p["series"], []).append((rung, p))
+    for rungs in ladders.values():
+        rungs.sort(key=lambda t: (t[0], t[1]["id"]))
+        for (_x, a), (_y, b) in zip(rungs, rungs[1:]):
+            key = frozenset((a["id"], b["id"]))
+            if key not in seen:
+                seen.add(key)
+                out.append((a, b))
     return out
 
 
@@ -411,8 +438,11 @@ def compare_body(a, b):
             clauses.append("%s %s" % (verb, andjoin(held)))
         # Clauses joined with a comma, not another "and": "has more torque
         # and a higher torque constant and draws less current" is three ands
-        # in one sentence.
-        return "The %s %s." % (esc(p["name"]), ", and ".join(clauses))
+        # in one sentence. With three clauses only the last takes the "and",
+        # or the ladder pages read "A, and B, and C".
+        joined = clauses[0] if len(clauses) == 1 else (
+            ", ".join(clauses[:-1]) + ", and " + clauses[-1])
+        return "The %s %s." % (esc(p["name"]), joined)
 
     lead = " ".join(x for x in (side(a), side(b)) if x) or (
         "The %s and the %s publish the same figures on every point compared "
