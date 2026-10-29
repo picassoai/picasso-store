@@ -190,6 +190,7 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 - [Actuators for Cobot and Medical Arms](https://picassointelligence.com/actuators-for-cobot-and-medical-arms.html): Low backlash and hollow output shafts, so power and CAN run inside the arm instead of around it.
 - [Actuators for Wheeled Robots and AGVs](https://picassointelligence.com/actuators-for-wheeled-robots-and-agvs.html): Built for the radial load a driven wheel puts on the output bearing.
 - [Actuators for Gimbals and Sensor Pods](https://picassointelligence.com/actuators-for-gimbals-and-sensor-pods.html): Direct drive with low cogging, so the pod holds its aim at near-zero speed.
+- [Actuators for Marine and Underwater Robotics](https://picassointelligence.com/actuators-for-marine-and-underwater-robotics.html): Sealed thrusters rated to 30 or 350 m, and the dry-side actuators that go inside the hull with them. Only the thrusters are sealed — the joint modules and gimbal motors are not, and belong in a flooded-and-compensated or dry pressure housing.
 - [How to read a CubeMars part number](https://picassointelligence.com/part-numbers.html): what the digits mean in AK, AKE, AKH, RI, RO, GL, SW, DW and TW names, and which of them CubeMars does not publish.
 - [Find by specification](https://picassointelligence.com/select.html): every part on one table, sortable by torque, diameter, weight or price.
 

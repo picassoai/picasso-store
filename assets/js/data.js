@@ -297,6 +297,30 @@ window.APPLICATIONS = [
       "ro40-kv140-lite", "ro50-kv108-lite", "ro60-kv115-lite",
       "ro80-kv105-lite", "ro100-kv55-lite"
     ]
+  },
+  /* Seventeen thrusters and a collection page for them, and until now no page
+     answering the question people actually type - "thruster for an ROV",
+     "actuator for a hydrokinetic turbine". Both customers in this space
+     arrived by referral rather than by search.
+
+     The blurb draws the line that matters and that nothing else on the site
+     draws: the thrusters are sealed and the actuators are not. Someone
+     planning to put an AKE80-8 in water needs to read that before they buy
+     it, and it is the one sentence no competitor's category page bothers to
+     write.
+
+     This comment sits outside the object on purpose. parse_taxonomy matches
+     `{` followed by `id:`, so a comment between the two makes the whole entry
+     invisible to the build - six applications went in and six came out. */
+  {
+    id: "marine", name: "Marine and Underwater Robotics", art: "prop",
+    blurb: "Sealed thrusters rated to 30 or 350 m, and the dry-side actuators that go inside the hull with them. Only the thrusters are sealed — the joint modules and gimbal motors are not, and belong in a flooded-and-compensated or dry pressure housing.",
+    products: [
+      "sw7-thruster", "sw12-thruster", "sw17-thruster",
+      "dw10-thruster", "dw15-thruster", "dw20-thruster", "dw25-thruster",
+      "w30-thruster", "tw-40a-12s", "tw-80a-12s",
+      "ake60-8-kv80", "ake80-8-kv30", "ake90-8-kv35", "gl100-kv10"
+    ]
   }
 ];
 
