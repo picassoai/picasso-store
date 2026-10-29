@@ -115,6 +115,14 @@ def parse_products(src):
             "variantAxis": field("variantAxis"),
             "variantGroupName": field("variantGroupName"),
             "fit": field("fit"),
+            # A date when the next batch is expected, or "". Absence means
+            # nothing is claimed either way: this site has never said "in
+            # stock" about anything, because the goods are built to a
+            # schedule in China and the claim would not hold. Saying a part
+            # is NOT on the shelf is a different kind of statement, and the
+            # one a buyer needs - Atlas paid for four AKE80-8 and found out
+            # afterwards, from an email.
+            "backorder": field("backorder"),
             "fittedAlternative": field("fittedAlternative"),
         })
     # The cheapest of a group is the one listings link to; the others keep their
@@ -732,6 +740,31 @@ def page(title, desc, canonical, route, body, page_attr, crumbs=()):
 """ % (esc(title), esc(desc), canonical, page_attr, NAV_HTML, body, FOOT_HTML, route)
 
 
+def due_text(iso):
+    """"5 November 2026" from "2026-11-05", or "" from "".
+
+    Merchant Center wants ISO 8601 and a reader wants English, so the date is
+    stored once in the form the feed needs and spelled out for the page."""
+    if not iso:
+        return ""
+    try:
+        y, m, d = (int(x) for x in iso.split("-"))
+    except ValueError:
+        return ""
+    return "%d %s %d" % (d, ("January", "February", "March", "April", "May",
+                             "June", "July", "August", "September", "October",
+                             "November", "December")[m - 1], y)
+
+
+def backorder_line(p):
+    """What the page says when a part is not on the shelf."""
+    due = due_text(p.get("backorder"))
+    if not due:
+        return ""
+    return ("On backorder. The next production batch is expected on %s, and "
+            "orders placed now ship in the order they were received." % due)
+
+
 def torque_text(v):
     """Under a newton-metre, say it in mN·m: "0.024 N·m" is not how anyone
     writes 24 millinewton-metres, and the site's own tiles already switch."""
@@ -856,10 +889,13 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
             "url": "%s/%s.html" % (SITE, p["id"]),
             "priceCurrency": "USD",
             "price": "%.2f" % p["price"],
-            "availability": "https://schema.org/InStock",
+            "availability": ("https://schema.org/BackOrder" if p["backorder"]
+                             else "https://schema.org/InStock"),
             "seller": {"@id": ORG_ID},
         },
     }
+    if p["backorder"]:
+        ld["offers"]["availabilityStarts"] = p["backorder"]
     if p["images"]:
         ld["image"] = ["%s/assets/img/products-branded/%s" % (SITE, i) for i in p["images"]]
 
@@ -884,6 +920,8 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         esc(p["series"] + ". ") if p["series"] else "",
         esc(summary + "." if summary else ""),
         p["price"],
+        ('<p class="notice">%s</p>' % esc(backorder_line(p))
+         if p["backorder"] else "") +
         ("<p>%s</p>" % esc(p["fit"]) if p["fit"] else "") +
         ("<p>%s</p>" % esc(which) if which else "") +
         ("<p>%s</p>" % esc(p["blurb"]) if p["blurb"] else ""),

@@ -810,7 +810,8 @@
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ake80-8-kv30-2.webp</g:additional_image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ake80-8-kv30-3.webp</g:additional_image_link>
     <g:condition>new</g:condition>
-    <g:availability>in_stock</g:availability>
+    <g:availability>backorder</g:availability>
+    <g:availability_date>2026-11-05T00:00:00-05:00</g:availability_date>
     <g:price>381.00 USD</g:price>
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKE80-8 KV30</g:mpn>
@@ -1335,7 +1336,8 @@
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/gl40-kv70-2.webp</g:additional_image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/gl40-kv70-3.webp</g:additional_image_link>
     <g:condition>new</g:condition>
-    <g:availability>in_stock</g:availability>
+    <g:availability>backorder</g:availability>
+    <g:availability_date>2026-11-10T00:00:00-05:00</g:availability_date>
     <g:price>82.00 USD</g:price>
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL40 KV70 without encoder</g:mpn>

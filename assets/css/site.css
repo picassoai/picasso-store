@@ -946,3 +946,8 @@ select.field { appearance: none; background-image: none; }
 .compare-table tr.differs th,
 .compare-table tr.differs td { background: var(--wash, rgba(84,132,144,.07)); }
 .compare-table td { text-align: left; white-space: normal; }
+
+/* Backorder reuses the quote dot's amber: both say "this one needs a word
+   before you pay", which is the same signal to the same reader. */
+.stock.backorder { color: var(--warn); margin: -6px 0 16px; }
+.stock.backorder i { background: var(--warn); }

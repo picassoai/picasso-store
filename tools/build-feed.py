@@ -107,6 +107,19 @@ def item(p, zones, coll_name):
     extra = "\n".join("    <g:additional_image_link>%s</g:additional_image_link>" % esc(i)
                       for i in imgs[1:10])
 
+    # Google distinguishes a part it cannot sell from one it can sell but
+    # will ship later, and wants the date for the second. Getting this wrong
+    # is not cosmetic: a feed saying in_stock over a landing page saying
+    # backorder is a disapproval, and a customer who reads both is worse.
+    #
+    # Midnight Eastern, because that is where the stock and the invoices are.
+    if p.get("backorder"):
+        avail = ("    <g:availability>backorder</g:availability>\n"
+                 "    <g:availability_date>%sT00:00:00-05:00</g:availability_date>"
+                 % esc(p["backorder"]))
+    else:
+        avail = "    <g:availability>in_stock</g:availability>"
+
     return """  <item>
     <g:id>%s</g:id>
     <g:title>%s</g:title>
@@ -115,7 +128,7 @@ def item(p, zones, coll_name):
     <g:image_link>%s</g:image_link>
 %s
     <g:condition>new</g:condition>
-    <g:availability>in_stock</g:availability>
+%s
     <g:price>%.2f USD</g:price>
     <g:brand>%s</g:brand>
     <g:mpn>%s</g:mpn>
@@ -128,7 +141,7 @@ def item(p, zones, coll_name):
     <g:max_transit_time>%d</g:max_transit_time>
   </item>""" % (
         esc(p["id"]), esc(title), esc(desc.strip()), esc(url),
-        esc(imgs[0]) if imgs else "", extra,
+        esc(imgs[0]) if imgs else "", extra, avail,
         p["price"], esc(p.get("brand") or "CubeMars"), esc(p["name"]),
         esc(coll_name or p["series"]),
         shipping_block(p["price"], zones),
