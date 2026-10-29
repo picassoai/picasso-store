@@ -37,13 +37,17 @@ ROOT = bs.ROOT
 # a shopper who clicks through is never quoted something different from what
 # the advert promised.
 #
-# Handling time is where honesty costs nothing and a guess costs the account:
-# most models come in from the factory, clear customs on our side and then go
-# out by UPS. Saying "in stock, ships tomorrow" of that would be a
-# misrepresentation Google suspends accounts over. Thirteen business days is
-# the real figure the shipping page already states.
-HANDLING_MIN, HANDLING_MAX = 3, 13
-TRANSIT_MIN, TRANSIT_MAX = 2, 5
+# Google splits the wait in two, and so does the route. Handling is ours: the
+# factory dispatches a stocked model within about three working days. Transit
+# is the freight forwarder's: double-clearance out of China and into the United
+# States runs seven to ten days, then UPS carries it the last leg.
+#
+# Both are stated a little long on purpose. Merchant Center suspends accounts
+# for delivery estimates the shipments do not meet, and nothing is gained by
+# promising a day we cannot hold - this is the same reasoning the quotes to
+# customers use.
+HANDLING_MIN, HANDLING_MAX = 1, 3
+TRANSIT_MIN, TRANSIT_MAX = 5, 10
 
 
 def esc(s):

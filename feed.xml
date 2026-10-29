@@ -23,10 +23,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>rmd-l-4010</g:id>
@@ -47,10 +47,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>rmd-h-50-15</g:id>
@@ -71,10 +71,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>sw7-thruster</g:id>
@@ -96,10 +96,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>sw7-thruster-ccw</g:id>
@@ -121,10 +121,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>sw12-thruster</g:id>
@@ -146,10 +146,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>sw12-thruster-ccw</g:id>
@@ -171,10 +171,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>sw17-thruster</g:id>
@@ -196,10 +196,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>sw17-thruster-ccw</g:id>
@@ -221,10 +221,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw10-thruster</g:id>
@@ -246,10 +246,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw10-thruster-ccw</g:id>
@@ -271,10 +271,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw15-thruster</g:id>
@@ -296,10 +296,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw15-thruster-ccw</g:id>
@@ -321,10 +321,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw20-thruster</g:id>
@@ -346,10 +346,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw20-thruster-ccw</g:id>
@@ -371,10 +371,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw25-thruster</g:id>
@@ -396,10 +396,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>dw25-thruster-ccw</g:id>
@@ -421,10 +421,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>w30-thruster</g:id>
@@ -446,10 +446,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>tw-40a-12s</g:id>
@@ -471,10 +471,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>tw-80a-12s</g:id>
@@ -496,10 +496,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak40-10-kv170-without-driver</g:id>
@@ -521,10 +521,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak45-10-kv75-without-driver</g:id>
@@ -546,10 +546,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak40-10-v3-0-kv170</g:id>
@@ -571,10 +571,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak45-10-v3-0-kv75</g:id>
@@ -596,10 +596,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak45-36-v3-0-kv80</g:id>
@@ -621,10 +621,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak45-36-kv80-without-driver</g:id>
@@ -646,10 +646,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ake40-6-kv90</g:id>
@@ -671,10 +671,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ake50-8-kv110</g:id>
@@ -696,10 +696,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ake60-8-kv80</g:id>
@@ -721,10 +721,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>aka60-6-kv80</g:id>
@@ -746,10 +746,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak60-6-v3-0-kv80</g:id>
@@ -771,10 +771,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak60-6-v1-1-kv140</g:id>
@@ -796,10 +796,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ake80-8-kv30</g:id>
@@ -821,10 +821,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak70-9-v3-0-kv60-without-driver</g:id>
@@ -846,10 +846,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak70-10-kv100-without-driver</g:id>
@@ -871,10 +871,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak70-10-kv100-with-driver</g:id>
@@ -896,10 +896,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak60-39-v3-0</g:id>
@@ -921,10 +921,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak80-8-kv60-without-driver</g:id>
@@ -946,10 +946,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak80-8-kv60-with-driver</g:id>
@@ -971,10 +971,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ake90-8-kv35</g:id>
@@ -996,10 +996,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak70-9-v3-0-kv60-with-driver</g:id>
@@ -1021,10 +1021,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak80-9-v3-0-kv100-without-driver</g:id>
@@ -1046,10 +1046,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak80-9-v3-0-kv100-with-driver</g:id>
@@ -1071,10 +1071,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>aka10-9-kv60</g:id>
@@ -1096,10 +1096,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak10-9-v3-0-kv60</g:id>
@@ -1121,10 +1121,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak10-9-v2-0-kv60</g:id>
@@ -1146,10 +1146,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ak80-64-kv80</g:id>
@@ -1171,10 +1171,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>akh70-16-v1-0-kv41</g:id>
@@ -1196,10 +1196,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>akh70-48-v1-0-kv41</g:id>
@@ -1221,10 +1221,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl30-kv290-without-encoder</g:id>
@@ -1246,10 +1246,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl30-kv290-with-encoder</g:id>
@@ -1271,10 +1271,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl35-kv100-without-encoder</g:id>
@@ -1296,10 +1296,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl35-kv100-with-encoder</g:id>
@@ -1321,10 +1321,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl40-kv70-without-encoder</g:id>
@@ -1346,10 +1346,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl40-kv70-with-encoder</g:id>
@@ -1371,10 +1371,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl60-kv25-without-encoder</g:id>
@@ -1395,10 +1395,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl60-kv25-with-encoder</g:id>
@@ -1419,10 +1419,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl40-kv82-5</g:id>
@@ -1444,10 +1444,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl60-kv28</g:id>
@@ -1469,10 +1469,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl80-kv60</g:id>
@@ -1493,10 +1493,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl80-kv30</g:id>
@@ -1517,10 +1517,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>gl100-kv10</g:id>
@@ -1542,10 +1542,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri20-kv600</g:id>
@@ -1567,10 +1567,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri30-kv260</g:id>
@@ -1592,10 +1592,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro40-kv140-lite</g:id>
@@ -1617,10 +1617,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri50-kv100-without-hall</g:id>
@@ -1642,10 +1642,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri50-kv100-with-hall</g:id>
@@ -1667,10 +1667,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro50-kv108-lite</g:id>
@@ -1692,10 +1692,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro60-kv115-lite</g:id>
@@ -1717,10 +1717,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro60-kv115-standard</g:id>
@@ -1742,10 +1742,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri60-kv120-without-hall</g:id>
@@ -1767,10 +1767,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri60-kv120-with-hall</g:id>
@@ -1792,10 +1792,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro80-kv105-lite</g:id>
@@ -1817,10 +1817,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro80-kv105-standard</g:id>
@@ -1842,10 +1842,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri70-kv95-without-hall</g:id>
@@ -1867,10 +1867,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri70-kv95-with-hall</g:id>
@@ -1892,10 +1892,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri80-v2-0-kv75-without-hall</g:id>
@@ -1917,10 +1917,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri80-v2-0-kv75-with-hall</g:id>
@@ -1942,10 +1942,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri75-ph-kv70</g:id>
@@ -1967,10 +1967,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri85-ph-kv85</g:id>
@@ -1992,10 +1992,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri100-kv105-without-hall</g:id>
@@ -2017,10 +2017,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri100-kv105-with-hall</g:id>
@@ -2042,10 +2042,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro100-kv55-lite</g:id>
@@ -2067,10 +2067,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ro100-kv55-standard</g:id>
@@ -2092,10 +2092,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>ri115-ph-kv40</g:id>
@@ -2117,10 +2117,10 @@
       <g:service>Standard</g:service>
       <g:price>0.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>rubik-link-v3-0</g:id>
@@ -2142,10 +2142,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>s-link-v1-0</g:id>
@@ -2167,10 +2167,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>rubik-link-v2-0</g:id>
@@ -2192,10 +2192,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series</g:id>
@@ -2216,10 +2216,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak40-10-v30</g:id>
@@ -2240,10 +2240,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak45-10</g:id>
@@ -2264,10 +2264,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak45-10-v30</g:id>
@@ -2288,10 +2288,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak45-36</g:id>
@@ -2312,10 +2312,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak45-36-v30</g:id>
@@ -2336,10 +2336,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak60-6-v11</g:id>
@@ -2360,10 +2360,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak60-6-v30</g:id>
@@ -2384,10 +2384,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak70-9-v30</g:id>
@@ -2408,10 +2408,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak70-10</g:id>
@@ -2432,10 +2432,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak80-8</g:id>
@@ -2456,10 +2456,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak80-9-v30</g:id>
@@ -2480,10 +2480,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak80-64</g:id>
@@ -2504,10 +2504,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak10-9-v20</g:id>
@@ -2528,10 +2528,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ak-series-ak10-9-v30</g:id>
@@ -2552,10 +2552,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-aka-series</g:id>
@@ -2576,10 +2576,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-aka-series-aka10-9</g:id>
@@ -2600,10 +2600,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ake-series</g:id>
@@ -2624,10 +2624,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ake-series-ake80-8</g:id>
@@ -2648,10 +2648,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-ake-series-ake90-8</g:id>
@@ -2672,10 +2672,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-akh-series</g:id>
@@ -2696,10 +2696,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
     <g:id>driver-board-for-akh-series-akh70-48</g:id>
@@ -2720,10 +2720,10 @@
       <g:service>Standard</g:service>
       <g:price>45.00 USD</g:price>
     </g:shipping>
-    <g:min_handling_time>3</g:min_handling_time>
-    <g:max_handling_time>13</g:max_handling_time>
-    <g:min_transit_time>2</g:min_transit_time>
-    <g:max_transit_time>5</g:max_transit_time>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
   </item>
 </channel>
 </rss>
