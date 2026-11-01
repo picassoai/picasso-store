@@ -676,6 +676,64 @@ def faq_ld(html):
 
 ORG_ID = SITE + "/#org"
 
+# Both figures are read off shipping-policy.html, which bills freight once per
+# order rather than per item. Google has no field for a free-shipping threshold,
+# so the rate is resolved per product below.
+FREE_SHIP_MIN = 200.0
+FLAT_SHIP = 45.0
+
+# deliveryTime is required by Google, and shipping-policy.html deliberately
+# publishes no blanket lead time - so unlike everything else in this file these
+# two are not read off a page. Confirmed by Hao on 1 November 2026. They
+# describe an in-stock unit; a backorder carries its own date in
+# availabilityStarts. These appear in search results, so they are a promise to
+# the customer: do not widen them without checking what we can actually hit.
+HANDLING_DAYS = (1, 3)
+TRANSIT_DAYS = (3, 7)
+
+
+def days_qv(lo, hi):
+    return {"@type": "QuantitativeValue",
+            "minValue": lo, "maxValue": hi, "unitCode": "DAY"}
+
+
+def shipping_ld(price):
+    """OfferShippingDetails for one product, at the rate shipping-policy.html
+    charges for the single unit an offer describes."""
+    return {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0.00" if price >= FREE_SHIP_MIN else "%.2f" % FLAT_SHIP,
+            "currency": "USD",
+        },
+        "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "US",
+        },
+        "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": days_qv(*HANDLING_DAYS),
+            "transitTime": days_qv(*TRANSIT_DAYS),
+        },
+    }
+
+
+def return_ld():
+    """MerchantReturnPolicy from refund-policy.html: unopened stock, 14 days,
+    buyer pays the return freight. Google's offer-level subset has no
+    restockingFee, so the 15% stays on the page rather than being misdeclared
+    here as something it is not."""
+    return {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "US",
+        "returnPolicyCategory":
+            "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+    }
+
 
 def org_ld():
     """The company as one node, repeated on every page under one @id.
@@ -907,6 +965,14 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         alt += ('<p>Current production version: '
                 '<a href="%s.html">%s</a>.</p>' % (esc(fitted), esc(fitted)))
 
+    # No "review" and no "aggregateRating", on purpose. Search Console asks for
+    # them (WNC-10030322, 1 November 2026) and will keep asking; the answer does
+    # not change until we have real customers willing to be quoted by name.
+    # Inventing them would breach the FTC Consumer Reviews and Testimonials Rule,
+    # which carries a civil penalty per fake review rather than per site, and
+    # Google's own July 2026 review-snippet guideline, whose penalty is a manual
+    # action that would take the merchant-listing fields below down with it.
+    # Missing them costs us a star rating. It costs us nothing that sells a motor.
     ld = {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -922,6 +988,8 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
             "availability": ("https://schema.org/BackOrder" if p["backorder"]
                              else "https://schema.org/InStock"),
             "seller": {"@id": ORG_ID},
+            "shippingDetails": shipping_ld(p["price"]),
+            "hasMerchantReturnPolicy": return_ld(),
         },
     }
     if p["backorder"]:
