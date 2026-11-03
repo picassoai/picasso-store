@@ -392,6 +392,11 @@ const PRICES = {
     "name": "R100 KV90",
     "series": "R Series"
   },
+  "r60-kv115": {
+    "cents": 19900,
+    "name": "R60 KV115",
+    "series": "R Series"
+  },
   "ri100-kv105-with-hall": {
     "cents": 18400,
     "name": "RI100 KV105 with hall sensor",
