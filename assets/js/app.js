@@ -182,8 +182,8 @@
   function backorderNote(p) {
     var due = dueText(p.backorder);
     if (!due) return "";
-    return '<div class="stock backorder"><i></i>On backorder &mdash; next batch expected ' +
-      esc(due) + ", shipped in order received</div>";
+    return '<div class="stock backorder"><i></i>On backorder &mdash; expected to ship ' +
+      esc(due) + ".</div>";
   }
   function quoteHref(p) { return "contact.html?model=" + encodeURIComponent(p.name); }
 
@@ -1378,7 +1378,8 @@
               '<button class="btn btn-accent" type="button" data-add-pdp>Add to cart</button>' +
             "</div>" +
             '<p class="muted" style="font-size:13px">Check out from the cart by card, US bank ' +
-              'transfer, Apple Pay or Google Pay. Import duty on US orders is on us, and ' +
+              'transfer, Apple Pay or Google Pay. Import duty on US orders is on us. ' +
+              'Freight is charged once per order, not per item, and ' +
               (freeFrom(chosenZone())
                 ? '<strong>shipping is free on orders of ' +
                   money(freeFrom(chosenZone())) + ' or more</strong> — '

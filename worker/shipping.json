@@ -10,7 +10,11 @@
       "name": "United States",
       "rates": [
         {
-          "cost": 45,
+          "cost": 75,
+          "upTo": 100
+        },
+        {
+          "cost": 55,
           "upTo": 200
         },
         {

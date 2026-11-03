@@ -587,9 +587,8 @@ def llms_txt(products, cols, apps, pairs=()):
            "Prices are in US dollars and are what the site charges. Import "
            "duty on orders to the United States is paid by us, so there is no "
            "carrier invoice after delivery. Shipping within the United States "
-           "is free on orders over $200 and $45 below that. Orders above "
-           "$5,000 and all orders outside the United States are quoted "
-           "individually.",
+           "is " + freight_sentence() + ". Orders above $5,000 and all orders "
+           "outside the United States are quoted individually.",
            ""]
 
     for cid, items in sorted(by_coll.items(),
@@ -676,11 +675,86 @@ def faq_ld(html):
 
 ORG_ID = SITE + "/#org"
 
-# Both figures are read off shipping-policy.html, which bills freight once per
-# order rather than per item. Google has no field for a free-shipping threshold,
-# so the rate is resolved per product below.
-FREE_SHIP_MIN = 200.0
-FLAT_SHIP = 45.0
+# The freight bands are read from the one table in data.js that the cart and the
+# worker also read, not copied here. They were copied here once, as two
+# constants, and app.js still carries the note about the shipping page promising
+# a flat $10 two revisions after the bands had moved - a number repeated in a
+# second place goes stale silently, and nothing fails to say so. Google has no
+# field for a free-shipping threshold, so the rate is resolved per product below.
+def _us_freight_bands():
+    src = read("assets/js/data.js")
+    i = src.index("shippingZones: [") + len("shippingZones: ")
+    depth, j = 0, i
+    while True:
+        if src[j] == "[":
+            depth += 1
+        elif src[j] == "]":
+            depth -= 1
+            if depth == 0:
+                break
+        j += 1
+    for z in json.loads(src[i:j + 1]):
+        if z["code"] == "US":
+            return z["rates"]
+    raise AssertionError("data.js has no US freight zone")
+
+
+US_FREIGHT = _us_freight_bands()
+
+
+def ship_cost(subtotal):
+    """The first band the subtotal has not outgrown - the same strict < that
+    worker/checkout.js and app.js apply, so $200 exactly ships free in all
+    three rather than in two of them."""
+    for r in US_FREIGHT:
+        if r["upTo"] is None or subtotal < r["upTo"]:
+            return float(r["cost"])
+    return float(US_FREIGHT[-1]["cost"])
+
+
+def free_from():
+    """The subtotal at which freight stops being charged. app.js works the same
+    number out in freeFrom(); both read the band table rather than a sentence
+    typed next to it."""
+    for n, r in enumerate(US_FREIGHT):
+        if not r["cost"]:
+            return US_FREIGHT[n - 1]["upTo"] if n else 0
+    return None
+
+
+def freight_note():
+    """What app.js already says under the price, said on the crawled page too.
+    Without it a search result shows the single-unit freight out of the
+    structured data - $75 on the cheapest products - against a page that
+    mentions shipping nowhere at all, so the one reader the rate is meant to
+    move never learns that it is charged once per order and goes away at the
+    threshold."""
+    free = free_from()
+    if free is None:
+        return ""
+    return ('<p class="muted" style="font-size:13px">Import duty on US orders '
+            'is on us. Freight is charged once per order, not per item, and '
+            '<strong>shipping is free on orders of US$%g or more</strong> '
+            '&mdash; <a href="shipping-policy.html">see the rates</a>.</p>'
+            % free)
+
+
+def freight_sentence():
+    """The band table as prose, built from the table for the same reason the
+    table is not copied: a sentence typed beside the rates is how the shipping
+    page came to promise a flat $10 after the bands had moved."""
+    bits, low = [], 0
+    for r in US_FREIGHT:
+        amount = "free" if not r["cost"] else "$%g" % r["cost"]
+        if r["upTo"] is None:
+            bits.append("%s on orders of $%g or more" % (amount, low))
+        elif low:
+            bits.append("%s from $%g" % (amount, low))
+        else:
+            bits.append("%s under $%g" % (amount, r["upTo"]))
+        low = r["upTo"] if r["upTo"] is not None else low
+    return ", ".join(bits[:-1]) + ", and " + bits[-1] if len(bits) > 1 \
+        else bits[0]
 
 # deliveryTime is required by Google, and shipping-policy.html deliberately
 # publishes no blanket lead time - so unlike everything else in this file these
@@ -704,7 +778,7 @@ def shipping_ld(price):
         "@type": "OfferShippingDetails",
         "shippingRate": {
             "@type": "MonetaryAmount",
-            "value": "0.00" if price >= FREE_SHIP_MIN else "%.2f" % FLAT_SHIP,
+            "value": "%.2f" % ship_cost(price),
             "currency": "USD",
         },
         "shippingDestination": {
@@ -845,12 +919,16 @@ def due_text(iso):
 
 
 def backorder_line(p):
-    """What the page says when a part is not on the shelf."""
+    """What the page says when a part is not on the shelf: that it is not, and
+    when it ships. It used to name the factory batch and say orders fill in the
+    order received, which told a reader we hold no stock and run a queue -
+    neither of which is theirs to know. The date stays because it is the one
+    fact the decision turns on, and because availabilityStarts carries it to
+    Merchant Center, which wants the two to agree."""
     due = due_text(p.get("backorder"))
     if not due:
         return ""
-    return ("On backorder. The next production batch is expected on %s, and "
-            "orders placed now ship in the order they were received." % due)
+    return "On backorder — expected to ship %s." % due
 
 
 def torque_text(v):
@@ -1007,6 +1085,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
     %s
     %s
     %s
+    %s
   </div>
 </div>
 
@@ -1023,6 +1102,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         ("<p>%s</p>" % esc(p["fit"]) if p["fit"] else "") +
         ("<p>%s</p>" % esc(which) if which else "") +
         ("<p>%s</p>" % esc(p["blurb"]) if p["blurb"] else ""),
+        freight_note(),
         alt, table,
         json.dumps(ld, ensure_ascii=False))
 
