@@ -359,6 +359,11 @@
     "name": "GL80 KV60",
     "series": "GL Series"
   },
+  "r100-kv90": {
+    "cents": 47800,
+    "name": "R100 KV90",
+    "series": "R Series"
+  },
   "ri100-kv105-with-hall": {
     "cents": 18400,
     "name": "RI100 KV105 with hall sensor",
