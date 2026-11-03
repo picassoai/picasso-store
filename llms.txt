@@ -78,7 +78,7 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 
 - [MyActuator RMD-L-4010](https://picassointelligence.com/rmd-l-4010.html): US$140. A 40 mm direct drive with the driver built in: 0.15 N·m continuous off the rotor with no gearbox between it and the output, so there is no backlash to take up and nothing to wear. 92 g, CAN bus, 24 V.
 - [MyActuator RMD-H-50-15](https://picassointelligence.com/rmd-h-50-15.html): US$180. A 50 mm direct drive with a 16 mm hollow bore through the middle, so the harness runs through the joint instead of around it. 0.35 N·m continuous, 0.9 N·m peak, no gearbox and no backlash.
-- [R60 KV115](https://picassointelligence.com/r60-kv115.html): US$199. 0.75 N·m rated and 2.3 N·m peak from a Ф69 mm, 248 g housed frame, direct drive on 48 V. Kv 115, 9 A continuous and 28 A peak, with Hall sensors built in. CubeMars lists it for AGVs and mobile robots.
+- [R60 KV115](https://picassointelligence.com/r60-kv115.html): US$200. 0.75 N·m rated and 2.3 N·m peak from a Ф69 mm, 248 g housed frame, direct drive on 48 V. Kv 115, 9 A continuous and 28 A peak, with Hall sensors built in. CubeMars lists it for AGVs and mobile robots.
 - [R100 KV90](https://picassointelligence.com/r100-kv90.html): US$478. 3.7 N·m rated and 11 N·m peak from a Ф106.8 mm, 731 g housed frame, direct drive on 48 V. Kv 90, 35 A continuous and 104 A peak, with Hall sensors built in. CubeMars lists it for heavy-load legged robots.
 
 ## Frameless Motors

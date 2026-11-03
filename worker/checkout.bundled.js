@@ -393,7 +393,7 @@ const PRICES = {
     "series": "R Series"
   },
   "r60-kv115": {
-    "cents": 19900,
+    "cents": 20000,
     "name": "R60 KV115",
     "series": "R Series"
   },
