@@ -409,7 +409,12 @@ const PRICES = {
   },
   "ri115-ph-kv40": {
     "cents": 22400,
-    "name": "RI115-PH KV40",
+    "name": "RI115-PH KV40 welded leads",
+    "series": "RI Series"
+  },
+  "ri115-ph-kv40-with-connector": {
+    "cents": 22400,
+    "name": "RI115-PH KV40 with connector",
     "series": "RI Series"
   },
   "ri20-kv600": {
@@ -454,7 +459,12 @@ const PRICES = {
   },
   "ri75-ph-kv70": {
     "cents": 15600,
-    "name": "RI75-PH KV70",
+    "name": "RI75-PH KV70 welded leads",
+    "series": "RI Series"
+  },
+  "ri75-ph-kv70-with-connector": {
+    "cents": 15600,
+    "name": "RI75-PH KV70 with connector",
     "series": "RI Series"
   },
   "ri80-v2-0-kv75-with-hall": {
@@ -469,7 +479,12 @@ const PRICES = {
   },
   "ri85-ph-kv85": {
     "cents": 16600,
-    "name": "RI85-PH KV85",
+    "name": "RI85-PH KV85 welded leads",
+    "series": "RI Series"
+  },
+  "ri85-ph-kv85-with-connector": {
+    "cents": 16600,
+    "name": "RI85-PH KV85 with connector",
     "series": "RI Series"
   },
   "rmd-h-50-15": {
