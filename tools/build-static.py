@@ -45,6 +45,23 @@ STATIC_PAGES = [
     "part-numbers.html",
 ]
 
+# Served, but kept out of the sitemap on purpose: the cart, the checkout, the
+# order pages. They still need the Google tag - thank-you.html is where a
+# purchase is counted, and gtag() is undefined on a page that never loaded it -
+# so they take the tag alone, without the header and footer they render for
+# themselves. The redirect stubs stay out: a page that bounces on load would
+# only report a visit nobody made.
+TAGGED_PAGES = [
+    "cart.html", "checkout.html", "thank-you.html", "track.html",
+    "product.html", "collection.html", "compare.html", "search.html",
+    "summary.html", "404.html",
+    # Superseded and discontinued parts. Noindex, but a reader lands here and
+    # clicks through to the replacement, so an untagged one would drop the
+    # click id and leave the sale that follows unattributed.
+    "ak40-10-kv170-with-driver.html", "ak45-10-kv75-with-driver.html",
+    "ak45-36-kv80-with-driver.html",
+]
+
 
 def json_dump(obj):
     return json.dumps(obj, indent=2, ensure_ascii=False, sort_keys=True) + "\n"
@@ -190,6 +207,15 @@ def parse_joints(src):
 NAV_HTML = ""
 FOOT_HTML = ""
 
+# The Google tag. Ads measures no conversion without it, and Google rejects a
+# page carrying two, so it travels behind a marker: page() writes it once into
+# a fresh document, and inject_shell() strips any earlier one before writing a
+# new one, so a rebuild replaces rather than stacks.
+GTAG_HTML = """<!--gtag-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18556985810"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18556985810');</script>
+<!--/gtag-->"""
+
 
 def nav_markup(cols, apps):
     shop = "".join('<li><a href="%s.html">%s</a></li>' % (slugify(c["name"]), esc(c["name"]))
@@ -221,6 +247,16 @@ def foot_markup(cols):
             'distributor for North America.</p></footer>') % shop
 
 
+def inject_gtag(html):
+    """The Google tag, and nothing else, for pages that own their own shell.
+
+    Marker discipline matches the nav: clear what an earlier build wrote
+    before writing it again, so no page ends up carrying two tags.
+    """
+    html = re.sub(r"<!--gtag-->.*?<!--/gtag-->\n?", "", html, flags=re.S)
+    return html.replace("</head>", GTAG_HTML + "\n</head>", 1)
+
+
 def inject_shell(html):
     """Put the same header and footer into the hand-written pages.
 
@@ -233,6 +269,7 @@ def inject_shell(html):
                   lambda m: "<!--nav-->" + NAV_HTML + "<!--/nav-->", html, flags=re.S)
     html = re.sub(r'<!--foot-->.*?<!--/foot-->|<div id="site-footer"></div>',
                   lambda m: "<!--foot-->" + FOOT_HTML + "<!--/foot-->", html, flags=re.S)
+    html = inject_gtag(html)
     # index.html is the page an engine reads to learn who the site belongs to,
     # and it is hand-written, so page() never reached it. The marker is
     # written on the first run and replaced on every one after.
@@ -883,6 +920,7 @@ def page(title, desc, canonical, route, body, page_attr, crumbs=()):
 <meta name="description" content="%s">
 <link rel="canonical" href="%s">
 <link rel="stylesheet" href="assets/css/site.css">
+%s
 </head>
 <body data-page="%s">
 
@@ -899,7 +937,7 @@ def page(title, desc, canonical, route, body, page_attr, crumbs=()):
 <script src="assets/js/app.js"></script>
 </body>
 </html>
-""" % (esc(title), esc(desc), canonical, page_attr, NAV_HTML, body, FOOT_HTML, route)
+""" % (esc(title), esc(desc), canonical, GTAG_HTML, page_attr, NAV_HTML, body, FOOT_HTML, route)
 
 
 def due_text(iso):
@@ -1270,6 +1308,8 @@ def main():
     FOOT_HTML = foot_markup(cols)
     for f in static_pending:
         write(f, inject_shell(read(f)))
+    for f in TAGGED_PAGES:
+        write(f, inject_gtag(read(f)))
     for c in cols:
         slug, html = collection_page(c, products)
         write("%s.html" % slug, html)
