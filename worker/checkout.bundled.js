@@ -969,7 +969,16 @@ async function stripeSession(payload, env) {
   const ref = orderRef();
   form.set("metadata[order]", ref);
   form.set("payment_intent_data[metadata][order]", ref);
-  form.set("success_url", SITE + "/thank-you.html?o=" + ref);
+  /* The goods total rides along on the success URL so the thank-you page can
+     report what the order was worth. Without it every sale counts the same and
+     automated bidding walks the budget towards the cheapest parts in a
+     catalogue that runs from $25 to $1,109. Freight is left out: it is the
+     carrier's money, not revenue. */
+  const goods = lines.reduce((n, l) => n + l.item.cents * l.qty, 0);
+  form.set(
+    "success_url",
+    SITE + "/thank-you.html?o=" + ref + "&v=" + (goods / 100).toFixed(2)
+  );
   form.set("cancel_url", SITE + "/cart.html");
   /* Physical goods: without an address there is nowhere to send them. The list
      is the chosen zone's, so the address cannot land outside the area whose

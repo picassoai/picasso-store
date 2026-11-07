@@ -55,6 +55,30 @@
 
 <div id="site-footer"></div>
 
+<script>
+/* Report the purchase to Google Ads. Two guards against counting one order
+   twice: transaction_id, which Google de-duplicates on, and a session flag,
+   which stops a refresh from sending a second one at all. The value comes
+   from the worker on the success URL - never a margin figure, which this
+   page would hand to anyone who opened it. */
+(function () {
+  var q = new URLSearchParams(location.search);
+  var ref = q.get("o");
+  if (!ref || typeof gtag !== "function") return;
+  var key = "conv:" + ref;
+  try {
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, "1");
+  } catch (e) {}
+  var v = parseFloat(q.get("v"));
+  gtag("event", "conversion", {
+    send_to: "AW-18556985810/hW6nCI6Wk7QdENLD1JBF",
+    transaction_id: ref,
+    value: isFinite(v) && v > 0 ? v : 0,
+    currency: "USD"
+  });
+})();
+</script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/art.js"></script>
 <script src="assets/js/app.js"></script>
