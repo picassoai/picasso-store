@@ -72,6 +72,23 @@
     });
   }
 
+  /* An enquiry is the conversion that matters most here. The largest orders
+     never touch the checkout at all - they arrive as a question from someone
+     who wants a quotation and a lead time first - so a campaign optimised on
+     Stripe orders alone would hunt for the small self-serve buyer and miss
+     where the money is. The value is a flat expected worth of an enquiry, not
+     a quoted price, and nothing about the enquirer is sent. The footer's
+     mailing-list box deliberately does not call this: an address left for a
+     newsletter is not somebody asking us to price a job. */
+  function quoteConversion() {
+    if (typeof gtag !== "function") return;
+    gtag("event", "conversion", {
+      send_to: "AW-18556985810/VUEYCNnnkbQdENLD1JBF",
+      value: 150,
+      currency: "USD"
+    });
+  }
+
   /* The query-string URL and its generated twin serve the same page, so point
      the query-string one at the twin and let the duplicate collapse into it. */
   function canonical(path) {
@@ -1929,6 +1946,7 @@
       status.innerHTML = "";
 
       postForm(fd).then(function () {
+        quoteConversion();
         sent = true;
         sendBtn.remove();
         status.innerHTML = '<div class="notice" style="margin-top:20px">' +
@@ -2224,6 +2242,7 @@
       if (old) old.remove();
 
       postForm(new FormData(form)).then(function () {
+        quoteConversion();
         form.innerHTML = '<div class="notice"><strong>Thank you — your message has been sent.</strong> ' +
           "An engineer will reply to the address you gave. If it is urgent you can also reach us at " +
           mailto + ".</div>";
