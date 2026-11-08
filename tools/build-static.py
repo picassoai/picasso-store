@@ -19,6 +19,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 
 SITE = "https://picassointelligence.com"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1446,6 +1447,34 @@ def main():
     print("ship zones    %s" % ", ".join(z["code"] for z in zones))
     print("self-serve to $%s" % format(self_serve_max, ","))
     print("lastmod       %s" % (lastmod or "(omitted)"))
+    build_feed()
+
+
+def build_feed():
+    """Regenerate the Merchant Center feed, in the same breath as the site.
+
+    The feed is built from assets/js/data.js like everything else, but it was
+    the one artefact nothing re-ran: it sat ten days behind the catalogue,
+    five models short, quoting heights the product pages had already
+    corrected. Merchant Center fetches it on a schedule and does not care that
+    a human forgot, so a stale file advertises a price the cart will not
+    honour - the exact mismatch the generator exists to prevent.
+
+    A subprocess rather than an import: build-feed.py loads this module to
+    reuse its parsers, so importing it back would run the pair twice.
+    """
+    feed = os.path.join(ROOT, "tools", "build-feed.py")
+    r = subprocess.run([sys.executable, feed], cwd=ROOT,
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    out = r.stdout.decode("utf-8", "replace").strip()
+    if r.returncode:
+        # Loud, but not fatal: the pages are already written and correct, and
+        # refusing to finish the build over the feed would be the wrong trade.
+        print("feed          FAILED (exit %d)" % r.returncode)
+        print(out)
+    else:
+        for line in out.splitlines():
+            print("feed          %s" % line.strip())
 
 
 if __name__ == "__main__":

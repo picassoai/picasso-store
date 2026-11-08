@@ -21,7 +21,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -45,7 +45,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -69,7 +69,56 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
+    </g:shipping>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
+  </item>
+  <item>
+    <g:id>r100-kv90</g:id>
+    <g:title>CubeMars R100 KV90 — Direct Drive Motors</g:title>
+    <g:description>3.7 N·m rated and 11 N·m peak from a Ф106.8 mm, 731 g housed frame, direct drive on 48 V. Kv 90, 35 A continuous and 104 A peak, with Hall sensors built in. CubeMars lists it for heavy-load legged robots. The largest of the R series, and the only CubeMars direct drive here that arrives as a finished motor: the Hall sensors, the bearings and the bore are already in it, where the frameless RI and RO rotors leave all three to you. There is no gearbox, so there is no backlash to take up and nothing in the drivetrain to wear. Mounting holes are left in the bell for a harmonic drive or a flange when the joint needs more torque than 11 N·m. Rated Torque 3.7; Peak Torque 11; OD 106.8; Weight 731; Reduction Ratio 1:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:link>https://picassointelligence.com/r100-kv90.html</g:link>
+    <g:image_link>https://picassointelligence.com/assets/img/products-branded/r100-kv90-1.webp</g:image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/r100-kv90-2.webp</g:additional_image_link>
+    <g:condition>new</g:condition>
+    <g:availability>in_stock</g:availability>
+    <g:price>478.00 USD</g:price>
+    <g:brand>CubeMars</g:brand>
+    <g:mpn>R100 KV90</g:mpn>
+    <g:identifier_exists>no</g:identifier_exists>
+    <g:product_type>Direct Drive Motors</g:product_type>
+    <g:shipping>
+      <g:country>US</g:country>
+      <g:service>Standard</g:service>
+      <g:price>0.00 USD</g:price>
+    </g:shipping>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
+  </item>
+  <item>
+    <g:id>r60-kv115</g:id>
+    <g:title>CubeMars R60 KV115 — Direct Drive Motors</g:title>
+    <g:description>0.75 N·m rated and 2.3 N·m peak from a Ф69 mm, 248 g housed frame, direct drive on 48 V. Kv 115, 9 A continuous and 28 A peak, with Hall sensors built in. CubeMars lists it for AGVs and mobile robots. The small end of the R series, and a finished motor rather than a kit: the Hall sensors, the bearings and the bore are already in it, where the frameless RI and RO rotors leave all three to you. No gearbox, so no backlash and nothing in the drivetrain to wear. The bell carries mounting holes for a harmonic drive or a flange when a joint needs more than 2.3 N·m, and the three-phase leads and the Hall cable are both connectorised. Rated Torque 0.75; Peak Torque 2.3; OD 69; Weight 248; Reduction Ratio 1:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:link>https://picassointelligence.com/r60-kv115.html</g:link>
+    <g:image_link>https://picassointelligence.com/assets/img/products-branded/r60-kv115-1.webp</g:image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/r60-kv115-2.webp</g:additional_image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/r60-kv115-3.webp</g:additional_image_link>
+    <g:condition>new</g:condition>
+    <g:availability>in_stock</g:availability>
+    <g:price>200.00 USD</g:price>
+    <g:brand>CubeMars</g:brand>
+    <g:mpn>R60 KV115</g:mpn>
+    <g:identifier_exists>no</g:identifier_exists>
+    <g:product_type>Direct Drive Motors</g:product_type>
+    <g:shipping>
+      <g:country>US</g:country>
+      <g:service>Standard</g:service>
+      <g:price>0.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -519,7 +568,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -544,7 +593,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -569,7 +618,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -594,7 +643,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -644,7 +693,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -669,7 +718,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -694,7 +743,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -905,7 +954,7 @@
   <item>
     <g:id>ak60-39-v3-0</g:id>
     <g:title>CubeMars AK60-39 V3.0 — AK Series</g:title>
-    <g:description>Two planetary stages for a 39:1 reduction, so a 79 mm joint holds what an unreduced one its size could not. Dual magnetic encoders on both sides of the gearbox, and speed, torque, position and MIT modes. Rated Torque 24; Peak Torque 72; OD 79; Weight 750; Reduction Ratio 39:1; Rated Voltage 48 Outer Ring Encoder type Magnetic Encoder. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>Two planetary stages for a 39:1 reduction, so a 79 mm joint holds what an unreduced one its size could not. Dual magnetic encoders on both sides of the gearbox, and speed, torque, position and MIT modes. Rated Torque 24; Peak Torque 72; OD 79; Weight 750; Reduction Ratio 39:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak60-39-v3-0.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak60-39-v3-0-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak60-39-v3-0-2.webp</g:additional_image_link>
@@ -1180,7 +1229,7 @@
   <item>
     <g:id>akh70-16-v1-0-kv41</g:id>
     <g:title>CubeMars AKH70-16 V1.0 KV41 — AKH Series</g:title>
-    <g:description>A two-stage 16:1 hollow-shaft joint. Power and signal run through the middle of the output rather than around the outside of it, which is what lets an arm keep rotating without a service loop. Rated Torque 26; Peak Torque 85; OD 90; Weight 879; Reduction Ratio 16:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>26 N·m rated and 85 N·m peak from a Ф90 x 60.5 mm, 879 g frame, on 48 V. 16:1 through a hollow output, 12 arcmin backlash, two 21-bit encoders. A two-stage 16:1 hollow-shaft joint. Power and signal run through the middle of the output rather than around the outside of it, which is what lets an arm keep rotating without a service loop. Rated Torque 26; Peak Torque 85; OD 90; Weight 879; Reduction Ratio 16:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/akh70-16-v1-0-kv41.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/akh70-16-v1-0-kv41-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/akh70-16-v1-0-kv41-2.webp</g:additional_image_link>
@@ -1205,7 +1254,7 @@
   <item>
     <g:id>akh70-48-v1-0-kv41</g:id>
     <g:title>CubeMars AKH70-48 V1.0 KV41 — AKH Series</g:title>
-    <g:description>Three planetary stages for 48:1, through a hollow output shaft. Dual encoders on both sides of the gearbox, so the controller sees the load and not just the motor. Rated Torque 74; Peak Torque 222; OD 90; Weight 1396; Reduction Ratio 48:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>74 N·m rated and 222 N·m peak from a Ф90 x 81.5 mm, 1396 g frame, on 48 V. 48:1 through a hollow output, 12 arcmin backlash, two 21-bit encoders. Three planetary stages for 48:1, through a hollow output shaft. Dual encoders on both sides of the gearbox, so the controller sees the load and not just the motor. Rated Torque 74; Peak Torque 222; OD 90; Weight 1396; Reduction Ratio 48:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/akh70-48-v1-0-kv41.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/akh70-48-v1-0-kv41-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/akh70-48-v1-0-kv41-2.webp</g:additional_image_link>
@@ -1245,7 +1294,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1270,7 +1319,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1295,7 +1344,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1320,7 +1369,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1346,7 +1395,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1371,7 +1420,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1395,7 +1444,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1419,7 +1468,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1444,7 +1493,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1469,7 +1518,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1567,7 +1616,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1592,7 +1641,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1617,7 +1666,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1642,7 +1691,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1667,7 +1716,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1692,7 +1741,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1717,7 +1766,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1742,7 +1791,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1767,7 +1816,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1792,7 +1841,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1817,7 +1866,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1842,7 +1891,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1867,7 +1916,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1892,7 +1941,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1917,7 +1966,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1942,7 +1991,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1951,8 +2000,8 @@
   </item>
   <item>
     <g:id>ri75-ph-kv70</g:id>
-    <g:title>CubeMars RI75-PH KV70 — Frameless Motors</g:title>
-    <g:description>1.2 N·m rated and 3.8 N·m peak from a Ф70 x 31.8 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 1.2; Peak Torque 3.8; OD 70; Weight 348; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:title>CubeMars RI75-PH KV70 welded leads — Frameless Motors</g:title>
+    <g:description>1.2 N·m rated and 3.8 N·m peak from a Ф70 x 34 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 1.2; Peak Torque 3.8; OD 70; Weight 348; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ri75-ph-kv70.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri75-ph-kv70-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri75-ph-kv70-2.webp</g:additional_image_link>
@@ -1961,13 +2010,38 @@
     <g:availability>in_stock</g:availability>
     <g:price>156.00 USD</g:price>
     <g:brand>CubeMars</g:brand>
-    <g:mpn>RI75-PH KV70</g:mpn>
+    <g:mpn>RI75-PH KV70 welded leads</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
+    </g:shipping>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
+  </item>
+  <item>
+    <g:id>ri75-ph-kv70-with-connector</g:id>
+    <g:title>CubeMars RI75-PH KV70 with connector — Frameless Motors</g:title>
+    <g:description>1.2 N·m rated and 3.8 N·m peak from a Ф70 x 36.2 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 1.2; Peak Torque 3.8; OD 70; Weight 348; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:link>https://picassointelligence.com/ri75-ph-kv70-with-connector.html</g:link>
+    <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri75-ph-kv70-1.webp</g:image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri75-ph-kv70-2.webp</g:additional_image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri75-ph-kv70-3.webp</g:additional_image_link>
+    <g:condition>new</g:condition>
+    <g:availability>in_stock</g:availability>
+    <g:price>156.00 USD</g:price>
+    <g:brand>CubeMars</g:brand>
+    <g:mpn>RI75-PH KV70 with connector</g:mpn>
+    <g:identifier_exists>no</g:identifier_exists>
+    <g:product_type>Frameless Motors</g:product_type>
+    <g:shipping>
+      <g:country>US</g:country>
+      <g:service>Standard</g:service>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -1976,8 +2050,8 @@
   </item>
   <item>
     <g:id>ri85-ph-kv85</g:id>
-    <g:title>CubeMars RI85-PH KV85 — Frameless Motors</g:title>
-    <g:description>2 N·m rated and 5 N·m peak from a Ф85 x 27.3 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 2; Peak Torque 5; OD 85; Weight 411; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:title>CubeMars RI85-PH KV85 welded leads — Frameless Motors</g:title>
+    <g:description>2 N·m rated and 5 N·m peak from a Ф85 x 31.5 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 2; Peak Torque 5; OD 85; Weight 411; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ri85-ph-kv85.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri85-ph-kv85-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri85-ph-kv85-2.webp</g:additional_image_link>
@@ -1986,13 +2060,38 @@
     <g:availability>in_stock</g:availability>
     <g:price>166.00 USD</g:price>
     <g:brand>CubeMars</g:brand>
-    <g:mpn>RI85-PH KV85</g:mpn>
+    <g:mpn>RI85-PH KV85 welded leads</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
+    </g:shipping>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
+  </item>
+  <item>
+    <g:id>ri85-ph-kv85-with-connector</g:id>
+    <g:title>CubeMars RI85-PH KV85 with connector — Frameless Motors</g:title>
+    <g:description>2 N·m rated and 5 N·m peak from a Ф85 x 32 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 2; Peak Torque 5; OD 85; Weight 411; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:link>https://picassointelligence.com/ri85-ph-kv85-with-connector.html</g:link>
+    <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri85-ph-kv85-1.webp</g:image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri85-ph-kv85-2.webp</g:additional_image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri85-ph-kv85-3.webp</g:additional_image_link>
+    <g:condition>new</g:condition>
+    <g:availability>in_stock</g:availability>
+    <g:price>166.00 USD</g:price>
+    <g:brand>CubeMars</g:brand>
+    <g:mpn>RI85-PH KV85 with connector</g:mpn>
+    <g:identifier_exists>no</g:identifier_exists>
+    <g:product_type>Frameless Motors</g:product_type>
+    <g:shipping>
+      <g:country>US</g:country>
+      <g:service>Standard</g:service>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2017,7 +2116,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2042,7 +2141,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2067,7 +2166,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2092,7 +2191,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2101,8 +2200,8 @@
   </item>
   <item>
     <g:id>ri115-ph-kv40</g:id>
-    <g:title>CubeMars RI115-PH KV40 — Frameless Motors</g:title>
-    <g:description>The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 38.1 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 5.5; Peak Torque 16; OD 115; Weight 1108; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:title>CubeMars RI115-PH KV40 welded leads — Frameless Motors</g:title>
+    <g:description>The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 41 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 5.5; Peak Torque 16; OD 115; Weight 1108; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ri115-ph-kv40.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri115-ph-kv40-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri115-ph-kv40-2.webp</g:additional_image_link>
@@ -2111,7 +2210,32 @@
     <g:availability>in_stock</g:availability>
     <g:price>224.00 USD</g:price>
     <g:brand>CubeMars</g:brand>
-    <g:mpn>RI115-PH KV40</g:mpn>
+    <g:mpn>RI115-PH KV40 welded leads</g:mpn>
+    <g:identifier_exists>no</g:identifier_exists>
+    <g:product_type>Frameless Motors</g:product_type>
+    <g:shipping>
+      <g:country>US</g:country>
+      <g:service>Standard</g:service>
+      <g:price>0.00 USD</g:price>
+    </g:shipping>
+    <g:min_handling_time>1</g:min_handling_time>
+    <g:max_handling_time>3</g:max_handling_time>
+    <g:min_transit_time>5</g:min_transit_time>
+    <g:max_transit_time>10</g:max_transit_time>
+  </item>
+  <item>
+    <g:id>ri115-ph-kv40-with-connector</g:id>
+    <g:title>CubeMars RI115-PH KV40 with connector — Frameless Motors</g:title>
+    <g:description>The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 42 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load. CubeMars introduces the RI-PH series frameless inner-rotor motors, as a brushless DC motor, it's an ideal choice for industrial automation and robotics technology. Rated Torque 5.5; Peak Torque 16; OD 115; Weight 1108; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:link>https://picassointelligence.com/ri115-ph-kv40-with-connector.html</g:link>
+    <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri115-ph-kv40-1.webp</g:image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri115-ph-kv40-2.webp</g:additional_image_link>
+    <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri115-ph-kv40-3.webp</g:additional_image_link>
+    <g:condition>new</g:condition>
+    <g:availability>in_stock</g:availability>
+    <g:price>224.00 USD</g:price>
+    <g:brand>CubeMars</g:brand>
+    <g:mpn>RI115-PH KV40 with connector</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
@@ -2142,7 +2266,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2167,7 +2291,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2192,7 +2316,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2216,7 +2340,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2240,7 +2364,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2264,7 +2388,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2288,7 +2412,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2312,7 +2436,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2336,7 +2460,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2360,7 +2484,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2384,7 +2508,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2408,7 +2532,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2432,7 +2556,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2456,7 +2580,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2480,7 +2604,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2504,7 +2628,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2528,7 +2652,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2552,7 +2676,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2576,7 +2700,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2600,7 +2724,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2624,7 +2748,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>75.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2648,7 +2772,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2672,7 +2796,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2696,7 +2820,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
@@ -2720,7 +2844,7 @@
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>45.00 USD</g:price>
+      <g:price>55.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
