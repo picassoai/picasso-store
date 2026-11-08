@@ -42,8 +42,8 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 
 ## AKH Series
 
-- [AKH70-16 V1.0 KV41](https://picassointelligence.com/akh70-16-v1-0-kv41.html): US$670. A two-stage 16:1 hollow-shaft joint. Power and signal run through the middle of the output rather than around the outside of it, which is what lets an arm keep rotating without a service loop.
-- [AKH70-48 V1.0 KV41](https://picassointelligence.com/akh70-48-v1-0-kv41.html): US$782. Three planetary stages for 48:1, through a hollow output shaft. Dual encoders on both sides of the gearbox, so the controller sees the load and not just the motor.
+- [AKH70-16 V1.0 KV41](https://picassointelligence.com/akh70-16-v1-0-kv41.html): US$670. 26 N·m rated and 85 N·m peak from a Ф90 x 60.5 mm, 879 g frame, on 48 V. 16:1 through a hollow output, 12 arcmin backlash, two 21-bit encoders.
+- [AKH70-48 V1.0 KV41](https://picassointelligence.com/akh70-48-v1-0-kv41.html): US$782. 74 N·m rated and 222 N·m peak from a Ф90 x 81.5 mm, 1396 g frame, on 48 V. 48:1 through a hollow output, 12 arcmin backlash, two 21-bit encoders.
 
 ## Accessories
 
@@ -98,17 +98,17 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 - [RI70 KV95 without hall sensor](https://picassointelligence.com/ri70-kv95-without-hall.html): US$139. 940 mN·m rated and 2.68 N·m peak from a Ф76 x 24 mm, 270.4 g frame, on 24 V. Kv 95, 1270 RPM rated and 1956 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
 - [RI80 V2.0 KV75 without hall sensor](https://picassointelligence.com/ri80-v2-0-kv75-without-hall.html): US$149. 1.45 N·m rated and 4.1 N·m peak from a Ф85 x 27 mm, 411 g frame, on 24 V. Kv 75, 1135 RPM rated and 1480 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
 - [RI70 KV95 with hall sensor](https://picassointelligence.com/ri70-kv95-with-hall.html): US$156. 940 mN·m rated and 2.68 N·m peak from a Ф76 x 24 mm, 270.4 g frame, on 24 V. Kv 95, 1270 RPM rated and 1956 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
-- [RI75-PH KV70 welded leads](https://picassointelligence.com/ri75-ph-kv70.html): US$156. 1.2 N·m rated and 3.8 N·m peak from a Ф70 x 31.8 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load.
-- [RI75-PH KV70 with connector](https://picassointelligence.com/ri75-ph-kv70-with-connector.html): US$156. 1.2 N·m rated and 3.8 N·m peak from a Ф70 x 31.8 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load.
+- [RI75-PH KV70 welded leads](https://picassointelligence.com/ri75-ph-kv70.html): US$156. 1.2 N·m rated and 3.8 N·m peak from a Ф70 x 34 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load.
+- [RI75-PH KV70 with connector](https://picassointelligence.com/ri75-ph-kv70-with-connector.html): US$156. 1.2 N·m rated and 3.8 N·m peak from a Ф70 x 36.2 mm, 348 g frame, on 48 V. 2365 RPM rated and 3360 RPM no-load.
 - [RI80 V2.0 KV75 with hall sensor](https://picassointelligence.com/ri80-v2-0-kv75-with-hall.html): US$166. 1.45 N·m rated and 4.1 N·m peak from a Ф85 x 27 mm, 411 g frame, on 24 V. Kv 75, 1135 RPM rated and 1480 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
-- [RI85-PH KV85 welded leads](https://picassointelligence.com/ri85-ph-kv85.html): US$166. 2 N·m rated and 5 N·m peak from a Ф85 x 27.3 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load.
-- [RI85-PH KV85 with connector](https://picassointelligence.com/ri85-ph-kv85-with-connector.html): US$166. 2 N·m rated and 5 N·m peak from a Ф85 x 27.3 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load.
+- [RI85-PH KV85 welded leads](https://picassointelligence.com/ri85-ph-kv85.html): US$166. 2 N·m rated and 5 N·m peak from a Ф85 x 31.5 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load.
+- [RI85-PH KV85 with connector](https://picassointelligence.com/ri85-ph-kv85-with-connector.html): US$166. 2 N·m rated and 5 N·m peak from a Ф85 x 32 mm, 411 g frame, on 48 V. 3042 RPM rated and 4080 RPM no-load.
 - [RI100 KV105 without hall sensor](https://picassointelligence.com/ri100-kv105-without-hall.html): US$167. 1.76 N·m rated and 4.95 N·m peak from a Ф104 x 26 mm, 500 g frame, on 24 V. Kv 105, 1370 RPM rated and 2184 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
 - [RO100 KV55 Lite](https://picassointelligence.com/ro100-kv55-lite.html): US$176. The largest RO: 4 N·m rated and 12 N·m peak from a Ф108.3 x 28 mm, 525 g frame, on 48 V. Kv 55. CubeMars lists it for cobot arms and exoskeletons.
 - [RI100 KV105 with hall sensor](https://picassointelligence.com/ri100-kv105-with-hall.html): US$184. 1.76 N·m rated and 4.95 N·m peak from a Ф104 x 26 mm, 500 g frame, on 24 V. Kv 105, 1370 RPM rated and 2184 RPM no-load. CubeMars lists it for cobot arms and exoskeletons.
 - [RO100 KV55 Standard](https://picassointelligence.com/ro100-kv55-standard.html): US$193. The largest RO: 4 N·m rated and 12 N·m peak from a Ф113.5 x 36.2 mm, 710 g frame, on 48 V. Kv 55. CubeMars lists it for cobot arms and exoskeletons.
-- [RI115-PH KV40 welded leads](https://picassointelligence.com/ri115-ph-kv40.html): US$224. The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 38.1 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load.
-- [RI115-PH KV40 with connector](https://picassointelligence.com/ri115-ph-kv40-with-connector.html): US$224. The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 38.1 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load.
+- [RI115-PH KV40 welded leads](https://picassointelligence.com/ri115-ph-kv40.html): US$224. The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 41 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load.
+- [RI115-PH KV40 with connector](https://picassointelligence.com/ri115-ph-kv40-with-connector.html): US$224. The largest RI: 5.5 N·m rated and 16 N·m peak from a Ф115 x 42 mm, 1108 g frame, on 48 V. 1430 RPM rated and 1920 RPM no-load.
 
 ## Gimbal Motors
 

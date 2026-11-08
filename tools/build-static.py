@@ -1241,7 +1241,14 @@ def parse_taxonomy(src, block_name, tail):
         end = hits[n + 1].start() if n + 1 < len(hits) else len(body)
         chunk = body[m.start():end]
         blurb = re.search(r'blurb: "((?:[^"\\]|\\.)*)"', chunk)
+        # An application names its own parts. The four-space indent picks the
+        # entry's own list rather than a joint's: joints sit deeper and are
+        # views over this same set, so matching loosely would pull a subset in
+        # and call it the whole.
+        own = re.search(r"\n    products: \[(.*?)\]", chunk, re.S)
+        ids = re.findall(r'"([^"]+)"', own.group(1)) if own else []
         out.append({"id": m.group(1), "name": m.group(2),
+                    "products": ids,
                     "blurb": (blurb.group(1).replace('\\"', '"') if blurb else "")})
     return out
 
@@ -1266,12 +1273,20 @@ def collection_page(c, products=None):
                       [("Store", "index.html"), (c["name"], None)])
 
 
-def application_page(a):
+def application_page(a, products=None):
     slug = "actuators-for-%s" % slugify(a["name"])
     title = "Actuators for %s | Picasso Intelligence" % a["name"]
+    # The collection pages have carried their models in the source since the
+    # crawl found eleven pages of nothing; the application pages never did, so
+    # "Actuators for Humanoid Robots" shipped an empty grid and not one link
+    # to an actuator. These are the pages the ads point at.
+    by_id = {q["id"]: q for q in (products or [])}
+    mine = [by_id[i] for i in a.get("products", ()) if i in by_id]
+    mine.sort(key=lambda q: q["price"])
     return slug, page(title, a["blurb"], "%s/%s.html" % (SITE, slug),
                       '{ a: "%s" }' % a["id"],
-                      browse_body("Actuators for %s" % a["name"], a["blurb"]),
+                      browse_body("Actuators for %s" % a["name"], a["blurb"],
+                                  mine),
                       "collection",
                       [("Store", "index.html"),
                        ("Actuators for %s" % a["name"], None)])
@@ -1315,7 +1330,7 @@ def main():
         write("%s.html" % slug, html)
         urls.append("%s/%s.html" % (SITE, slug))
     for a in apps:
-        slug, html = application_page(a)
+        slug, html = application_page(a, products)
         write("%s.html" % slug, html)
         urls.append("%s/%s.html" % (SITE, slug))
 
