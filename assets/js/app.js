@@ -632,8 +632,17 @@
   function photo(p, i, alt, lazy, branded) {
     var src = photos(p)[i || 0];
     if (!src) return window.ART.render(p.art, p.size, { alt: alt || p.name });
+    /* R100 KV90 and R60 KV115 were photographed after the logo-painting pass,
+       so their unbranded cut was never made and every listing that held them
+       showed a broken image instead of a motor. ART.render does not catch it:
+       the model has photos, they just are not on disk. Fall back to the
+       branded cut once - a visible CubeMars mark on one card is a far smaller
+       fault than no picture - and clear the handler so a file missing from
+       both directories fails quietly rather than looping. */
+    var onerr = branded ? "" : ' onerror="this.onerror=null;this.src=\'' +
+      IMG_DIR_BRANDED + esc(src) + '\'"';
     return '<img src="' + (branded ? IMG_DIR_BRANDED : IMG_DIR) + esc(src) +
-      '" alt="' + esc(alt || p.name) + '"' +
+      '"' + onerr + ' alt="' + esc(alt || p.name) + '"' +
       (lazy === false ? "" : ' loading="lazy" decoding="async"') + ">";
   }
   /* One representative photo per group. Applications overlap heavily — the
