@@ -1276,6 +1276,48 @@
       }).join("") + "</div>";
   }
 
+  /* Which lead termination to buy, answered on the page instead of by email.
+
+     Three RI-PH families ship a welded and a connector version at one price,
+     and all the catalogue said was "This is the welded leads configuration",
+     which settles nothing. Two questions get asked instead, and both were
+     asked mid-order by an aerospace customer who had already paid: can the
+     connector version be soldered to directly, and nobody thinks about the
+     height until the actuator is drawn.
+
+     Both millimetre figures are read from the two products' own specs rather
+     than written here, because the gap is not a constant - the RI75 pair
+     differ by 2.2 mm where the RI85 pair differ by 0.5 mm. */
+  function leadTerminationNote(p) {
+    var mine = p.specs && p.specs["Lead Termination"];
+    if (!mine) return "";
+    var other = variants(p).filter(function (v) {
+      return v.id !== p.id && v.specs &&
+        v.specs["Lead Termination"] && v.specs["Lead Termination"] !== mine;
+    })[0];
+    var h = parseFloat(p.specs["Height (mm)"]);
+    var ho = other ? parseFloat(other.specs["Height (mm)"]) : NaN;
+    var gap = "";
+    if (isFinite(h) && isFinite(ho) && h !== ho) {
+      gap = " It is " + Math.abs(ho - h).toFixed(1).replace(/\.0$/, "") + " mm " +
+        (h < ho ? "shorter" : "taller") + " than the " +
+        (other.variantLabel || other.name).toLowerCase()
+          .replace(/^with /, "") + " version, " +
+        h + " mm against " + ho + " mm.";
+    }
+    var lead = /weld/i.test(mine)
+      ? "The seven sensor nets end in bare pads on the board, so you run your " +
+        "own wire in whatever gauge and length the build needs."
+      : "The seven sensor nets come out on a fitted header and a plug-in " +
+        "harness, so there is nothing to solder on that side. If you would " +
+        "rather run your own sensor wire, buy the welded version — the " +
+        "header sits on those pads.";
+    return '<div class="addon"><div>' +
+      '<span class="addon-label">Which version is this?</span>' +
+      esc(lead + gap + " The three motor phase pads are bare on both versions, " +
+          "so you solder those yourself either way.") + "</div></div>";
+  }
+
   /* Pendulum tells the customer to consult a compatibility table. We already
      know which motor they are looking at, so answer the question instead. */
   function driverBoardLine(p) {
@@ -1416,6 +1458,7 @@
                   ' — <a href="' + quoteHref(p) + '">request a quote</a>.'
                 : "") + "</p>") +
         driverBoardLine(p) +
+        leadTerminationNote(p) +
         specTiles(p) +
         (Object.keys(p.specs).length
           ? '<details class="spec-all"><summary>Full technical specifications</summary>' +

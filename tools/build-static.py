@@ -1078,6 +1078,35 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
                  "than one needs the %s unit for the opposing position."
                  % ("clockwise" if label.upper() == "CW" else "counter-clockwise",
                     other))
+    elif axis == "Style" and p["specs"].get("Lead Termination"):
+        # The same answer app.js renders for a reader, so a crawler and a
+        # customer are told the same thing. "This is the welded leads
+        # configuration" was true and settled nothing: the two questions people
+        # actually ask are whether the connector version can be soldered to
+        # instead, and which one is shorter. Both millimetre figures are read
+        # off the pair rather than written here - the RI75 versions differ by
+        # 2.2 mm where the RI85 versions differ by 0.5 mm.
+        mine = p["specs"]["Lead Termination"]
+        other = next((q for q in siblings
+                      if q["id"] != p["id"]
+                      and q["specs"].get("Lead Termination")
+                      and q["specs"]["Lead Termination"] != mine), None)
+        which = ("The seven sensor nets end in bare pads on the board, so you "
+                 "run your own wire in whatever gauge and length the build "
+                 "needs." if "weld" in mine.lower() else
+                 "The seven sensor nets come out on a fitted header and a "
+                 "plug-in harness, so there is nothing to solder on that side. "
+                 "If you would rather run your own sensor wire, buy the welded "
+                 "version — the header sits on those pads.")
+        h, ho = cmp_num(p, "Height (mm)"), cmp_num(other, "Height (mm)") if other else None
+        if h is not None and ho is not None and h != ho:
+            which += (" It is %s mm %s than the %s version, %s mm against %s mm."
+                      % (("%.1f" % abs(ho - h)).rstrip("0").rstrip("."),
+                         "shorter" if h < ho else "taller",
+                         re.sub(r"^with ", "", (other["variantLabel"] or other["name"]).lower()),
+                         p["specs"]["Height (mm)"], other["specs"]["Height (mm)"]))
+        which += (" The three motor phase pads are bare on both versions, so "
+                  "you solder those yourself either way.")
     elif axis and label:
         which = "This is the %s configuration." % label.lower()
 
