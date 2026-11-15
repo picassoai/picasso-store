@@ -142,6 +142,7 @@ def parse_products(src):
             # afterwards, from an email.
             "backorder": field("backorder"),
             "fittedAlternative": field("fittedAlternative"),
+            "variantFigure": field("variantFigure"),
         })
     # The cheapest of a group is the one listings link to; the others keep their
     # page so old links still resolve, but point their canonical at it and stay
@@ -1001,6 +1002,33 @@ def integrated_ids(src):
     return ids
 
 
+ALT = 'RI85-PH KV85 welded model and with-connector model compared: the seven-pin J1 sensor header is fitted on one and left as bare pads on the other, with the 200 mm harness pin-out and wire colours.'
+CAP = 'The two versions side by side. Open the image to read the pin-out.'
+
+
+def variant_figure(p):
+    """The picture that settles which version this is.
+
+    Both variants of a model are photographed as the same bare ring, because
+    the only thing that differs is a 1.25 mm header on the hall PCB, and no
+    catalogue photograph taken from the outside shows it. So the two pages
+    carried identical images, and a customer mid-order sent us a photograph of
+    a motor and asked which one it was - which is the question the page is
+    supposed to answer.
+
+    Named per product rather than derived, because it has to be drawn by hand
+    for each model and only the RI85 pair has one so far."""
+    f = p.get("variantFigure")
+    if not f:
+        return ""
+    return ('<figure class="variant-figure">'
+            '<a href="assets/img/%s" target="_blank" rel="noopener">'
+            '<img src="assets/img/%s" alt="%s" loading="lazy" '
+            'width="1500" height="1043"></a>'
+            '<figcaption>%s</figcaption></figure>'
+            % (esc(f), esc(f), esc(ALT), esc(CAP)))
+
+
 def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=""):
     s = p["specs"]
     torque = lead_num(s.get("Rated Torque (N·m)"))
@@ -1181,6 +1209,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
          if p["backorder"] else "") +
         ("<p>%s</p>" % esc(p["fit"]) if p["fit"] else "") +
         ("<p>%s</p>" % esc(which) if which else "") +
+        variant_figure(p) +
         ("<p>%s</p>" % esc(p["blurb"]) if p["blurb"] else ""),
         freight_note(),
         alt, table,

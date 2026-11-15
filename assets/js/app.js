@@ -1315,7 +1315,14 @@
     return '<div class="addon"><div>' +
       '<span class="addon-label">Which version is this?</span>' +
       esc(lead + gap + " The three motor phase pads are bare on both versions, " +
-          "so you solder those yourself either way.") + "</div></div>";
+          "so you solder those yourself either way.") + "</div></div>" +
+      (p.variantFigure
+        ? '<figure class="variant-figure">' +
+            '<a href="assets/img/' + esc(p.variantFigure) + '" target="_blank" rel="noopener">' +
+            '<img src="assets/img/' + esc(p.variantFigure) + '" alt="' + esc('RI85-PH KV85 welded model and with-connector model compared: the seven-pin J1 sensor header is fitted on one and left as bare pads on the other, with the 200 mm harness pin-out and wire colours.') +
+            '" loading="lazy" width="1500" height="1043"></a>' +
+            "<figcaption>" + esc('The two versions side by side. Open the image to read the pin-out.') + "</figcaption></figure>"
+        : "");
   }
 
   /* Pendulum tells the customer to consult a compatibility table. We already
