@@ -17,6 +17,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RUBIK LINK V3.0 Cable Set</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>2345</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -31,7 +32,7 @@
   <item>
     <g:id>rmd-l-4010</g:id>
     <g:title>MyActuator RMD-L-4010 — Direct Drive Motors</g:title>
-    <g:description>A 40 mm direct drive with the driver built in: 0.15 N·m continuous off the rotor with no gearbox between it and the output, so there is no backlash to take up and nothing to wear. 92 g, CAN bus, 24 V. Rated Torque 0.15; Peak Torque 0.33; OD 39.6; Weight 92; Reduction Ratio 1:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>150 mN·m rated and 330 mN·m peak from a Ф39.6 mm, 92 g frame, direct drive on 24 V. 560 RPM rated and 1120 RPM no-load. A 40 mm direct drive with the driver built in: 0.15 N·m continuous off the rotor with no gearbox between it and the output, so there is no backlash to take up and nothing to wear. 92 g, CAN bus, 24 V. Rated Torque 0.15; Peak Torque 0.33; OD 39.6; Weight 92; Reduction Ratio 1:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/rmd-l-4010.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/rmd-l-4010-1.webp</g:image_link>
 
@@ -41,6 +42,7 @@
     <g:brand>MyActuator</g:brand>
     <g:mpn>MyActuator RMD-L-4010</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Direct Drive Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -55,7 +57,7 @@
   <item>
     <g:id>rmd-h-50-15</g:id>
     <g:title>MyActuator RMD-H-50-15 — Direct Drive Motors</g:title>
-    <g:description>A 50 mm direct drive with a 16 mm hollow bore through the middle, so the harness runs through the joint instead of around it. 0.35 N·m continuous, 0.9 N·m peak, no gearbox and no backlash. Rated Torque 0.35; Peak Torque 0.9; OD 50; Weight 240; Reduction Ratio 1:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>350 mN·m rated and 900 mN·m peak from a Ф50 x 46 mm, 240 g frame, direct drive on 24 V. 2500 RPM rated and 3200 RPM no-load. A 50 mm direct drive with a 16 mm hollow bore through the middle, so the harness runs through the joint instead of around it. 0.35 N·m continuous, 0.9 N·m peak, no gearbox and no backlash. Rated Torque 0.35; Peak Torque 0.9; OD 50; Weight 240; Reduction Ratio 1:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/rmd-h-50-15.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/rmd-h-50-15-1.webp</g:image_link>
 
@@ -65,6 +67,7 @@
     <g:brand>MyActuator</g:brand>
     <g:mpn>MyActuator RMD-H-50-15</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Direct Drive Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -89,6 +92,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>R100 KV90</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Direct Drive Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -114,6 +118,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>R60 KV115</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Direct Drive Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -139,6 +144,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>SW7 Thruster CW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -164,6 +170,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>SW7 Thruster CCW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -189,6 +196,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>SW12 Thruster CW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -214,6 +222,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>SW12 Thruster CCW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -239,6 +248,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>SW17 Thruster CW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -264,6 +274,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>SW17 Thruster CCW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -289,6 +300,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW10 Thruster CW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -314,6 +326,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW10 Thruster CCW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -339,6 +352,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW15 Thruster CW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -364,6 +378,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW15 Thruster CCW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -389,6 +404,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW20 Thruster CW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -414,6 +430,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW20 Thruster CCW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -439,6 +456,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW25 Thruster CW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -464,6 +482,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>DW25 Thruster CCW</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -489,6 +508,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>W30 Thruster</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -514,6 +534,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>TW-40A-12S ESC (2 per set)</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -539,6 +560,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>TW-80A-12S ESC (2 per set)</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Underwater Thrusters</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -553,7 +575,7 @@
   <item>
     <g:id>ak40-10-kv170-without-driver</g:id>
     <g:title>CubeMars AK40-10 KV170 — AK Series</g:title>
-    <g:description>The smallest joint in the AK line: brushless motor, planetary reducer, encoder and driver in one housing. Sized for the places an actuator has to disappear into the limb — humanoid wrists, grippers, small pan-tilt heads. Supplied without the driver board. Rated Torque 1.3; Peak Torque 4.1; OD 53; Weight 200; Reduction Ratio 10:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>1.3 N·m rated and 4.1 N·m peak from a Ф53 x 37 mm, 200 g frame, geared 10:1, on 24 V. Kv 170, 370 RPM rated and 435 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs. The smallest joint in the AK line: brushless motor, planetary reducer, encoder and driver in one housing. Sized for the places an actuator has to disappear into the limb — humanoid wrists, grippers, small pan-tilt heads. Supplied without the driver board. Rated Torque 1.3; Peak Torque 4.1; OD 53; Weight 200; Reduction Ratio 10:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak40-10-kv170-without-driver.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak40-10-kv170-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak40-10-kv170-2.webp</g:additional_image_link>
@@ -564,6 +586,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK40-10 KV170</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -578,7 +601,7 @@
   <item>
     <g:id>ak45-10-kv75-without-driver</g:id>
     <g:title>CubeMars AK45-10 KV75 — AK Series</g:title>
-    <g:description>A wider, slower AK40-10: the same 53 mm frame and 10:1 reduction, wound for roughly twice the torque at half the speed. The usual pick when a wrist or elbow needs holding torque more than it needs travel. Supplied without the driver board. Rated Torque 2.5; Peak Torque 7; OD 53; Weight 260; Reduction Ratio 10:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>2.5 N·m rated and 7 N·m peak from a Ф53 x 43 mm, 260 g frame, geared 10:1, on 24 V. Kv 75, 150 RPM rated and 180 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs. A wider, slower AK40-10: the same 53 mm frame and 10:1 reduction, wound for roughly twice the torque at half the speed. The usual pick when a wrist or elbow needs holding torque more than it needs travel. Supplied without the driver board. Rated Torque 2.5; Peak Torque 7; OD 53; Weight 260; Reduction Ratio 10:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak45-10-kv75-without-driver.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak45-10-kv75-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak45-10-kv75-2.webp</g:additional_image_link>
@@ -589,6 +612,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK45-10 KV75</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -614,6 +638,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK40-10 V3.0 KV170</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -639,6 +664,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK45-10 V3.0 KV75</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -653,7 +679,7 @@
   <item>
     <g:id>ak45-36-v3-0-kv80</g:id>
     <g:title>CubeMars AK45-36 V3.0 KV80 — AK Series</g:title>
-    <g:description>The V3.0 revision of the AK45-36: the same 36:1 gearing and torque density, on the current driver board and the V3.0 configuration tool. Dual encoders, on the rotor and the output, so the joint reports where the load actually is rather than where the motor thinks it put it. Rated Torque 8; Peak Torque 24; OD 55; Weight 349; Reduction Ratio 36:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>8 N·m rated and 24 N·m peak from a Ф55 x 56.5 mm, 349 g frame, geared 36:1, on 24 V. Kv 80, 40 RPM rated and 52 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs. The V3.0 revision of the AK45-36: the same 36:1 gearing and torque density, on the current driver board and the V3.0 configuration tool. Dual encoders, on the rotor and the output, so the joint reports where the load actually is rather than where the motor thinks it put it. Rated Torque 8; Peak Torque 24; OD 55; Weight 349; Reduction Ratio 36:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak45-36-v3-0-kv80.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak45-36-v3-0-kv80-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak45-36-v3-0-kv80-2.webp</g:additional_image_link>
@@ -664,6 +690,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK45-36 V3.0 KV80</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -678,7 +705,7 @@
   <item>
     <g:id>ak45-36-kv80-without-driver</g:id>
     <g:title>CubeMars AK45-36 KV80 — AK Series</g:title>
-    <g:description>A 36:1 reduction in the 55 mm frame, which is what turns a small actuator into a load-holding one — the torque of a joint half again its diameter, at a speed to match. That trade suits a joint that spends most of its time holding a position rather than moving through one: an ankle, a wrist, a gripper that has to stay clamped. Supplied without the driver board. Rated Torque 8; Peak Torque 24; OD 55; Weight 340; Reduction Ratio 36:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>8 N·m rated and 24 N·m peak from a Ф55 x 54 mm, 340 g frame, geared 36:1, on 24 V. Kv 80, 40 RPM rated and 52 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs. A 36:1 reduction in the 55 mm frame, which is what turns a small actuator into a load-holding one — the torque of a joint half again its diameter, at a speed to match. That trade suits a joint that spends most of its time holding a position rather than moving through one: an ankle, a wrist, a gripper that has to stay clamped. Supplied without the driver board. Rated Torque 8; Peak Torque 24; OD 55; Weight 340; Reduction Ratio 36:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak45-36-kv80-without-driver.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak45-36-kv80-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak45-36-kv80-2.webp</g:additional_image_link>
@@ -689,6 +716,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK45-36 KV80</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -703,7 +731,7 @@
   <item>
     <g:id>ake40-6-kv90</g:id>
     <g:title>CubeMars AKE40-6 KV90 — AKE Series</g:title>
-    <g:description>The smallest AKE: 140 g and 24.5 mm deep, for 1.8 N·m continuous and 5.5 N·m peak at 9 arcmin of backlash. The weight is the point — on a limb, every gram at the far end is carried by every joint above it. Rated Torque 1.8; Peak Torque 5.5; OD 51; Weight 140; Reduction Ratio 6:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>1.8 N·m rated and 5.5 N·m peak from a Ф51 x 24.5 mm, 140 g frame, geared 6:1, on 24 V. Kv 90, 260 RPM rated and 330 RPM no-load. CubeMars lists it for exoskeletons and robotic arms. The smallest AKE: 140 g and 24.5 mm deep, for 1.8 N·m continuous and 5.5 N·m peak at 9 arcmin of backlash. The weight is the point — on a limb, every gram at the far end is carried by every joint above it. Rated Torque 1.8; Peak Torque 5.5; OD 51; Weight 140; Reduction Ratio 6:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ake40-6-kv90.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ake40-6-kv90-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ake40-6-kv90-2.webp</g:additional_image_link>
@@ -714,6 +742,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKE40-6 KV90</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKE Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -728,7 +757,7 @@
   <item>
     <g:id>ake50-8-kv110</g:id>
     <g:title>CubeMars AKE50-8 KV110 — AKE Series</g:title>
-    <g:description>190 g and 22.5 mm deep for 2.5 N·m continuous and 7.5 N·m peak, at the same 9 arcmin of backlash as the rest of the series. The flattest joint CubeMars make at this torque. Rated Torque 2.5; Peak Torque 7.5; OD 61.2; Weight 190; Reduction Ratio 8:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>2.5 N·m rated and 7.5 N·m peak from a Ф61.2 x 22.5 mm, 190 g frame, geared 8:1, on 24 V. Kv 110, 240 RPM rated and 320 RPM no-load. CubeMars lists it for exoskeletons and robotic arms. 190 g and 22.5 mm deep for 2.5 N·m continuous and 7.5 N·m peak, at the same 9 arcmin of backlash as the rest of the series. The flattest joint CubeMars make at this torque. Rated Torque 2.5; Peak Torque 7.5; OD 61.2; Weight 190; Reduction Ratio 8:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ake50-8-kv110.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ake50-8-kv110-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ake50-8-kv110-2.webp</g:additional_image_link>
@@ -739,6 +768,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKE50-8 KV110</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKE Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -764,6 +794,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKE60-8 KV80</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKE Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -778,7 +809,7 @@
   <item>
     <g:id>aka60-6-kv80</g:id>
     <g:title>CubeMars AKA60-6 KV80 — AKA Series</g:title>
-    <g:description>The AKA series is suitable for applications with high radial loads such as wheeled robots and AGVs. This series of products adopts a completely new structural design scheme. Rated Torque 3; Peak Torque 9; OD 80; Weight 460; Reduction Ratio 6:1; Rated Voltage 24/48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>3 N·m rated and 9 N·m peak from a Ф80 x 51.2 mm, 460 g frame, geared 6:1, on 24/48 V. Kv 80, 200/400 RPM rated and 320/640 RPM no-load. CubeMars lists it for wheeled robots and AGVs. The AKA series is suitable for applications with high radial loads such as wheeled robots and AGVs. This series of products adopts a completely new structural design scheme. Rated Torque 3; Peak Torque 9; OD 80; Weight 460; Reduction Ratio 6:1; Rated Voltage 24/48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/aka60-6-kv80.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/aka60-6-kv80-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/aka60-6-kv80-2.webp</g:additional_image_link>
@@ -789,6 +820,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKA60-6 KV80</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKA Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -814,6 +846,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK60-6 V3.0 KV80</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -839,6 +872,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK60-6 V1.1 KV140</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -865,6 +899,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKE80-8 KV30</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKE Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -879,7 +914,7 @@
   <item>
     <g:id>ak70-9-v3-0-kv60-without-driver</g:id>
     <g:title>CubeMars AK70-9 V3.0 KV60 without driver — AK Series</g:title>
-    <g:description>The mid-size V3.0 joint, at the ratio where a planetary reducer stops costing much speed — 9:1 on an 89 mm frame. Legs, shoulders, and anything that has to move as well as hold. Supplied without the driver board. Rated Torque 8.5; Peak Torque 29.2; OD 89; Weight 540; Reduction Ratio 9:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>8.5 N·m rated and 29.2 N·m peak from a Ф89 x 49 mm, 540 g frame, geared 9:1, on 48 V. Kv 60, 260 RPM rated and 320 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs. The mid-size V3.0 joint, at the ratio where a planetary reducer stops costing much speed — 9:1 on an 89 mm frame. Legs, shoulders, and anything that has to move as well as hold. Supplied without the driver board. Rated Torque 8.5; Peak Torque 29.2; OD 89; Weight 540; Reduction Ratio 9:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak70-9-v3-0-kv60-without-driver.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak70-9-v3-0-kv60-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak70-9-v3-0-kv60-2.webp</g:additional_image_link>
@@ -890,6 +925,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK70-9 V3.0 KV60 without driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -915,6 +951,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK70-10 KV100 without driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -940,6 +977,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK70-10 KV100 with driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -954,7 +992,7 @@
   <item>
     <g:id>ak60-39-v3-0</g:id>
     <g:title>CubeMars AK60-39 V3.0 — AK Series</g:title>
-    <g:description>Two planetary stages for a 39:1 reduction, so a 79 mm joint holds what an unreduced one its size could not. Dual magnetic encoders on both sides of the gearbox, and speed, torque, position and MIT modes. Rated Torque 24; Peak Torque 72; OD 79; Weight 750; Reduction Ratio 39:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>24 N·m rated and 72 N·m peak from a Ф79 x 48.5 mm, 750 g frame, geared 39:1, on 48 V. Kv 80, 70 RPM rated and 98 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs. Two planetary stages for a 39:1 reduction, so a 79 mm joint holds what an unreduced one its size could not. Dual magnetic encoders on both sides of the gearbox, and speed, torque, position and MIT modes. Rated Torque 24; Peak Torque 72; OD 79; Weight 750; Reduction Ratio 39:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak60-39-v3-0.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak60-39-v3-0-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak60-39-v3-0-2.webp</g:additional_image_link>
@@ -965,6 +1003,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK60-39 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -990,6 +1029,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK80-8 KV60 without driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1015,6 +1055,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK80-8 KV60 with driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1029,7 +1070,7 @@
   <item>
     <g:id>ake90-8-kv35</g:id>
     <g:title>CubeMars AKE90-8 KV35 — AKE Series</g:title>
-    <g:description>CubeMars' AKE90-8 KV35 Quasi Direct Drive is the ideal choice for the industrial automation and robotics. Rated Torque 55; Peak Torque 170; OD 107.5; Weight 1400; Reduction Ratio 8:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>55 N·m rated and 170 N·m peak from a Ф107.5 x 43.5 mm, 1400 g frame, geared 8:1, on 48 V. Kv 35, 120 RPM rated and 210 RPM no-load. CubeMars lists it for exoskeletons. CubeMars' AKE90-8 KV35 Quasi Direct Drive is the ideal choice for the industrial automation and robotics. Rated Torque 55; Peak Torque 170; OD 107.5; Weight 1400; Reduction Ratio 8:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ake90-8-kv35.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ake90-8-kv35-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ake90-8-kv35-2.webp</g:additional_image_link>
@@ -1040,6 +1081,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKE90-8 KV35</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKE Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1054,7 +1096,7 @@
   <item>
     <g:id>ak70-9-v3-0-kv60-with-driver</g:id>
     <g:title>CubeMars AK70-9 V3.0 KV60 with driver — AK Series</g:title>
-    <g:description>The mid-size V3.0 joint, at the ratio where a planetary reducer stops costing much speed — 9:1 on an 89 mm frame. Legs, shoulders, and anything that has to move as well as hold. Supplied with the driver board fitted. Rated Torque 8.5; Peak Torque 29.2; OD 89; Weight 540; Reduction Ratio 9:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>8.5 N·m rated and 29.2 N·m peak from a Ф89 x 49 mm, 540 g frame, geared 9:1, on 48 V. Kv 60, 260 RPM rated and 320 RPM no-load. CubeMars lists it for legged robots, exoskeletons and AGVs. The mid-size V3.0 joint, at the ratio where a planetary reducer stops costing much speed — 9:1 on an 89 mm frame. Legs, shoulders, and anything that has to move as well as hold. Supplied with the driver board fitted. Rated Torque 8.5; Peak Torque 29.2; OD 89; Weight 540; Reduction Ratio 9:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ak70-9-v3-0-kv60-with-driver.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ak70-9-kv60-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ak70-9-kv60-2.webp</g:additional_image_link>
@@ -1065,6 +1107,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK70-9 V3.0 KV60 with driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1090,6 +1133,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK80-9 V3.0 KV100 without driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1115,6 +1159,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK80-9 V3.0 KV100 with driver</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1129,7 +1174,7 @@
   <item>
     <g:id>aka10-9-kv60</g:id>
     <g:title>CubeMars AKA10-9 KV60 — AKA Series</g:title>
-    <g:description>The AKA series is suitable for applications with high radial loads, such as wheeled robots and AGVs. Rated Torque 18; Peak Torque 53; OD 100; Weight 1060; Reduction Ratio 9:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>18 N·m rated and 53 N·m peak from a Ф100 x 70 mm, 1060 g frame, geared 9:1, on 48 V. Kv 60, 109 RPM rated and 320 RPM no-load. CubeMars lists it for wheeled robots and AGVs. The AKA series is suitable for applications with high radial loads, such as wheeled robots and AGVs. Rated Torque 18; Peak Torque 53; OD 100; Weight 1060; Reduction Ratio 9:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/aka10-9-kv60.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/aka10-9-kv60-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/aka10-9-kv60-2.webp</g:additional_image_link>
@@ -1140,6 +1185,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKA10-9 KV60</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKA Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1165,6 +1211,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK10-9 V3.0 KV60</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1190,6 +1237,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK10-9 V2.0 KV60</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1215,6 +1263,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AK80-64 KV80</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AK Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1240,6 +1289,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKH70-16 V1.0 KV41</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKH Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1265,6 +1315,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>AKH70-48 V1.0 KV41</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>AKH Series</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1290,6 +1341,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL30 KV290 without encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1315,6 +1367,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL30 KV290 with encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1340,6 +1393,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL35 KV100 without encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1365,6 +1419,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL35 KV100 with encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1391,6 +1446,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL40 KV70 without encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1416,6 +1472,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL40 KV70 with encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1440,6 +1497,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL60 KV25 without encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1464,6 +1522,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL60 KV25 with encoder</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1478,7 +1537,7 @@
   <item>
     <g:id>gl40-kv82-5</g:id>
     <g:title>CubeMars GL40Ⅱ KV82.5 — Gimbal Motors</g:title>
-    <g:description>The GL40ll series motors, specifically engineered for premium gimbal systems, excel in both gimbals and autonomous driving applications. Advancing from the GL series, the GL40ll series incorporates a cutting-edge electromagnetic and structural design. Rated Torque 0.25; Peak Torque 0.68; OD 46.1; Weight 112; Rated Voltage 16. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>250 mN·m rated and 680 mN·m peak from a Ф46.1 x 33.5 mm, 112 g frame, on 16 V. Kv 82.5, 697 RPM rated and 1388 RPM no-load. CubeMars lists it for gimbals and radar. The GL40ll series motors, specifically engineered for premium gimbal systems, excel in both gimbals and autonomous driving applications. Advancing from the GL series, the GL40ll series incorporates a cutting-edge electromagnetic and structural design. Rated Torque 0.25; Peak Torque 0.68; OD 46.1; Weight 112; Rated Voltage 16. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/gl40-kv82-5.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/gl40-kv82-5-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/gl40-kv82-5-2.webp</g:additional_image_link>
@@ -1489,6 +1548,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL40Ⅱ KV82.5</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1503,7 +1563,7 @@
   <item>
     <g:id>gl60-kv28</g:id>
     <g:title>CubeMars GL60 Ⅱ KV28 — Gimbal Motors</g:title>
-    <g:description>The GLII series motors are specifically designed for high-end gimbal systems. With outstanding performance and innovative technology, they are widely used in high-precision control scenarios such as gimbal systems and autonomous driving. Rated Torque 0.6; Peak Torque 1; OD 70.5; Weight 276. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>600 mN·m rated and 1 N·m peak from a Ф70.5 x 33.6 mm, 276 g frame. 153 RPM rated. CubeMars lists it for gimbals and radar. The GLII series motors are specifically designed for high-end gimbal systems. With outstanding performance and innovative technology, they are widely used in high-precision control scenarios such as gimbal systems and autonomous driving. Rated Torque 0.6; Peak Torque 1; OD 70.5; Weight 276. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/gl60-kv28.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/gl60-kv28-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/gl60-kv28-2.webp</g:additional_image_link>
@@ -1514,6 +1574,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL60 Ⅱ KV28</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1538,6 +1599,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL80 KV60</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1562,6 +1624,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL80 KV30</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1587,6 +1650,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>GL100 KV10</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Gimbal Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1601,7 +1665,7 @@
   <item>
     <g:id>ri20-kv600</g:id>
     <g:title>CubeMars RI20 KV600 — Frameless Motors</g:title>
-    <g:description>The smallest frameless set in the catalogue — a rotor and stator with no housing, bearings or shaft, so the joint geometry is yours. An 11.6 mm bore through the middle for a shaft or a cable. Rated Torque 0.024; Peak Torque 0.072; OD 25; Weight 20; Rated Voltage 16. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>24 mN·m rated and 72 mN·m peak from a Ф25 x 14.5 mm, 20 g frame, on 16 V. Kv 600, 7452 RPM rated and 9600 RPM no-load. CubeMars lists it for cobot arms and exoskeletons. The smallest frameless set in the catalogue — a rotor and stator with no housing, bearings or shaft, so the joint geometry is yours. An 11.6 mm bore through the middle for a shaft or a cable. Rated Torque 0.024; Peak Torque 0.072; OD 25; Weight 20; Rated Voltage 16. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ri20-kv600.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri20-kv600-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri20-kv600-2.webp</g:additional_image_link>
@@ -1612,6 +1676,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI20 KV600</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1626,7 +1691,7 @@
   <item>
     <g:id>ri30-kv260</g:id>
     <g:title>CubeMars RI30 KV260 — Frameless Motors</g:title>
-    <g:description>A frameless rotor and stator with a 17 mm bore, in a 14 mm stack. For a finger, a wrist or a scanning head being designed around the motor rather than the other way round. Rated Torque 0.076; Peak Torque 0.23; OD 38; Weight 40; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>76 mN·m rated and 230 mN·m peak from a Ф38 x 14 mm, 40 g frame, on 24 V. Kv 260, 4110 RPM rated and 6240 RPM no-load. CubeMars lists it for cobot arms and exoskeletons. A frameless rotor and stator with a 17 mm bore, in a 14 mm stack. For a finger, a wrist or a scanning head being designed around the motor rather than the other way round. Rated Torque 0.076; Peak Torque 0.23; OD 38; Weight 40; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ri30-kv260.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ri30-kv260-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ri30-kv260-2.webp</g:additional_image_link>
@@ -1637,6 +1702,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI30 KV260</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1651,7 +1717,7 @@
   <item>
     <g:id>ro40-kv140-lite</g:id>
     <g:title>CubeMars RO40 KV140 Lite — Frameless Motors</g:title>
-    <g:description>The Lite build of the RO40: the aluminium case and the hall sensors come off, leaving the rotor and stator. Cheaper and lighter where the housing and the commutation are already part of your own design. Rated Torque 0.2; Peak Torque 0.6; OD 46.3; Weight 60; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>200 mN·m rated and 600 mN·m peak from a Ф46.3 x 13 mm, 60 g frame, on 24 V. Kv 141, 2450 RPM rated and 3400 RPM no-load. CubeMars lists it for cobot arms and exoskeletons. The Lite build of the RO40: the aluminium case and the hall sensors come off, leaving the rotor and stator. Cheaper and lighter where the housing and the commutation are already part of your own design. Rated Torque 0.2; Peak Torque 0.6; OD 46.3; Weight 60; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ro40-kv140-lite.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ro40-kv140-lite-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ro40-kv140-lite-2.webp</g:additional_image_link>
@@ -1662,6 +1728,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO40 KV140 Lite</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1687,6 +1754,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI50 KV100 without hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1712,6 +1780,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI50 KV100 with hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1726,7 +1795,7 @@
   <item>
     <g:id>ro50-kv108-lite</g:id>
     <g:title>CubeMars RO50 KV108 Lite — Frameless Motors</g:title>
-    <g:description>The Lite build of the RO50 — rotor and stator only, no case and no hall sensors. A short, wide pancake set for a joint that has more room across than along. Rated Torque 0.3; Peak Torque 0.9; OD 61.7; Weight 105; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:description>300 mN·m rated and 900 mN·m peak from a Ф61.7 x 14.5 mm, 105 g frame, on 24 V. Kv 108, 2100 RPM rated and 2600 RPM no-load. CubeMars lists it for cobot arms and exoskeletons. The Lite build of the RO50 — rotor and stator only, no case and no hall sensors. A short, wide pancake set for a joint that has more room across than along. Rated Torque 0.3; Peak Torque 0.9; OD 61.7; Weight 105; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
     <g:link>https://picassointelligence.com/ro50-kv108-lite.html</g:link>
     <g:image_link>https://picassointelligence.com/assets/img/products-branded/ro50-kv108-lite-1.webp</g:image_link>
     <g:additional_image_link>https://picassointelligence.com/assets/img/products-branded/ro50-kv108-lite-2.webp</g:additional_image_link>
@@ -1737,6 +1806,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO50 KV108 Lite</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1762,6 +1832,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO60 KV115 Lite</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1787,6 +1858,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO60 KV115 Standard</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1812,6 +1884,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI60 KV120 without hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1837,6 +1910,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI60 KV120 with hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1862,6 +1936,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO80 KV105 Lite</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1887,6 +1962,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO80 KV105 Standard</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1912,6 +1988,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI70 KV95 without hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1937,6 +2014,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI70 KV95 with hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1962,6 +2040,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI80 V2.0 KV75 without hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -1987,6 +2066,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI80 V2.0 KV75 with hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2012,6 +2092,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI75-PH KV70 welded leads</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2037,6 +2118,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI75-PH KV70 with connector</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2062,6 +2144,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI85-PH KV85 welded leads</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2087,6 +2170,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI85-PH KV85 with connector</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2112,6 +2196,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI100 KV105 without hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2137,6 +2222,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI100 KV105 with hall sensor</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2162,6 +2248,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO100 KV55 Lite</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2187,6 +2274,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RO100 KV55 Standard</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2212,6 +2300,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI115-PH KV40 welded leads</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2237,6 +2326,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RI115-PH KV40 with connector</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>500049</g:google_product_category>
     <g:product_type>Frameless Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2262,6 +2352,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RUBIK LINK V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7182</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2287,6 +2378,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>S-LINK V1.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7182</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2312,6 +2404,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>RUBIK LINK V2.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7182</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2336,6 +2429,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK40-10</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2360,6 +2454,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK40-10 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2384,6 +2479,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK45-10</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2408,6 +2504,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK45-10 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2432,6 +2529,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK45-36</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2456,6 +2554,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK45-36 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2480,6 +2579,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK60-6 V1.1</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2504,6 +2604,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK60-6 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2528,6 +2629,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK70-9 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2552,6 +2654,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK70-10</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2576,6 +2679,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK80-8</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2600,6 +2704,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK80-9 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2624,6 +2729,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK80-64</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2648,6 +2754,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK10-9 V2.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2672,6 +2779,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AK10-9 V3.0</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2696,6 +2804,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AKA60-6</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2720,6 +2829,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AKA10-9</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2744,6 +2854,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AKE60-8</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2768,6 +2879,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AKE80-8</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2792,6 +2904,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AKE90-8</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2816,6 +2929,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AKH70-16</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
@@ -2840,6 +2954,7 @@
     <g:brand>CubeMars</g:brand>
     <g:mpn>Driver board for AKH70-48</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>7264</g:google_product_category>
     <g:product_type>Accessories</g:product_type>
     <g:shipping>
       <g:country>US</g:country>

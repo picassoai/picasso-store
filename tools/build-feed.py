@@ -74,6 +74,43 @@ def shipping_block(price, zones):
     return "\n".join(out)
 
 
+# Google's own taxonomy ids, from taxonomy-with-ids.en-US.txt. Without this
+# attribute Google guesses the category from the title and image, and we only
+# learned what it had guessed when Merchant Center filed the driver boards as
+# "Printed Circuit Boards" and asked for more detail about them. The guess
+# happened to be right there; naming the category ourselves stops it guessing
+# on the other ninety-three items, where nobody would have told us.
+#
+# Frameless kits are genuinely "Armatures, Rotors & Stators" - the set ships
+# as a matched rotor and stator with no housing, bearings or shaft, which is
+# precisely that node and not a motor.
+#
+# Thrusters stay under Electrical Motors. The watercraft branches of the
+# taxonomy are recreational boat parts - anchors, carburetors, jet-ski
+# impellers - and an ROV thruster is not one.
+GOOGLE_CATEGORY = {
+    "ak": 7275, "ake": 7275, "aka": 7275, "akh": 7275,   # Electrical Motors
+    "gimbal": 7275, "directdrive": 7275, "underwater": 7275,
+    "frameless": 500049,                                 # Armatures, Rotors & Stators
+}
+
+
+def google_category(p):
+    """The taxonomy id for a product, by collection, with accessories split by
+    what the part actually is."""
+    known = GOOGLE_CATEGORY.get(p["collection"])
+    if known:
+        return known
+    if p["collection"] != "accessories":
+        return 7275
+    name = p["name"].lower()
+    if "cable" in name:
+        return 2345     # Electrical Wires & Cable
+    if "driver board" in name:
+        return 7264     # Printed Circuit Boards
+    return 7182         # USB Adapters - the RUBIK/S-LINK configuration modules
+
+
 def item(p, zones, coll_name):
     url = "%s/%s.html" % (SITE, p["id"])
     imgs = ["%s/assets/img/products-branded/%s" % (SITE, i) for i in p["images"]]
@@ -133,6 +170,7 @@ def item(p, zones, coll_name):
     <g:brand>%s</g:brand>
     <g:mpn>%s</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
+    <g:google_product_category>%d</g:google_product_category>
     <g:product_type>%s</g:product_type>
 %s
     <g:min_handling_time>%d</g:min_handling_time>
@@ -143,7 +181,7 @@ def item(p, zones, coll_name):
         esc(p["id"]), esc(title), esc(desc.strip()), esc(url),
         esc(imgs[0]) if imgs else "", extra, avail,
         p["price"], esc(p.get("brand") or "CubeMars"), esc(p["name"]),
-        esc(coll_name or p["series"]),
+        google_category(p), esc(coll_name or p["series"]),
         shipping_block(p["price"], zones),
         HANDLING_MIN, HANDLING_MAX, TRANSIT_MIN, TRANSIT_MAX)
 
