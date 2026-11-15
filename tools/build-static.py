@@ -188,10 +188,22 @@ def parse_joints(src):
         for jm in re.finditer(
                 r'id:\s*"([a-z]+)",\s*name:\s*"([^"]+)",\s*group:\s*"([^"]+)",'
                 r'\s*note:\s*"((?:[^"\\]|\\.)*)"', block):
+            # A joint names its own parts, in a list that follows its note.
+            # Without this joint_page shipped an empty [data-grid], so
+            # "Knee joint actuators" carried no link to a single actuator -
+            # the same omission application_page had, on the seven pages an
+            # ad for a humanoid joint lands on. The application's own
+            # products list sits after all the joints, so the first match
+            # after the note is always this joint's.
+            tail = block[jm.end():]
+            nxt = tail.find('id: "')
+            own = re.search(r'products: \[(.*?)\]',
+                            tail[:nxt] if nxt > 0 else tail, re.S)
             result.append({
                 "app": aid, "appName": aname,
                 "id": jm.group(1), "name": jm.group(2), "group": jm.group(3),
                 "note": jm.group(4).replace('\\"', '"'),
+                "products": re.findall(r'"([^"]+)"', own.group(1)) if own else [],
                 "scale": scale.group(1) if scale else "",
             })
     return result
@@ -1217,12 +1229,15 @@ def browse_body(h1, blurb, listing=()):
 </div>""" % (esc(h1), esc(blurb), grid)
 
 
-def joint_page(j):
+def joint_page(j, products=None):
     slug = "%s-%s-joint-actuators" % (j["app"], j["id"])
     title = "%s joint actuators for %s | Picasso Intelligence" % (
         j["name"], j["appName"].lower())
     desc = j["note"][:155].rsplit(" ", 1)[0] + "…"
-    body = browse_body("%s joint actuators" % j["name"], j["note"])
+    by_id = {q["id"]: q for q in (products or [])}
+    mine = [by_id[i] for i in j.get("products", ()) if i in by_id]
+    mine.sort(key=lambda q: q["price"])
+    body = browse_body("%s joint actuators" % j["name"], j["note"], mine)
     return slug, page(title, desc, "%s/%s.html" % (SITE, slug),
                       '{ a: "%s", j: "%s" }' % (j["app"], j["id"]),
                       body, "collection",
@@ -1356,7 +1371,7 @@ def main():
             urls.append("%s/%s.html" % (SITE, p["id"]))
 
     for j in joints:
-        slug, html = joint_page(j)
+        slug, html = joint_page(j, products)
         write("%s.html" % slug, html)
         urls.append("%s/%s.html" % (SITE, slug))
 
