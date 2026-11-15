@@ -175,12 +175,19 @@ def main():
     items = "\n".join(item(p, zones, by_coll.get(p["collection"], ""))
                       for p in sellable)
 
+    # The channel description said "stocked and supported in the United
+    # States" until 2026-11-14. We hold no US stock - goods ship from the
+    # factory - so that was false, and it is also Pendulum's own line. It had
+    # been sitting in the feed Merchant Center was reviewing. What replaced it
+    # is claim-for-claim defensible: the distributor status is on the site,
+    # support really is ours, and US orders really do ship DDP. Do not put a
+    # stock, warehouse or dispatch-time claim back in here.
     xml = """<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
 <channel>
   <title>Picasso Intelligence</title>
   <link>%s</link>
-  <description>Robotic actuators, frameless and gimbal motors and underwater thrusters, stocked and supported in the United States.</description>
+  <description>Robotic actuators, frameless and gimbal motors and underwater thrusters from an authorized CubeMars distributor for North America. Sold and supported from the United States, with import duty paid on US orders.</description>
 %s
 </channel>
 </rss>
