@@ -1263,8 +1263,15 @@ def parse_taxonomy(src, block_name, tail):
         # and call it the whole.
         own = re.search(r"\n    products: \[(.*?)\]", chunk, re.S)
         ids = re.findall(r'"([^"]+)"', own.group(1)) if own else []
+        # A parent collection holds no products of its own - "integrated"
+        # gathers AK, AKE, AKA and AKH - so without this its page listed
+        # nothing. app.js has always followed `children` (see inCollection);
+        # the generator never read it, so "Integrated Actuators" shipped an
+        # empty grid and no link to any of the four series under it.
+        kids = re.search(r"\n    children: \[(.*?)\]", chunk, re.S)
         out.append({"id": m.group(1), "name": m.group(2),
                     "products": ids,
+                    "children": re.findall(r'"([^"]+)"', kids.group(1)) if kids else [],
                     "blurb": (blurb.group(1).replace('\\"', '"') if blurb else "")})
     return out
 
@@ -1275,13 +1282,14 @@ def collection_page(c, products=None):
     # held CubeMars alone until Direct Drive Motors, and a title reading
     # "Direct Drive Motors - CubeMars" over a MyActuator part is a lie in
     # the one place a search engine quotes verbatim.
+    held = set([c["id"]]) | set(c.get("children", ()))
     brands = sorted({q.get("brand", "CubeMars") for q in (products or [])
-                     if q["collection"] == c["id"]})
+                     if q["collection"] in held})
     title = ("%s — %s | Picasso Intelligence" % (c["name"], brands[0])
              if len(brands) == 1
              else "%s | Picasso Intelligence" % c["name"])
     mine = [q for q in (products or [])
-            if q["collection"] == c["id"] and q["canonical"] == q["id"]]
+            if q["collection"] in held and q["canonical"] == q["id"]]
     mine.sort(key=lambda q: q["price"])
     return slug, page(title, c["blurb"], "%s/%s.html" % (SITE, slug),
                       '{ c: "%s" }' % c["id"],
