@@ -182,44 +182,6 @@
   /* A product with no published price is quote-only: it never enters the cart. */
   function quoteOnly(p) { return p.price == null; }
 
-  /* "5 November 2026" from "2026-11-05". Stored in the form Merchant Center
-     wants; said in the form a reader wants. */
-  function dueText(iso) {
-    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
-    if (!m) return "";
-    return Number(m[3]) + " " + ["January", "February", "March", "April", "May",
-      "June", "July", "August", "September", "October", "November",
-      "December"][Number(m[2]) - 1] + " " + m[1];
-  }
-  /* This site claims nothing about stock - the goods are built to a schedule
-     in China and "in stock" would not hold. Saying a part is NOT on the shelf
-     is the opposite kind of claim, and the one a buyer needs before paying:
-     Atlas bought four AKE80-8 and learned about the wait afterwards, from an
-     email. Only the backordered parts say anything; the rest stay silent. */
-  /* True once the promised date is behind us. Compared as ISO strings against
-     the reader's own clock, so a page that was correct when it was built stops
-     being wrong the next morning without waiting for a deploy. */
-  function lapsed(iso) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return false;
-    var t = new Date();
-    return iso < t.getFullYear() + "-" +
-      ("0" + (t.getMonth() + 1)).slice(-2) + "-" + ("0" + t.getDate()).slice(-2);
-  }
-  function backorderNote(p) {
-    if (!p.backorder) return "";
-    /* A date that has already passed is worse than no date at all: it is a promise the reader can see we broke. On 15 November the AKE80-8 page was still
-       offering to ship it on 5 November - to a buyer who, in two cases, had
-       already paid. Say the part is not on the shelf, which is the warning
-       that matters, and stop quoting a day we have missed. */
-    if (lapsed(p.backorder)) {
-      return '<div class="stock backorder"><i></i>On backorder &mdash; ' +
-        "we are confirming the ship date with the factory.</div>";
-    }
-    var due = dueText(p.backorder);
-    if (!due) return "";
-    return '<div class="stock backorder"><i></i>On backorder &mdash; expected to ship ' +
-      esc(due) + ".</div>";
-  }
   function quoteHref(p) { return "contact.html?model=" + encodeURIComponent(p.name); }
 
   var ICON = {
@@ -1460,7 +1422,6 @@
             '<p class="muted" style="font-size:13px">' + esc(p.brand) +
               ' prices this line per order rather than publishing a list price. Send the model and quantity and we will come back with a firm number.</p>'
           : variantSwitch(p) + '<div class="price">' + money(p.price) + "</div>" +
-            backorderNote(p) +
             '<div class="buy">' +
               '<div class="qty">' +
                 '<button type="button" data-step="-1" aria-label="Decrease quantity">&minus;</button>' +

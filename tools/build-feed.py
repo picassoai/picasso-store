@@ -144,24 +144,10 @@ def item(p, zones, coll_name):
     extra = "\n".join("    <g:additional_image_link>%s</g:additional_image_link>" % esc(i)
                       for i in imgs[1:10])
 
-    # Google distinguishes a part it cannot sell from one it can sell but
-    # will ship later, and wants the date for the second. Getting this wrong
-    # is not cosmetic: a feed saying in_stock over a landing page saying
-    # backorder is a disapproval, and a customer who reads both is worse.
-    #
-    # Midnight Eastern, because that is where the stock and the invoices are.
-    # A date in the past is not a late date, it is an invalid value, and
-    # Merchant Center reads it as one - while it still has these 115 products
-    # under review. The part really is on backorder, so keep saying that and
-    # drop the date until the factory gives us a new one.
-    if p.get("backorder") and not bs.lapsed(p["backorder"]):
-        avail = ("    <g:availability>backorder</g:availability>\n"
-                 "    <g:availability_date>%sT00:00:00-05:00</g:availability_date>"
-                 % esc(p["backorder"]))
-    elif p.get("backorder"):
-        avail = "    <g:availability>backorder</g:availability>"
-    else:
-        avail = "    <g:availability>in_stock</g:availability>"
+    # Every listing is in_stock. The site makes no backorder claim of its
+    # own, so a feed that made one would contradict its own landing page, and
+    # that mismatch is the thing Merchant Center disapproves for.
+    avail = "    <g:availability>in_stock</g:availability>"
 
     return """  <item>
     <g:id>%s</g:id>

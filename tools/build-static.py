@@ -13,7 +13,6 @@ Run from the site root after changing data.js:
     python tools/build-static.py
 """
 
-import datetime
 import io
 import itertools
 import json
@@ -141,7 +140,6 @@ def parse_products(src):
             # is NOT on the shelf is a different kind of statement, and the
             # one a buyer needs - Atlas paid for four AKE80-8 and found out
             # afterwards, from an email.
-            "backorder": field("backorder"),
             "fittedAlternative": field("fittedAlternative"),
             "variantFigure": field("variantFigure"),
         })
@@ -810,10 +808,9 @@ def freight_sentence():
 
 # deliveryTime is required by Google, and shipping-policy.html deliberately
 # publishes no blanket lead time - so unlike everything else in this file these
-# two are not read off a page. Confirmed by Hao on 1 November 2026. They
-# describe an in-stock unit; a backorder carries its own date in
-# availabilityStarts. These appear in search results, so they are a promise to
-# the customer: do not widen them without checking what we can actually hit.
+# two are not read off a page. Confirmed by Hao on 1 November 2026. These
+# appear in search results, so they are a promise to the customer: do not
+# widen them without checking what we can actually hit.
 HANDLING_DAYS = (1, 3)
 TRANSIT_DAYS = (3, 7)
 
@@ -953,46 +950,6 @@ def page(title, desc, canonical, route, body, page_attr, crumbs=()):
 </body>
 </html>
 """ % (esc(title), esc(desc), canonical, GTAG_HTML, page_attr, NAV_HTML, body, FOOT_HTML, route)
-
-
-def lapsed(iso):
-    """True once a promised date is behind us."""
-    return bool(iso) and iso < datetime.date.today().isoformat()
-
-
-def due_text(iso):
-    """"5 November 2026" from "2026-11-05", or "" from "".
-
-    Merchant Center wants ISO 8601 and a reader wants English, so the date is
-    stored once in the form the feed needs and spelled out for the page."""
-    if not iso:
-        return ""
-    try:
-        y, m, d = (int(x) for x in iso.split("-"))
-    except ValueError:
-        return ""
-    return "%d %s %d" % (d, ("January", "February", "March", "April", "May",
-                             "June", "July", "August", "September", "October",
-                             "November", "December")[m - 1], y)
-
-
-def backorder_line(p):
-    """What the page says when a part is not on the shelf: that it is not, and
-    when it ships. It used to name the factory batch and say orders fill in the
-    order received, which told a reader we hold no stock and run a queue -
-    neither of which is theirs to know. The date stays because it is the one
-    fact the decision turns on, and because availabilityStarts carries it to
-    Merchant Center, which wants the two to agree."""
-    iso = p.get("backorder")
-    if not iso:
-        return ""
-    # A date that has already passed is worse than no date at all: it is a promise the reader can see we broke.
-    if lapsed(iso):
-        return "On backorder — we are confirming the ship date with the factory."
-    due = due_text(iso)
-    if not due:
-        return ""
-    return "On backorder — expected to ship %s." % due
 
 
 def torque_text(v):
@@ -1183,15 +1140,12 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
             "url": "%s/%s.html" % (SITE, p["id"]),
             "priceCurrency": "USD",
             "price": "%.2f" % p["price"],
-            "availability": ("https://schema.org/BackOrder" if p["backorder"]
-                             else "https://schema.org/InStock"),
+            "availability": "https://schema.org/InStock",
             "seller": {"@id": ORG_ID},
             "shippingDetails": shipping_ld(p["price"]),
             "hasMerchantReturnPolicy": return_ld(),
         },
     }
-    if p["backorder"]:
-        ld["offers"]["availabilityStarts"] = p["backorder"]
     if p["images"]:
         ld["image"] = ["%s/assets/img/products-branded/%s" % (SITE, i) for i in p["images"]]
 
@@ -1217,8 +1171,6 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         esc(p["series"] + ". ") if p["series"] else "",
         esc(summary + "." if summary else ""),
         p["price"],
-        ('<p class="notice">%s</p>' % esc(backorder_line(p))
-         if p["backorder"] else "") +
         ("<p>%s</p>" % esc(p["fit"]) if p["fit"] else "") +
         ("<p>%s</p>" % esc(which) if which else "") +
         variant_figure(p) +
@@ -1535,17 +1487,6 @@ def main():
     print("products      %d" % len(products))
     print("joint pages   %d" % len(joints))
     print("taxonomy      %d collections + %d applications" % (len(cols), len(apps)))
-    stale = sorted(q["id"] for q in products if lapsed(q.get("backorder")))
-    if stale:
-        print("")
-        print("  !! %d backorder date(s) have passed - the page no longer quotes"
-              % len(stale))
-        print("     them, but nobody knows the real date either. Ask the factory,")
-        print("     then update `backorder:` in assets/js/data.js:")
-        for q in stale:
-            d = next(x["backorder"] for x in products if x["id"] == q)
-            print("       %-32s %s" % (q, d))
-        print("")
     print("sitemap URLs  %d" % len(urls))
     print("worker prices %d" % len(prices))
     print("ship zones    %s" % ", ".join(z["code"] for z in zones))

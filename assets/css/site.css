@@ -960,5 +960,3 @@ select.field { appearance: none; background-image: none; }
 
 /* Backorder reuses the quote dot's amber: both say "this one needs a word
    before you pay", which is the same signal to the same reader. */
-.stock.backorder { color: var(--warn); margin: -6px 0 16px; }
-.stock.backorder i { background: var(--warn); }
