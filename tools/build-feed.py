@@ -150,10 +150,16 @@ def item(p, zones, coll_name):
     # backorder is a disapproval, and a customer who reads both is worse.
     #
     # Midnight Eastern, because that is where the stock and the invoices are.
-    if p.get("backorder"):
+    # A date in the past is not a late date, it is an invalid value, and
+    # Merchant Center reads it as one - while it still has these 115 products
+    # under review. The part really is on backorder, so keep saying that and
+    # drop the date until the factory gives us a new one.
+    if p.get("backorder") and not bs.lapsed(p["backorder"]):
         avail = ("    <g:availability>backorder</g:availability>\n"
                  "    <g:availability_date>%sT00:00:00-05:00</g:availability_date>"
                  % esc(p["backorder"]))
+    elif p.get("backorder"):
+        avail = "    <g:availability>backorder</g:availability>"
     else:
         avail = "    <g:availability>in_stock</g:availability>"
 

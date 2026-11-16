@@ -196,7 +196,25 @@
      is the opposite kind of claim, and the one a buyer needs before paying:
      Atlas bought four AKE80-8 and learned about the wait afterwards, from an
      email. Only the backordered parts say anything; the rest stay silent. */
+  /* True once the promised date is behind us. Compared as ISO strings against
+     the reader's own clock, so a page that was correct when it was built stops
+     being wrong the next morning without waiting for a deploy. */
+  function lapsed(iso) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return false;
+    var t = new Date();
+    return iso < t.getFullYear() + "-" +
+      ("0" + (t.getMonth() + 1)).slice(-2) + "-" + ("0" + t.getDate()).slice(-2);
+  }
   function backorderNote(p) {
+    if (!p.backorder) return "";
+    /* A date that has already passed is worse than no date at all: it is a promise the reader can see we broke. On 15 November the AKE80-8 page was still
+       offering to ship it on 5 November - to a buyer who, in two cases, had
+       already paid. Say the part is not on the shelf, which is the warning
+       that matters, and stop quoting a day we have missed. */
+    if (lapsed(p.backorder)) {
+      return '<div class="stock backorder"><i></i>On backorder &mdash; ' +
+        "we are confirming the ship date with the factory.</div>";
+    }
     var due = dueText(p.backorder);
     if (!due) return "";
     return '<div class="stock backorder"><i></i>On backorder &mdash; expected to ship ' +
@@ -1301,8 +1319,7 @@
     if (isFinite(h) && isFinite(ho) && h !== ho) {
       gap = " It is " + Math.abs(ho - h).toFixed(1).replace(/\.0$/, "") + " mm " +
         (h < ho ? "shorter" : "taller") + " than the " +
-        (other.variantLabel || other.name).toLowerCase()
-          .replace(/^with /, "") + " version, " +
+        other.specs["Lead Termination"].toLowerCase() + " version, " +
         h + " mm against " + ho + " mm.";
     }
     var lead = /weld/i.test(mine)

@@ -13,6 +13,7 @@ Run from the site root after changing data.js:
     python tools/build-static.py
 """
 
+import datetime
 import io
 import itertools
 import json
@@ -954,6 +955,11 @@ def page(title, desc, canonical, route, body, page_attr, crumbs=()):
 """ % (esc(title), esc(desc), canonical, GTAG_HTML, page_attr, NAV_HTML, body, FOOT_HTML, route)
 
 
+def lapsed(iso):
+    """True once a promised date is behind us."""
+    return bool(iso) and iso < datetime.date.today().isoformat()
+
+
 def due_text(iso):
     """"5 November 2026" from "2026-11-05", or "" from "".
 
@@ -977,7 +983,13 @@ def backorder_line(p):
     neither of which is theirs to know. The date stays because it is the one
     fact the decision turns on, and because availabilityStarts carries it to
     Merchant Center, which wants the two to agree."""
-    due = due_text(p.get("backorder"))
+    iso = p.get("backorder")
+    if not iso:
+        return ""
+    # A date that has already passed is worse than no date at all: it is a promise the reader can see we broke.
+    if lapsed(iso):
+        return "On backorder — we are confirming the ship date with the factory."
+    due = due_text(iso)
     if not due:
         return ""
     return "On backorder — expected to ship %s." % due
@@ -1106,7 +1118,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
                  "than one needs the %s unit for the opposing position."
                  % ("clockwise" if label.upper() == "CW" else "counter-clockwise",
                     other))
-    elif axis == "Style" and p["specs"].get("Lead Termination"):
+    elif p["specs"].get("Lead Termination"):
         # The same answer app.js renders for a reader, so a crawler and a
         # customer are told the same thing. "This is the welded leads
         # configuration" was true and settled nothing: the two questions people
@@ -1131,7 +1143,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
             which += (" It is %s mm %s than the %s version, %s mm against %s mm."
                       % (("%.1f" % abs(ho - h)).rstrip("0").rstrip("."),
                          "shorter" if h < ho else "taller",
-                         re.sub(r"^with ", "", (other["variantLabel"] or other["name"]).lower()),
+                         other["specs"]["Lead Termination"].lower(),
                          p["specs"]["Height (mm)"], other["specs"]["Height (mm)"]))
         which += (" The three motor phase pads are bare on both versions, so "
                   "you solder those yourself either way.")
@@ -1523,6 +1535,17 @@ def main():
     print("products      %d" % len(products))
     print("joint pages   %d" % len(joints))
     print("taxonomy      %d collections + %d applications" % (len(cols), len(apps)))
+    stale = sorted(q["id"] for q in products if lapsed(q.get("backorder")))
+    if stale:
+        print("")
+        print("  !! %d backorder date(s) have passed - the page no longer quotes"
+              % len(stale))
+        print("     them, but nobody knows the real date either. Ask the factory,")
+        print("     then update `backorder:` in assets/js/data.js:")
+        for q in stale:
+            d = next(x["backorder"] for x in products if x["id"] == q)
+            print("       %-32s %s" % (q, d))
+        print("")
     print("sitemap URLs  %d" % len(urls))
     print("worker prices %d" % len(prices))
     print("ship zones    %s" % ", ".join(z["code"] for z in zones))
