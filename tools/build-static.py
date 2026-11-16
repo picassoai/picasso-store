@@ -971,7 +971,7 @@ def integrated_ids(src):
     return ids
 
 
-ALT = 'RI85-PH KV85 welded model and with-connector model compared: the seven-pin J1 sensor header is fitted on one and left as bare pads on the other, with the 200 mm harness pin-out and wire colours.'
+ALT = 'RI85-PH KV85, the two versions compared: welded, CubeMars AJD01010029, J1 pads bare, 31.5 mm; and connector, CubeMars AJD01010032, seven-pin J1 header fitted with a 200 mm harness, 32 mm. The harness pin-out is shown below them, and the three motor phase pads are bare on both.'
 CAP = 'The two versions side by side. Open the image to read the pin-out.'
 
 
@@ -993,7 +993,7 @@ def variant_figure(p):
     return ('<figure class="variant-figure">'
             '<a href="assets/img/%s" target="_blank" rel="noopener">'
             '<img src="assets/img/%s" alt="%s" loading="lazy" '
-            'width="1500" height="1043"></a>'
+            'width="1500" height="1082"></a>'
             '<figcaption>%s</figcaption></figure>'
             % (esc(f), esc(f), esc(ALT), esc(CAP)))
 
