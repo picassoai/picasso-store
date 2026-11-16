@@ -975,6 +975,17 @@ ALT = 'RI85-PH KV85, the two versions compared: welded, CubeMars AJD01010029, J1
 CAP = 'The two versions side by side. Open the image to read the pin-out.'
 
 
+LANDED = 'Our price is delivered duty paid. Import the same part yourself and you clear customs, pay duty and tariffs, and settle a carrier brokerage fee after the goods have shipped. The cheaper listing is only cheaper if it ships.'
+
+
+def landed_cost_note(p):
+    """The same answer app.js gives a reader. It names no rate on purpose -
+    see the note on landedCostNote in app.js for why."""
+    if p["price"] is None:
+        return ""
+    return '<p class="notice">' + esc(LANDED) + '</p>'
+
+
 def variant_figure(p):
     """The picture that settles which version this is.
 
@@ -1173,6 +1184,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         p["price"],
         ("<p>%s</p>" % esc(p["fit"]) if p["fit"] else "") +
         ("<p>%s</p>" % esc(which) if which else "") +
+        landed_cost_note(p) +
         variant_figure(p) +
         ("<p>%s</p>" % esc(p["blurb"]) if p["blurb"] else ""),
         freight_note(),

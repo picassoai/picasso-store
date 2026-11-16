@@ -1304,6 +1304,32 @@
         : "");
   }
 
+  /* Answers the objection the price raises on its own, where it is raised.
+
+     Our number is landed: duty, tariffs and clearance are inside it. A factory
+     or marketplace listing of the same part is not, so ours reads dearer to
+     anyone comparing stickers - and against the US competition it is not: the
+     AK80-64 is $1,109 here against $1,197 at the nearest one.
+
+     It names no rate on purpose. US duty on these motors runs a few points MFN
+     plus a Section 301 add-on that sources put anywhere between fifteen and
+     twenty-five points, and USTR has exclusions covering some 8501.31 DC
+     motors running to January 2027 - so the true figure for a given part
+     number might be any of those, or nothing at all. A wrong tariff number on
+     a product page is a statement about US customs that a procurement engineer
+     can check, so this says only what holds whatever the rate: there is duty,
+     there is clearance, and both land on the buyer afterwards.
+
+     The last sentence is the one with evidence behind it. A customer's cheaper
+     marketplace order for these very parts was cancelled outright in November
+     2026, and he paid us more to actually receive them. */
+  function landedCostNote(p) {
+    if (quoteOnly(p)) return "";
+    return '<div class="addon"><div>' +
+      '<span class="addon-label">What the price includes</span>' +
+      esc('Our price is delivered duty paid. Import the same part yourself and you clear customs, pay duty and tariffs, and settle a carrier brokerage fee after the goods have shipped. The cheaper listing is only cheaper if it ships.') + "</div></div>";
+  }
+
   /* Pendulum tells the customer to consult a compatibility table. We already
      know which motor they are looking at, so answer the question instead. */
   function driverBoardLine(p) {
@@ -1442,6 +1468,7 @@
                 ? "Volume pricing on orders over " + money(S.selfServeMax) +
                   ' — <a href="' + quoteHref(p) + '">request a quote</a>.'
                 : "") + "</p>") +
+        landedCostNote(p) +
         driverBoardLine(p) +
         leadTerminationNote(p) +
         specTiles(p) +
