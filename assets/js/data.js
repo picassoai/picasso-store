@@ -764,7 +764,7 @@ window.FAQ = [
   },
   {
     q: "Do I pay tariffs or import duties?",
-    a: "Not on orders to the United States. Our goods are made overseas, so duty and tariffs apply to every shipment. We pay them, and the price at checkout is the price you pay. Nothing arrives later from the carrier or a customs broker. Order the same part direct from the factory and both of those land on you instead, after the parts have already shipped. International orders are different: duty varies a great deal by destination, so those are quoted individually with the charges itemised before you pay."
+    a: "Not on orders to the United States. Duty and tariffs apply to every shipment, and we pay them — the price at checkout is the price you pay. Nothing arrives later from the carrier or a customs broker. Order the same part direct from the factory and both of those land on you instead, after the parts have already shipped. International orders are different: duty varies a great deal by destination, so those are quoted individually with the charges itemised before you pay."
   },
   {
     q: "What if a part is faulty, or I ordered the wrong one?",
