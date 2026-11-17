@@ -76,9 +76,8 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 
 ## Direct Drive Motors
 
-- [MyActuator RMD-L-4010](https://picassointelligence.com/rmd-l-4010.html): US$140. 150 mN·m rated and 330 mN·m peak from a Ф39.6 mm, 92 g frame, direct drive on 24 V. 560 RPM rated and 1120 RPM no-load.
-- [MyActuator RMD-H-50-15](https://picassointelligence.com/rmd-h-50-15.html): US$180. 350 mN·m rated and 900 mN·m peak from a Ф50 x 46 mm, 240 g frame, direct drive on 24 V. 2500 RPM rated and 3200 RPM no-load.
 - [R60 KV115](https://picassointelligence.com/r60-kv115.html): US$200. 0.75 N·m rated and 2.3 N·m peak from a Ф69 mm, 248 g housed frame, direct drive on 48 V. Kv 115, 9 A continuous and 28 A peak, with Hall sensors built in. CubeMars lists it for AGVs and mobile robots.
+- [MyActuator RMD-H-70-15-200-C](https://picassointelligence.com/rmd-h-70-15-200-c.html): US$259. 800 mNÂ·m rated and 2 NÂ·m peak from a Ð¤70 x 49.5 mm, 470 g frame, direct drive on 48 V. 2400 RPM rated and 2800 RPM no-load.
 - [R100 KV90](https://picassointelligence.com/r100-kv90.html): US$478. 3.7 N·m rated and 11 N·m peak from a Ф106.8 mm, 731 g housed frame, direct drive on 48 V. Kv 90, 35 A continuous and 104 A peak, with Hall sensors built in. CubeMars lists it for heavy-load legged robots.
 
 ## Frameless Motors

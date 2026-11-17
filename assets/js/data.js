@@ -353,16 +353,15 @@ window.PRODUCTS = [
     specs: { "Contents": "AKA debug ×2, AK debug ×2", "Fits": "RUBIK LINK V3.0" }, images: ["rubik-link-v3-0-cables-1.webp"] },
   /* MyActuator, not CubeMars. The brand is in the name on purpose: this site
      stopped rendering brand anywhere on 2026-08-25, and a second maker's part
-     on an unlabelled card would read as a CubeMars one. Nothing else about
-     the brand UI comes back for these two. */
-  { id: "rmd-l-4010", name: "MyActuator RMD-L-4010", brand: "MyActuator", series: "L Series", collection: "directdrive", art: "frameless", size: 0.78, price: 140,
-    fit: "150 mN·m rated and 330 mN·m peak from a Ф39.6 mm, 92 g frame, direct drive on 24 V. 560 RPM rated and 1120 RPM no-load.",
-    blurb: "A 40 mm direct drive with the driver built in: 0.15 N·m continuous off the rotor with no gearbox between it and the output, so there is no backlash to take up and nothing to wear. 92 g, CAN bus, 24 V.",
-    specs: { "Reduction Ratio": "1:1", "Rated Torque (N·m)": "0.15", "OD (mm)": "39.6", "Weight (g)": "92", "Peak Torque (N·m)": "0.33", "Rated Voltage (V)": "24", "Rated Speed (RPM)": "560", "No-Load Speed (RPM)": "1120", "Kt (N·m/A)": "0.1", "Rotor Type": "Outer rotor", "Communication": "CAN BUS", "Driving Way": "FOC" }, images: ["rmd-l-4010-1.webp"] },
-  { id: "rmd-h-50-15", name: "MyActuator RMD-H-50-15", brand: "MyActuator", series: "H Series", collection: "directdrive", art: "hollow", size: 0.86, price: 180,
-    fit: "350 mN·m rated and 900 mN·m peak from a Ф50 x 46 mm, 240 g frame, direct drive on 24 V. 2500 RPM rated and 3200 RPM no-load.",
-    blurb: "A 50 mm direct drive with a 16 mm hollow bore through the middle, so the harness runs through the joint instead of around it. 0.35 N·m continuous, 0.9 N·m peak, no gearbox and no backlash.",
-    specs: { "Reduction Ratio": "1:1", "Rated Torque (N·m)": "0.35", "OD (mm)": "50", "Weight (g)": "240", "Peak Torque (N·m)": "0.9", "Rated Voltage (V)": "24", "Rated Power (W)": "91.6", "Rated Speed (RPM)": "2500", "No-Load Speed (RPM)": "3200", "Height (mm)": "46", "Hollow Bore (mm)": "16", "Kt (N·m/A)": "0.07", "Rotor Type": "Outer rotor", "Communication": "CAN BUS", "Driving Way": "FOC" }, images: ["rmd-h-50-15-1.webp"] },
+     on an unlabelled card would read as a CubeMars one.
+     No photograph yet, so images is empty and the card falls back to the
+     generated art. The hollow bore diameter is the one spec MyActuator's
+     public pages do not state - it is on the installation drawing, and it
+     belongs here once someone has read it off. */
+  { id: "rmd-h-70-15-200-c", name: "MyActuator RMD-H-70-15-200-C", brand: "MyActuator", series: "H Series", collection: "directdrive", art: "hollow", size: 0.98, price: 259,
+    fit: "800 mNÂ·m rated and 2 NÂ·m peak from a Ð¤70 x 49.5 mm, 470 g frame, direct drive on 48 V. 2400 RPM rated and 2800 RPM no-load.",
+    blurb: "A 70 mm direct drive with the bore running straight through it, so the harness passes through the joint rather than around it. 0.8 NÂ·m continuous and 2 NÂ·m peak come off the rotor with no gearbox in between, which means there is no backlash to take up and nothing in the drivetrain to wear. 200 W on 48 V, 470 g, with a 17-bit absolute encoder on CAN.",
+    specs: { "Reduction Ratio": "1:1", "Rated Torque (NÂ·m)": "0.8", "Peak Torque (NÂ·m)": "2", "Rated Voltage (V)": "48", "Rated Power (W)": "200", "Rated Speed (RPM)": "2400", "No-Load Speed (RPM)": "2800", "OD (mm)": "70", "Height (mm)": "49.5", "Weight (g)": "470", "Rated Current (A)": "4.4", "Peak Current (A)": "13.2", "No-Load Current (A)": "0.18", "Kt (NÂ·m/A)": "0.18", "Ke (V/kRPM)": "17", "Pole Pairs": "13", "Inertia (gÂ·cmÂ²)": "1800", "Cogging Torque (mNÂ·m)": "31", "Winding Resistance (Î©)": "0.5", "Winding Inductance (mH)": "0.55", "Winding Type": "Y", "Max Axial Load (kN)": "1.87", "Max Radial Load (kN)": "0.44", "Efficiency": ">84%", "Repeat Positioning Accuracy": "<0.01Â°", "Encoder Type": "ABS 17-bit", "Rotor Type": "Outer rotor", "Communication": "CAN BUS", "Insulation Class": "F" }, images: ["rmd-h-70-15-200-c-1.webp"] },
   { id: "r100-kv90", name: "R100 KV90", brand: "CubeMars", series: "R Series", collection: "directdrive", art: "hollow", size: 1.14, price: 478,
     fit: "3.7 N·m rated and 11 N·m peak from a Ф106.8 mm, 731 g housed frame, direct drive on 48 V. Kv 90, 35 A continuous and 104 A peak, with Hall sensors built in. CubeMars lists it for heavy-load legged robots.",
     blurb: "The largest of the R series, and the only CubeMars direct drive here that arrives as a finished motor: the Hall sensors, the bearings and the bore are already in it, where the frameless RI and RO rotors leave all three to you. There is no gearbox, so there is no backlash to take up and nothing in the drivetrain to wear. Mounting holes are left in the bell for a harmonic drive or a flange when the joint needs more torque than 11 N·m.",

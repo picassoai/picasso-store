@@ -201,7 +201,11 @@ def main():
     zones = json.loads(src[i:j + 1])
 
     # Anything without a price is quote-only and has nothing to advertise.
-    sellable = [p for p in products if p["price"]]
+    # A product with no photograph has nothing to advertise either: the site
+    # falls back to generated art for it, but g:image_link is required and an
+    # empty one is a feed error, so the item is held back until there is a
+    # real photograph rather than shipped broken.
+    sellable = [p for p in products if p["price"] and p["images"]]
     items = "\n".join(item(p, zones, by_coll.get(p["collection"], ""))
                       for p in sellable)
 

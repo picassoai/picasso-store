@@ -30,49 +30,24 @@
     <g:max_transit_time>10</g:max_transit_time>
   </item>
   <item>
-    <g:id>rmd-l-4010</g:id>
-    <g:title>MyActuator RMD-L-4010 — Direct Drive Motors</g:title>
-    <g:description>150 mN·m rated and 330 mN·m peak from a Ф39.6 mm, 92 g frame, direct drive on 24 V. 560 RPM rated and 1120 RPM no-load. A 40 mm direct drive with the driver built in: 0.15 N·m continuous off the rotor with no gearbox between it and the output, so there is no backlash to take up and nothing to wear. 92 g, CAN bus, 24 V. Rated Torque 0.15; Peak Torque 0.33; OD 39.6; Weight 92; Reduction Ratio 1:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
-    <g:link>https://picassointelligence.com/rmd-l-4010.html</g:link>
-    <g:image_link>https://picassointelligence.com/assets/img/products-branded/rmd-l-4010-1.webp</g:image_link>
+    <g:id>rmd-h-70-15-200-c</g:id>
+    <g:title>MyActuator RMD-H-70-15-200-C — Direct Drive Motors</g:title>
+    <g:description>800 mNÂ·m rated and 2 NÂ·m peak from a Ð¤70 x 49.5 mm, 470 g frame, direct drive on 48 V. 2400 RPM rated and 2800 RPM no-load. A 70 mm direct drive with the bore running straight through it, so the harness passes through the joint rather than around it. 0.8 NÂ·m continuous and 2 NÂ·m peak come off the rotor with no gearbox in between, which means there is no backlash to take up and nothing in the drivetrain to wear. 200 W on 48 V, 470 g, with a 17-bit absolute encoder on CAN. OD 70; Weight 470; Reduction Ratio 1:1; Rated Voltage 48. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
+    <g:link>https://picassointelligence.com/rmd-h-70-15-200-c.html</g:link>
+    <g:image_link>https://picassointelligence.com/assets/img/products-branded/rmd-h-70-15-200-c-1.webp</g:image_link>
 
     <g:condition>new</g:condition>
     <g:availability>in_stock</g:availability>
-    <g:price>140.00 USD</g:price>
+    <g:price>259.00 USD</g:price>
     <g:brand>MyActuator</g:brand>
-    <g:mpn>MyActuator RMD-L-4010</g:mpn>
+    <g:mpn>MyActuator RMD-H-70-15-200-C</g:mpn>
     <g:identifier_exists>no</g:identifier_exists>
     <g:google_product_category>7275</g:google_product_category>
     <g:product_type>Direct Drive Motors</g:product_type>
     <g:shipping>
       <g:country>US</g:country>
       <g:service>Standard</g:service>
-      <g:price>55.00 USD</g:price>
-    </g:shipping>
-    <g:min_handling_time>1</g:min_handling_time>
-    <g:max_handling_time>3</g:max_handling_time>
-    <g:min_transit_time>5</g:min_transit_time>
-    <g:max_transit_time>10</g:max_transit_time>
-  </item>
-  <item>
-    <g:id>rmd-h-50-15</g:id>
-    <g:title>MyActuator RMD-H-50-15 — Direct Drive Motors</g:title>
-    <g:description>350 mN·m rated and 900 mN·m peak from a Ф50 x 46 mm, 240 g frame, direct drive on 24 V. 2500 RPM rated and 3200 RPM no-load. A 50 mm direct drive with a 16 mm hollow bore through the middle, so the harness runs through the joint instead of around it. 0.35 N·m continuous, 0.9 N·m peak, no gearbox and no backlash. Rated Torque 0.35; Peak Torque 0.9; OD 50; Weight 240; Reduction Ratio 1:1; Rated Voltage 24. Delivered duty paid from a US distributor; no customs for you to clear and no carrier invoice after delivery.</g:description>
-    <g:link>https://picassointelligence.com/rmd-h-50-15.html</g:link>
-    <g:image_link>https://picassointelligence.com/assets/img/products-branded/rmd-h-50-15-1.webp</g:image_link>
-
-    <g:condition>new</g:condition>
-    <g:availability>in_stock</g:availability>
-    <g:price>180.00 USD</g:price>
-    <g:brand>MyActuator</g:brand>
-    <g:mpn>MyActuator RMD-H-50-15</g:mpn>
-    <g:identifier_exists>no</g:identifier_exists>
-    <g:google_product_category>7275</g:google_product_category>
-    <g:product_type>Direct Drive Motors</g:product_type>
-    <g:shipping>
-      <g:country>US</g:country>
-      <g:service>Standard</g:service>
-      <g:price>55.00 USD</g:price>
+      <g:price>0.00 USD</g:price>
     </g:shipping>
     <g:min_handling_time>1</g:min_handling_time>
     <g:max_handling_time>3</g:max_handling_time>
