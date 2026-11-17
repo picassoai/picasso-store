@@ -77,7 +77,7 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 ## Direct Drive Motors
 
 - [R60 KV115](https://picassointelligence.com/r60-kv115.html): US$200. 0.75 N·m rated and 2.3 N·m peak from a Ф69 mm, 248 g housed frame, direct drive on 48 V. Kv 115, 9 A continuous and 28 A peak, with Hall sensors built in. CubeMars lists it for AGVs and mobile robots.
-- [MyActuator RMD-H-70-15-200-C](https://picassointelligence.com/rmd-h-70-15-200-c.html): US$259. 800 mNÂ·m rated and 2 NÂ·m peak from a Ð¤70 x 49.5 mm, 470 g frame, direct drive on 48 V. 2400 RPM rated and 2800 RPM no-load.
+- [MyActuator RMD-H-70-15-200-C](https://picassointelligence.com/rmd-h-70-15-200-c.html): US$259. 800 mN·m rated and 2 N·m peak from a Ф70 x 49.5 mm, 470 g frame, direct drive on 48 V. 2400 RPM rated and 2800 RPM no-load.
 - [R100 KV90](https://picassointelligence.com/r100-kv90.html): US$478. 3.7 N·m rated and 11 N·m peak from a Ф106.8 mm, 731 g housed frame, direct drive on 48 V. Kv 90, 35 A continuous and 104 A peak, with Hall sensors built in. CubeMars lists it for heavy-load legged robots.
 
 ## Frameless Motors
@@ -147,6 +147,7 @@ Prices are in US dollars and are what the site charges. Import duty on orders to
 
 ## Comparisons
 
+- [MyActuator RMD-H-70-15-200-C vs R60 KV115](https://picassointelligence.com/rmd-h-70-15-200-c-vs-r60-kv115.html): every published specification side by side, with the price per newton-metre.
 - [AK40-10 KV170 vs AK40-10 V3.0 KV170](https://picassointelligence.com/ak40-10-kv170-without-driver-vs-ak40-10-v3-0-kv170.html): every published specification side by side, with the price per newton-metre.
 - [AK45-10 KV75 vs AK45-10 V3.0 KV75](https://picassointelligence.com/ak45-10-kv75-without-driver-vs-ak45-10-v3-0-kv75.html): every published specification side by side, with the price per newton-metre.
 - [AK45-10 KV75 vs AKE50-8 KV110](https://picassointelligence.com/ak45-10-kv75-without-driver-vs-ake50-8-kv110.html): every published specification side by side, with the price per newton-metre.
