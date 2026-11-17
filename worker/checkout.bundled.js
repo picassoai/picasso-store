@@ -488,7 +488,7 @@ const PRICES = {
     "series": "RI Series"
   },
   "rmd-h-70-15-200-c": {
-    "cents": 25900,
+    "cents": 29500,
     "name": "MyActuator RMD-H-70-15-200-C",
     "series": "H Series"
   },
