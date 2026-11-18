@@ -384,6 +384,16 @@ async function stripeSession(payload, env) {
   form.set("billing_address_collection", "required");
   form.set("phone_number_collection[enabled]", "true");
   form.set("automatic_tax[enabled]", "true");
+  /* No after_expiration[recovery] and no consent_collection[promotions] here,
+     deliberately. Both belong to Stripe's Promotional Email Services, and
+     accepting those terms is what hands over an abandoned shopper's address -
+     along with an indemnity to Stripe over consent claims, a 14-day audit
+     response, 30-day mandatory beta updates, and a requirement to carry an
+     unsubscribe route on the site, which this site does not have. Weighed
+     against $6,993 of lifetime Checkout volume, and a catalogue whose real
+     money leaves as quotes above selfServeMax and never touches Checkout at
+     all, that is a poor trade. checkout.session.expired fires without any of
+     it, so abandonment can be watched without taking on the obligations. */
 
   const res = await fetch("https://api.stripe.com/v1/checkout/sessions", {
     method: "POST",
