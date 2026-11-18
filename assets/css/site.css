@@ -624,6 +624,10 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
   vertical-align: top;
 }
 .spec-table th { font-weight: 400; color: var(--ink-3); width: 52%; }
+/* A specification table splits evenly because both halves are data. Where the
+   left column is a short label against a sentence - the procurement block -
+   52% strands the label in white space. */
+.spec-table.narrow-labels th { width: 30%; }
 .spec-table td { font-variant-numeric: tabular-nums; }
 .spec-list { list-style: none; margin: 0 0 18px; padding: 0; font-size: 14px; color: var(--ink-2); }
 .spec-list li { padding: 4px 0; }

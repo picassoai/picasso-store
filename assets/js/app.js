@@ -1261,9 +1261,9 @@
      Three RI-PH families ship a welded and a connector version at one price,
      and all the catalogue said was "This is the welded leads configuration",
      which settles nothing. Two questions get asked instead, and both were
-     asked mid-order by an aerospace customer who had already paid: can the
-     connector version be soldered to directly, and nobody thinks about the
-     height until the actuator is drawn.
+     asked mid-order by a customer who had already paid: can the connector
+     version be soldered to directly, and nobody thinks about the height
+     until the actuator is drawn.
 
      Both millimetre figures are read from the two products' own specs rather
      than written here, because the gap is not a constant - the RI75 pair
