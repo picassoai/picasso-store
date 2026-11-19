@@ -117,6 +117,12 @@ def parse_products(src):
         specs = dict(re.findall(r'"([^"]+)"\s*:\s*"([^"]*)"', sp.group(1))) if sp else {}
         imgs = re.search(r'images: \[([^\]]*)\]', tail)
         blurb = re.search(r'blurb: "((?:[^"\\]|\\.)*)"', tail)
+        # Dimensioned drawings, wiring diagrams and cogging-torque plots, which
+        # the manufacturer publishes and we did not carry. Read as pairs so a
+        # caption cannot drift away from the file it belongs to.
+        tch = re.search(r'tech: \[(.*?)\]', tail, re.S)
+        tech = re.findall(r'\{\s*f:\s*"([^"]+)",\s*t:\s*"([^"]+)"\s*\}',
+                          tch.group(1)) if tch else []
 
         def field(key):
             m2 = re.search(r'%s: "((?:[^"\\]|\\.)*)"' % key, head)
@@ -129,6 +135,7 @@ def parse_products(src):
             "group": grp.group(1) if grp else None,
             "blurb": blurb.group(1).replace('\\"', '"') if blurb else "",
             "images": re.findall(r'"([^"]+)"', imgs.group(1)) if imgs else [],
+            "tech": tech,
             "variantLabel": field("variantLabel"),
             "variantAxis": field("variantAxis"),
             "variantGroupName": field("variantGroupName"),
@@ -1009,6 +1016,33 @@ def variant_figure(p):
             % (esc(f), esc(f), esc(ALT), esc(CAP)))
 
 
+def tech_figures(p):
+    """The manufacturer's drawings, which we were sending people elsewhere for.
+
+    A dimensioned drawing is the first thing a mechanical engineer asks for and
+    the last thing our pages carried: anyone sizing a bracket had to leave and
+    find CubeMars' own page. The wiring diagram answers the question the
+    specification table only hints at, and the cogging-torque plot is the one
+    number a direct-drive buyer cannot infer from the others.
+
+    Folded shut, beside the specification table, because the page is already
+    long and this is reference material rather than something to scroll past.
+    """
+    figs = p.get("tech") or []
+    if not figs:
+        return ""
+    items = "".join(
+        '<figure><a href="assets/img/tech/%s" target="_blank" rel="noopener">'
+        '<img src="assets/img/tech/%s" alt="%s, %s" loading="lazy"></a>'
+        '<figcaption>%s</figcaption></figure>'
+        % (esc(f), esc(f), esc(p["name"]), esc(t.lower()), esc(t))
+        for f, t in figs)
+    return ('<details class="spec-all tech-figs"><summary>Drawings and curves</summary>'
+            '<div class="tech-grid">%s</div>'
+            '<p class="note">Published by the manufacturer. Dimensions are in '
+            'millimetres.</p></details>' % items)
+
+
 def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=""):
     s = p["specs"]
     torque = lead_num(s.get("Rated Torque (N·m)"))
@@ -1188,7 +1222,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
         variant_figure(p) +
         ("<p>%s</p>" % esc(p["blurb"]) if p["blurb"] else ""),
         freight_note(),
-        alt, table,
+        alt, table + tech_figures(p),
         json.dumps(ld, ensure_ascii=False))
 
     trail = [("Store", "index.html")]

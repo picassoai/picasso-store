@@ -1330,6 +1330,31 @@
       esc('Our price is delivered duty paid. Import the same part yourself and you clear customs, pay duty and tariffs, and settle a carrier brokerage fee after the goods have shipped. The cheaper listing is only cheaper if it ships.') + "</div></div>";
   }
 
+  /* The manufacturer's drawings, which we were sending people elsewhere for.
+
+     A dimensioned drawing is the first thing a mechanical engineer asks for
+     and the last thing these pages carried: anyone sizing a bracket had to
+     leave and find CubeMars' own page. The wiring diagram answers what the
+     specification table only hints at, and the cogging-torque plot is the one
+     number a direct-drive buyer cannot infer from the others.
+
+     Folded shut beside the specification table: the page is already long, and
+     this is reference material rather than something to scroll past. Rendered
+     here and in build-static.py both, because app.js overwrites [data-pdp]
+     and a crawler never runs it. */
+  function techFigures(p) {
+    var figs = p.tech || [];
+    if (!figs.length) return "";
+    return '<details class="spec-all tech-figs"><summary>Drawings and curves</summary>' +
+      '<div class="tech-grid">' +
+      figs.map(function (d) {
+        return '<figure><a href="assets/img/tech/' + esc(d.f) + '" target="_blank" rel="noopener">' +
+          '<img src="assets/img/tech/' + esc(d.f) + '" alt="' + esc(p.name + ", " + d.t.toLowerCase()) +
+          '" loading="lazy"></a><figcaption>' + esc(d.t) + "</figcaption></figure>";
+      }).join("") +
+      '</div><p class="note">Published by the manufacturer. Dimensions are in millimetres.</p></details>';
+  }
+
   /* Pendulum tells the customer to consult a compatibility table. We already
      know which motor they are looking at, so answer the question instead. */
   function driverBoardLine(p) {
@@ -1482,6 +1507,7 @@
           : '<div class="notice" style="margin-top:22px">Full specifications for this model are supplied ' +
             'with the quote, or on request — we have not published them here rather than reproduce numbers we ' +
             'have not verified against the current datasheet.</div>') +
+        techFigures(p) +
       "</div>";
 
     var main = $("[data-main]");

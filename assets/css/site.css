@@ -629,6 +629,30 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
    52% strands the label in white space. */
 .spec-table.narrow-labels th { width: 30%; }
 .spec-table td { font-variant-numeric: tabular-nums; }
+
+/* Manufacturer drawings. These are not product photographs: a dimensioned
+   drawing is wide and a cogging-torque plot is wider, so they keep their own
+   proportions inside a fixed box rather than being cropped square like the
+   catalogue shots. The box is what makes a row of them line up when one is a
+   1400x700 drawing and the next is a 940x1180 one. */
+.tech-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 18px; margin: 4px 0 14px;
+}
+.tech-grid figure { margin: 0; }
+.tech-grid a {
+  display: block; background: #fff; border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm); padding: 10px; height: 200px;
+}
+.tech-grid a:hover { border-color: var(--accent); }
+.tech-grid img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.tech-grid figcaption {
+  margin-top: 7px; font-size: 13px; color: var(--ink-3);
+}
+@media (max-width: 640px) {
+  .tech-grid { grid-template-columns: 1fr; }
+  .tech-grid a { height: 230px; }
+}
 .spec-list { list-style: none; margin: 0 0 18px; padding: 0; font-size: 14px; color: var(--ink-2); }
 .spec-list li { padding: 4px 0; }
 .spec-pending { margin: 0; font-size: 13px; color: var(--ink-4); }
