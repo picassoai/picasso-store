@@ -1,0 +1,22 @@
+# Git guesses whether a file is text by sniffing its first few kilobytes, and
+# it guessed wrong about assets/video/ri75-ph-kv70.mp4: that file contains no
+# null byte early enough to look binary, so git recorded it as LF text. The
+# commit itself was fine, but the next checkout on a machine with
+# core.autocrlf=true would have rewritten every 0x0A in the stream to 0x0D 0x0A
+# and handed the next person a video that will not play.
+#
+# Nothing here is text, so nothing here gets line-ending conversion.
+*.mp4   binary
+*.webm  binary
+*.mov   binary
+*.webp  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
