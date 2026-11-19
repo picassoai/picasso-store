@@ -1330,6 +1330,26 @@
       esc('Our price is delivered duty paid. Import the same part yourself and you clear customs, pay duty and tariffs, and settle a carrier brokerage fee after the goods have shipped. The cheaper listing is only cheaper if it ships.') + "</div></div>";
   }
 
+  /* The manufacturer's product film.
+
+     preload="none" with a poster, so the page costs one still image and the
+     video itself is only fetched when somebody presses play. Without that a
+     product page would pull close to a megabyte on load and become the
+     heaviest thing on the site by an order of magnitude, to show a clip most
+     readers never start.
+
+     playsinline keeps it in the page on iOS rather than throwing it into the
+     system player full screen, which loses the page behind it. */
+  function videoBlock(p) {
+    var v = p.video;
+    if (!v || !v.v) return "";
+    return '<div class="pdp-video"><video controls preload="none" playsinline' +
+      (v.p ? ' poster="assets/img/video-poster/' + esc(v.p) + '"' : "") +
+      '><source src="assets/video/' + esc(v.v) + '" type="video/mp4">' +
+      "Your browser cannot play this video.</video>" +
+      '<p class="note">Manufacturer’s film of the ' + esc(p.variantGroupName || p.name) + ".</p></div>";
+  }
+
   /* The manufacturer's drawings, which we were sending people elsewhere for.
 
      A dimensioned drawing is the first thing a mechanical engineer asks for
@@ -1453,6 +1473,7 @@
             }).join("") +
             "</div>"
           : "") +
+        videoBlock(p) +
       "</div>" +
       "<div>" +
         '<div class="crumbs"><a href="index.html">Store</a><span>/</span>' +

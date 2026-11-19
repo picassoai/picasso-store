@@ -123,6 +123,7 @@ def parse_products(src):
         tch = re.search(r'tech: \[(.*?)\]', tail, re.S)
         tech = re.findall(r'\{\s*f:\s*"([^"]+)",\s*t:\s*"([^"]+)"\s*\}',
                           tch.group(1)) if tch else []
+        vid = re.search(r'video: \{\s*v:\s*"([^"]*)",\s*p:\s*"([^"]*)"\s*\}', tail)
 
         def field(key):
             m2 = re.search(r'%s: "((?:[^"\\]|\\.)*)"' % key, head)
@@ -136,6 +137,7 @@ def parse_products(src):
             "blurb": blurb.group(1).replace('\\"', '"') if blurb else "",
             "images": re.findall(r'"([^"]+)"', imgs.group(1)) if imgs else [],
             "tech": tech,
+            "video": {"v": vid.group(1), "p": vid.group(2)} if vid else None,
             "variantLabel": field("variantLabel"),
             "variantAxis": field("variantAxis"),
             "variantGroupName": field("variantGroupName"),
@@ -1016,6 +1018,25 @@ def variant_figure(p):
             % (esc(f), esc(f), esc(ALT), esc(CAP)))
 
 
+def video_block(p):
+    """The manufacturer's product film.
+
+    preload="none" with a poster, so the page costs one still image and the
+    video is only fetched when somebody presses play. Without it a product
+    page would pull close to a megabyte on load to show a clip most readers
+    never start. playsinline keeps it in the page on iOS instead of throwing
+    it into the system player, which loses the page behind it."""
+    v = p.get("video")
+    if not v or not v.get("v"):
+        return ""
+    poster = (' poster="assets/img/video-poster/%s"' % esc(v["p"])) if v.get("p") else ""
+    return ('<div class="pdp-video"><video controls preload="none" playsinline%s>'
+            '<source src="assets/video/%s" type="video/mp4">'
+            'Your browser cannot play this video.</video>'
+            '<p class="note">Manufacturer’s film of the %s.</p></div>'
+            % (poster, esc(v["v"]), esc(p["variantGroupName"] or p["name"])))
+
+
 def tech_figures(p):
     """The manufacturer's drawings, which we were sending people elsewhere for.
 
@@ -1212,7 +1233,7 @@ def product_page(p, actuators=frozenset(["integrated"]), siblings=(), coll_name=
   <div class="wrap" data-related></div>
 </section>
 <script type="application/ld+json">%s</script>""" % (
-        crumbs, esc(p["name"]), img,
+        crumbs, esc(p["name"]), img + video_block(p),
         esc(p["series"] + ". ") if p["series"] else "",
         esc(summary + "." if summary else ""),
         p["price"],

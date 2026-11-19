@@ -653,6 +653,16 @@ details.spec-all[open] > summary::after { transform: rotate(-90deg); }
   .tech-grid { grid-template-columns: 1fr; }
   .tech-grid a { height: 230px; }
 }
+
+/* The product film, under the photographs rather than inside the carousel:
+   the carousel swaps one element's contents and a <video> dropped into that
+   cycle keeps playing while the reader clicks past it. */
+.pdp-video { margin-top: 16px; }
+.pdp-video video {
+  width: 100%; display: block; border-radius: var(--radius-sm);
+  background: var(--bg-2);
+}
+.pdp-video .note { margin: 7px 0 0; }
 .spec-list { list-style: none; margin: 0 0 18px; padding: 0; font-size: 14px; color: var(--ink-2); }
 .spec-list li { padding: 4px 0; }
 .spec-pending { margin: 0; font-size: 13px; color: var(--ink-4); }
